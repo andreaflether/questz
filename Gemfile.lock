@@ -93,6 +93,9 @@ GEM
     http_parser.rb (0.6.0)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
+    inline_svg (1.7.1)
+      activesupport (>= 3.0)
+      nokogiri (>= 1.6)
     jbuilder (2.10.0)
       activesupport (>= 5.0.0)
     listen (3.1.5)
@@ -221,6 +224,7 @@ DEPENDENCIES
   devise
   guard (~> 2.15)
   guard-livereload
+  inline_svg
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   puma (~> 3.11)
