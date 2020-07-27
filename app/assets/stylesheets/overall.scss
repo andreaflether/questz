@@ -1,11 +1,17 @@
-$orange: #FA633F;
+$orange: #FA633f;
 @import url('https://fonts.googleapis.com/css2?family=Bitter:wght@700&display=swap');
 :root {
   --input-padding-x: .4rem;
   --input-padding-y: .4rem;
 }
 
-// #fe9a01
+// #FA633f
+// FE9A01
+
+#main {
+  // background-color: #F6F5F8 !important;
+  background-color: #F1F2F2 !important;
+}
 
 h2.logo-font {
   font-family: 'Bitter', sans-serif;
@@ -27,13 +33,18 @@ h2.logo-font {
   font-size: 12px;
   color: #777;
 }
+
 .navbar-expand-sm .navbar-nav .nav-link {
-  padding-left: 3rem !important;
-  padding-right: 3rem !important;
+  padding-left: 1.25rem !important;
+  padding-right: 1.25rem !important;
 }
 
 .navbar-light .navbar-nav .show > .nav-link, .navbar-light .navbar-nav .nav-link.active {
   color: $orange !important;
+}
+
+.navbar-brand {
+  font-size: 1.7rem !important;
 }
 
 .bg-orange {
@@ -97,7 +108,7 @@ a {
 }
 
 #logo {
-  width: 8%;
-  height: 8%;
+  width: 36px;
+  height: 36px;
   cursor: pointer;
 }
