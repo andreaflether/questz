@@ -29,5 +29,8 @@ module Helpshare
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # Default locale
+    config.i18n.default_locale = 'pt-BR'
   end
 end
