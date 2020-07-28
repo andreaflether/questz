@@ -9,7 +9,7 @@
                 wrapper_html: { class: 'has-float-label'}%>
     <%= f.input :password,
                 required: true,
-                hint: ("mínimo: #{@minimum_password_length} caracteres" if @minimum_password_length),
+                hint: ("Mínimo: #{@minimum_password_length} caracteres" if @minimum_password_length),
                 input_html: { autocomplete: 'new-password', placeholder: 'Digite uma senha'},
                 wrapper_html: { class: 'has-float-label'} %>
     <%= f.input :password_confirmation,
