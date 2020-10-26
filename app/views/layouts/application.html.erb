@@ -8,13 +8,14 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= favicon_link_tag asset_path('favicon.ico') %>
+   
   </head>
 
   <body id="main"> 
-    <nav class="navbar navbar-expand-sm navbar-light border-bottom bg-light">
+    <nav class="navbar navbar-expand-sm sticky-top navbar-dark bg-dark-blue">
       <div class="container-fluid px-5">
         <h2 class="text-dark logo-font navbar-brand mb-0">
-          <%= link_to root_path, class: 'align-middle' do %>
+          <%= link_to root_path, class: 'align-middle text-light' do %>
             <%= inline_svg_tag("question.svg", id: "logo") %> Questz
           <% end %>
         </h2>
@@ -24,7 +25,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto mb-0 align-items-center">
             <% if user_signed_in? %>
-            <li class="nav-item">
+            <li class="nav-item" >
               <%= link_to root_path, class: 'active nav-link' do %>
                 <i class="fas fa-home fa-lg"></i>
               <% end %>
@@ -58,13 +59,13 @@
             </li>
             <% else %>
               <li class="nav-item">
-                <%= link_to new_user_registration_path, 
+                <%= link_to new_user_session_path, 
                     class: 'nav-link btn btn-outline-default font-weight-bold text-uppercase mr-2' do %>
                   <small>Login</small>
                 <% end %>
               </li>
               <li class="nav-item mr-2">
-                <%= link_to new_user_session_path, 
+                <%= link_to new_user_registration_path, 
                     class: 'nav-link btn btn-orange font-weight-bold text-uppercase' do %>
                   <small>Criar Conta</small>
                 <% end %>
@@ -74,6 +75,8 @@
         </div>
       </div>
     </nav>
-    <%= yield %>
+    <div class="container-fluid px-5">
+      <%= yield %>
+    </div>
   </body>
 </html>

@@ -19,6 +19,10 @@ $orange: #FA8D34;
 
 h2.logo-font {
   font-family: 'Bitter', sans-serif;
+
+  span {
+    color: #404040 !important;
+  }
 }
 
 // .logo-font a {
@@ -51,6 +55,23 @@ h2.logo-font {
   font-size: 1.7rem !important;
 }
 
+.list-group-item {
+  border: 1px solid transparent;
+  margin-bottom: 0.5rem;
+  border-radius: 4px !important;
+  &:hover {
+    background-color: #e9ecef;
+  }
+}
+
+.list-group-item.active {
+  // background-color: $orange !important;
+  background-color: rgba(250, 141, 52, 0.15) !important;
+  border: 1px solid transparent;
+  color: $orange;
+  font-weight: bold;
+}
+
 .bg-orange {
   background-color: $orange !important;
 }
@@ -71,7 +92,10 @@ h2.logo-font {
     background-color: $orange;
     color: #fff;
   }
+}
 
+.text-orange {
+  color: $orange;
 }
 
 .btn-outline-default { 
@@ -139,4 +163,14 @@ nav, .card {
 .user-avatar {
   width: 45px;
   height: 45px;
+}
+
+.user-comment { 
+  width: 35px;
+  height: 35px;
+}
+
+.answer-divider {
+  margin-top: 0.6rem !important; 
+  margin-bottom: 0.6rem !important;
 }
