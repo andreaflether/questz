@@ -18,6 +18,8 @@ gem 'inline_svg'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails'
+  gem 'factory_bot_rails', '~> 4.0'
 end
 
 group :development do
@@ -28,6 +30,13 @@ group :development do
   gem 'guard', '~> 2.15'
   gem 'guard-livereload', require: false
   gem 'rack-livereload'
+  gem 'spring-commands-rspec'
+end
+
+group :test do 
+  gem 'database_cleaner', '~> 1.7'
+  gem 'shoulda-matchers'
+  gem 'simplecov', require: false
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
