@@ -1,5 +1,6 @@
 $orange: #FA8D34;
 @import url('https://fonts.googleapis.com/css2?family=Bitter:wght@700&display=swap');
+
 :root {
   --input-padding-x: .4rem;
   --input-padding-y: .4rem;
@@ -7,6 +8,19 @@ $orange: #FA8D34;
 
 // #FA633f
 // FE9A01
+
+a {
+  text-decoration: none;
+  color: $orange;
+
+  &:hover {
+    color: darken($orange, 5);
+  }
+}
+
+abbr[title="required"] {
+  text-decoration: none;
+}
 
 #main {
   background-color: #F6F5F8 !important;
@@ -25,139 +39,10 @@ h2.logo-font {
   }
 }
 
-// .logo-font a {
-//   color: #343a40 !important;
-// }
-
-.form-group input {
-  padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
-  padding-bottom: calc(var(--input-padding-y));
-}
-
-.form-label-group input:not(:placeholder-shown) ~ label,
-.form-label-group input:-webkit-autofill ~ label {
-  padding-top: calc(var(--input-padding-y) / 3);
-  padding-bottom: calc(var(--input-padding-y) / 3);
-  font-size: 12px;
-  color: #777;
-}
-
-.navbar-expand-sm .navbar-nav .nav-link {
-  padding-left: 1.25rem !important;
-  padding-right: 1.25rem !important;
-}
-
-.navbar-light .navbar-nav .show > .nav-link, .navbar-light .navbar-nav .nav-link.active {
-  color: $orange !important;
-}
-
-.navbar-brand {
-  font-size: 1.7rem !important;
-}
-
-.list-group-item {
-  border: 1px solid transparent;
-  margin-bottom: 0.5rem;
-  border-radius: 4px !important;
-  &:hover {
-    background-color: #e9ecef;
-  }
-}
-
-.list-group-item.active {
-  // background-color: $orange !important;
-  background-color: rgba(250, 141, 52, 0.15) !important;
-  border: 1px solid transparent;
-  color: $orange;
-  font-weight: bold;
-}
-
-.bg-orange {
-  background-color: $orange !important;
-}
-
-.btn-orange {
-  background-color: $orange;
-  color: white !important;
-  transition: all .3s ease-in-out  !important;
-  &:hover {
-    background-color: darken($orange, 7) !important;
-  }
-}
-
-.btn-outline-orange {
-  border: 2px solid $orange;
-  color: $orange;
-  &:hover {
-    background-color: $orange;
-    color: #fff;
-  }
-}
-
-.text-orange {
-  color: $orange;
-}
-
-.btn-outline-default { 
-  background-color: #f8f9fa !important;
-  border-color: #ddd !important;
-  color: #444 !important;
-
-  &:hover {
-    background-color: #e9ecef !important;
-    color: #2b2b2b !important;
-  }
-}
-
-.form-check-input {
-  &:focus {
-    box-shadow: none !important;
-    border-color: $orange !important;
-  }
-  &:checked {
-    background-color: $orange !important;
-    border-color: $orange !important;
-  }
-}
-
-.form-group {
-  margin-bottom: 1.25rem !important;
-  label {
-    margin-bottom: 0.25rem !important;
-  }
-}
-
-.form-control:focus {
-  // box-shadow: none !important;
-  box-shadow: 0 0 0 2px rgba(254,154,1,.2);
-  border-color: $orange !important;
-}
-
-abbr[title="required"] {
-  text-decoration: none;
-}
-
-a {
-  text-decoration: none;
-  color: $orange;
-
-  &:hover {
-    color: darken($orange, 5);
-  }
-}
-
 #logo {
   width: 36px;
   height: 36px;
   cursor: pointer;
-}
-
-nav, .card {
-  box-shadow: 0 1px 5px rgba(0,0,0,.15);
-}
-
-.card {
-  border: 0;
 }
 
 .user-avatar {
