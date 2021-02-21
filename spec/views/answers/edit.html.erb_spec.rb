@@ -1,21 +1,22 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "answers/edit", type: :view do
-  before(:each) do
+RSpec.describe 'answers/edit', type: :view do
+  before do
     @answer = assign(:answer, Answer.create!(
-      chosen: false,
-      content: "MyText"
-    ))
+                                chosen: false,
+                                content: 'MyText'
+                              ))
   end
 
-  it "renders the edit answer form" do
+  it 'renders the edit answer form' do
     render
 
-    assert_select "form[action=?][method=?]", answer_path(@answer), "post" do
+    assert_select 'form[action=?][method=?]', answer_path(@answer), 'post' do
+      assert_select 'input[name=?]', 'answer[chosen]'
 
-      assert_select "input[name=?]", "answer[chosen]"
-
-      assert_select "textarea[name=?]", "answer[content]"
+      assert_select 'textarea[name=?]', 'answer[content]'
     end
   end
 end
