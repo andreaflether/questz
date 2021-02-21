@@ -5,8 +5,8 @@
 # Table name: questions
 #
 #  id         :integer          not null, primary key
-#  content    :text             default(""), not null
 #  status     :integer          default("unanswered")
+#  title      :string           default(""), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :integer
@@ -25,8 +25,8 @@ RSpec.describe Question, type: :model do
 
   it { expect(subject).to belong_to(:user) }
 
-  describe '#content' do
-    it { expect(subject).to validate_length_of(:content).is_at_least(10).is_at_most(200) }
-    it { expect(subject).to validate_presence_of(:content) }
+  describe '#title' do
+    it { expect(subject).to validate_length_of(:title).is_at_least(15).is_at_most(200) }
+    it { expect(subject).to validate_presence_of(:title) }
   end
 end
