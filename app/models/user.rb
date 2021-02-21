@@ -22,6 +22,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :questions, dependent: :destroy
+
   validates :name, presence: true, length: { maximum: 50, allow_blank: true }
   validates :username, presence: true,
                        uniqueness: { case_sensitive: false, allow_blank: true },
