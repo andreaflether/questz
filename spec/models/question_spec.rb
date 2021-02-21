@@ -24,6 +24,7 @@ RSpec.describe Question, type: :model do
   }
 
   it { expect(subject).to belong_to(:user) }
+  it { is_expected.to have_many(:answers).dependent(:destroy) }
 
   describe '#title' do
     it { expect(subject).to validate_length_of(:title).is_at_least(15).is_at_most(200) }
