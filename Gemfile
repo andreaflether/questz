@@ -20,6 +20,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
   gem 'factory_bot_rails', '~> 4.0'
+  gem 'faker'
 end
 
 group :development do
@@ -31,6 +32,7 @@ group :development do
   gem 'guard-livereload', require: false
   gem 'rack-livereload'
   gem 'spring-commands-rspec'
+  gem 'annotate'
 end
 
 group :test do 

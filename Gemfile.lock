@@ -42,6 +42,9 @@ GEM
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    annotate (3.1.1)
+      activerecord (>= 3.2, < 7.0)
+      rake (>= 10.4, < 14.0)
     arel (9.0.0)
     bcrypt (3.1.13)
     bindex (0.8.1)
@@ -79,6 +82,8 @@ GEM
     factory_bot_rails (4.11.1)
       factory_bot (~> 4.11.1)
       railties (>= 3.0.0)
+    faker (2.15.1)
+      i18n (>= 1.6, < 2)
     ffi (1.13.1)
     formatador (0.2.5)
     globalid (0.4.2)
@@ -251,12 +256,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate
   bootsnap (>= 1.1.0)
   byebug
   coffee-rails (~> 4.2)
   database_cleaner (~> 1.7)
   devise
   factory_bot_rails (~> 4.0)
+  faker
   guard (~> 2.15)
   guard-livereload
   inline_svg
