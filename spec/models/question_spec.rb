@@ -27,5 +27,6 @@ RSpec.describe Question, type: :model do
 
   describe '#content' do
     it { expect(subject).to validate_length_of(:content).is_at_least(10).is_at_most(200) }
+    it { expect(subject).to validate_presence_of(:content) }
   end
 end

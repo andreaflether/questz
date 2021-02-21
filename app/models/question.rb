@@ -24,5 +24,5 @@ class Question < ApplicationRecord
 
   belongs_to :user
 
-  validates :content, length: { in: 10..200 }
+  validates :content, length: { in: 10..200, allow_blank: true }, presence: true
 end
