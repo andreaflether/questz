@@ -23,6 +23,7 @@ class Question < ApplicationRecord
   }
 
   belongs_to :user
+  has_many :answers, dependent: :destroy
 
   validates :title, length: { in: 15..200, allow_blank: true }, presence: true
 end
