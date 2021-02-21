@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: questions
@@ -16,12 +18,14 @@
 require 'rails_helper'
 
 RSpec.describe Question, type: :model do
-  it { should define_enum_for(:status).
-      with_values([:unanswered, :answered, :closed]) }
+  it {
+    expect(subject).to define_enum_for(:status)
+      .with_values(%i[unanswered answered closed])
+  }
 
   it { expect(subject).to belong_to(:user) }
 
-  describe '#content' do 
+  describe '#content' do
     it { expect(subject).to validate_length_of(:content).is_at_least(10).is_at_most(200) }
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: questions
@@ -15,12 +17,12 @@
 #
 class Question < ApplicationRecord
   enum status: {
-    unanswered: 0, 
+    unanswered: 0,
     answered: 1,
     closed: 2
   }
 
   belongs_to :user
 
-  validates_length_of :content, in: 10..200
+  validates :content, length: { in: 10..200 }
 end

@@ -1,44 +1,48 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.5'
 
-gem 'rails', '~> 5.2.4', '>= 5.2.4.3'
-gem 'sqlite3'
-gem 'puma', '~> 3.11'
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.2'
-gem 'turbolinks', '~> 5'
-gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
-gem 'simple_form'
+gem 'coffee-rails', '~> 4.2'
 gem 'devise'
 gem 'inline_svg'
+gem 'jbuilder', '~> 2.5'
+gem 'puma', '~> 3.11'
+gem 'rails', '~> 5.2.4', '>= 5.2.4.3'
+gem 'sass-rails', '~> 5.0'
+gem 'simple_form'
+gem 'sqlite3'
+gem 'turbolinks', '~> 5'
+gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'rspec-rails'
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails', '~> 4.0'
   gem 'faker'
+  gem 'rspec-rails'
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
 end
 
 group :development do
-  gem 'web-console', '>= 3.3.0'
-  gem 'listen', '>= 3.0.5', '< 3.2'
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'annotate'
   gem 'guard', '~> 2.15'
   gem 'guard-livereload', require: false
+  gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'rack-livereload'
+  gem 'spring'
   gem 'spring-commands-rspec'
-  gem 'annotate'
+  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'web-console', '>= 3.3.0'
 end
 
-group :test do 
+group :test do
   gem 'database_cleaner', '~> 1.7'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
 end
 
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
