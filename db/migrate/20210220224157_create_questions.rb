@@ -1,7 +1,7 @@
 class CreateQuestions < ActiveRecord::Migration[5.2]
   def change
     create_table :questions do |t|
-      t.boolean :status
+      t.integer :status, default: 0, comment: '0: Not answered, 1: Answered, 2: Closed'
       t.text :content
 
       t.timestamps
