@@ -13,15 +13,15 @@
 ActiveRecord::Schema.define(version: 2021_02_21_125505) do
 
   create_table "answers", force: :cascade do |t|
-    t.boolean "chosen"
-    t.text "content"
+    t.boolean "chosen", default: false
+    t.text "content", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "questions", force: :cascade do |t|
     t.integer "status", default: 0
-    t.text "content"
+    t.text "content", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"

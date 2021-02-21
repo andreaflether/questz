@@ -5,7 +5,7 @@
 # Table name: questions
 #
 #  id         :integer          not null, primary key
-#  content    :text
+#  content    :text             default(""), not null
 #  status     :integer          default("unanswered")
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
