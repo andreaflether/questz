@@ -4,7 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  content    :text
-#  status     :integer          default("not_answered")
+#  status     :integer          default("unanswered")
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :integer
