@@ -25,23 +25,9 @@ RSpec.describe User, type: :model do
   let(:user) { build(:user) }
 
   describe '#username' do
-    it {
-      expect(subject).to validate_length_of(:username)
-        .is_at_most(20)
-        #.with_message(I18n.t('activerecord.errors.models.user.attributes.username.too_long', count: 15))
-    }
-
-    it {
-      expect(subject).to validate_length_of(:username)
-        .is_at_least(4)
-        #.with_message(I18n.t('activerecord.errors.models.user.attributes.username.too_short', count: 4))
-    }
-
-    it {
-      expect(user).to validate_uniqueness_of(:username)
-        .case_insensitive
-        #.with_message(I18n.t('activerecord.errors.models.user.attributes.username.taken'))
-    }
+    it { expect(subject).to validate_length_of(:username).is_at_most(20) }
+    it { expect(subject).to validate_length_of(:username).is_at_least(4) }
+    it { expect(user).to validate_uniqueness_of(:username).case_insensitive }
 
     it {
       expect(subject).to allow_values(
@@ -65,15 +51,9 @@ RSpec.describe User, type: :model do
   end
 
   describe '#name' do
-    it {
-      expect(subject).to validate_presence_of(:name)
-        #.with_message(I18n.t('activerecord.errors.models.user.attributes.name.blank', attribute: 'Name'))
-    }
-
-    it {
-      expect(subject).to validate_length_of(:name)
-        .is_at_most(50)
-        #.with_message(I18n.t('activerecord.errors.models.user.attributes.name.too_long', count: 50))
-    }
+    it { expect(subject).to validate_presence_of(:name) }
+    it { expect(subject).to validate_length_of(:name).is_at_most(50) }
   end
+
+  it { is_expected.to have_many(:questions).dependent(:destroy) }
 end
