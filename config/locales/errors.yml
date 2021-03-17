@@ -5,5 +5,5 @@ en:
         user:
           attributes:
             username:
-              invalid: can only contain letters, numbers and '_'.
-              numeric_only: must have a non-number character.
+              invalid: can only contain letters, numbers and '_'
+              numeric_only: must have a non-number character

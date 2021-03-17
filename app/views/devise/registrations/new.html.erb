@@ -1,29 +1,48 @@
-<h2 class="text-center mb-4">Criar conta</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: 'email', placeholder: 'Digite seu e-mail' },
-                wrapper_html: { class: 'has-float-label'}%>
-    <%= f.input :password,
-                required: true,
-                hint: ("Mínimo: #{@minimum_password_length} caracteres" if @minimum_password_length),
-                input_html: { autocomplete: 'new-password', placeholder: 'Digite uma senha'},
-                wrapper_html: { class: 'has-float-label'} %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: 'new-password', placeholder: 'Digite novamente a senha' },
-                wrapper_html: { class: 'has-float-label'} %>
-  </div>
+<div class="row justify-content-center">
+  <div class="col-lg-7 col-10 col-sm-7">
+    <%= render 'devise/shared/logo' %>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Confirmar", class: 'btn btn-block btn-orange' %>
-  </div>
-<% end %>
+    <h2 class="text-center mb-4">Sign up</h2>
 
-<%= render "devise/shared/links" %>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= f.error_notification %>
+      
+      <div class="form-inputs">
+        <div class="row gx-3">
+          <div class="col-lg-6">
+            <%= f.input :name, 
+                        required: true,
+                        wrapper: :floating_labels_form,
+                        input_html: { autocomplete: 'name', placeholder: 'Your name' } %>
+          
+          </div>
+          <div class="col-lg-6">
+            <%= f.input :username, 
+                        required: true,
+                        wrapper: :floating_labels_form,
+                        input_html: { autocomplete: 'username', placeholder: 'Your username' } %>
+          
+          </div>
+        </div>
+        <%= f.input :email,
+                    required: true,
+                    wrapper: :floating_labels_form,
+                    input_html: { autocomplete: 'email', placeholder: 'Your best e-mail' } %>
+
+        <%= f.input :password,
+                    required: true,
+                    hint: ("#{@minimum_password_length} characters minimum." if @minimum_password_length),
+                    wrapper: :floating_labels_form,
+                    input_html: { autocomplete: 'new-password', placeholder: 'Your password' } %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, 'Sign up', class: 'btn btn-block btn-orange w-100' %>
+      </div>
+    <% end %>
+
+    <%= render 'devise/shared/links' %>
   </div>
 </div>
 

@@ -1,11 +1,6 @@
 $orange: #FA8D34;
 @import url('https://fonts.googleapis.com/css2?family=Bitter:wght@700&display=swap');
 
-:root {
-  --input-padding-x: .4rem;
-  --input-padding-y: .4rem;
-}
-
 // #FA633f
 // FE9A01
 
@@ -18,8 +13,15 @@ a {
   }
 }
 
-abbr[title="required"] {
-  text-decoration: none;
+abbr[title], abbr[data-original-title] {
+  text-decoration: none !important;
+}
+
+.users-backdrop {
+  object-fit: cover;
+  object-position: 50% 50%;
+  height: 100vh;
+  width: 100%;
 }
 
 #main {
@@ -31,7 +33,7 @@ abbr[title="required"] {
   background-color: #292F3B !important;
 }
 
-h2.logo-font {
+h2.logo-font, h4.logo-font {
   font-family: 'Bitter', sans-serif;
 
   span {

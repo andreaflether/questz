@@ -6,22 +6,24 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'config', 'type': 'module' %>
+
+    <%= favicon_link_tag asset_path('favicon.ico') %>
   </head>
 
   <body class="bg-light h-100">
-    <div class="container h-100">
-      <div class="row justify-content-center h-100">
-        <div class="col-lg-6 col-md-9 col-sm-10 my-auto py-3">
-          <h2 class="text-center logo-font my-auto mb-3">
-            <%= link_to root_path do %>
-              <%= inline_svg_tag("question.svg", id: "logo") %> <span>Questz</span>
-            <% end %>
-          </h2>
-          <div class="card p-5">
-            <%= yield %>
+    <div class="container-fluid px-0 h-100" style="overflow-x: hidden;">
+      <div class="row row-eq-height justify-content-center h-100 no-gutters">
+        <div class="col-lg-5 d-none d-lg-block d-xl-block d-xxl-block bg-secondary px-0">
+          <div class="sticky-top">
+            <%= image_tag "#{controller_name}.jpg", class: 'users-backdrop' %>
           </div>
         </div>
+      <div class="col-lg-7 py-3 my-auto">
+        <%= yield %>
       </div>
     </div>
+  </div>
+    <%= custom_flash_messages %>
   </body>
 </html>
