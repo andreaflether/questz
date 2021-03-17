@@ -3,7 +3,7 @@
   <div class="col-lg-7 col-10 col-sm-7">
     <%= render 'devise/shared/logo' %>
 
-    <h2 class="text-center mb-4">Forgot your password?</h2>
+    <h2 class="text-center mb-4"><%= t('passwords.new') %></h2>
 
     <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
       <%= f.error_notification %>
@@ -26,7 +26,7 @@
       </div>
 
       <div class="form-actions">
-        <%= f.button :submit, 'Send reset instructions', class: 'btn btn-orange w-100' %>
+        <%= f.button :submit, t('passwords.send_reset_instructions'), class: 'btn btn-orange w-100' %>
       </div>
     <% end %>
 

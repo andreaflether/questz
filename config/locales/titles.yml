@@ -1,0 +1,14 @@
+en:
+  application_name: Questz
+  registrations:
+    new: Sign up
+    new_alt: Sign up now
+    edit: Edit user info
+  sessions:
+    new: Sign in
+  passwords:
+    new: Forgot your password?
+    edit: Change password
+    send_reset_instructions: Send reset instructions
+  questions:
+  answers:
