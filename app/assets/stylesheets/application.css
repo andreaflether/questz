@@ -1,8 +1,8 @@
 /*
- *= require @fortawesome/fontawesome-free/css/all
  *= require bootstrap/dist/css/bootstrap
- *= require floating-label
+ *= require @fortawesome/fontawesome-free/css/all
  *= require overall
  *= require custom_bootstrap
- *= require bootstrap-float-label
+ *= require froala-editor/css/froala_editor.pkgd.min
+ *= require notyf/notyf.min
  */

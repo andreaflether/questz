@@ -2,13 +2,19 @@
 //= require rails-ujs
 //= require activestorage
 // require popper.js/dist/umd/popper
-//= require bootstrap/dist/js/bootstrap.bundle
+//= require bootstrap/dist/js/bootstrap.bundle.min
 //= require jquery/dist/jquery
-//= require_tree .
+//= require notyf/notyf.min
 
-window.onload = function() {
-  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="tooltip"]'))
-  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-    return new bootstrap.Tooltip(tooltipTriggerEl)
-  })
-}
+//= require froala-editor/js/froala_editor.min
+//= require froala-editor/js/plugins/emoticons.min
+//= require froala-editor/js/plugins/char_counter.min
+//= require froala-editor/js/plugins/file.min
+//= require froala-editor/js/plugins/image.min
+//= require froala-editor/js/plugins/image_manager.min
+//= require froala-editor/js/plugins/line_breaker.min
+//= require froala-editor/js/plugins/link.min
+//= require froala-editor/js/plugins/lists.min
+//= require froala-editor/js/plugins/paragraph_format.min
+//= require froala-editor/js/plugins/quote.min
+//= require froala-editor/js/plugins/url.min
