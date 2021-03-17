@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html class="h-100">
   <head>
-    <title>Questz | <%= devise_action(action_name, controller_name) %></title>
+    <title><%= t('application_name') %> | <%= t("#{controller_name}.#{action_name}") %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%= stylesheet_link_tag 'devise', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'devise', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'config', 'type': 'module' %>
 
     <%= favicon_link_tag asset_path('favicon.ico') %>
   </head>
 
   <body class="bg-light h-100">
-    <div class="container-fluid px-0 h-100" style="overflow-x: hidden;">
+    <div class="container-fluid px-0 h-100" id="users-container">
       <div class="row row-eq-height justify-content-center h-100 no-gutters">
         <div class="col-lg-5 d-none d-lg-block d-xl-block d-xxl-block bg-secondary px-0">
           <div class="sticky-top">
@@ -23,7 +24,6 @@
         <%= yield %>
       </div>
     </div>
-  </div>
     <%= custom_flash_messages %>
   </body>
 </html>

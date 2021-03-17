@@ -1,4 +1,5 @@
 $orange: #FA8D34;
+$danger: #dc3545;
 
 /*------------------------------- Inputs -------------------------------*/
 .form-check-input {
@@ -15,7 +16,13 @@ $orange: #FA8D34;
 .form-control {
   &:focus {
     box-shadow: 0 0 0 2px rgba($orange, .2);
-    border-color: $orange !important;
+    border-color: $orange;
+  }
+}
+
+.form-control.is-invalid {
+  &:focus {
+    box-shadow: 0 0 0 2px rgba($danger, .2);
   }
 }
 

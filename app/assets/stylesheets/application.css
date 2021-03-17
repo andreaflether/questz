@@ -1,8 +1,7 @@
 /*
  *= require bootstrap/dist/css/bootstrap
  *= require @fortawesome/fontawesome-free/css/all
- *= require overall
- *= require custom_bootstrap
- *= require froala-editor/css/froala_editor.pkgd.min
+ *= require shared/overall
+ *= require shared/custom_bootstrap
  *= require notyf/notyf.min
  */

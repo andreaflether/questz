@@ -2,7 +2,6 @@ $orange: #FA8D34;
 @import url('https://fonts.googleapis.com/css2?family=Bitter:wght@700&display=swap');
 
 // #FA633f
-// FE9A01
 
 a {
   text-decoration: none;
@@ -15,18 +14,6 @@ a {
 
 abbr[title], abbr[data-original-title] {
   text-decoration: none !important;
-}
-
-.users-backdrop {
-  object-fit: cover;
-  object-position: 50% 50%;
-  height: 100vh;
-  width: 100%;
-}
-
-#main {
-  background-color: #F6F5F8 !important;
-  // background-color: #F1F2F2 !important;
 }
 
 .bg-dark-blue {
@@ -45,19 +32,4 @@ h2.logo-font, h4.logo-font {
   width: 36px;
   height: 36px;
   cursor: pointer;
-}
-
-.user-avatar {
-  width: 45px;
-  height: 45px;
-}
-
-.user-comment { 
-  width: 35px;
-  height: 35px;
-}
-
-.answer-divider {
-  margin-top: 0.6rem !important; 
-  margin-bottom: 0.6rem !important;
 }
