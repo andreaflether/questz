@@ -8,7 +8,6 @@
     </div>
   </div>
   <div class="col-md-8">
-    <%# <textarea class="form-control mb-3" id="exampleFormControlTextarea1" rows="3"></textarea> %>
     <div class="form-group">
       <textarea class="form-control mb-2" placeholder="Digite sua pergunta..." rows="2" id="question"></textarea>
       <div class="d-flex justify-content-end">
@@ -21,99 +20,7 @@
       </div>
       
     </div>
-    <div class="card">
-      <div class="card-body">
-        <div class="d-flex">
-          <%= image_tag 'https://avatars1.githubusercontent.com/u/50052646?s=460&u=263b2a06edea0362ab6eeb5a67b600b949db5610&v=4',
-          class: 'img-fluid rounded-circle user-avatar mr-3'%>
-          <div class="flex-fill">
-            <p class="mb-2">
-              <span class="font-weight-bold">Andréa Alencar</span>  
-              <span class="text-muted"> · Há 10 minutos</span>
-              <span class="text-orange text-uppercase float-right"><small>Não respondida </small></span>
-            </p>
-           
-          
-            <p class="text-dark mb-0">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sollicitudin 
-              ullamcorper cursus. Etiam rutrum dolor ut varius tincidunt. Nullam sit amet dictum 
-              magna. Duis volutpat luctus?
-            </p>
-          </div>
-          
-        </div>
-        <hr />
-        <div class="d-flex justify-content-between mt-3 text-muted">
-          <div>
-            <i class="far fa-thumbs-up"></i> 4
-            <i class="far fa-thumbs-down ml-2"></i> 1
-            
-            
-          </div>
-          <div>
-            <i class="far fa-comment"></i> 2
-            <i class="far fa-eye ml-3"></i> 10
-            <i class="fas fa-rss ml-3"></i> 2
-          </div>
-          <div>
-            <i class="fas fa-share"></i>
-          </div>
-        </div>
-        
-      </div>
-      <div class="card-footer d-flex flex-column text-dark align-items-center">
-        <div class="comment w-100 d-inline-flex mt-1">
-          <div class="d-flex">
-            <%= image_tag 'https://i.pinimg.com/originals/df/d4/cf/dfd4cf4eafc597e91149dd54462f96e6.jpg',
-            class: 'img-fluid rounded-circle user-avatar mr-2' %>
-            <div class="flex-fill">
-              <p class="mb-1">
-                <span class="font-weight-bold">Rue Bennett</span>  
-                <span class="text-muted"> · Há 5 minutos</span>
-              </p>
-              <p class="mb-0">Teste de comentário #1</p>
-              <div class="text-muted mt-1">
-                <i class="far fa-thumbs-up"></i> 0
-                <i class="far fa-thumbs-down ml-2"></i> 1
-
-              </div>
-            </div>
-          </div>
-        </div>
-        <hr class="w-100 answer-divider">
-        <div class="comment w-100 d-inline-flex">
-          <div class="d-flex">
-            <%= image_tag 'https://66.media.tumblr.com/f90a9375f73faed60919d041604529a4/tumblr_o8or5m2iKp1vqrhi8o1_400.png',
-            class: 'img-fluid rounded-circle user-avatar mr-2' %>
-            <div class="flex-fill">
-              <p class="font-weight-bold mb-1">Samantha Groves</p>
-              <p class="mb-0">How badly did you have to break it, to make it care about people so much?</p>
-              <div class="text-muted mt-1">
-                <i class="far fa-thumbs-up"></i> 2
-                <i class="far fa-thumbs-down ml-2"></i> 0
-              </div>
-            </div>
-          </div>
-        </div>
-        <hr class="w-100 my-3">
-      
-        <div class="new-user-comment w-100 d-inline-flex align-items-center">
-          <%= image_tag 'https://avatars1.githubusercontent.com/u/50052646?s=460&u=263b2a06edea0362ab6eeb5a67b600b949db5610&v=4',
-            class: 'img-fluid rounded-circle user-avatar mr-2'%>
-            
-          <input class="form-control my-2" placeholder="Digite sua resposta aqui" id="answer"></input>
-          
-          <%= link_to 'Ok', '', class: 'btn btn-orange'%>
-        
-        </div>
-      
-        
-
-      </div>
-    </div>
-  </div>
-  <div class="col-md-2">
-    
+    <%= render @questions %>
   </div>
 </div>
 
