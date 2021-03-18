@@ -16,6 +16,8 @@
 #  index_questions_on_user_id  (user_id)
 #
 class Question < ApplicationRecord
+  acts_as_votable
+
   enum status: {
     unanswered: 0,
     answered: 1,
