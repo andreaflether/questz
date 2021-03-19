@@ -5,8 +5,8 @@
 # Table name: questions
 #
 #  id         :integer          not null, primary key
+#  content    :string           default(""), not null
 #  status     :integer          default("unanswered")
-#  title      :string           default(""), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :integer
@@ -27,5 +27,5 @@ class Question < ApplicationRecord
   belongs_to :user
   has_many :answers, dependent: :destroy
 
-  validates :title, length: { in: 15..200, allow_blank: true }, presence: true
+  validates :content, length: { in: 15..200, allow_blank: true }, presence: true
 end

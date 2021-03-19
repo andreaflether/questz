@@ -5,8 +5,8 @@
 # Table name: questions
 #
 #  id         :integer          not null, primary key
+#  content    :string           default(""), not null
 #  status     :integer          default("unanswered")
-#  title      :string           default(""), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :integer
@@ -27,7 +27,7 @@ RSpec.describe Question, type: :model do
   it { is_expected.to have_many(:answers).dependent(:destroy) }
 
   describe '#title' do
-    it { expect(subject).to validate_length_of(:title).is_at_least(15).is_at_most(200) }
-    it { expect(subject).to validate_presence_of(:title) }
+    it { expect(subject).to validate_length_of(:content).is_at_least(15).is_at_most(200) }
+    it { expect(subject).to validate_presence_of(:content) }
   end
 end

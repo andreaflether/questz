@@ -5,8 +5,8 @@
 # Table name: questions
 #
 #  id         :integer          not null, primary key
+#  content    :string           default(""), not null
 #  status     :integer          default("unanswered")
-#  title      :string           default(""), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :integer
@@ -17,7 +17,7 @@
 #
 FactoryBot.define do
   factory :question do
-    title { Faker::Lorem.paragraph_by_chars(number: 200, supplemental: true) }
+    content { Faker::Lorem.paragraph_by_chars(number: 200, supplemental: true) }
     status { 0 }
     user
   end
