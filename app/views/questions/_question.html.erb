@@ -20,7 +20,7 @@
     <hr />
     <div class="d-flex justify-content-between mt-3 text-muted">
       <div class="question-votes">
-        <%= render 'questions/partials/votes', local_assigns %>
+        <%= render 'concerns/partials/votes', { votable: question, votable_type: 'question' } %>
       </div>
       <div>
         <i class="far fa-comment"></i> 2

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AnswersController < ApplicationController
+class AnswersController < VotablesController
   before_action :set_answer, only: %i[show edit update destroy]
 
   # GET /answers

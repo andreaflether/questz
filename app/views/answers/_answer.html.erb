@@ -1,0 +1,23 @@
+<div class="answer w-100 d-inline-flex" id="answer_<%= answer.id %>">
+  <div class="d-flex">
+    <%= image_tag 'https://66.media.tumblr.com/f90a9375f73faed60919d041604529a4/tumblr_o8or5m2iKp1vqrhi8o1_400.png',
+    class: 'img-fluid rounded-circle user-avatar me-2' %>
+    <div class="flex-fill">
+      <p class="mb-1">
+        <span class="fw-bold"><%= answer.user.name %></span>
+        <span class="text-muted"> · <%= time_ago_in_words(answer.created_at) %> ago</span>
+      </p>
+      <p class="mb-0"><%= answer.body %></p>
+      <div class="text-muted d-flex align-items-center justify-content-between mt-1">
+        <div class="answer-votes">
+          <%= render 'concerns/partials/votes', { votable: answer, votable_type: 'answer' } %>
+        </div>
+        <div class="actions">
+          <button class="btn btn-sm btn-outline-orange">Choose as answer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="w-100 answer-divider">

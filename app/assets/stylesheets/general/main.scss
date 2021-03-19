@@ -20,18 +20,17 @@ $danger: #dc3545;
   margin-bottom: 0.6rem !important;
 }
 
-.question-votes .vote-count{ 
+.question-votes .vote-count, 
+.answer-votes .vote-count { 
   margin-right: 0.5rem;
 }
 
-.like {
-  &:hover {
-    color: $success !important;
-  }
+.unlike + .vote-count,
+.like:hover {
+  color: $success !important;
 }
 
-.dislike {
-  &:hover {
-    color: $danger !important;
-  }
+.undislike + .vote-count,
+.dislike:hover {
+  color: $danger !important;
 }
