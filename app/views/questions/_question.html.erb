@@ -23,7 +23,7 @@
         <%= render 'concerns/partials/votes', { votable: question, votable_type: 'question' } %>
       </div>
       <div>
-        <i class="far fa-comment"></i> 2
+        <i class="far fa-comment"></i> <%= question.answers_count %>
         <i class="far fa-eye ms-3"></i> 10
         <i class="fas fa-rss ms-3"></i> 2
       </div>

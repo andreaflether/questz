@@ -20,7 +20,7 @@
 class Answer < ApplicationRecord
   acts_as_votable
   
-  belongs_to :question
+  belongs_to :question, counter_cache: true
   belongs_to :user
 
   validates :body, length: { in: 15..30_000, allow_blank: true }, presence: true

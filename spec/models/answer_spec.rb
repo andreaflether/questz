@@ -26,5 +26,5 @@ RSpec.describe Answer, type: :model do
   end
 
   it { expect(subject).to belong_to(:user) }
-  it { expect(subject).to belong_to(:question) }
+  it { expect(subject).to belong_to(:question).counter_cache(true) }
 end
