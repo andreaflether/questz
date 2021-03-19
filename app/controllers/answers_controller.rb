@@ -70,6 +70,6 @@ class AnswersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def answer_params
-    params.require(:answer).permit(:chosen, :content)
+    params.require(:answer).permit(:chosen, :body)
   end
 end

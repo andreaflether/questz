@@ -10,10 +10,12 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  question_id :integer
+#  user_id     :integer
 #
 # Indexes
 #
 #  index_answers_on_question_id  (question_id)
+#  index_answers_on_user_id      (user_id)
 #
 require 'rails_helper'
 
@@ -23,5 +25,6 @@ RSpec.describe Answer, type: :model do
     it { expect(subject).to validate_presence_of(:body) }
   end
 
+  it { expect(subject).to belong_to(:user) }
   it { expect(subject).to belong_to(:question) }
 end
