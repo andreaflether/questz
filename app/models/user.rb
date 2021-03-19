@@ -21,6 +21,8 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 class User < ApplicationRecord
+  acts_as_voter
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 

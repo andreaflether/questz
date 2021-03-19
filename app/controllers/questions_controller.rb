@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class QuestionsController < ApplicationController
-  before_action :set_question, only: %i[show edit update destroy]
+  before_action :set_question, only: %i[show edit update destroy like unlike dislike undislike]
+  before_action :authenticate_user!
+  before_action :force_js, only: [:like, :unlike, :dislike, :undislike]
 
   # GET /questions
   # GET /questions.json
@@ -61,7 +63,40 @@ class QuestionsController < ApplicationController
     end
   end
 
+  # PATCH /questions/1/like
+  def like 
+    @question.liked_by current_user
+
+    render 'find_or_replace_vote', locals: { question: @question }
+  end
+  
+  # PATCH /questions/1/unlike
+  def unlike 
+    @question.unliked_by current_user
+
+    render 'find_or_replace_vote', locals: { question: @question }
+    
+  end
+  
+  # PATCH /questions/1/dislike
+  def dislike 
+    @question.disliked_by current_user
+
+    render 'find_or_replace_vote', locals: { question: @question }
+  end
+  
+  # PATCH /questions/1/unlike
+  def undislike 
+    @question.undisliked_by current_user
+
+    render 'find_or_replace_vote', locals: { question: @question }
+  end
+
   private
+
+  def force_js
+    request.format = :js
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_question

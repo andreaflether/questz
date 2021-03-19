@@ -1,3 +1,6 @@
+$success: #198754;
+$danger: #dc3545;
+
 #main {
   background-color: #F6F5F8 !important;
 }
@@ -15,4 +18,20 @@
 .answer-divider {
   margin-top: 0.6rem !important; 
   margin-bottom: 0.6rem !important;
+}
+
+.question-votes .vote-count{ 
+  margin-right: 0.5rem;
+}
+
+.like {
+  &:hover {
+    color: $success !important;
+  }
+}
+
+.dislike {
+  &:hover {
+    color: $danger !important;
+  }
 }
