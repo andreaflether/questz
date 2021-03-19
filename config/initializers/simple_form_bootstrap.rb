@@ -387,7 +387,8 @@ SimpleForm.setup do |config|
   # Floating Labels form
   #
   # floating labels default_wrapper
-  config.wrappers :floating_labels_form, tag: 'div', class: 'form-floating mb-3', error_class: 'form-group-invalid' do |b|
+  config.wrappers :floating_labels_form, tag: 'div', class: 'form-floating mb-3',
+                                         error_class: 'form-group-invalid' do |b|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
