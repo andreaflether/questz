@@ -2,6 +2,8 @@
 
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  layout :layout_by_resource
+  helper_method :edit_user_path?
 
   protected
 
@@ -13,6 +15,10 @@ class ApplicationController < ActionController::Base
   private
 
   def layout_by_resource
-    devise_controller? ? 'devise' : 'application'
+    devise_controller? && !edit_user_path? ? 'devise' : 'application'
+  end
+
+  def edit_user_path?
+    controller_name == 'registrations' && %w[edit update].include?(action_name)
   end
 end
