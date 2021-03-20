@@ -2,35 +2,35 @@
 
 class VotablesController < ApplicationController
   before_action :force_js
-  before_action :set_votable 
+  before_action :set_votable
 
   # PATCH /questions/1/like
-  def like 
+  def like
     @votable.liked_by current_user
     render_votable_partial
   end
-  
+
   # PATCH /questions/1/unlike
-  def unlike 
+  def unlike
     @votable.unliked_by current_user
-    render_votable_partial 
+    render_votable_partial
   end
-  
+
   # PATCH /questions/1/dislike
-  def dislike 
+  def dislike
     @votable.disliked_by current_user
     render_votable_partial
   end
-  
+
   # PATCH /questions/1/undislike
-  def undislike 
+  def undislike
     @votable.undisliked_by current_user
-    render_votable_partial 
+    render_votable_partial
   end
 
-  private 
+  private
 
-  def force_js 
+  def force_js
     request.format = :js
   end
 
