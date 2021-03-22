@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     end
   end
 
+  patch '/update_avatar', to: 'application#update_avatar'
+
   resources :answers, concerns: :votable
   resources :questions, concerns: :votable
 
