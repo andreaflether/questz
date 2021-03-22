@@ -26,5 +26,3 @@ $.notyf = new Notyf({
     },
   ]
 })
-
-

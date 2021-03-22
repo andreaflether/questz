@@ -1,0 +1,56 @@
+<div class="modal fade" id="changeAvatarModal" tabindex="-1" aria-labelledby="changeAvatarModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="changeAvatarModalLabel">Change avatar</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="avatar-dropzone">
+        <div class="dz-message text-center mt-2">
+          <h6>Drag your file here or click the button below to upload.</h6>
+          
+          <small class="text-secondary">
+            Only <%= raw(resource.permitted_extensions_for_avatar) %> 
+            files up to <b><%= resource.max_filesize_for_avatar %>MB</b> are accepted.
+          </small>
+        </div>
+
+        <div class="actions text-center mt-3 mb-2">
+          <button type="button" class="btn btn-outline-orange fileinput-button">
+            <i class="fas fa-upload"></i> Select file...
+          </button>
+        </div>
+
+        <div id="preview">
+          <div class="row mt-2" id="template">
+            <div class="col-md-12 text-center dropzone-previews">
+              <%= image_tag '', 
+                class: 'img-fluid rounded-circle mb-3 mt-2 d-block border user-avatar-preview mx-auto',
+                data: { 'dz-thumbnail': '' } %>
+              <p class="mb-0">
+                <span class="lead text-wrap" data-dz-name></span>
+                (<span data-dz-size></span>)
+              </p>
+              <p class="fw-bold mb-0 mt-2 text-danger" data-dz-errormessage></p>
+              
+              <button class="btn btn-sm btn-outline-danger mt-2" data-dz-remove>
+                <i class="fas fa-trash"></i> Remove file
+              </button>
+            </div>
+          </div>
+        </div>
+       
+        <%= f.input :avatar, 
+        label: false, 
+        wrapper: false,
+        input_html: { id: 'avatarDropzone', hidden: true } %>
+
+        <%= f.input :id, wrapper: false, value: resource.id, as: :hidden %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" disabled class="btn btn-orange" id="upload-avatar">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

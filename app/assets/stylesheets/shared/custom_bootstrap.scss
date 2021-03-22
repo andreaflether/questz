@@ -2,6 +2,10 @@ $orange: #FA8D34;
 $danger: #dc3545;
 
 /*------------------------------- Inputs -------------------------------*/
+label.form-label {
+  font-weight: bold;
+}
+
 .form-check-input {
   &:focus {
     box-shadow: none !important;
@@ -86,7 +90,7 @@ nav, .card {
   }
 }
 
-.btn-outline-default { 
+.btn-default { 
   background-color: #f8f9fa !important;
   border-color: #ddd !important;
   color: #444 !important;
@@ -96,7 +100,6 @@ nav, .card {
     color: #2b2b2b !important;
   }
 }
-
 /*------------------------------- Text related -------------------------------*/
 .text-orange {
   color: $orange;

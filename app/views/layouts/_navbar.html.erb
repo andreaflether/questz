@@ -32,7 +32,7 @@
           </a> 
           <ul class="dropdown-menu" aria-labelledby="profile">
             <li><a class="dropdown-item" href="#">Andréa Alencar</a></li>
-            <li><a class="dropdown-item" href="#">Preferências</a></li>
+            <li><%= link_to 'Edit user info', edit_user_registration_path, class: 'dropdown-item' %></li>
             <li>
               <%= link_to 'Sair', destroy_user_session_path, method: :delete, class: 'dropdown-item'%>
             </li>       
@@ -46,7 +46,7 @@
         <% else %>
           <li class="nav-item">
             <%= link_to new_user_session_path, 
-                class: 'nav-link btn btn-outline-default font-weight-bold text-uppercase me-2' do %>
+                class: 'nav-link btn btn-default font-weight-bold text-uppercase me-2' do %>
               <small>Login</small>
             <% end %>
           </li>

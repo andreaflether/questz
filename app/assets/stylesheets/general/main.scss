@@ -15,6 +15,12 @@ $danger: #dc3545;
   height: 35px;
 }
 
+.user-avatar-preview {
+  width: 200px; 
+  height: 200px; 
+  object-fit: cover;
+}
+
 .answer-divider {
   margin-top: 0.6rem !important; 
   margin-bottom: 0.6rem !important;
@@ -33,4 +39,8 @@ $danger: #dc3545;
 .undislike + .vote-count,
 .dislike:hover {
   color: $danger !important;
+}
+
+[hidden] {
+  display: none !important;
 }
