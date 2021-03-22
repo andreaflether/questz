@@ -21,6 +21,10 @@
 /storage/*
 !/storage/.keep
 
+# Ignore uploaded files from CarrierWave
+/public/uploads/user
+/public/uploads/tmp
+
 /node_modules
 /yarn-error.log
 

@@ -1,4 +1,6 @@
 //= require application
+//= require dropzone/dist/dropzone
+//= require general
 //= require froala-editor/js/froala_editor.min
 //= require froala-editor/js/plugins/emoticons.min
 //= require froala-editor/js/plugins/char_counter.min

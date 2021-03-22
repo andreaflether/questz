@@ -5,8 +5,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.5'
 
+gem 'acts_as_taggable'
 gem 'acts_as_votable'
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'carrierwave', '~> 2.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
 gem 'inline_svg'
@@ -31,6 +33,7 @@ end
 
 group :development do
   gem 'annotate'
+  gem 'bullet'
   gem 'guard', '~> 2.15'
   gem 'guard-livereload', require: false
   gem 'listen', '>= 3.0.5', '< 3.2'
