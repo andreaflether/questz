@@ -5,6 +5,7 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
+#  avatar                 :string
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  name                   :string           default(""), not null
@@ -22,6 +23,9 @@
 #
 class User < ApplicationRecord
   acts_as_voter
+
+  mount_uploader :avatar, AvatarUploader
+  attr_accessor :avatar_cache
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
@@ -41,5 +45,13 @@ class User < ApplicationRecord
     unless username.count('a-zA-Z').positive?
       errors.add(:username, I18n.t('activerecord.errors.models.user.attributes.username.numeric_only'))
     end
+  end
+
+  def permitted_extensions_for_avatar
+    avatar.extension_whitelist.map { |e| "<b>#{e}</b>" }.to_sentence
+  end
+
+  def max_filesize_for_avatar
+    avatar.size_range.last / (1024.0 * 1024.0).to_i 
   end
 end
