@@ -47,11 +47,7 @@ class User < ApplicationRecord
     end
   end
 
-  def permitted_extensions_for_avatar
-    avatar.extension_whitelist.map { |e| "<b>#{e}</b>" }.to_sentence
-  end
-
   def max_filesize_for_avatar
-    avatar.size_range.last / (1024.0 * 1024.0).to_i 
+    avatar.size_range.last / (1024.0 * 1024.0).to_i
   end
 end

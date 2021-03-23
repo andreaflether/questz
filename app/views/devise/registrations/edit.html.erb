@@ -9,15 +9,15 @@
       </div>
       <div class="card-body pb-0">
         <div class="row justify-content-center">
-          <div class="col-md-4 mt-4 text-center" id="edit-avatar">
+          <div class="col-md-4 text-center" id="edit-avatar">
             <% if current_user.avatar? %>
               <%= image_tag(current_user.avatar_url, 
                 class: 'img-fluid rounded-circle mb-3 d-block border user-avatar-preview mx-auto',
                 id: 'user-avatar') %>
             <% else %>
-              <%= image_tag 'http://paroquiasagradomerces.com.br/wp-content/uploads/2018/02/no-avatar.png',
+              <%= image_tag('no-avatar.png',
               class: 'img-fluid rounded-circle mb-3 border user-avatar-preview', 
-              id: 'user-avatar' %>
+              id: 'user-avatar') %>
             <% end %> 
             
             <a class="btn btn-outline-orange" 
@@ -51,8 +51,13 @@
       </div>
 
       <div class="card-footer py-2">
-        <div class="form-actions text-center">
-          <%= f.button :submit, 'Update', class: 'btn btn-orange w-25' %>
+        <div class="form-actions mx-auto w-50">
+          <%= f.input :current_password,
+                      hint: 'we need your current password to confirm your changes',
+                      label_html: { class: 'text-orange' },
+                      required: true,
+                      input_html: { autocomplete: 'current-password' } %>
+          <%= f.button :submit, 'Update', class: 'btn btn-orange w-100' %>
         </div>
       </div>    
     </div>

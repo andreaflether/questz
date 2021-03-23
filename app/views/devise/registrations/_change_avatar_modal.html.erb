@@ -10,7 +10,7 @@
           <h6>Drag your file here or click the button below to upload.</h6>
           
           <small class="text-secondary">
-            Only <%= raw(resource.permitted_extensions_for_avatar) %> 
+            Only <%= array_items_to_sentence_with_html(resource.avatar.extension_whitelist, 'b') %> 
             files up to <b><%= resource.max_filesize_for_avatar %>MB</b> are accepted.
           </small>
         </div>
