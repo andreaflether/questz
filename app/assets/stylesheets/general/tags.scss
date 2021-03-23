@@ -1,0 +1,10 @@
+.question-tag {
+  background-color: rgba(250, 141, 52, 0.15) !important;
+  border: 1px solid transparent;
+  color: #FA8D34;
+  font-size: 0.9rem;
+
+  &:hover {
+    background-color: darken($color: rgba(250, 141, 52, 0.15), $amount: 15%) !important;
+  }
+}

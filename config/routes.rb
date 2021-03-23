@@ -3,19 +3,21 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  concern :votable do
+  patch '/update_avatar', to: 'application#update_avatar'
+
+  resources :answers
+
+  resources :questions do
     member do
       patch :like
-      patch :unlike
       patch :dislike
-      patch :undislike
+    end
+    collection do
+      get '/tagged/:tag', to: 'questions#tagged'
     end
   end
 
-  patch '/update_avatar', to: 'application#update_avatar'
-
-  resources :answers, concerns: :votable
-  resources :questions, concerns: :votable
+  resources :tags, only: %i[index show]
 
   root 'home#index'
 end

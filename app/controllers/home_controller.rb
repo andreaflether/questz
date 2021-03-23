@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 class HomeController < ApplicationController
+  before_action :authenticate_user!
+
   def index
-    @questions = Question.all
+    @questions = Question.all.includes([:user, { answers: [:user] }, :tags])
+    @tags = ActsAsTaggableOn::Tag.all
   end
 end

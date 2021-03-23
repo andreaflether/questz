@@ -1,6 +1,9 @@
 /*
  *= require application
  *= require general/main
+ *= require general/tags
+ *= require general/questions
+ *= require general/answers
  *= require dropzone/dist/dropzone
  *= require froala-editor/css/froala_editor.pkgd.min
  */

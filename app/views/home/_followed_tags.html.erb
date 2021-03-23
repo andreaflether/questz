@@ -1,0 +1,8 @@
+<div class="list-group followed-tags">
+  <%= link_to root_path, class: 'list-group-item list-group-item-action active' do %>
+    <i class="fas fa-newspaper"></i>&nbsp; Feed
+  <% end %>
+  <% @tags.each do |tag| %>
+    <%= link_to tag.name, tag_path(tag), class: 'list-group-item list-group-item-action' %>
+  <% end %>
+</div>

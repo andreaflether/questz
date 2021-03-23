@@ -4,13 +4,18 @@
 #
 # Table name: questions
 #
-#  id            :integer          not null, primary key
-#  answers_count :integer
-#  content       :string           default(""), not null
-#  status        :integer          default("unanswered")
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  user_id       :integer
+#  id                 :integer          not null, primary key
+#  answers_count      :integer
+#  body               :text             default(""), not null
+#  cached_votes_down  :integer          default(0)
+#  cached_votes_score :integer          default(0)
+#  cached_votes_total :integer          default(0)
+#  cached_votes_up    :integer          default(0)
+#  status             :integer          default("unanswered")
+#  title              :string           default(""), not null
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  user_id            :integer
 #
 # Indexes
 #
@@ -18,6 +23,7 @@
 #
 class Question < ApplicationRecord
   acts_as_votable
+  acts_as_taggable_on :tags
 
   enum status: {
     unanswered: 0,
@@ -28,5 +34,6 @@ class Question < ApplicationRecord
   belongs_to :user
   has_many :answers, dependent: :destroy
 
-  validates :content, length: { in: 15..200, allow_blank: true }, presence: true
+  validates :title, length: { in: 15..200, allow_blank: true }, presence: true
+  validates :body, length: { in: 15..20_000, allow_blank: true }, presence: true
 end
