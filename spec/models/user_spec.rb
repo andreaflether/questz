@@ -5,6 +5,7 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
+#  avatar                 :string
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  name                   :string           default(""), not null

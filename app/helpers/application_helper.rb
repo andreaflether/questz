@@ -8,14 +8,14 @@ module ApplicationHelper
         script += "$.notyf.open({ type: '#{notyf_classes_for(type)}', message: '#{message}'})"
       end
       script += '})</script>'
-      flash.clear
+      # flash.clear
       flash.to_h.any? ? script.html_safe : ''
     end
   end
 
   def notyf_classes_for(type)
-    types = { 'notice': 'success', 'info': 'info', 'alert': 'warning', 'error': 'error' }
-    types[type.to_s]
+    types = { success: 'success', notice: 'info', alert: 'warning', error: 'error' }
+    types[type.to_sym]
   end
 
   def array_items_to_sentence_with_html(array, html_tag)

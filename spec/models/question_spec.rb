@@ -4,13 +4,19 @@
 #
 # Table name: questions
 #
-#  id            :integer          not null, primary key
-#  answers_count :integer
-#  content       :string           default(""), not null
-#  status        :integer          default("unanswered")
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  user_id       :integer
+#  id                 :integer          not null, primary key
+#  answers_count      :integer
+#  body               :text             default(""), not null
+#  cached_votes_down  :integer          default(0)
+#  cached_votes_score :integer          default(0)
+#  cached_votes_total :integer          default(0)
+#  cached_votes_up    :integer          default(0)
+#  impressions_count  :integer          default(0)
+#  status             :integer          default("unanswered")
+#  title              :string           default(""), not null
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  user_id            :integer
 #
 # Indexes
 #
@@ -28,7 +34,20 @@ RSpec.describe Question, type: :model do
   it { is_expected.to have_many(:answers).dependent(:destroy) }
 
   describe '#title' do
-    it { expect(subject).to validate_length_of(:content).is_at_least(15).is_at_most(200) }
-    it { expect(subject).to validate_presence_of(:content) }
+    it { expect(subject).to validate_length_of(:title).is_at_least(15).is_at_most(150) }
+    it { expect(subject).to validate_presence_of(:title) }
+  end
+
+  describe '#body' do
+    it { expect(subject).to validate_length_of(:body).is_at_least(15).is_at_most(20_000) }
+    it { expect(subject).to validate_presence_of(:body) }
+  end
+
+  describe '.filter_by_tag' do
+    let(:list_with_tag) { create_list(:question, 2, :with_test_tag) }
+
+    before { create_list(:question, 3) }
+
+    it { expect(described_class.filter_by_tag('test')).to match_array(list_with_tag) }
   end
 end

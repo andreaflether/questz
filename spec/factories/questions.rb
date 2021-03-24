@@ -4,13 +4,19 @@
 #
 # Table name: questions
 #
-#  id            :integer          not null, primary key
-#  answers_count :integer
-#  content       :string           default(""), not null
-#  status        :integer          default("unanswered")
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  user_id       :integer
+#  id                 :integer          not null, primary key
+#  answers_count      :integer
+#  body               :text             default(""), not null
+#  cached_votes_down  :integer          default(0)
+#  cached_votes_score :integer          default(0)
+#  cached_votes_total :integer          default(0)
+#  cached_votes_up    :integer          default(0)
+#  impressions_count  :integer          default(0)
+#  status             :integer          default("unanswered")
+#  title              :string           default(""), not null
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  user_id            :integer
 #
 # Indexes
 #
@@ -18,8 +24,12 @@
 #
 FactoryBot.define do
   factory :question do
-    content { Faker::Lorem.paragraph_by_chars(number: 200, supplemental: true) }
-    status { 0 }
+    title { Faker::Lorem.paragraph_by_chars(number: 150, supplemental: true) }
+    body { Faker::Lorem.paragraph_by_chars(number: rand(300..500), supplemental: true) }
     user
+
+    trait :with_test_tag do
+      after(:create) { |question| question.update(tag_list: 'test') }
+    end
   end
 end

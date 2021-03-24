@@ -37,10 +37,10 @@ class Question < ApplicationRecord
   belongs_to :user
   has_many :answers, dependent: :destroy
 
-  validates :title, length: { in: 15..200, allow_blank: true }, presence: true
+  validates :title, length: { in: 15..150, allow_blank: true }, presence: true
   validates :body, length: { in: 15..20_000, allow_blank: true }, presence: true
-  
-  scope :filter_by_tag, -> (tag) { 
+
+  scope :filter_by_tag, lambda { |tag|
     tagged_with(tag)
   }
 end
