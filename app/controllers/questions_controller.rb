@@ -3,7 +3,7 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: %i[show edit update destroy upvote downvote]
   before_action :authenticate_user!
-  impressionist actions: [:show], unique: [:impressionable_type, :impressionable_id, :ip_address]
+  impressionist actions: [:show], unique: %i[impressionable_type impressionable_id ip_address]
 
   # GET /questions
   def index
