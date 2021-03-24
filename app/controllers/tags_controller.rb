@@ -7,7 +7,9 @@ class TagsController < ApplicationController
     @tags = ActsAsTaggableOn::Tag.all
   end
 
-  def show; end
+  def show
+    @questions = Question.filter_by_tag(@tag)
+  end
 
   private
 

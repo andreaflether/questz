@@ -1,24 +1,13 @@
 <div class="row mt-5">
   <div class="col-md-2">
-    <%= render 'followed_categories' %>
+    <%= render 'followed_tags' %>
     <div class="custom-actions text-center">
-    <%= link_to '', class: 'btn btn-outline-orange mt-2' do %>
-      <small class="font-weight-bold text-uppercase">+ categorias</small>
+    <%= link_to tags_path, class: 'btn btn-outline-orange mt-2' do %>
+      <small class="fw-bold text-uppercase">+ tags</small>
     <% end %>
     </div>
   </div>
   <div class="col-md-8">
-    <div class="form-group mb-3">
-      <textarea class="form-control mb-2" placeholder="Digite sua pergunta..." rows="2" id="question"></textarea>
-      <div class="d-flex justify-content-end">
-        <%= link_to '', class: 'btn btn-outline-default mr-2' do %>
-        <small class="font-weight-bold text-uppercase"><i class="fas fa-trash"></i></small>
-        <% end %>
-        <%= link_to '', class: 'btn btn-orange' do %>
-          <small class="font-weight-bold text-uppercase">post</small>
-        <% end %>
-      </div> 
-    </div>
     <%= render @questions %>
   </div>
 </div>
