@@ -11,6 +11,7 @@
 #  cached_votes_score :integer          default(0)
 #  cached_votes_total :integer          default(0)
 #  cached_votes_up    :integer          default(0)
+#  impressions_count  :integer          default(0)
 #  status             :integer          default("unanswered")
 #  title              :string           default(""), not null
 #  created_at         :datetime         not null
@@ -25,6 +26,8 @@ class Question < ApplicationRecord
   acts_as_votable
   acts_as_taggable_on :tags
 
+  is_impressionable counter_cache: true
+
   enum status: {
     unanswered: 0,
     answered: 1,
@@ -36,4 +39,8 @@ class Question < ApplicationRecord
 
   validates :title, length: { in: 15..200, allow_blank: true }, presence: true
   validates :body, length: { in: 15..20_000, allow_blank: true }, presence: true
+  
+  scope :filter_by_tag, -> (tag) { 
+    tagged_with(tag)
+  }
 end

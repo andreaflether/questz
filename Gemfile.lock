@@ -52,6 +52,7 @@ GEM
       rake (>= 10.4, < 14.0)
     arel (9.0.0)
     ast (2.4.2)
+    awesome_print (1.8.0)
     bcrypt (3.1.13)
     bindex (0.8.1)
     bootsnap (1.4.7)
@@ -125,6 +126,8 @@ GEM
     image_processing (1.11.0)
       mini_magick (>= 4.9.5, < 5)
       ruby-vips (>= 2.0.17, < 3)
+    impressionist (1.6.1)
+      nokogiri (~> 1)
     inline_svg (1.7.1)
       activesupport (>= 3.0)
       nokogiri (>= 1.6)
@@ -312,6 +315,7 @@ DEPENDENCIES
   acts-as-taggable-on (~> 7.0)
   acts_as_votable
   annotate
+  awesome_print
   bootsnap (>= 1.1.0)
   bullet
   byebug
@@ -323,6 +327,7 @@ DEPENDENCIES
   faker
   guard (~> 2.15)
   guard-livereload
+  impressionist (~> 1.6.1)
   inline_svg
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
