@@ -10,9 +10,14 @@ $danger: #dc3545;
   height: 45px;
 }
 
-.user-comment { 
+.user-avatar-35 { 
   width: 35px;
   height: 35px;
+}
+
+.user-avatar-50 {
+  width: 50px;
+  height: 50px;
 }
 
 .user-avatar-preview {
@@ -26,18 +31,13 @@ $danger: #dc3545;
   margin-bottom: 0.6rem !important;
 }
 
-.question-votes .vote-count, 
-.answer-votes .vote-count { 
-  margin-right: 0.5rem;
-}
-
-.unlike + .vote-count,
-.like:hover {
+[data-user-vote=upvote] .votes-up > *,
+.vote-up:hover {
   color: $success !important;
 }
 
-.undislike + .vote-count,
-.dislike:hover {
+[data-user-vote=downvote] .votes-down > *,
+.vote-down:hover {
   color: $danger !important;
 }
 

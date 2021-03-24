@@ -9,11 +9,12 @@ Rails.application.routes.draw do
 
   resources :questions do
     member do
-      patch :like
-      patch :dislike
+      patch :upvote
+      patch :downvote
     end
+
     collection do
-      get '/tagged/:tag', to: 'questions#tagged'
+      get '/tagged/:id', to: 'tags#show', as: :tag_in
     end
   end
 

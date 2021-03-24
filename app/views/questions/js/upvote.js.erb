@@ -1,0 +1,7 @@
+
+$('.question-votes').load(window.location.href + ' .question-votes > *', '');
+$('.question-votes').attr('data-user-vote', '');
+
+<% unless vote.nil? %>
+  $('.question-votes').attr('data-user-vote', 'upvote');
+<% end %>
