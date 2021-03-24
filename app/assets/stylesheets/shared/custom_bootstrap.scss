@@ -1,5 +1,10 @@
 $orange: #FA8D34;
 $danger: #dc3545;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif !important;
+}
 
 /*------------------------------- Inputs -------------------------------*/
 label.form-label {
@@ -50,7 +55,7 @@ nav, .card {
 }
 
 /*------------------------------- List group -------------------------------*/
-.list-group-item {
+.list-group.followed-tags > .list-group-item {
   border: 1px solid transparent;
   margin-bottom: 0.5rem;
   border-radius: 4px !important;
@@ -59,7 +64,7 @@ nav, .card {
   }
 }
 
-.list-group-item.active {
+.list-group.followed-tags > .list-group-item.active {
   background-color: rgba($orange, 0.15) !important;
   border: 1px solid transparent;
   color: $orange;

@@ -1,0 +1,41 @@
+.question-votes {
+  font-size: 1.2rem;
+  text-align: center;
+  i {
+    font-size: 2.5rem;
+  }
+}
+
+.votes-divider {
+  margin-bottom: -0.8rem;
+}
+
+.question-title {
+  font-size: 1.1rem;
+  font-weight: 500 !important;
+}
+
+.question-body {
+  font-size: 1.05rem;
+}
+
+.question-actions > span {
+  margin-right: 1rem;
+}
+
+.question-title-show {
+  font-size: 1.4rem !important;
+  font-weight: 500 !important;
+}
+
+.question-reports {
+  font-size: 1.2rem;
+}
+
+.question-stats > div:not(:last-of-type) {
+  margin-right: 1.25rem;
+}
+
+.question-reports > .votes-up-on-question {
+  margin: 0 1.3rem;
+}

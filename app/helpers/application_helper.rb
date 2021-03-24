@@ -17,4 +17,23 @@ module ApplicationHelper
     types = { 'notice': 'success', 'info': 'info', 'alert': 'warning', 'error': 'error' }
     types[type.to_s]
   end
+
+  def array_items_to_sentence_with_html(array, html_tag)
+    raw array.map { |item| "<#{html_tag}>#{item}</#{html_tag}>" }.to_sentence
+  end
+
+  def user_vote(votable)
+    case current_user.voted_as_when_voted_for(votable)
+    when true
+      'upvote'
+    when false
+      'downvote'
+    else
+      'none'
+    end
+  end
+
+  def format_datetime(datetime)
+    datetime.strftime('%b %d, %Y')
+  end
 end
