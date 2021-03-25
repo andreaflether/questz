@@ -28,7 +28,7 @@ questions = []
 rand(5..10).times do
   questions.push(
     Question.create(
-      title: Faker::Lorem.question(word_count: rand(15..25), supplemental: true),
+      title: Faker::Lorem.question(word_count: 15, supplemental: true),
       body: Faker::Lorem.paragraph_by_chars(number: rand(150..300), supplemental: true)
     )
   )

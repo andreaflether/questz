@@ -5,6 +5,6 @@ class HomeController < ApplicationController
 
   def index
     @questions = Question.all.includes([:user, { answers: [:user] }, :tags])
-    @tags = ActsAsTaggableOn::Tag.all
+    @tags = current_user.all_following
   end
 end
