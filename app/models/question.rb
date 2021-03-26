@@ -34,8 +34,19 @@ class Question < ApplicationRecord
     closed: 2
   }
 
+  EXP_FOR_ACTION = {
+    create: 16
+  }.freeze
+
   belongs_to :user
   has_many :answers, dependent: :destroy
+
+  after_create :set_gamification
+
+  def set_gamification
+    gamification = Gamification.new(user)
+    gamification.grant_experience_to_user(EXP_FOR_ACTION[:create])
+  end
 
   validates :title, length: { in: 15..150, allow_blank: true }, presence: true
   validates :body, length: { in: 15..20_000, allow_blank: true }, presence: true

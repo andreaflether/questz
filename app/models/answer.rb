@@ -20,8 +20,28 @@
 class Answer < ApplicationRecord
   acts_as_votable
 
+  EXP_FOR_ACTION = {
+    create: 16,
+    chosen: 24,
+    destroy: -16
+  }.freeze
+
+  after_create -> { set_gamification('create') }
+  after_destroy -> { set_gamification('destroy') }
+
   belongs_to :question, counter_cache: true
   belongs_to :user
 
+  validate :set_question_as_solved, if: -> { chosen_changed?(from: false, to: true) }
   validates :body, length: { in: 15..30_000, allow_blank: true }, presence: true
+
+  def set_question_as_solved
+    question.answered!
+    set_gamification('chosen')
+  end
+
+  def set_gamification(action)
+    gamification = Gamification.new(user)
+    gamification.grant_experience_to_user(EXP_FOR_ACTION[action.to_sym])
+  end
 end
