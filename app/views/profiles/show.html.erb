@@ -1,0 +1,50 @@
+
+<div class="container-fluid user-profile-container px-5">
+  <div class="row align-items-center">
+    <div class="col-md-7 py-4 text-white">
+      <div class="d-flex">
+        <% if @user.avatar? %>
+        <%= image_tag(@user.avatar_url, 
+          class: 'img-fluid rounded-circle user-avatar-120') %>
+        <% else %>
+          <%= image_tag 'no-avatar.png',
+          class: 'img-fluid rounded-circle user-avatar-120' %>
+        <% end %> 
+        <div class="flex-fill ms-3">
+          <h3 class=" mb-0 mt-2 text-break"><%= @user.name %></h3>
+          <p class="fs-5 mb-2 text-white-75">@<%= @user.username %></p>
+
+          <span class="me-4 small text-white-50">
+            <i class="far fa-calendar"></i>&nbsp;
+            Joined <%= format_datetime(@user.created_at) %>
+          </span>
+          <span class="text-white-50 small">
+            <i class="fas fa-history"></i>&nbsp; 
+            Last signed in <%= time_ago_in_words(@user.last_sign_in_at) %> ago 
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5 align-self-center text-white text-center">
+      <div class="row text-white-75">
+        <div class="col">
+          <i class="fas fa-user fa-2x"></i>
+          <p class="fw-normal mt-1 mb-0">Level <%= @user.level %></p>
+        </div>
+        <div class="col">
+          <i class="fas fa-award fa-2x"></i>
+          <p class="fw-normal mt-1 mb-0"><%= @user.experience %> XP</p>
+        </div>
+        <div class="col">
+          <i class="fas fa-check-circle fa-2x"></i>
+          <p class="fw-normal mt-1 mb-0">
+            <%= pluralize(@solved_question, 'question') %> solved
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-3">
+</div>
