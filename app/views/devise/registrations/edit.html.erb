@@ -29,8 +29,8 @@
           <div class="col-md-8">
             <div class="form-inputs">
               <%= f.input :email, required: true %>
-              <%= f.input :name %>
-              <%= f.input :username, wrapper_html: { class: 'mb-0' } %>
+              <%= f.input :name, maxlength: 50 %>
+              <%= f.input :username, maxlength: 20, wrapper_html: { class: 'mb-0' } %>
             </div>  
           </div>
         </div>
