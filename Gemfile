@@ -12,6 +12,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'carrierwave', '~> 2.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
+gem 'friendly_id', '~> 5.4.0'
 gem 'impressionist', '~> 1.6.1'
 gem 'inline_svg'
 gem 'jbuilder', '~> 2.5'
