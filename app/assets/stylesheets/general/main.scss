@@ -1,8 +1,13 @@
 $success: #198754;
 $danger: #dc3545;
+$orange: #FA8D34;
 
 #main {
   background-color: #F6F5F8 !important;
+}
+
+.user-avatar, .user-avatar-50, .user-avatar-120, .user-avatar-preview {
+  object-fit: cover;
 }
 
 .user-avatar {
@@ -10,20 +15,19 @@ $danger: #dc3545;
   height: 45px;
 }
 
-.user-avatar-35 { 
-  width: 35px;
-  height: 35px;
-}
-
 .user-avatar-50 {
   width: 50px;
   height: 50px;
 }
 
+.user-avatar-120 {
+  width: 120px;
+  height: 120px;
+}
+
 .user-avatar-preview {
   width: 200px; 
   height: 200px; 
-  object-fit: cover;
 }
 
 .answer-divider {
@@ -43,4 +47,24 @@ $danger: #dc3545;
 
 [hidden] {
   display: none !important;
+}
+
+.user-actions-menu {
+  border: 1px solid rgba(0, 0, 0, 0.125) !important;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15) !important;
+  padding: 0;
+  .dropdown-item {
+    padding: 0.75rem 1rem;
+    &:active {
+      background-color: $orange;
+    }
+  }
+  li:first-child > .dropdown-item {
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+  }
+  li:last-child > .dropdown-item {
+    border-bottom-left-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+  }
 }
