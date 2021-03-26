@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  root 'home#index'
+
   devise_for :users
 
   patch '/update_avatar', to: 'application#update_avatar'
@@ -18,7 +20,6 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :profiles, only: %i[show]
   resources :tags, only: %i[index show]
-
-  root 'home#index'
 end
