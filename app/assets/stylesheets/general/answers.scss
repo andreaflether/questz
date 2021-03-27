@@ -1,5 +1,8 @@
+$orange: #FA8D34;
+
 .chosen-answer {
-  background-color: rgba(250, 141, 52, 0.3);
+  background-color: rgba($orange, 0.1) !important;
+  border-left: 4px solid $orange !important;
 }
 
 .list-group-item.answer {

@@ -2,14 +2,16 @@
 
   <div class="card-body">
     <div class="d-flex">
-      <% if question.user.avatar? %>
-        <%= image_tag(question.user.avatar_url, 
-          class: 'img-fluid rounded-circle user-avatar me-2',
-          id: 'user-avatar') %>
-      <% else %>
-        <%= image_tag 'no-avatar.png',
-        class: 'img-fluid rounded-circle user-avatar me-2', 
-        id: 'user-avatar' %>
+      <%= link_to profile_path(question.user), class: 'mb-auto' do %>
+        <% if question.user.avatar? %>
+          <%= image_tag(question.user.avatar_url, 
+            class: 'img-fluid rounded-circle user-avatar me-2',
+            id: 'user-avatar') %>
+        <% else %>
+          <%= image_tag 'no-avatar.png',
+          class: 'img-fluid rounded-circle user-avatar me-2', 
+          id: 'user-avatar' %>
+        <% end %>
       <% end %>
 
       <div class="flex-fill">

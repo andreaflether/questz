@@ -1,20 +1,23 @@
 <li class="list-group-item answer py-3 <%= 'chosen-answer' if answer.chosen? %>" id="answer_<%= answer.id %>">
   <div class="w-100 d-inline-flex">
     <div class="d-flex">
-      <% if answer.user.avatar? %>
-        <%= image_tag(answer.user.avatar_url, 
-          class: 'img-fluid rounded-circle user-avatar me-2') %>
+      <%= link_to profile_path(answer.user), class: 'mb-auto' do %>
+        <% if answer.user.avatar? %>
+          <%= image_tag(answer.user.avatar_url, 
+            class: 'img-fluid rounded-circle user-avatar me-2') %>
         <% else %>
           <%= image_tag 'no-avatar.png',
           class: 'img-fluid rounded-circle user-avatar me-2 border' %>
         <% end %> 
+      <% end %>
       <div class="flex-fill">
-        <p class="mb-1">
-          <span class="fw-bold"><%= answer.user.name %></span>
-          <span class="text-muted"> · <%= time_ago_in_words(answer.created_at) %> ago</span>
+        <p class="mb-1 text-muted">
+          <%= link_to answer.user.name, profile_path(answer.user), class: 'fw-bold text-dark' %>
+          <span> · <%= time_ago_in_words(answer.created_at) %> ago</span> ·
+          <span class="chosen text-orange"><i class="fas fa-check"></i></span>
         </p>
         <p class="mb-0"><%= answer.body %></p>
-        <div class="text-muted d-flex align-items-center justify-content-between mt-1">
+        <div class="text-muted d-flex align-items-center mt-1">
           <div class="answer-votes">
           </div>
           <!--
