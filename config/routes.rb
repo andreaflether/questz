@@ -7,7 +7,13 @@ Rails.application.routes.draw do
 
   patch '/update_avatar', to: 'application#update_avatar'
 
-  resources :answers
+  resources :answers do
+    member do
+      patch :choose
+      patch :upvote
+      patch :downvote
+    end
+  end
 
   resources :questions do
     member do
@@ -21,5 +27,10 @@ Rails.application.routes.draw do
   end
 
   resources :profiles, only: %i[show]
-  resources :tags, only: %i[index show]
+  resources :tags, only: %i[index show] do
+    member do
+      patch :follow
+      patch :unfollow
+    end
+  end
 end

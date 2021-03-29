@@ -1,16 +1,15 @@
 # frozen_string_literal: true
 
-class AnswersController < VotablesController
-  before_action :set_answer, only: %i[show edit update destroy]
+class AnswersController < ApplicationController
+  before_action :set_answer, only: %i[show edit update destroy choose upvote downvote]
+  before_action :authenticate_user!, only: %i[edit choose upvote downvote]
 
   # GET /answers
-  # GET /answers.json
   def index
     @answers = Answer.all
   end
 
   # GET /answers/1
-  # GET /answers/1.json
   def show; end
 
   # GET /answers/new
@@ -22,43 +21,62 @@ class AnswersController < VotablesController
   def edit; end
 
   # POST /answers
-  # POST /answers.json
   def create
     @answer = Answer.new(answer_params)
 
-    respond_to do |format|
-      if @answer.save
-        format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
-        format.json { render :show, status: :created, location: @answer }
-      else
-        format.html { render :new }
-        format.json { render json: @answer.errors, status: :unprocessable_entity }
-      end
+    if @answer.save
+      redirect_to @answer, notice: 'Answer was successfully created.'
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /answers/1
-  # PATCH/PUT /answers/1.json
   def update
-    respond_to do |format|
-      if @answer.update(answer_params)
-        format.html { redirect_to @answer, notice: 'Answer was successfully updated.' }
-        format.json { render :show, status: :ok, location: @answer }
-      else
-        format.html { render :edit }
-        format.json { render json: @answer.errors, status: :unprocessable_entity }
-      end
+    if @answer.update(answer_params)
+      redirect_to @answer, notice: 'Answer was successfully updated.'
+    else
+      render :edit
     end
   end
 
   # DELETE /answers/1
-  # DELETE /answers/1.json
   def destroy
     @answer.destroy
-    respond_to do |format|
-      format.html { redirect_to answers_url, notice: 'Answer was successfully destroyed.' }
-      format.json { head :no_content }
+    redirect_to answers_url, notice: 'Answer was successfully destroyed.'
+  end
+
+  # PATCH /answers/1/choose
+  def choose
+    @answer.chosen
+
+    if @answer.save
+      redirect_to @answer.question, notice: 'Your question is now answered!'
+    else
+      redirect_to @answer.question, error: 'Se lascou kkk'
     end
+  end
+
+  # PATCH /answers/1/downvote
+  def upvote
+    if current_user.voted_up_for? @answer
+      @answer.unvote_up current_user
+    else
+      @answer.upvote_by current_user
+      vote = 'upvote'
+    end
+    render 'shared/js/upvote', locals: { vote: vote, resource: 'answer' }
+  end
+
+  # PATCH /answers/1/downvote
+  def downvote
+    if current_user.voted_down_for? @answer
+      @answer.unvote_down current_user
+    else
+      @answer.downvote_by current_user
+      vote = 'downvote'
+    end
+    render 'shared/js/downvote', locals: { vote: vote, resource: 'answer' }
   end
 
   private
