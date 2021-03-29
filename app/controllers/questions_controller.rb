@@ -7,7 +7,7 @@ class QuestionsController < ApplicationController
 
   # GET /questions
   def index
-    @questions = Question.all
+    @questions = Question.order(votes_count: :desc)
   end
 
   # GET /questions/1
@@ -56,7 +56,7 @@ class QuestionsController < ApplicationController
       @question.upvote_by current_user
       vote = 'upvote'
     end
-    render 'questions/js/upvote', locals: { vote: vote }
+    render 'shared/js/upvote', locals: { vote: vote, resource: 'question' }
   end
 
   # PATCH /questions/1/downvote
@@ -67,12 +67,7 @@ class QuestionsController < ApplicationController
       @question.downvote_by current_user
       vote = 'downvote'
     end
-    render 'questions/js/downvote', locals: { vote: vote }
-  end
-
-  # GET /questions/tagged/tag
-  def tagged
-    @questions = Question.filter_by_tag(params[:tag])
+    render 'shared/js/downvote', locals: { vote: vote, resource: 'question' }
   end
 
   private

@@ -5,11 +5,11 @@
       <%= link_to profile_path(question.user), class: 'mb-auto' do %>
         <% if question.user.avatar? %>
           <%= image_tag(question.user.avatar_url, 
-            class: 'img-fluid rounded-circle user-avatar me-2',
+            class: 'img-fluid rounded-circle user-avatar-50 me-2',
             id: 'user-avatar') %>
         <% else %>
           <%= image_tag 'no-avatar.png',
-          class: 'img-fluid rounded-circle user-avatar me-2', 
+          class: 'img-fluid rounded-circle border user-avatar-50 me-2', 
           id: 'user-avatar' %>
         <% end %>
       <% end %>
@@ -22,7 +22,7 @@
             <i class="far fa-comment"></i> <%= pluralize(question.answers_count, 'answer') %>
           </div>
           <div class="votes-up-on-question">
-            <i class="fas fa-caret-up fa-lg"></i> <%= pluralize(question.cached_votes_up, 'upvote') %>
+            <i class="fas fa-arrow-up"></i> <%= pluralize(question.cached_votes_up, 'vote') %>
           </div>
           <div class="views">
             <i class="far fa-eye"></i> <%= pluralize(question.impressions_count, 'view') %>

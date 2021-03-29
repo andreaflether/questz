@@ -5,10 +5,10 @@
       <div class="d-flex">
         <% if @user.avatar? %>
         <%= image_tag(@user.avatar_url, 
-          class: 'img-fluid rounded-circle user-avatar-120') %>
+          class: 'img-fluid rounded-circle user-avatar-display') %>
         <% else %>
           <%= image_tag 'no-avatar.png',
-          class: 'img-fluid rounded-circle user-avatar-120' %>
+          class: 'img-fluid rounded-circle user-avatar-display' %>
         <% end %> 
         <div class="flex-fill ms-3">
           <h3 class=" mb-0 mt-2 text-break"><%= @user.name %></h3>
@@ -38,7 +38,7 @@
         <div class="col">
           <i class="fas fa-check-circle fa-2x"></i>
           <p class="fw-normal mt-1 mb-0">
-            <%= pluralize(@solved_question, 'question') %> solved
+            <%= pluralize(@solved_questions, 'question') %> solved
           </p>
         </div>
       </div>
@@ -46,5 +46,9 @@
   </div>
 </div>
 
-<div class="col-md-3">
+<div class="col-md-8">
+
+  <% tag_cloud(@tags, %w(fs-6 fs-5 fs-4 fs-3)) do |tag, css_class| %>
+    <%= link_to tag.name, tag_path(tag), class: css_class %>
+  <% end %>
 </div>

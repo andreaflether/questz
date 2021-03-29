@@ -1,31 +1,62 @@
 <li class="list-group-item answer py-3 <%= 'chosen-answer' if answer.chosen? %>" id="answer_<%= answer.id %>">
-  <div class="w-100 d-inline-flex">
-    <div class="d-flex">
-      <%= link_to profile_path(answer.user), class: 'mb-auto' do %>
-        <% if answer.user.avatar? %>
-          <%= image_tag(answer.user.avatar_url, 
-            class: 'img-fluid rounded-circle user-avatar me-2') %>
-        <% else %>
-          <%= image_tag 'no-avatar.png',
-          class: 'img-fluid rounded-circle user-avatar me-2 border' %>
-        <% end %> 
+  <div class="d-flex">
+    <div class="d-flex flex-column align-items-center answer-votes text-muted" data-user-vote=<%= user_vote(answer) %>>
+      <%= link_to upvote_answer_path(answer),
+        method: :patch,
+        remote: true,
+        class: 'text-muted vote-up' do %>
+        <i class="fas fa-caret-up"></i>
       <% end %>
-      <div class="flex-fill">
-        <p class="mb-1 text-muted">
-          <%= link_to answer.user.name, profile_path(answer.user), class: 'fw-bold text-dark' %>
-          <span> · <%= time_ago_in_words(answer.created_at) %> ago</span> ·
-          <span class="chosen text-orange"><i class="fas fa-check"></i></span>
-        </p>
-        <p class="mb-0"><%= answer.body %></p>
-        <div class="text-muted d-flex align-items-center mt-1">
-          <div class="answer-votes">
-          </div>
-          <!--
-          <div class="actions">
-            <button class="btn btn-sm btn-outline-orange">Choose as answer</button>
-          </div>
-          -->
-        </div>
+
+      <span class="answer-total-votes fs-5"><%= answer.weighted_score %></span>
+    
+      <%= link_to downvote_answer_path(answer),
+        method: :patch,
+        remote: true,
+        class: 'text-muted vote-down mt-1' do %>
+        <i class="fas fa-caret-down"></i>
+      <% end %>
+      
+      <span class="fa-stack fa-xs choose-answer mt-2">
+        <i class="fas fa-comment-alt fa-stack-2x text-orange"></i>
+        <i class="fas fa-check text-white fa-stack-1x"></i>
+      </span>
+
+    </div>
+    <div class="d-flex flex-column ms-4">
+      <p class="text-dark mb-2 answer-body"><%= answer.body %></p>
+      <p class="d-flex align-items-center text-muted mb-0 answer-info">
+        Answered by 
+        <%= link_to profile_path(answer.user), class: 'fw-bold d-inline-flex align-items-center' do %>
+          <% if answer.user.avatar? %>
+          <%= image_tag(answer.user.avatar_url, 
+            class: 'img-fluid rounded-circle user-avatar-30 me-1 ms-1') %>
+          <% else %>
+            <%= image_tag 'no-avatar.png',
+            class: 'img-fluid rounded-circle user-avatar-30 me-1 ms-1' %>
+          <% end %>
+          <%= answer.user.name %>
+        <% end %>
+        
+        <span class="question-date">
+          &nbsp; on <b><%= format_datetime(answer.created_at) %></b>
+          (<%= time_ago_in_words(answer.created_at) %> ago)
+        </span>
+      </p>
+      <div class="answer-actions small text-muted">
+        <span class="share">
+          <i class="fas fa-share-square"></i>&nbsp;Share
+        </span>
+        <% if is_from_user?(answer) %>
+          <span class="edit">
+            <%= link_to edit_answer_path(answer), class: 'text-muted' do %>
+              <i class="fas fa-edit"></i>&nbsp;Edit
+            <% end %> 
+          </span>
+        <% end %>
+        <span class="report">
+          <i class="far fa-flag"></i>&nbsp;Report
+        </span>
       </div>
     </div>
   </div>

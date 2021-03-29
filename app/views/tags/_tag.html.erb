@@ -4,7 +4,7 @@
       <%= link_to tag_path(tag) do %>
         <span class="badge question-tag"><%= tag.name %></span>
       <% end %>
-      <p class="text-secondary mt-2 mb-0"><%= pluralize(tag.taggings_count, 'question') %>
+      <p class="text-secondary mt-2 mb-0"><%= pluralize(tag.taggings_count, 'question') %> total
     </div>
   </div>
 </div>

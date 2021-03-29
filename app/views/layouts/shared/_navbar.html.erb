@@ -31,10 +31,20 @@
             <i class="fas fa-user fa-lg"></i>
           </a> 
           <ul class="dropdown-menu user-actions-menu" aria-labelledby="profile">
-            <li><%= link_to 'Your profile', profile_path(current_user), class: 'dropdown-item' %></li>
-            <li><%= link_to 'Edit user info', edit_user_registration_path, class: 'dropdown-item' %></li>
             <li>
-              <%= link_to 'Sair', destroy_user_session_path, method: :delete, class: 'dropdown-item'%>
+              <%= link_to profile_path(current_user), class: 'dropdown-item' do %>
+                <i class="fas fa-user-circle"></i>&nbsp; Your profile
+              <% end %>  
+            </li>
+            <li>
+              <%= link_to edit_user_registration_path, class: 'dropdown-item' do %>
+                <i class="fas fa-edit"></i>&nbsp; Edit user info
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do %>
+                <i class="fas fa-sign-out-alt"></i>&nbsp; Sign out
+              <% end %>
             </li>       
           </ul>
         </li>
