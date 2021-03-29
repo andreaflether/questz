@@ -1,0 +1,29 @@
+<li class="list-group-item d-flex justify-content-between align-items-center">
+  <div class="d-flex">
+    <% if user.avatar? %>
+      <%= image_tag(user.avatar_url, 
+        class: 'rounded-circle user-avatar-40 me-2') %>
+    <% else %>
+      <%= image_tag 'no-avatar.png',
+      class: 'rounded-circle user-avatar-40 border me-2' %>
+    <% end %>
+
+    <div class="d-inline-flex flex-column">
+      <%= link_to user.username, profile_path(user), class: 'fw-bold' %>
+      <span class="text-muted small">
+        <% if local_assigns[:tag_only] %>
+          <%= pluralize(user.chosen_answers_count, 'solved question') %>
+        <% end %>
+        <% if local_assigns[:top_ranking] %>
+          <%= pluralize(user.solved_questions, 'solved question') %>
+        <% end %>
+      </span>
+    
+    </div>
+  </div>
+
+  <span class="user-score">
+    <i class="fas fa-medal <%= get_badge_type((user_iteration.index + 1).humanize) %>"></i> 
+    <%= number_to_human(user.experience) %> XP
+  </span>
+</li>

@@ -5,6 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.5'
 
+gem 'acts_as_commentable'
 gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
 gem 'acts-as-taggable-on', '~> 7.0'
 gem 'acts_as_votable'
@@ -13,6 +14,7 @@ gem 'carrierwave', '~> 2.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
 gem 'friendly_id', '~> 5.4.0'
+gem 'humanize'
 gem 'impressionist', '~> 1.6.1'
 gem 'inline_svg'
 gem 'jbuilder', '~> 2.5'
@@ -37,6 +39,8 @@ end
 group :development do
   gem 'annotate'
   gem 'awesome_print'
+  gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'bullet'
   gem 'guard', '~> 2.15'
   gem 'guard-livereload', require: false

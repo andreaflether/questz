@@ -72,4 +72,16 @@ class User < ApplicationRecord
   def solved_questions
     answers.where(chosen: true).count
   end
+
+  scope :top_users, lambda {
+    order(experience: :desc, created_at: :asc).limit(3)
+  }
+
+  scope :top_answerers_in_tag, lambda { |tag|
+    joins(:answers)
+      .where(answers: { chosen: true, question_id: Question.filter_by_tag(tag) })
+      .select(:id, :username, :experience, :slug, 'COUNT(answers.id) AS chosen_answers_count')
+      .group(:username)
+      .order(chosen_answers_count: :desc)
+  }
 end

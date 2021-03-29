@@ -1,26 +1,54 @@
-$success: #198754;
-$danger: #dc3545;
+$success:#198754;
+$danger: #DC3545;
 $orange: #FA8D34;
 
 #main {
   background-color: #F6F5F8 !important;
 }
 
-.user-avatar, .user-avatar-50, .user-avatar-120, .user-avatar-preview {
+.top-users {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.gold {
+  color: #F1B600;
+}
+
+.silver {
+  color: #9A9C9F;
+}
+
+.bronze {
+  color: #AB825F;
+}
+
+@for $i from 6 through 10 {
+  $base: 5;
+  $size: $base * $i;
+  .user-avatar-#{$size} { 
+    width: $size + 0px;
+    height: $size + 0px;
+  }
+}
+
+.question-votes,
+.answer-votes {
+  font-size: 1.2rem;
+  text-align: center;
+  .vote-down > i, .vote-up > i {
+    font-size: 2.5rem;
+  }
+  .vote-up > *, .vote-down > *, .vote-up, .vote-down {
+    line-height: 1.2rem;
+  }
+}
+
+[class*='user-avatar-'] {
   object-fit: cover;
 }
 
-.user-avatar {
-  width: 45px;
-  height: 45px;
-}
-
-.user-avatar-50 {
-  width: 50px;
-  height: 50px;
-}
-
-.user-avatar-120 {
+.user-avatar-display {
   width: 120px;
   height: 120px;
 }
@@ -30,17 +58,17 @@ $orange: #FA8D34;
   height: 200px; 
 }
 
-.answer-divider {
-  margin-top: 0.6rem !important; 
-  margin-bottom: 0.6rem !important;
+.question-actions > span,
+.answer-actions > span {
+  margin-right: 1rem;
 }
 
-[data-user-vote=upvote] .votes-up > *,
+[data-user-vote=upvote] .vote-up > *,
 .vote-up:hover {
   color: $success !important;
 }
 
-[data-user-vote=downvote] .votes-down > *,
+[data-user-vote=downvote] .vote-down > *,
 .vote-down:hover {
   color: $danger !important;
 }
@@ -55,8 +83,10 @@ $orange: #FA8D34;
   padding: 0;
   .dropdown-item {
     padding: 0.75rem 1rem;
+    color: rgb(53, 53, 53);
     &:active {
       background-color: $orange;
+      color: white;
     }
   }
   li:first-child > .dropdown-item {

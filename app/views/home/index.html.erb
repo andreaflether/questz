@@ -1,14 +1,22 @@
 <div class="row mt-5">
-  <div class="col-md-2">
-    <%= render 'followed_tags' %>
-    <div class="custom-actions text-center">
-    <%= link_to tags_path, class: 'btn btn-outline-orange mt-2' do %>
-      <small class="fw-bold text-uppercase">+ tags</small>
-    <% end %>
-    </div>
-  </div>
-  <div class="col-md-8">
+  <div class="col-md-9">
     <%= render @questions %>
+  </div>
+    <div class="col-md-3">
+      <div class="row">
+        <div class="col-md-12">
+          <%= render 'followed_tags' %>
+          <div class="custom-actions text-center">
+          <%= link_to tags_path, class: 'btn btn-outline-orange mt-2' do %>
+            <small class="fw-bold text-uppercase">all tags</small>
+          <% end %>
+          </div>
+        </div>
+        <div class="col-md-12 mt-3">
+          <%= render 'shared/top_users_card', collection: @top_users, top_ranking: true %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

@@ -36,4 +36,13 @@ module ApplicationHelper
   def format_datetime(datetime)
     datetime.strftime('%b %d, %Y')
   end
+
+  def is_from_user?(resource)
+    resource.user.id == current_user.id
+  end
+
+  def get_badge_type(position)
+    mapping = { one: 'gold', two: 'silver', three: 'bronze' }
+    mapping[position.to_sym]
+  end
 end
