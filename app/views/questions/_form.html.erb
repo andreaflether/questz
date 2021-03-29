@@ -1,14 +1,59 @@
+<div class="row">
+  <div class="col-md-9">
+    <div class="card">
+      <div class="card-body">
+        <%= simple_form_for(@question) do |f| %>
+          <%= f.error_notification %>
+          <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-<%= simple_form_for(@question) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+          <div class="form-inputs">
+            <%= f.input :title,
+              hint: 'Be specific and imagine you’re asking a question to another person',
+              wrapper_html: { class: 'mb-4' } %>
+            <%= f.input :body, as: :hidden %>
+            <trix-editor class="trix-content" input="question_body"></trix-editor>
+            <%= f.input :tags, collection: ActsAsTaggableOn::Tag.all,
+              hint: 'Add up to 5 tags to describe what your question is about',
+              wrapper_html: { class: 'mt-3'} %>
+          </div>
 
-  <div class="form-inputs">
-    <%= f.input :status %>
-    <%= f.input :content %>
+          <div class="form-actions d-flex justify-content-between">
+            <%= link_to 'Back', :back, class: 'btn btn-default' %>
+            <%= f.button :submit, 'Ask Question', class: 'btn btn-orange' %>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <div class="col-md-3">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title my-auto">
+          <p class="mb-0">Step 1: Draft your question</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="mb-1">
+          The community is here to help you every question you may have.
+        </p>
+      </div>
+      <div class="tips small px-3 border-top">
+        <p class="fw-bold text-orange mb-2 mt-3">Tips on getting good answers quickly</p>
+        <ul>
+          <li>
+            Make sure your question has not been asked already
+          </li>
+          <li>
+            Keep your question short and to the point
+          </li>
+          <li>
+            Double-check grammar and spelling
+          </li>
+        </ul>
+      
+      </div>
+    </div>
   </div>
-<% end %>
+</div>
+

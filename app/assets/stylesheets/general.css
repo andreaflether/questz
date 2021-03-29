@@ -2,5 +2,6 @@
  *= require application
  *= require_tree ./general
  *= require dropzone/dist/dropzone
- *= require froala-editor/css/froala_editor.pkgd.min
+ * require froala-editor/css/froala_editor.pkgd.min
+ *= require trix/dist/trix
  */

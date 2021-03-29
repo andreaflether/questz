@@ -4,7 +4,7 @@ window.onload = function() {
     return new bootstrap.Tooltip(tooltipTriggerEl)
   })
   
-  new FroalaEditor('.wysiwyg', {
-    charCounterMax: 30000
-  });
+  // new FroalaEditor('.wysiwyg', {
+  //   charCounterMax: 30000
+  // });
 }
