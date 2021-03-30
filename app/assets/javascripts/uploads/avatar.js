@@ -51,7 +51,7 @@ $(document).ready(function() {
       this.on('sending', function (data, xhr, formData) {
         toggleSubmitBtnDisabledPropTo(true);
         formData.append('user_id', $('#user_id').val());
-        formData.append('authenticity_token', $('meta[name="csrf-token"]').attr('content'))
+        formData.append('authenticity_token', Rails.csrfToken());
       });
 
       this.on('complete', function () {
@@ -65,7 +65,7 @@ $(document).ready(function() {
     
           this.removeAllFiles(true); 
           $('#edit-avatar').load(location.href + ' #edit-avatar > *', '' );
-          $.notyf.open({ type: 'success', message: 'Avatar was successfully updated!'}); 
+          $.notyf.open({ type: 'success', message: 'Your avatar was successfully updated!'}); 
         }
       });
 

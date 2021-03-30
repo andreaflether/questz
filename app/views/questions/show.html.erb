@@ -38,7 +38,7 @@
       </div>
       <div class="card-body">
         <div class="d-flex">
-          <div class="d-flex flex-column question-votes text-muted" data-user-vote=<%= user_vote(@question) %>>
+          <div class="d-flex flex-column question-votes text-muted mt-1" data-user-vote=<%= user_vote(@question) %>>
             <%= link_to upvote_question_path(@question),
               method: :patch,
               remote: true,
@@ -55,8 +55,10 @@
               <i class="fas fa-caret-down"></i>
             <% end %>
           </div>
-          <div class="d-flex flex-column ms-4">
-            <p class="text-dark mb-3 question-body"><%= @question.body %></p>
+          <div class="d-flex flex-column flex-fill ms-4">
+            <div class="question-body trix-content">
+              <%= sanitize @question.body %>
+            </div>
             <div class="tags">
               <% @question.tags.each do |tag| %>
                 <%= link_to tag_in_questions_path(tag) do %>
@@ -83,7 +85,7 @@
         </div>
       </div>
       <ul class="list-group list-group-flush bg-light">
-        <h5 class="mt-3 ms-3"><%= @question.answers_count %> answers</h5>
+        <h5 class="mt-3 ms-3"><%= pluralize(@question.answers_count, 'answer') %> </h5>
         <%= render @question.answers %>
       </ul>
       <div class="card-footer d-flex flex-column text-dark">
