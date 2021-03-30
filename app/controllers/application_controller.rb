@@ -2,18 +2,8 @@
 
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :authenticate_user!, only: [:update_avatar]
   helper_method :edit_user_path?
   layout :layout_by_resource
-
-  def update_avatar
-    @user = User.find(params[:user_id])
-    @user.update(avatar_params)
-
-    respond_to do |format|
-      format.json { head :ok }
-    end
-  end
 
   protected
 
@@ -30,9 +20,5 @@ class ApplicationController < ActionController::Base
 
   def edit_user_path?
     controller_name == 'registrations' && %w[edit update].include?(action_name)
-  end
-
-  def avatar_params
-    params.require(:user).permit(:avatar, :authencity_token)
   end
 end

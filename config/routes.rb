@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  patch '/update_avatar', to: 'application#update_avatar'
+  patch '/update_avatar', to: 'profiles#update_avatar'
 
   resources :answers do
     member do
@@ -27,10 +27,13 @@ Rails.application.routes.draw do
   end
 
   resources :profiles, only: %i[show]
+
   resources :tags, only: %i[index show] do
     member do
       patch :follow
       patch :unfollow
     end
   end
+
+  resources :photos, only: %i[create show destroy]
 end
