@@ -1,10 +1,60 @@
+$orange: #FA8D34;
+
 .question-tag {
   background-color: rgba(250, 141, 52, 0.15) !important;
   border: 1px solid transparent;
-  color: #FA8D34;
+  color: $orange;
   font-size: 0.9rem;
 
   &:hover {
     background-color: darken($color: rgba(250, 141, 52, 0.15), $amount: 15%) !important;
+  }
+}
+
+.select2-container--bootstrap4.select2-container--focus .select2-selection {
+  box-shadow: 0 0 0 2px rgba($orange, .2) !important;
+  border-color: $orange !important;
+}
+
+.select2-container--bootstrap4 {
+  .select2-results__option--highlighted,
+  .select2-results__option--highlighted.select2-results__option[aria-selected="true"],
+  .select2-results__option--highlighted.select2-results__option[aria-selected="true"]:hover {
+    background-color: $orange !important;
+  }
+
+  .select2-results__option--highlighted[aria-selected="true"], 
+  .select2-results__option--highlighted[aria-selected="true"]:hover,
+  .select2-results__option--highlighted.select2-results__option[aria-selected="true"]:hover {
+    color: white !important;
+  }
+
+  .select2-results__option[aria-selected="true"], 
+  .select2-results__option[aria-selected="true"]:hover,
+  .select2-results__option--highlighted.select2-results__option[aria-selected="true"] {
+    color: #212529 !important;
+  }
+
+  .select2-selection--multiple {
+    .select2-selection__choice {
+      background-color: $orange;
+      color: white !important;
+      border-color: darken($color: $orange, $amount: 5%) !important;
+    }
+
+    .select2-selection__choice {
+      margin-top: calc(0.6rem - 2px) !important;
+    }
+
+    .select2-selection__choice__remove {
+      color: rgba(white, 0.6) !important;
+      &:hover {
+        color: white !important;
+      }
+    }
+  }
+
+  .select2-dropdown .select2-results__option[aria-selected="true"] {
+    background-color: #DEE2E6 !important;
   }
 }

@@ -33,6 +33,9 @@ Rails.application.routes.draw do
       patch :follow
       patch :unfollow
     end
+    collection do
+      get :search
+    end
   end
 
   resources :photos, only: %i[create show destroy]

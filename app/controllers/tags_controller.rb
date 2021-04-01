@@ -9,6 +9,17 @@ class TagsController < ApplicationController
     @tags = ActsAsTaggableOn::Tag.most_used
   end
 
+  # GET /tags/search
+  def search
+    @tags = if params[:search]
+              Tag.where('lower(name) LIKE lower(?)',
+                        "%#{params[:search]}%")
+            else
+              ActsAsTaggableOn::Tag.most_used
+            end
+    @tags = @tags.page(params[:page])
+  end
+
   # GET /tags/1
   def show
     @questions = Question.filter_by_tag(@tag)

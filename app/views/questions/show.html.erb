@@ -1,6 +1,5 @@
 <div class="row">
   <div class="col-md-9">
-  
     <div class="card my-4 question" id="question_<%= @question.id %>">
       <div class="card-header mt-2 bg-white">
         <p class="text-orange mb-2">
@@ -14,10 +13,10 @@
           <%= link_to profile_path(@question.user), class: 'mb-auto' do %>
             <% if @question.user.avatar? %>
               <%= image_tag(@question.user.avatar_url, 
-                class: 'img-fluid rounded-circle user-avatar-50 me-2') %>
+                class: 'rounded-circle user-avatar-50 me-2') %>
             <% else %>
               <%= image_tag 'no-avatar.png',
-              class: 'img-fluid rounded-circle user-avatar-50 me-2 border' %>
+              class: 'rounded-circle user-avatar-50 me-2 border' %>
             <% end %> 
           <% end %>
           <div class="d-flex flex-column">
@@ -59,7 +58,7 @@
             <div class="question-body trix-content">
               <%= sanitize @question.body %>
             </div>
-            <div class="tags">
+            <div class="tags mt-3">
               <% @question.tags.each do |tag| %>
                 <%= link_to tag_in_questions_path(tag) do %>
                   <span class="badge question-tag"><%= tag.name %></span>

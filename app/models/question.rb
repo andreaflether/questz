@@ -50,6 +50,12 @@ class Question < ApplicationRecord
 
   validates :title, length: { in: 15..150, allow_blank: true }, presence: true
   validates :body, length: { in: 15..20_000, allow_blank: true }, presence: true
+  validate :tag_list_count
+
+  def tag_list_count
+    errors.add(:tag_list, 'Please select at least 1 tag to identify your question') if tag_list.count < 1
+    errors.add(:tag_list, 'Please enter no more than 5 tags.') if tag_list.count > 5
+  end
 
   scope :filter_by_tag, lambda { |tag|
     tagged_with(tag)

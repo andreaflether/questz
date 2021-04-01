@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
 $orange: #FA8D34;
+$danger: #DC3545;
 
 body {
   font-family: 'Roboto', sans-serif !important;
@@ -40,4 +41,12 @@ h2.logo-font, h4.logo-font {
 
 .text-white-75 {
   color: rgba(#fff, 0.75);
+}
+
+.form-group-invalid trix-editor {
+  border-color: $danger !important;
+}
+
+.form-group-invalid.trix_editor .invalid-feedback {
+  display: block;
 }

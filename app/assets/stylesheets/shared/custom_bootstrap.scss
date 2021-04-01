@@ -24,6 +24,10 @@ label.form-label {
   }
 }
 
+trix-editor {
+  border-color: #CED4DA !important;
+}
+
 .form-control.is-invalid {
   &:focus {
     box-shadow: 0 0 0 2px rgba($danger, .2);
