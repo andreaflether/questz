@@ -69,7 +69,7 @@
             <span class="share">
               <i class="fas fa-share-square"></i>&nbsp;Share
             </span>
-            <% if is_from_user?(@question) %>
+            <% if can? :update, @question %>
               <span class="edit">
                 <%= link_to edit_question_path(@question), class: 'text-muted' do %>
                   <i class="fas fa-edit"></i>&nbsp;Edit

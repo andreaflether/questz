@@ -2,8 +2,9 @@
 
 class QuestionsController < ApplicationController
   before_action :set_question, only: %i[show edit update destroy upvote downvote]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: %i[show]
   impressionist actions: [:show], unique: %i[impressionable_type impressionable_id ip_address]
+  load_and_authorize_resource
 
   # GET /questions
   def index

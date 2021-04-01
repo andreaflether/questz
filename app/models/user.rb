@@ -65,6 +65,10 @@ class User < ApplicationRecord
     end
   end
 
+  def has_privilege_to_create_tag?
+    experience >= 500
+  end
+
   def max_filesize_for_avatar
     avatar.size_range.last / (1024.0 * 1024.0).to_i
   end
