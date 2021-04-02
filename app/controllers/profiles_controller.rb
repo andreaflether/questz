@@ -7,7 +7,7 @@ class ProfilesController < ApplicationController
   def show
     @solved_questions = @user.solved_questions
     @tags = @user.questions.tag_counts_on(:tags)
-    render layout: 'profiles'
+    render layout: 'default'
   end
 
   def update_avatar
