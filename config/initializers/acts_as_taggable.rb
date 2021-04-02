@@ -7,5 +7,8 @@ module Questz
 
     # Save tags parametrized
     ActsAsTaggableOn.force_parameterize = true
+
+    # Remove unused tag objects after removing taggings
+    ActsAsTaggableOn.remove_unused_tags = true
   end
 end

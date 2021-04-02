@@ -2,8 +2,8 @@
   <div class="card-header py-3 bg-white">
     <h6 class="card-title mb-0">
       <i class="fas fa-trophy small"></i>&nbsp;
-      <% if local_assigns[:tag] %>
-        Top answerers in <span class="text-orange"><%= tag.name %></span>
+      <% if local_assigns[:tag_only] %>
+        Top answerers in this tag</span>
       <% else %>
         Top users
       <% end %>

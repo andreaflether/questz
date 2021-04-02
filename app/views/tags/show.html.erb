@@ -1,13 +1,57 @@
-<h4 class="my-4">Questions tagged with <span class="text-orange"><%= @tag %></span></h4>
 
-<div class="row">
+<div class="row mt-4">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between flex-row flex-column align-items-center">
+          <div class="d-flex align-items-center">
+            <h4 class="d-flex align-items-center mb-0">
+              <div class="flex-shrink-0">
+                <span class="badge rounded-pill orange-150 text-orange p-2">
+                  <i class="fas fa-tag m-1"></i> 
+                </span>
+              </div>
+              <div class="flex-grow-1 ms-2">
+                <%= @tag %>
+              </div>
+            </h4>
+            <% if user_signed_in? %>
+              <span id="follow-button" class="flex-shrink-0">
+                <%= render 'tags/follow_buttons' %>
+              </span>
+            <% end %>
+          </div>
+
+          <div class="question-stats mt-3 text-muted d-flex flex-row">
+            <div class="qustions-count">
+              <i class="fas fa-archive"></i>
+              <%= pluralize(@tag.taggings_count, 'total questions') %>
+            </div>
+            <div class="answered-count">
+              <i class="fas fa-check"></i>
+              <%= pluralize(@questions_count['answered'], 'answered questions') %>
+            </div>
+            <div class="unanswered-count">
+              <i class="fas fa-question"></i>
+              <%= pluralize(@questions_count['unanswered'], 'unanswered questions') %>
+            </div>
+            <div class="followers-count">
+              <i class="fas fa-user-check"></i>
+              <%= pluralize(@tag.followers_count, 'follower') %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h5 class="mt-4 mb-3">Questions in this tag</h5>
   <div class="col-md-9">
     <%= render @questions %>
   </div>
   <div class="col-md-3">
     <div class="row">
       <div class="col-md-12">
-        <%= render 'shared/top_users_card', collection: @top_users, tag: @tag, tag_only: true  %>
+        <%= render 'shared/top_users_card', collection: @top_users, tag_only: true  %>
       </div>
     </div>
   </div>

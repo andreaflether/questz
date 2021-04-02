@@ -31,7 +31,7 @@
           <div class="tags mt-2">
             <% question.tags.each do |tag| %>
               <%= link_to tag_path(tag) do %>
-                <span class="badge question-tag"><%= tag.name %></span>
+                <span class="badge question-tag"><%= tag.name.truncate(50) %></span>
               <% end %>
             <% end %>
           </div>

@@ -10,7 +10,7 @@
 
     <div class="d-inline-flex flex-column">
       <%= link_to user.username, profile_path(user), class: 'fw-bold' %>
-      <span class="text-muted small">
+        <span class="text-muted small">
         <% if local_assigns[:tag_only] %>
           <%= pluralize(user.chosen_answers_count, 'solved question') %>
         <% end %>
