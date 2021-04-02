@@ -2,6 +2,16 @@
 # yarn lockfile v1
 
 
+"@client-side-validations/client-side-validations@^0.1.5":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@client-side-validations/client-side-validations/-/client-side-validations-0.1.5.tgz#64862187f640c07361cb1bbe3e501018543c335b"
+  integrity sha512-DSi69S1BlU3KE+DxiehDDqqeOH561+BJhEMkl7vbu2DgR3XynaWm/Wg1DdyP+CMUOm1UfbAHGCeiIr2dhMnPfA==
+
+"@client-side-validations/simple-form@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@client-side-validations/simple-form/-/simple-form-0.2.0.tgz#5ad72d51775715f038bdc7913504dbe0c2ba7f23"
+  integrity sha512-Knnd1pLvNtQkMGsZNkS8kJ/TNCFR2vhO5ZvoDumdrCVCXNnVMkNgdckwQIopMlHSalI45VVlZVay5V8pvX3XiQ==
+
 "@fortawesome/fontawesome-free@^5.14.0":
   version "5.14.0"
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.14.0.tgz#a371e91029ebf265015e64f81bfbf7d228c9681f"
