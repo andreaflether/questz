@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root 'home#index'
+  root 'questions#index'
+
+  match '/404', to: 'errors#not_found', via: :all
+  match '/422', to: 'errors#unprocessable_entity', via: :all
+  match '/500', to: 'errors#internal_server_error', via: :all
 
   devise_for :users
 
@@ -39,4 +43,7 @@ Rails.application.routes.draw do
   end
 
   resources :photos, only: %i[create show destroy]
+
+  # authenticated :user do root to: 'questions#index' end
+  # unauthenticated :user do root to: 'home#index' end
 end
