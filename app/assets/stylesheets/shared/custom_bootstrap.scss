@@ -1,5 +1,5 @@
 $orange: #FA8D34;
-$danger: #dc3545;
+$danger: #DC3545;
 
 /*------------------------------- Inputs -------------------------------*/
 label.form-label {
@@ -7,20 +7,21 @@ label.form-label {
 }
 
 .form-check-input {
+  &:focus, &:checked {
+    @extend .border-orange;
+  }
   &:focus {
     box-shadow: none !important;
-    border-color: $orange !important;
   }
   &:checked {
-    background-color: $orange !important;
-    border-color: $orange !important;
+    @extend .bg-orange;
   }
 }
 
 .form-control, trix-editor {
   &:focus {
     box-shadow: 0 0 0 2px rgba($orange, .2);
-    border-color: $orange;
+    @extend .border-orange;
   }
 }
 
@@ -46,7 +47,7 @@ trix-editor {
 
 .navbar-light .navbar-nav .show > .nav-link, 
 .navbar-light .navbar-nav .nav-link.active {
-  color: $orange !important;
+  @extend .text-orange;
 }
 
 nav, .card {
@@ -59,14 +60,14 @@ nav, .card {
   margin-bottom: 0.5rem;
   border-radius: 4px !important;
   &:hover {
-    background-color: #e9ecef;
+    background-color: #E9ECEF;
   }
 }
 
 .list-group.followed-tags > .list-group-item.active {
-  background-color: rgba($orange, 0.15) !important;
+  @extend .orange-150;
   border: 1px solid transparent;
-  color: $orange;
+  @extend .text-orange;
   font-weight: bold;
 }
 
@@ -75,9 +76,18 @@ nav, .card {
   background-color: $orange !important;
 }
 
+.orange-150 {
+  background-color: rgba($orange, 0.15) !important;
+}
+
+/*------------------------------- Borders -------------------------------*/
+.border-orange {
+  border-color: $orange !important;
+}
+
 /*------------------------------- Buttons -------------------------------*/
 .btn-orange {
-  background-color: $orange;
+  @extend .bg-orange;
   color: white !important;
   transition: all .3s ease-in-out  !important;
   &:hover {
@@ -87,24 +97,25 @@ nav, .card {
 
 .btn-outline-orange {
   border: 2px solid $orange;
-  color: $orange;
+  @extend .text-orange;
   &:hover {
-    background-color: $orange;
-    color: #fff;
+    @extend .bg-orange;
+    color: white !important;
   }
 }
 
 .btn-default { 
-  background-color: #f8f9fa !important;
-  border-color: #ddd !important;
+  background-color: #F8F9FA !important;
+  border-color: #DDD !important;
   color: #444 !important;
 
   &:hover {
-    background-color: #e9ecef !important;
-    color: #2b2b2b !important;
+    background-color: #E9ECEF !important;
+    color: #2B2B2B !important;
   }
 }
+
 /*------------------------------- Text related -------------------------------*/
 .text-orange {
-  color: $orange;
+  color: $orange !important;
 }
