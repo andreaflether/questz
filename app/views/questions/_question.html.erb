@@ -38,11 +38,7 @@
           <div class="created-at small">
             <span class="text-muted me-3">Asked <%= time_ago_in_words(question.created_at) %> ago</span>
             <span class='fw-bold text-orange'>
-              <% if question.answered? %>
-                <i class='fas fa-check'></i> Answered
-              <% else %>
-                <%= question.status.capitalize %>
-              <% end %>
+              <%= raw status_to_html(question.status) %>
             </span>
           </div>
         </div>

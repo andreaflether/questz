@@ -2,12 +2,8 @@
   <div class="col-md-9">
     <div class="card my-4 question" id="question_<%= @question.id %>">
       <div class="card-header mt-2 bg-white">
-        <p class="text-orange mb-2">
-          <% if @question.answered? %>
-            <i class='fas fa-check'></i> Answered
-          <% else %>
-            <%= @question.status.capitalize %>
-          <% end %>
+        <p class="text-orange fw-bold mb-2">
+          <%= raw status_to_html(@question.status) %>
         </p>
         <div class="d-flex mb-2">
           <%= link_to profile_path(@question.user), class: 'mb-auto' do %>
