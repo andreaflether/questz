@@ -1,3 +1,20 @@
-<div class="row mt-5">
+<div class="d-flex justify-content-between align-items-center mt-4 mb-3">
+  <h4 class="mb-0">Tags</h4>
+  <ul class="nav nav-pills small navigation-tabs">
+    <li class="nav-item">
+      <%= link_to 'Popular', tags_path, class: 'nav-link main-tab' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Name', tags_path(alphabetic_order: true), 
+        class: 'nav-link alphabetic_order' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Newest', tags_path(newest: true), 
+        class: 'nav-link newest' %>
+    </li>
+  </ul>
+</div>
+
+<div class="row">
   <%= render partial: 'tag', collection: @tags %>
 </div>

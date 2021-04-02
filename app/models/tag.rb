@@ -17,4 +17,12 @@
 
 class Tag < ActsAsTaggableOn::Tag
   acts_as_followable
+
+  scope :alphabetic_order, lambda {
+    order(name: :asc)
+  }
+
+  scope :newest, lambda {
+    order(created_at: :desc)
+  }
 end

@@ -2,7 +2,7 @@
   <div class="card mb-2">
     <div class="card-body">
       <%= link_to tag_path(tag) do %>
-        <span class="badge question-tag"><%= tag.name %></span>
+        <span class="badge question-tag text-wrap"><%= tag.name %></span>
       <% end %>
       <p class="text-secondary mt-2 mb-0"><%= pluralize(tag.taggings_count, 'question') %> total
     </div>

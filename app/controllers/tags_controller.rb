@@ -3,10 +3,12 @@
 class TagsController < ApplicationController
   before_action :set_tag, only: %i[show follow unfollow]
   before_action :authenticate_user!, only: %i[follow unfollow]
+  has_scope :alphabetic_order, type: :boolean, only: %i[index]
+  has_scope :newest, type: :boolean, only: %i[index]
 
   # GET /tags
   def index
-    @tags = ActsAsTaggableOn::Tag.most_used
+    @tags = apply_scopes(Tag).most_used
   end
 
   # GET /tags/search
@@ -15,7 +17,7 @@ class TagsController < ApplicationController
               Tag.where('lower(name) LIKE lower(?)',
                         "%#{params[:search]}%")
             else
-              ActsAsTaggableOn::Tag.most_used
+              Tag.most_used
             end
     @tags = @tags.page(params[:page])
   end
@@ -34,7 +36,7 @@ class TagsController < ApplicationController
     current_user.follow(@tag)
     render 'tags/js/follow'
   end
-  
+
   # PATCH /tags/1/unfollow
   def unfollow
     current_user.stop_following(@tag)
