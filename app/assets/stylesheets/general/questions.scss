@@ -1,3 +1,5 @@
+$orange: #FA8D34;
+
 .question-title {
   font-size: 1.1rem;
   font-weight: 500 !important;
@@ -22,4 +24,10 @@
 
 .question-reports > .votes-up-on-question {
   margin: 0 1.3rem;
+}
+
+.navigation-tabs {
+  .nav-link.active {
+    background-color: $orange;
+  }
 }

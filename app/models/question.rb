@@ -57,7 +57,19 @@ class Question < ApplicationRecord
     errors.add(:tag_list, 'Please enter no more than 5 tags.') if tag_list.count > 5
   end
 
-  scope :count_by_status_in_tag, lambda { |tag| 
+  scope :count_by_status_in_tag, lambda { |tag|
     tagged_with(tag).group(:status).count
-  } 
+  }
+
+  scope :with_user_followed_tags, lambda { |user|
+    tagged_with([user.all_following], any: true)
+  }
+
+  scope :newest, lambda {
+    order(created_at: :desc)
+  }
+
+  scope :most_voted, lambda {
+    order(cached_votes_up: :desc)
+  }
 end

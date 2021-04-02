@@ -1,4 +1,24 @@
-<div class="row mt-5">
+<div class="row">
+  <div class="col-md-9 mt-4 mb-3">
+    <div class="d-flex align-items-center justify-content-between">
+      <h5 class="mb-0">Your feed</h5>
+        <ul class="nav nav-pills small navigation-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Most voted</a>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Newest', questions_path(tab: 'newest'), class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Answered', questions_path(tab: 'answered'), class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Unanswered', questions_path(tab: 'unanswered'), class: 'nav-link' %>
+          </li>
+        </ul>
+    </div>
+  
+  </div>
   <div class="col-md-9">
     <%= render @questions %>
   </div>
@@ -19,4 +39,3 @@
     </div>
   </div>
 </div>
-

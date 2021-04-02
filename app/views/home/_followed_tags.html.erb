@@ -1,10 +1,11 @@
 <div class="list-group followed-tags">
-  <%= link_to root_path, class: 'list-group-item list-group-item-action active' do %>
+  <%= link_to root_path, 
+    class: "list-group-item list-group-item-action #{'active' if !params[:tag]}" do %>
     <i class="fas fa-newspaper"></i>&nbsp; Feed
   <% end %>
   <% if @tags.any? %>
     <% @tags.each do |tag| %>
-      <%= link_to tag.name, tag_path(tag), class: 'list-group-item list-group-item-action' %>
+      <%= link_to tag.name, url_for(request.params.merge(tag: tag.name)), class: 'list-group-item tag list-group-item-action' %>
     <% end %>
 
   <% else %>

@@ -2,13 +2,23 @@
 
 class QuestionsController < ApplicationController
   before_action :set_question, only: %i[show edit update destroy upvote downvote]
-  before_action :authenticate_user!, except: %i[show]
+  before_action :authenticate_user!, except: %i[index show]
   impressionist actions: [:show], unique: %i[impressionable_type impressionable_id ip_address]
   load_and_authorize_resource
 
   # GET /questions
   def index
-    @questions = Question.order(votes_count: :desc)
+    if user_signed_in?
+      @questions = Question.with_user_followed_tags(current_user)
+      @tags = current_user.all_following
+    else
+      @questions = Question.most_voted
+    end
+
+    sanitize_filter_params if params[:tab]
+
+    @questions = @questions.includes(%i[tags user tag_taggings])
+    @top_users = User.top_users
   end
 
   # GET /questions/1
@@ -81,5 +91,15 @@ class QuestionsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def question_params
     params.require(:question).permit(:status, :title, :body, tag_list: [])
+  end
+
+  def sanitize_filter_params
+    if %w(answered unanswered newest).include?(params[:tab])
+      @questions_to_exihibt = @questions.public_send(params[:tab])
+      @questions_tagged_with = @questions_to_exihibt.tagged_with(params[:tag]) if params[:tag]
+      @questions = @questions_tagged_with ||= @questions_to_exihibt
+    else 
+      @message = "<b>#{params[:tab]}</b> is not a valid filter."
+    end
   end
 end

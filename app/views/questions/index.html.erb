@@ -1,29 +1,54 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Questions</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Status</th>
-      <th>Content</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @questions.each do |question| %>
-      <tr>
-        <td><%= question.status %></td>
-        <td><%= question.content %></td>
-        <td><%= link_to 'Show', question %></td>
-        <td><%= link_to 'Edit', edit_question_path(question) %></td>
-        <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<div class="row">
+  <div class="col-md-9 mt-4 mb-3">
+    <div class="d-flex align-items-center justify-content-between">
+      <h5 class="mb-0">
+        <%= user_signed_in? ? 'Your feed' : 'All questions' %>
+      </h5>
+        <ul class="nav nav-pills small navigation-tabs">
+          <li class="nav-item">
+            <%= link_to 'Most voted', url_for(request.params.slice(:tag)), class: "nav-link main-tab active" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Newest', url_for(request.params.merge(tab: 'newest')), 
+              class: 'nav-link newest' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Answered', url_for(request.params.merge(tab: 'answered')), 
+              class: 'nav-link answered' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Unanswered', url_for(request.params.merge(tab: 'unanswered')), 
+              class: 'nav-link unanswered' %>
+          </li>
+        </ul>
+    </div>
+  
+  </div>
+  <div class="col-md-9">
+    <% if @questions.any? && !@message %>
+      <%= render @questions %>
+    <% else %>
+      <h5 class="fw-normal text-center mt-3">
+        <%= raw @message || 'No questions to display.' %>
+      </h5>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Question', new_question_path %>
+  </div>
+    <div class="col-md-3">
+      <div class="row">
+        <% if user_signed_in? %>
+          <div class="col-md-12 mb-3 followed-tags">
+            <%= render 'home/followed_tags' %>
+            <div class="custom-actions text-center">
+              <%= link_to tags_path, class: 'btn btn-outline-orange mt-2' do %>
+                <small class="fw-bold text-uppercase">all tags</small>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+        <div class="col-md-12">
+          <%= render 'shared/top_users_card', collection: @top_users, top_ranking: true %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
