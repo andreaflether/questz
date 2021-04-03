@@ -5,10 +5,19 @@ class Ability
 
   def initialize(user)
     can :read, :all # permissions for every user, even if not logged in
-    can %i[update destroy], Question, user_id: user.id if user.present? # additional permissions for logged in users
-    
+
+    # Additional permissions for logged in users
     if user.present? 
-      can :create, Question
+      can %i[create], [Question, Answer]
+      
+      # User can't vote on owned resource
+      cannot %i[upvote downvote], [Question, Answer], user_id: user.id
+
+      # User asked the question
+      can %i[choose], Answer, question: { status: 'unanswered' }, question: { user_id: user.id }
+
+      # User owns the resource
+      can %i[update destroy], [Question, Answer], user_id: user.id 
     end
     # Define abilities for the passed in user here. For example:
     #

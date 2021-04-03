@@ -3,7 +3,8 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: %i[show edit update destroy choose upvote downvote]
   before_action :authenticate_user!, only: %i[edit choose upvote downvote]
-
+  load_and_authorize_resource
+  
   # GET /answers
   def index
     @answers = Answer.all
@@ -48,12 +49,12 @@ class AnswersController < ApplicationController
 
   # PATCH /answers/1/choose
   def choose
-    @answer.chosen
+    @answer.chosen = true
 
     if @answer.save
       redirect_to @answer.question, notice: 'Your question is now answered!'
     else
-      redirect_to @answer.question, error: 'Se lascou kkk'
+      redirect_to @answer.question, error: @answer.errors.full_messages.first
     end
   end
 
