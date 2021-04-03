@@ -6,7 +6,7 @@ class ProfilesController < ApplicationController
 
   def show
     @solved_questions = @user.solved_questions
-    @tags = @user.questions.tag_counts_on(:tags)
+    @tags = @user.questions.tag_counts_on(:tags, order: 'count DESC', limit: 5)
     render layout: 'default'
   end
 

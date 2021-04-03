@@ -48,7 +48,10 @@
 
 <div class="col-md-8">
 
-  <% tag_cloud(@tags, %w(fs-6 fs-5 fs-4 fs-3)) do |tag, css_class| %>
-    <%= link_to tag.name, tag_path(tag), class: css_class %>
+  <% tag_cloud(@tags, %w(small fs-6 fs-5 fs-4)) do |tag, css_class| %>
+    <span class="badge question-tag">
+      <%= link_to tag.name, tag_path(tag), class: css_class %>
+    
+    </span>
   <% end %>
 </div>

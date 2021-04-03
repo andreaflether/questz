@@ -3,11 +3,10 @@
     class: "list-group-item list-group-item-action #{'active' if !params[:tag]}" do %>
     <i class="fas fa-newspaper"></i>&nbsp; Feed
   <% end %>
-  <% if @tags.any? %>
+  <% if @tags %>
     <% @tags.each do |tag| %>
       <%= link_to tag.name, url_for(request.params.merge(tag: tag.name)), class: 'list-group-item tag list-group-item-action' %>
     <% end %>
-
   <% else %>
     <p class="text-muted mt-2">You're not following any tags just yet.</p>
   <% end %>
