@@ -72,4 +72,8 @@ class Question < ApplicationRecord
   scope :most_voted, lambda {
     order(cached_votes_up: :desc)
   }
+
+  scope :not_closed, lambda {
+    where.not(status: :closed)
+  }
 end

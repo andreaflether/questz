@@ -8,7 +8,7 @@ class QuestionsController < ApplicationController
 
   # GET /questions
   def index
-    if user_signed_in?
+    if user_signed_in? && current_user.follow_count > 1
       @questions = Question.with_user_followed_tags(current_user)
       @tags = current_user.all_following
     else
@@ -17,7 +17,9 @@ class QuestionsController < ApplicationController
 
     sanitize_filter_params if params[:tab]
 
-    @questions = @questions.includes(%i[tags user tag_taggings])
+    @questions = @questions
+      .not_closed
+      .includes(%i[tags user tag_taggings])
     @top_users = User.top_users
   end
 
