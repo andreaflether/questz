@@ -23,7 +23,9 @@ class QuestionsController < ApplicationController
   end
 
   # GET /questions/1
-  def show; end
+  def show
+    @related_questions = @question.find_related_tags.limit(8)
+  end
 
   # GET /questions/new
   def new

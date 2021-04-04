@@ -1,6 +1,6 @@
-<div class="row">
+<div class="row mt-4">
   <div class="col-md-9">
-    <div class="card my-4 question" id="question_<%= @question.id %>">
+    <div class="card question" id="question_<%= @question.id %>">
       <div class="card-header mt-2 bg-white">
         <p class="text-orange fw-bold mb-2">
           <%= raw status_to_html(@question.status) %>
@@ -16,7 +16,9 @@
             <% end %> 
           <% end %>
           <div class="d-flex flex-column">
-            <div class="card-title"><h4 class="question-title-show mb-1"><%= @question.title %></h4></div>
+            <div class="card-title">
+              <h4 class="question-title-show text-break mb-1"><%= @question.title %></h4>
+            </div>
             <p class="text-muted mb-0 question-info">
               Asked by 
               <%= link_to @question.user.name, profile_path(@question.user), class: 'fw-bold' %>
@@ -54,10 +56,10 @@
             <div class="question-body trix-content">
               <%= sanitize @question.body %>
             </div>
-            <div class="tags mt-3">
+            <div class="tags mt-2">
               <% @question.tags.each do |tag| %>
                 <%= link_to tag_in_questions_path(tag) do %>
-                  <span class="badge question-tag"><%= tag.name %></span>
+                  <span class="badge question-tag mt-1"><%= tag.name %></span>
                 <% end %>
               <% end %>
             </div>
@@ -101,6 +103,23 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card">
+      <div class="card-header bg-white">
+        <h6 class="card-title my-2">Related questions</h6>
+      </div>
+      <% if @related_questions.any? %>
+        <ul class="list-group list-group-flush">
+          <%= render partial: 'related_questions', collection: @related_questions, as: :question %>
+        </ul>
+      <% else %>
+        <div class="card-body">
+          <p class="mb-1">No questions to display just yet.</p>
+          <%= link_to 'Ask a new one', new_question_path, class: 'fw-bold' %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

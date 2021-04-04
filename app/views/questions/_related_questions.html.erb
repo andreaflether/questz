@@ -1,0 +1,6 @@
+<li class="list-group-item d-flex small">
+  <span class="badge me-1 flex-shrink-0 mb-auto px-2 lh-base question-<%= question.status %>">
+    <%= number_to_human(question.answers_count.to_i) %>
+  </span>
+  <%= link_to question.title, question_path(question), class: 'my-auto text-break flex-grow-1 ms-1' %>
+</li>

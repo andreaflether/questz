@@ -1,4 +1,5 @@
 $orange: #FA8D34;
+$danger: #DC3545;
 
 .question-title {
   font-size: 1.1rem;
@@ -30,4 +31,17 @@ $orange: #FA8D34;
   .nav-link.active {
     background-color: $orange;
   }
+}
+
+.question-answered {
+  background-color: $orange;
+}
+
+.question-unanswered {
+  background-color: #DEE2E6;
+  color: #333 !important;
+}
+
+.question-closed {
+  background-color: $danger;
 }
