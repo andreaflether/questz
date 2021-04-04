@@ -4,7 +4,7 @@ class AnswersController < ApplicationController
   before_action :set_answer, only: %i[show edit update destroy choose upvote downvote]
   before_action :authenticate_user!, only: %i[edit choose upvote downvote]
   load_and_authorize_resource
-  
+
   # GET /answers
   def index
     @answers = Answer.all
@@ -24,6 +24,7 @@ class AnswersController < ApplicationController
   # POST /answers
   def create
     @answer = Answer.new(answer_params)
+    @answer.user = current_user
 
     if @answer.save
       redirect_to @answer, notice: 'Answer was successfully created.'
@@ -52,6 +53,7 @@ class AnswersController < ApplicationController
     @answer.chosen = true
 
     if @answer.save
+      @answer.create_activity(:choose, owner: current_user)
       redirect_to @answer.question, notice: 'Your question is now answered!'
     else
       redirect_to @answer.question, error: @answer.errors.full_messages.first

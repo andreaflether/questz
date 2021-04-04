@@ -20,6 +20,9 @@
 class Answer < ApplicationRecord
   acts_as_votable
 
+  include PublicActivity::Model
+  tracked only: [:create], owner: ->(controller, model) { model.user }
+
   EXP_FOR_ACTION = {
     create: 16,
     chosen: 24,
@@ -28,6 +31,7 @@ class Answer < ApplicationRecord
 
   after_create -> { set_gamification('create') }
   after_destroy -> { set_gamification('destroy') }
+  before_destroy :remove_activity
 
   belongs_to :question, counter_cache: true
   belongs_to :user
@@ -43,5 +47,11 @@ class Answer < ApplicationRecord
   def set_gamification(action)
     gamification = Gamification.new(user)
     gamification.grant_experience_to_user(EXP_FOR_ACTION[action.to_sym])
+  end
+
+  def remove_activity
+    activity = PublicActivity::Activity.find_by(trackable_id: id)
+    activity.destroy if activity.present?
+    true
   end
 end

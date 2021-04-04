@@ -1,0 +1,19 @@
+<li class="list-group-item py-3 d-flex">
+	<div class="flex-shrink-0">
+		<span class="badge circular-badge orange-150 text-orange">
+			<i class="fas fa-check"></i> 
+		</span>
+	</div>
+	<div class="flex-grow-1 ms-2 my-auto">
+		accepted a answer on
+		<% if activity.trackable %>
+			<%= link_to activity.trackable.question.title, activity.trackable.question, class: 'fw-bold' %>
+		<% else %>
+			which has since been removed
+		<% end %>
+		&nbsp;·&nbsp; 
+		<span class="text-muted">
+			<%= time_ago_in_words(activity.created_at) %> ago
+		</span>
+	</div>
+</li>
