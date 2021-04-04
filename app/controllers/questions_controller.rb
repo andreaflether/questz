@@ -18,8 +18,7 @@ class QuestionsController < ApplicationController
     sanitize_filter_params if params[:tab]
 
     @questions = @questions
-      .not_closed
-      .includes(%i[tags user tag_taggings])
+                 .includes(%i[tags user tag_taggings])
     @top_users = User.top_users
   end
 
@@ -96,11 +95,11 @@ class QuestionsController < ApplicationController
   end
 
   def sanitize_filter_params
-    if %w(answered unanswered newest).include?(params[:tab])
+    if %w[answered unanswered newest].include?(params[:tab])
       @questions_to_exihibt = @questions.public_send(params[:tab])
       @questions_tagged_with = @questions_to_exihibt.tagged_with(params[:tag]) if params[:tag]
       @questions = @questions_tagged_with ||= @questions_to_exihibt
-    else 
+    else
       @message = "<b>#{params[:tab]}</b> is not a valid filter."
     end
   end

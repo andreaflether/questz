@@ -25,7 +25,6 @@ class TagsController < ApplicationController
   # GET /tags/1
   def show
     @questions = Question.tagged_with(@tag)
-                         .not_closed
                          .includes(%i[tags tag_taggings user])
                          .order(cached_votes_up: :desc)
     @questions_count = Question.count_by_status_in_tag(@tag)
