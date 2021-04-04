@@ -7,9 +7,9 @@ class Ability
     can :read, :all # permissions for every user, even if not logged in
 
     # Additional permissions for logged in users
-    if user.present? 
+    if user.present?
       can %i[create], [Question, Answer]
-      
+
       # User can't vote on owned resource
       cannot %i[upvote downvote], [Question, Answer], user_id: user.id
 
@@ -17,7 +17,7 @@ class Ability
       can %i[choose], Answer, question: { status: 'unanswered' }, question: { user_id: user.id }
 
       # User owns the resource
-      can %i[update destroy], [Question, Answer], user_id: user.id 
+      can %i[update destroy], [Question, Answer], user_id: user.id
     end
     # Define abilities for the passed in user here. For example:
     #

@@ -2,7 +2,7 @@
 
 module QuestionsHelper
   def status_to_html(status)
-    statuses = { 
+    statuses = {
       unanswered: "<i class='fas fa-question-circle'></i>",
       answered: "<i class='fas fa-check'></i>",
       closed: "<i class='fas fa-ban'></i>"
