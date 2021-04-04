@@ -50,3 +50,12 @@ h2.logo-font, h4.logo-font {
 .form-group-invalid.trix_editor .invalid-feedback {
   display: block;
 }
+
+.circular-badge {
+  width: 2.2rem;
+  height: 2.2rem;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+}
