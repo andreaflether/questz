@@ -35,12 +35,14 @@ class TagsController < ApplicationController
   # PATCH /tags/1/follow
   def follow
     current_user.follow(@tag)
+    @tag.create_activity key: 'tag.follow', owner: current_user
     render 'tags/js/follow'
   end
 
   # PATCH /tags/1/unfollow
   def unfollow
     current_user.stop_following(@tag)
+    @tag.create_activity key: 'tag.unfollow', owner: current_user
     render 'tags/js/follow'
   end
 

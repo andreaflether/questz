@@ -18,6 +18,16 @@
 class Tag < ActsAsTaggableOn::Tag
   acts_as_followable
 
+  include PublicActivity::Model
+
+  before_destroy :remove_activity
+
+  def remove_activity
+    activity = PublicActivity::Activity.find_by(trackable_id: id)
+    activity.destroy if activity.present?
+    true
+  end
+
   scope :alphabetic_order, lambda {
     order(name: :asc)
   }
