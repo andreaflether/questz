@@ -46,12 +46,31 @@
   </div>
 </div>
 
-<div class="col-md-8">
-
-  <% tag_cloud(@tags, %w(small fs-6 fs-5 fs-4)) do |tag, css_class| %>
-    <span class="badge question-tag">
-      <%= link_to tag.name, tag_path(tag), class: css_class %>
-    
-    </span>
-  <% end %>
+<div class="container-fluid px-5 mt-3">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header bg-white">
+          <h6 class="card-title my-1"><i class="fas fa-tags"></i>&nbsp; Top tags</h6>
+        </div>
+        <div class="card-body">
+          <% tag_cloud(@tags, %w(small fs-6 fs-5 fs-4)) do |tag, css_class| %>
+            <span class="badge question-tag mb-1">
+              <%= link_to tag.name, tag_path(tag), class: css_class %>
+            </span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header bg-white">
+          <h5 class="my-1"><i class="fas fa-rss"></i>&nbsp; Feed</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <%= render_activities(@activities) %>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>

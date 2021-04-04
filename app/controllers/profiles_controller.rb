@@ -6,7 +6,11 @@ class ProfilesController < ApplicationController
 
   def show
     @solved_questions = @user.solved_questions
-    @tags = @user.questions.tag_counts_on(:tags, order: 'count DESC', limit: 5)
+    @tags = @user.questions.tag_counts_on(:tags, order: 'count DESC', limit: 10)
+    @activities = PublicActivity::Activity
+                  .where(owner: @user)
+                  .order(created_at: :desc)
+                  .includes([:trackable])
     render layout: 'default'
   end
 
