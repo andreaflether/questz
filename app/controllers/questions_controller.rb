@@ -8,20 +8,23 @@ class QuestionsController < ApplicationController
 
   # GET /questions
   def index
+    @questions = Question.most_voted
+    sanitize_filter_params if params[:tab]
+    get_questions_and_top_users
+  end
+  
+  def feed 
     if user_signed_in? && current_user.follow_count > 1
       @questions = Question.with_user_followed_tags(current_user)
       @tags = current_user.all_following
     else
       @questions = Question.most_voted
     end
-
+    
     sanitize_filter_params if params[:tab]
-
-    @questions = @questions
-                 .includes(%i[tags user tag_taggings])
-    @top_users = User.top_users
+    get_questions_and_top_users
   end
-
+  
   # GET /questions/1
   def show
     @related_questions = @question.find_related_tags.limit(8)
@@ -95,6 +98,13 @@ class QuestionsController < ApplicationController
   def question_params
     params.require(:question).permit(:status, :title, :body, tag_list: [])
   end
+
+  def get_questions_and_top_users
+    @questions = @questions
+                 .includes(%i[tags user tag_taggings])
+    @top_users = User.top_users
+  end
+
 
   def sanitize_filter_params
     if %w[answered unanswered newest].include?(params[:tab])

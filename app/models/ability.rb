@@ -5,10 +5,11 @@ class Ability
 
   def initialize(user)
     can :read, :all # permissions for every user, even if not logged in
-
+    
     # Additional permissions for logged in users
     if user.present?
       can %i[create], [Question, Answer]
+      can %i[feed], Question
 
       # User can't vote on owned resource
       cannot %i[upvote downvote], [Question, Answer], user_id: user.id

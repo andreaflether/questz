@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root 'questions#index'
-
   match '/404', to: 'errors#not_found', via: :all
   match '/422', to: 'errors#unprocessable_entity', via: :all
   match '/500', to: 'errors#internal_server_error', via: :all
@@ -30,6 +28,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/feed', to: 'questions#feed'
+
   resources :profiles, only: %i[show]
 
   resources :tags, only: %i[index show] do
@@ -44,6 +44,6 @@ Rails.application.routes.draw do
 
   resources :photos, only: %i[create show destroy]
 
-  # authenticated :user do root to: 'questions#index' end
-  # unauthenticated :user do root to: 'home#index' end
+  authenticated :user do root to: 'questions#feed' end
+  unauthenticated :user do root to: 'questions#index' end
 end
