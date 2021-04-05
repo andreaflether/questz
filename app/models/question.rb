@@ -86,4 +86,8 @@ class Question < ApplicationRecord
   scope :not_closed, lambda {
     where.not(status: :closed)
   }
+
+  scope :user_interacted, lambda { |user| 
+    (where(id: user.answers.pluck(:question_id)).or(user.questions)).distinct
+  }
 end
