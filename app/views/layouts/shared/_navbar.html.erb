@@ -9,6 +9,14 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <%= link_to 'Questions', questions_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Tags', tags_path, class: 'nav-link' %>
+        </li>
+      </ul>
       <ul class="navbar-nav ms-auto mb-0 align-items-center">
         <% if user_signed_in? %>
         <li class="nav-item" >
@@ -56,13 +64,13 @@
         <% else %>
           <li class="nav-item">
             <%= link_to new_user_session_path, 
-                class: 'nav-link btn btn-default font-weight-bold text-uppercase me-2' do %>
+                class: 'nav-link btn btn-default fw-bold text-uppercase me-2' do %>
               <small>Login</small>
             <% end %>
           </li>
           <li class="nav-item mr-2">
             <%= link_to new_user_registration_path, 
-                class: 'nav-link btn btn-orange font-weight-bold text-uppercase' do %>
+                class: 'nav-link btn btn-orange fw-bold text-uppercase' do %>
               <small>Sign up</small>
             <% end %>
           </li>
