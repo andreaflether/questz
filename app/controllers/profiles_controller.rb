@@ -12,6 +12,7 @@ class ProfilesController < ApplicationController
                   .where(owner: @user)
                   .order(created_at: :desc)
                   .includes([:trackable])
+                  .page(params[:page])
     render layout: 'default'
   end
 

@@ -62,7 +62,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-8 mb-3">
       <div class="card">
         <div class="card-header bg-white">
           <h5 class="my-1"><i class="fas fa-rss"></i>&nbsp; Feed</h5>
@@ -70,6 +70,9 @@
         <ul class="list-group list-group-flush">
           <%= render_activities(@activities) %>
         </ul>
+        <div class="card-footer d-flex align-items-center justify-content-center">
+          <%= paginate @activities %>
+        </div>
       </div>
     </div>
   </div>

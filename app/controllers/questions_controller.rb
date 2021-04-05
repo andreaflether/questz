@@ -102,6 +102,7 @@ class QuestionsController < ApplicationController
   def get_questions_and_top_users
     @questions = @questions
                  .includes(%i[tags user tag_taggings])
+                 .page(params[:page])
     @top_users = User.top_users
   end
 

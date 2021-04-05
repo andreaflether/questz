@@ -35,4 +35,14 @@ class Tag < ActsAsTaggableOn::Tag
   scope :newest, lambda {
     order(created_at: :desc)
   }
+
+  scope :similar_tags, lambda { |tag| 
+    joins(:tags)
+    .group('tags.name')
+    .select('tags.name', 'tags.id')
+    .order(tag_count: :desc)
+    .pluck('tags.id', :name)
+    .to_h.except(tag.id)
+  }
+
 end

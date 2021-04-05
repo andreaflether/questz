@@ -115,7 +115,21 @@ nav.navbar, .card {
   }
 }
 
+button:active, button:focus, a.page-link:focus, a.page-link:active {
+  box-shadow: none !important;
+}
+
 /*------------------------------- Text related -------------------------------*/
 .text-orange {
   color: $orange !important;
+}
+
+/*------------------------------- Pagination ---------------------------------*/
+.page-item.active .page-link {
+  @extend .bg-orange;
+  border-color: $orange;
+}
+
+.page-link, .page-link:hover, .page-link:active, .page-link:focus {
+  color: $orange;
 }
