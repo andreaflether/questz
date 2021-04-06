@@ -41,8 +41,8 @@ class Question < ApplicationRecord
     create: 16
   }.freeze
 
-  belongs_to :user
   has_many :answers, dependent: :destroy
+  belongs_to :user, counter_cache: true
 
   after_create :set_gamification
   before_destroy :remove_activity

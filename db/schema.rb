@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_03_192433) do
+ActiveRecord::Schema.define(version: 2021_04_05_214703) do
 
   create_table "activities", force: :cascade do |t|
     t.string "trackable_type"
@@ -161,6 +161,8 @@ ActiveRecord::Schema.define(version: 2021_04_03_192433) do
     t.string "slug"
     t.integer "experience", default: 0
     t.integer "level", default: 0
+    t.integer "questions_count", default: 0
+    t.integer "answers_count", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["slug"], name: "index_users_on_slug", unique: true
