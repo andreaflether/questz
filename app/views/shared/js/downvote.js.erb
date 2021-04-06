@@ -1,7 +1,0 @@
-
-$('.<%= resource %>-votes').load(window.location.href + ' .<%= resource %>-votes > *', '');
-$('.<%= resource %>-votes').attr('data-user-vote', '');
-
-<% unless vote.nil? %>
-  $('.<%= resource %>-votes').attr('data-user-vote', 'downvote');
-<% end %>

@@ -1,0 +1,9 @@
+var target_name = "<%= "#{type}_#{object.id}_votes" %>";
+var target = $(`#${target_name}`);
+
+target.load(window.location.href + ` #${target_name} > *`, '');
+target.attr('data-user-vote', '');
+
+<% unless vote.nil? %>
+  target.attr('data-user-vote', "<%= vote %>");
+<% end %>

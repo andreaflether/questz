@@ -68,7 +68,7 @@ class AnswersController < ApplicationController
       @answer.upvote_by current_user
       vote = 'upvote'
     end
-    render 'shared/js/upvote', locals: { vote: vote, resource: 'answer' }
+    render 'shared/js/vote', locals: { vote: vote, type: 'answer', object: @answer }
   end
 
   # PATCH /answers/1/downvote
@@ -79,7 +79,7 @@ class AnswersController < ApplicationController
       @answer.downvote_by current_user
       vote = 'downvote'
     end
-    render 'shared/js/downvote', locals: { vote: vote, resource: 'answer' }
+    render 'shared/js/vote', locals: { vote: vote, type: 'answer', object: @answer }
   end
 
   private

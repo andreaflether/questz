@@ -14,7 +14,7 @@ class QuestionsController < ApplicationController
   end
   
   def feed 
-    if user_signed_in? && current_user.follow_count > 1
+    if user_signed_in? && current_user.follow_count > 0
       @questions = Question.with_user_followed_tags(current_user)
       @tags = current_user.all_following
     else
@@ -73,7 +73,7 @@ class QuestionsController < ApplicationController
       @question.upvote_by current_user
       vote = 'upvote'
     end
-    render 'shared/js/upvote', locals: { vote: vote, resource: 'question' }
+    render 'shared/js/vote', locals: { vote: vote, type: 'question', object: @question }
   end
 
   # PATCH /questions/1/downvote
@@ -84,7 +84,7 @@ class QuestionsController < ApplicationController
       @question.downvote_by current_user
       vote = 'downvote'
     end
-    render 'shared/js/downvote', locals: { vote: vote, resource: 'question' }
+    render 'shared/js/vote', locals: { vote: vote, type: 'question', object: @question }
   end
 
   private
