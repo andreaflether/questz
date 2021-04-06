@@ -5,6 +5,7 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
+#  answers_count          :integer          default(0)
 #  avatar                 :string
 #  current_sign_in_at     :datetime
 #  current_sign_in_ip     :string
@@ -15,6 +16,7 @@
 #  last_sign_in_ip        :string
 #  level                  :integer          default(0)
 #  name                   :string           default(""), not null
+#  questions_count        :integer          default(0)
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
@@ -37,6 +39,9 @@ class User < ApplicationRecord
   extend FriendlyId
   friendly_id :username, use: %i[slugged finders]
 
+  include PublicActivity::Model
+  tracked only: [:create], owner: ->(controller, model) { model }
+
   mount_uploader :avatar, AvatarUploader
   attr_accessor :avatar_cache
 
@@ -46,6 +51,8 @@ class User < ApplicationRecord
 
   has_many :questions, dependent: :destroy
   has_many :answers, dependent: :destroy
+
+  before_destroy :remove_activity
 
   validates :name, presence: true, length: { maximum: 50, allow_blank: true }
   validates :username, presence: true,
@@ -63,6 +70,12 @@ class User < ApplicationRecord
     unless username.count('a-zA-Z').positive?
       errors.add(:username, I18n.t('activerecord.errors.models.user.attributes.username.numeric_only'))
     end
+  end
+
+  def remove_activity
+    activity = PublicActivity::Activity.find_by(trackable_id: id)
+    activity.destroy if activity.present?
+    true
   end
 
   def has_privilege_to_create_tag?
