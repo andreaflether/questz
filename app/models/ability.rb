@@ -8,14 +8,14 @@ class Ability
     
     # Additional permissions for logged in users
     if user.present?
-      can %i[create], [Question, Answer]
+      can %i[create upvote downvote], [Question, Answer]
       can %i[feed], Question
 
       # User can't vote on owned resource
       cannot %i[upvote downvote], [Question, Answer], user_id: user.id
 
       # User asked the question
-      can %i[choose], Answer, question: { status: 'unanswered' }, question: { user_id: user.id }
+      can %i[choose], Answer, question: { status: 'unanswered', user_id: user.id }
 
       # User owns the resource
       can %i[update destroy], [Question, Answer], user_id: user.id
