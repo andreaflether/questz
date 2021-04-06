@@ -19,6 +19,11 @@
   <%= render partial: 'tag', collection: @tags %>
 </div>
 
-<div class="d-flex mt-2 justify-content-center">
-  <%= paginate @tags %>
+<div class="d-flex mt-2 justify-content-between align-items-center">
+  <div class="entries-info">
+    <%= page_entries_info @tags %>
+  </div>
+  <div class="tags-pagination">
+    <%= paginate @tags %>
+  </div>
 </div>

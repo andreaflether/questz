@@ -1,6 +1,7 @@
 <li class="list-group-item answer py-3 <%= 'chosen-answer' if answer.chosen? %>" id="answer_<%= answer.id %>">
   <div class="d-flex">
-    <div class="d-flex flex-column align-items-center answer-votes text-muted" data-user-vote=<%= user_vote(answer) %>>
+    <div class="d-flex flex-column align-items-center answer-votes text-muted" 
+      data-user-vote=<%= user_vote(answer) %> id="answer_<%= answer.id %>_votes">
       <%= link_to upvote_answer_path(answer),
         method: :patch,
         remote: true,

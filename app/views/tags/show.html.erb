@@ -46,7 +46,28 @@
   </div>
   <h5 class="mt-4 mb-3">Questions in this tag</h5>
   <div class="col-md-9">
-    <%= render @questions %>
+    <% if @questions.any? %>
+      <%= render @questions %>
+
+      <div class="d-flex my-3 justify-content-between align-items-center">
+        <div class="entries-info">
+          <%= page_entries_info @questions %>
+        </div>
+        <div class="questions-pagination">
+          <%= paginate @questions %>
+        </div>
+      </div>
+    <% else %>
+      <div class="no-questions mt-2">
+        <p>There are no questions tagged
+          <%= link_to tag_path(@tag) do %>
+            <span class="badge question-tag text-orange"><%= @tag.name %></span>
+          <% end %>.
+        </p>
+        <%= link_to 'View available tags for Questz.', tags_path %>
+      
+      </div>
+    <% end %>
   </div>
   <div class="col-md-3">
     <div class="row">

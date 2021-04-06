@@ -30,6 +30,7 @@ class TagsController < ApplicationController
     @questions = Question.tagged_with(@tag)
                          .includes(%i[tags tag_taggings user])
                          .order(cached_votes_up: :desc)
+                         .page(params[:page])
     @questions_count = Question.count_by_status_in_tag(@tag)
     @top_users = User.top_answerers_in_tag(@tag.name)
   end
