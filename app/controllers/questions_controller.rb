@@ -12,19 +12,19 @@ class QuestionsController < ApplicationController
     sanitize_filter_params if params[:tab]
     get_questions_and_top_users
   end
-  
-  def feed 
-    if user_signed_in? && current_user.follow_count > 0
+
+  def feed
+    if user_signed_in? && current_user.follow_count.positive?
       @questions = Question.with_user_followed_tags(current_user)
-      @tags = current_user.all_following
+      @tags = current_user.all_following.sort_by(&:name)
     else
       @questions = Question.most_voted
     end
-    
+
     sanitize_filter_params if params[:tab]
     get_questions_and_top_users
   end
-  
+
   # GET /questions/1
   def show
     @related_questions = @question.find_related_tags.limit(8)
@@ -105,7 +105,6 @@ class QuestionsController < ApplicationController
                  .page(params[:page])
     @top_users = User.top_users
   end
-
 
   def sanitize_filter_params
     if %w[answered unanswered newest].include?(params[:tab])

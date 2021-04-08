@@ -16,7 +16,7 @@
 </div>
 
 <div class="row" data-masonry='{"percentPosition": true }'>
-  <%= render partial: 'tag', collection: @tags %>
+  <%= render partial: 'tags/partials/card_tag', collection: @tags, as: :tag %>
 </div>
 
 <div class="d-flex mt-2 justify-content-between align-items-center">

@@ -60,7 +60,7 @@
             <div class="tags mt-2">
               <% @question.tags.each do |tag| %>
                 <%= link_to tag_in_questions_path(tag) do %>
-                  <span class="badge question-tag mt-1"><%= tag.name %></span>
+                  <span class="badge question-tag text-wrap text-start mt-1"><%= tag.name %></span>
                 <% end %>
               <% end %>
             </div>

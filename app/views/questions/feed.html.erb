@@ -1,8 +1,8 @@
 <div class="row">
-  <div class="col-md-9 mt-4 mb-3">
+  <div class="col-md-12 col-lg-9 mt-4 mb-3 order-1">
     <div class="d-flex align-items-center justify-content-between">
       <h5 class="mb-0">
-        <%= user_signed_in? ? 'Your feed' : 'All questions' %>
+        Your feed
       </h5>
         <ul class="nav nav-pills small navigation-tabs">
           <li class="nav-item">
@@ -24,7 +24,7 @@
     </div>
   
   </div>
-  <div class="col-md-9">
+  <div class="col-md-12 col-lg-9 order-3 order-lg-2">
     <% if @questions.any? && !@message %>
       <%= render @questions %>
     <% else %>
@@ -33,19 +33,24 @@
       </h5>
     <% end %>
   </div>
-    <div class="col-md-3">
+    <div class="col-md-12 col-lg-3 col-sm-12 order-2 order-lg-3">
       <div class="row">
-        <% if user_signed_in? %>
-          <div class="col-md-12 mb-3 followed-tags">
-            <%= render 'home/followed_tags' %>
-            <div class="custom-actions text-center">
-              <%= link_to tags_path, class: 'btn btn-outline-orange mt-2' do %>
-                <small class="fw-bold text-uppercase">all tags</small>
-              <% end %>
+        <div class="col-sm-6 col-lg-12 mb-3">
+          <div class="card followed-tags-card">
+            <div class="card-header bg-white">
+              <h6 class="card-title py-2 mb-0">
+                <i class="fas fa-user-tag me-2"></i>Followed tags
+              </h6>
+            </div>
+            <div class="card-body followed-tags">
+              <%= render partial: 'tags/partials/tag', collection: @tags %>
+            </div>
+            <div class="card-footer text-center">
+              <%= link_to 'All tags', tags_path, class: 'btn btn-outline-orange btn-sm fw-bold' %>
             </div>
           </div>
-        <% end %>
-        <div class="col-md-12">
+        </div>
+        <div class="col-sm-6 col-lg-12 d-none d-sm-block">
           <%= render 'shared/top_users_card', collection: @top_users, top_ranking: true %>
         </div>
       </div>
