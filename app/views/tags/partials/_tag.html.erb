@@ -1,0 +1,5 @@
+<%= link_to tag_path(tag) do %>
+  <span class="badge question-tag text-wrap text-start mb-1">
+    <%= local_assigns[:truncate] ? tag.name.truncate(50) : tag.name %>
+  </span>
+<% end %>
