@@ -41,7 +41,6 @@ Rails.application.routes.draw do
       get :search
     end
   end
-
   resources :photos, only: %i[create show destroy]
 
   authenticated :user do root to: 'questions#feed' end

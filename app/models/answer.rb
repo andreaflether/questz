@@ -21,7 +21,7 @@ class Answer < ApplicationRecord
   acts_as_votable
 
   include PublicActivity::Model
-  tracked only: [:create], owner: ->(controller, model) { model.user }
+  tracked only: [:create], owner: ->(_controller, model) { model.user }
 
   EXP_FOR_ACTION = {
     create: 16,

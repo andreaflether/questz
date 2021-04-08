@@ -9,9 +9,9 @@ class TagsController < ApplicationController
   # GET /tags
   def index
     @tags = apply_scopes(Tag)
-      .most_used
-      .page(params[:page])
-      .per(20)
+            .most_used
+            .page(params[:page])
+            .per(20)
   end
 
   # GET /tags/search

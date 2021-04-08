@@ -40,7 +40,7 @@ class User < ApplicationRecord
   friendly_id :username, use: %i[slugged finders]
 
   include PublicActivity::Model
-  tracked only: [:create], owner: ->(controller, model) { model }
+  tracked only: [:create], owner: ->(_controller, model) { model }
 
   mount_uploader :avatar, AvatarUploader
   attr_accessor :avatar_cache

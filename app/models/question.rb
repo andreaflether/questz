@@ -27,7 +27,7 @@ class Question < ApplicationRecord
   acts_as_taggable_on :tags
 
   include PublicActivity::Model
-  tracked only: [:create], owner: ->(controller, model) { model.user }
+  tracked only: [:create], owner: ->(_controller, model) { model.user }
 
   is_impressionable counter_cache: true
 
@@ -87,7 +87,7 @@ class Question < ApplicationRecord
     where.not(status: :closed)
   }
 
-  scope :user_interacted, lambda { |user| 
-    (where(id: user.answers.pluck(:question_id)).or(user.questions)).distinct
+  scope :user_interacted, lambda { |user|
+    where(id: user.answers.pluck(:question_id)).or(user.questions).distinct
   }
 end
