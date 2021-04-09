@@ -59,4 +59,8 @@ $(document).on('turbolinks:load', function() {
     $('.navigation-tabs').find('.main-tab').removeClass('active');
     $('.navigation-tabs').find(`.${current_tab}`).addClass('active');
   }
+
+  $('#tags_row').masonry({
+    percentPosition: true
+  })
 })
