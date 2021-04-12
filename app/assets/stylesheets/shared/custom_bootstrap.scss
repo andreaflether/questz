@@ -80,6 +80,10 @@ nav.navbar, .card {
   background-color: rgba($orange, 0.15) !important;
 }
 
+.progress-bar {
+  @extend .bg-orange;
+}
+
 /*------------------------------- Borders -------------------------------*/
 .border-orange {
   border-color: $orange !important;
@@ -133,3 +137,17 @@ button:active, button:focus, a.page-link:focus, a.page-link:active {
 .page-link, .page-link:hover, .page-link:active, .page-link:focus {
   color: $orange;
 }
+/*------------------------------- Accordion ---------------------------------*/
+.accordion-button {
+  &:not(.collapsed) {
+    @extend .text-orange;
+    background-color: rgba($orange, 0.1);
+    &:after {
+      background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23FA8D34'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>");
+    }
+  }
+  &:focus {
+    border-color: $orange;
+  }
+}
+

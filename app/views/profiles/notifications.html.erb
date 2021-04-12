@@ -1,0 +1,59 @@
+<div class="card mt-3">
+  <div class="card-body">
+    <header class="experience-bar d-flex align-items-center text-muted">
+      <span><%= current_user.exp_to_next_level.first %> XP</span>
+      <div class="rounded-3 mx-3">
+        <div class="bg-orange rounded-3" style="width: <%= current_xp_to_pc(current_user) %>%;"></div>
+
+        <span class="current-experience position-absolute fw-bold" style="left: <%= current_xp_to_pc(current_user) %>%;">
+          <%= current_user.points_total %> XP
+        </span>
+      </div>
+      <span><%= current_user.exp_to_next_level.last %> XP</span>
+    </header>
+  </div>
+</div>
+
+<div class="accordion mt-3" id="reputation-activity">
+  <% @activities_days.each do |day, activities| %>
+    <div class="accordion-item bg-white">
+      <h2 class="accordion-header" id="<%= day.strftime("%b_%d") %>">
+        <button class="accordion-button fs-5 fw-bold" type="button" data-bs-toggle="collapse" 
+          data-bs-target="#<%= day.strftime("collapse%b_%d") %>" aria-expanded="true" aria-controls="<%= day.strftime("collapse%b_%d") %>">
+          <%= activities.map { |a| t("honor.exp.#{a.key}") }.sum %>
+          <span class="fs-6 ms-2 text-muted fw-normal">
+            <%= format_datetime(day) %> 
+          </span>
+        </button>
+      </h2>
+      <div id="<%= day.strftime("collapse%b_%d") %>" class="accordion-collapse show" aria-labelledby="<%= day.strftime("%b_%d") %>">
+        <div class="accordion-body bg-white px-3 py-0">
+          <table class="table small table-borderless mx-0 mb-0">
+            <tbody>
+              <% activities.reverse.each do |activity| %>
+                <tr>
+                  <td class="fw-bold <%= point_classes_for(activity.key) %>">
+                    <%= get_points_for_key(activity.key) %>
+                  </td>
+                  <td><%= t("honor.category.#{activity.key}") %></td>
+                  <td><%= activity.created_at.strftime("%H:%M") %></td>
+                  <td>
+                    <% if activity.trackable %>
+                      <% if activity.trackable.try(:title) %>
+                        <%= link_to activity.trackable.title, activity.trackable %>
+                      <% else %>
+                        <%= link_to activity.trackable.question.title, activity.trackable.question %>
+                      <% end %>
+                    <% else %>
+                      This <%= activity.trackable_type.downcase %> no longer exists
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

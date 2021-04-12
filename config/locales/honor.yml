@@ -1,0 +1,28 @@
+en:
+  honor:
+    exp:
+      question:
+        create: 16
+        destroy: -16
+      answer:
+        create: 8
+        destroy: -8
+        accept: 24
+        choose: 4
+    category:
+      question:
+        create: asked question
+        destroy: deleted question
+      answer:
+        create: posted answer
+        destroy: deleted answer
+        choose: chosen answer
+        accept: accepted answer
+    message:
+      question:
+        create: Granted %{points} XP for asking question
+        destroy: Subtracted %{points} XP for deleting question
+      answer:
+        create: Granted %{points} XP for posting a answer
+        destroy: Subtracted %{points} XP for deleting a posted answer
+        choose: Granted %{points} XP for having an accepted answer

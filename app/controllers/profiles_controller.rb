@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: [:show]
-  before_action :authenticate_user!, only: [:update_avatar]
+  before_action :set_profile, only: %i[show]
+  before_action :authenticate_user!, only: %i[update_avatar notifications]
 
   def show
     @solved_questions = @user.solved_questions
@@ -21,6 +21,12 @@ class ProfilesController < ApplicationController
     @user.update(profile_params)
 
     head :ok
+  end
+
+  def notifications
+    @activities = PublicActivity::Activity.where(owner: current_user, trackable_type: %w[Question Answer])
+    @activities_days = @activities.group_by { |activity| activity.created_at.to_date }
+    # @experience_info = current_user.
   end
 
   private

@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   end
 
   get '/feed', to: 'questions#feed'
+  get '/notifications', to: 'profiles#notifications'
 
   resources :profiles, only: %i[show]
 
