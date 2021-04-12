@@ -27,7 +27,7 @@ class Question < ApplicationRecord
   acts_as_taggable_on :tags
 
   include PublicActivity::Model
-  tracked only: [:create], owner: ->(_controller, model) { model.user }
+  tracked only: %i[create destroy], owner: ->(_controller, model) { model.user }
 
   is_impressionable counter_cache: true
 
@@ -38,33 +38,37 @@ class Question < ApplicationRecord
   }
 
   EXP_FOR_ACTION = {
-    create: 16
+    create: I18n.t('honor.exp.question.create'),
+    destroy: I18n.t('honor.exp.question.destroy').abs
   }.freeze
 
   has_many :answers, dependent: :destroy
   belongs_to :user, counter_cache: true
 
-  after_create :set_gamification
-  before_destroy :remove_activity
+  after_create lambda {
+    Point.give_to(
+      user.id,
+      EXP_FOR_ACTION[:create],
+      I18n.t('honor.message.question.create', points: EXP_FOR_ACTION[:create]),
+      'question.create'
+    )
+  }
+  after_destroy lambda {
+    Point.take_from(
+      user.id,
+      EXP_FOR_ACTION[:destroy],
+      I18n.t('honor.message.question.destroy', points: EXP_FOR_ACTION[:destroy]),
+      'question.destroy'
+    )
+  }
 
   validates :title, length: { in: 15..150, allow_blank: true }, presence: true
   validates :body, length: { in: 15..20_000, allow_blank: true }, presence: true
   validate :tag_list_count
 
-  def set_gamification
-    gamification = Gamification.new(user)
-    gamification.grant_experience_to_user(EXP_FOR_ACTION[:create])
-  end
-
   def tag_list_count
     errors.add(:tag_list, 'Please select at least 1 tag to identify your question') if tag_list.count < 1
     errors.add(:tag_list, 'Please enter no more than 5 tags.') if tag_list.count > 5
-  end
-
-  def remove_activity
-    activity = PublicActivity::Activity.find_by(trackable_id: id)
-    activity.destroy if activity.present?
-    true
   end
 
   scope :count_by_status_in_tag, lambda { |tag|

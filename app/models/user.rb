@@ -11,10 +11,9 @@
 #  current_sign_in_ip     :string
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
-#  experience             :integer          default(0)
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :string
-#  level                  :integer          default(0)
+#  level                  :integer          default(1), not null
 #  name                   :string           default(""), not null
 #  questions_count        :integer          default(0)
 #  remember_created_at    :datetime
@@ -36,11 +35,13 @@ class User < ApplicationRecord
   acts_as_voter
   acts_as_follower
 
+  include Honor
+
   extend FriendlyId
   friendly_id :username, use: %i[slugged finders]
 
   include PublicActivity::Model
-  tracked only: [:create], owner: ->(_controller, model) { model }
+  tracked only: %i[create], owner: ->(_controller, model) { model }
 
   mount_uploader :avatar, AvatarUploader
   attr_accessor :avatar_cache
@@ -79,7 +80,21 @@ class User < ApplicationRecord
   end
 
   def has_privilege_to_create_tag?
-    experience >= 500
+    points_total >= 500
+  end
+
+  def exp_to_next_level
+    ((level * 4)**2)..(((level + 1) * 4)**2)
+  end
+
+  def level_up
+    update(level: level + 1)
+    create_activity(key: 'user.level_up', owner: self, parameters: { level: level })
+  end
+
+  def level_down
+    update(level: level - 1)
+    create_activity(key: 'user.level_down', owner: self, parameters: { level: level })
   end
 
   def max_filesize_for_avatar
@@ -91,7 +106,8 @@ class User < ApplicationRecord
   end
 
   scope :top_users, lambda {
-    order(experience: :desc, created_at: :asc).limit(3)
+    Honor::Scorecard.leaderboard(User.all.map(&:id), rank_by: 'lifetime', sort_direction: 'desc')
+                    .includes(:user)
   }
 
   scope :top_answerers_in_tag, lambda { |tag|

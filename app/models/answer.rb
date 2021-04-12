@@ -21,17 +21,31 @@ class Answer < ApplicationRecord
   acts_as_votable
 
   include PublicActivity::Model
-  tracked only: [:create], owner: ->(_controller, model) { model.user }
+  tracked only: %i[create destroy], owner: ->(_controller, model) { model.user }
 
   EXP_FOR_ACTION = {
-    create: 16,
-    chosen: 24,
-    destroy: -16
+    accept: I18n.t('honor.exp.answer.accept'),
+    choose: I18n.t('honor.exp.answer.choose'),
+    create: I18n.t('honor.exp.answer.create'),
+    destroy: I18n.t('honor.exp.answer.destroy').abs
   }.freeze
 
-  after_create -> { set_gamification('create') }
-  after_destroy -> { set_gamification('destroy') }
-  before_destroy :remove_activity
+  after_create lambda {
+    Point.give_to(
+      user.id,
+      EXP_FOR_ACTION[:create],
+      I18n.t('honor.message.answer.create', points: EXP_FOR_ACTION[:create]),
+      'answer.create'
+    )
+  }
+  after_destroy lambda {
+    Point.take_from(
+      user.id,
+      EXP_FOR_ACTION[:destroy],
+      I18n.t('honor.message.answer.destroy', points: EXP_FOR_ACTION[:destroy]),
+      'answer.destroy'
+    )
+  }
 
   belongs_to :question, counter_cache: true
   belongs_to :user, counter_cache: true
@@ -41,17 +55,21 @@ class Answer < ApplicationRecord
 
   def set_question_as_solved
     question.answered!
-    set_gamification('chosen')
-  end
-
-  def set_gamification(action)
-    gamification = Gamification.new(user)
-    gamification.grant_experience_to_user(EXP_FOR_ACTION[action.to_sym])
-  end
-
-  def remove_activity
-    activity = PublicActivity::Activity.find_by(trackable_id: id)
-    activity.destroy if activity.present?
-    true
+    # The user who accepted the answer
+    create_activity(:choose, owner: question.user, key: 'answer.choose')
+    Point.give_to(
+      question.user.id,
+      EXP_FOR_ACTION[:choose],
+      I18n.t('honor.message.answer.choose', points: EXP_FOR_ACTION[:choose]),
+      'answer.choose'
+    )
+    # The user who posted the answer
+    create_activity(:choose, owner: user, key: 'answer.accept')
+    Point.give_to(
+      user.id,
+      EXP_FOR_ACTION[:accept],
+      I18n.t('honor.message.answer.accept', points: EXP_FOR_ACTION[:accept]),
+      'answer.accept'
+    )
   end
 end
