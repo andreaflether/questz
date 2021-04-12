@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       patch :downvote
     end
   end
-
+  
   resources :questions do
     member do
       patch :upvote
@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   end
 
   get '/feed', to: 'questions#feed'
-  get '/notifications', to: 'profiles#notifications'
+  get '/reputation', to: 'profiles#reputation'
 
   resources :profiles, only: %i[show]
 

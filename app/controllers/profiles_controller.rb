@@ -23,10 +23,11 @@ class ProfilesController < ApplicationController
     head :ok
   end
 
-  def notifications
+  def reputation
     @activities = PublicActivity::Activity.where(owner: current_user, trackable_type: %w[Question Answer])
-    @activities_days = @activities.group_by { |activity| activity.created_at.to_date }
-    # @experience_info = current_user.
+    @activities_days = @activities.order(created_at: :desc)
+                                  .group_by { |activity| activity.created_at.to_date }
+    @weekly_experience = current_user.points.where('created_at >= ?', 1.week.ago)
   end
 
   private

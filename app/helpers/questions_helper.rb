@@ -9,4 +9,12 @@ module QuestionsHelper
     }
     "#{statuses[status.to_sym]} &nbsp;#{status.capitalize}"
   end
+
+  def point_classes_for(key)
+    get_points_for_key(key).to_i.positive? ? 'exp-up' : 'exp-down'
+  end
+
+  def get_points_for_key(key)
+    format('%+d', t("honor.exp.#{key}"))
+  end
 end

@@ -1,0 +1,93 @@
+<div class="row mt-3">
+  <div class="col-md-6 col-sm-12 mb-3">
+    <div class="card h-100">
+      <div class="card-header bg-white">
+        <h6 class="card-title mb-0 py-2">Overall stats</h6>
+      </div>
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <div class="total-xp">
+            <h6 class="text-muted fw-uppercase">Your XP</h6>
+            <h4 class="mb-0 text-orange"><%= current_user.points_total %></h4>
+          </div>
+          <div class="xp-to-next-level">
+            <h6 class="text-muted">XP to next level</h6>
+            <h4 class="mb-0"><%= current_user.exp_to_next_level.last - current_user.points_total %></h4>
+          </div>
+          <div class="xp-this-week">
+            <h6 class="text-muted">Earned XP (last 7 days)</h6>
+            <h4 class="mb-0"><%= current_user.points_this_week %></h4>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer bg-white">
+        <header class="experience-bar d-flex align-items-center text-muted my-4">
+          <span><%= current_user.exp_to_next_level.first %> XP</span>
+          <div class="rounded-3 mx-3">
+            <div class="bg-orange rounded-3" style="width: <%= current_xp_to_pc(current_user) %>%;"></div>
+
+            <span class="current-experience position-absolute fw-bold" style="left: <%= current_xp_to_pc(current_user) %>%;">
+              <%= current_user.points_total %> XP
+            </span>
+          </div>
+          <span><%= current_user.exp_to_next_level.last %> XP</span>
+        </header>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-sm-12 mb-3">
+    <div class="card h-100">
+      <div class="card-header bg-white">
+        <h6 class="card-title mb-0 py-2">Earned EXP per day</h6>
+      </div>
+      <div class="card-body">
+      <%= line_chart @weekly_experience.group_by_day(:created_at).sum(:value), 
+        height: '140px', colors: ['#FA8D34'] %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="accordion mb-3" id="reputation-activity">
+  <% @activities_days.each do |day, activities| %>
+    <div class="accordion-item bg-white">
+      <h2 class="accordion-header" id="<%= day.strftime("%b_%d") %>">
+        <button class="accordion-button fs-5 fw-bold" type="button" data-bs-toggle="collapse" 
+          data-bs-target="#<%= day.strftime("collapse%b_%d") %>" aria-expanded="true" aria-controls="<%= day.strftime("collapse%b_%d") %>">
+          <%= activities.map { |a| t("honor.exp.#{a.key}") }.sum %>
+          <span class="fs-6 ms-2 text-muted fw-normal">
+            <%= format_datetime(day) %> 
+          </span>
+        </button>
+      </h2>
+      <div id="<%= day.strftime("collapse%b_%d") %>" class="accordion-collapse show" aria-labelledby="<%= day.strftime("%b_%d") %>">
+        <div class="accordion-body bg-white px-3 py-0">
+          <table class="table small table-borderless mx-0 mb-0">
+            <tbody>
+              <% activities.reverse.each do |activity| %>
+                <tr>
+                  <td class="fw-bold <%= point_classes_for(activity.key) %>">
+                    <%= get_points_for_key(activity.key) %>
+                  </td>
+                  <td><%= t("honor.category.#{activity.key}") %></td>
+                  <td><%= activity.created_at.strftime("%H:%M") %></td>
+                  <td class="w-75">
+                    <% if activity.trackable %>
+                      <% if activity.trackable.try(:title) %>
+                        <%= link_to activity.trackable.title, activity.trackable %>
+                      <% else %>
+                        <%= link_to activity.trackable.question.title, activity.trackable.question %>
+                      <% end %>
+                    <% else %>
+                      This <%= activity.trackable_type.downcase %> no longer exists
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
