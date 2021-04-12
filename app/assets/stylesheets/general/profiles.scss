@@ -23,3 +23,9 @@ span.current-experience {
   top: 12px;
   transform: translateX(-50%);
 }
+
+@media(max-width: 576px) {
+  .stats-col {
+    flex: 1 0 50% !important;
+  }
+}
