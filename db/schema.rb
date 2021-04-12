@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_05_214703) do
+ActiveRecord::Schema.define(version: 2021_04_10_195836) do
 
   create_table "activities", force: :cascade do |t|
     t.string "trackable_type"
@@ -99,6 +99,16 @@ ActiveRecord::Schema.define(version: 2021_04_05_214703) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "points", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "value"
+    t.string "category"
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_points_on_user_id"
+  end
+
   create_table "questions", force: :cascade do |t|
     t.integer "status", default: 0
     t.string "title", default: "", null: false
@@ -113,6 +123,18 @@ ActiveRecord::Schema.define(version: 2021_04_05_214703) do
     t.integer "cached_votes_down", default: 0
     t.integer "impressions_count", default: 0
     t.index ["user_id"], name: "index_questions_on_user_id"
+  end
+
+  create_table "scorecards", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "daily"
+    t.integer "weekly"
+    t.integer "monthly"
+    t.integer "yearly"
+    t.integer "lifetime"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_scorecards_on_user_id"
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -157,10 +179,9 @@ ActiveRecord::Schema.define(version: 2021_04_05_214703) do
     t.datetime "updated_at", null: false
     t.string "username", default: "", null: false
     t.string "name", default: "", null: false
+    t.integer "level", default: 1, null: false
     t.string "avatar"
     t.string "slug"
-    t.integer "experience", default: 0
-    t.integer "level", default: 0
     t.integer "questions_count", default: 0
     t.integer "answers_count", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true

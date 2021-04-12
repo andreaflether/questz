@@ -5,6 +5,7 @@ class AddCustomFieldsToUser < ActiveRecord::Migration[5.2]
     change_table :users do |t|
       t.string :username, null: false, default: ''
       t.string :name, null: false, default: ''
+      t.integer :level, null: false, default: 1
     end
   end
 end

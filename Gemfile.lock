@@ -150,6 +150,8 @@ GEM
     has_scope (0.8.0)
       actionpack (>= 5.2)
       activesupport (>= 5.2)
+    honor (2.0.1)
+      rails (>= 4.0)
     http_parser.rb (0.6.0)
     humanize (2.5.1)
     i18n (1.8.5)
@@ -396,6 +398,7 @@ DEPENDENCIES
   guard (~> 2.15)
   guard-livereload
   has_scope
+  honor
   humanize
   impressionist (~> 1.6.1)
   inline_svg
