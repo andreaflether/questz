@@ -75,6 +75,13 @@
                 <% end %> 
               </span>
             <% end %>
+            <% if can? :destroy, @question %>
+              <span class="delete">
+                <%= link_to question_path(@question), method: :delete, class: 'text-muted' do %>
+                  <i class="fas fa-trash"></i>&nbsp;Delete
+                <% end %> 
+              </span>
+            <% end %>
             <span class="report">
               <i class="far fa-flag"></i>&nbsp;Report
             </span>

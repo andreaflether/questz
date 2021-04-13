@@ -53,6 +53,7 @@ class Question < ApplicationRecord
       'question.create'
     )
   }
+  validate :check_for_answers, on: :destroy
   after_destroy lambda {
     Point.take_from(
       user.id,
@@ -69,6 +70,14 @@ class Question < ApplicationRecord
   def tag_list_count
     errors.add(:tag_list, 'Please select at least 1 tag to identify your question') if tag_list.count < 1
     errors.add(:tag_list, 'Please enter no more than 5 tags.') if tag_list.count > 5
+  end
+
+  def has_answers?
+    answers_count.positive?
+  end
+
+  def check_for_answers
+    errors.add(:base, 'You cannot delete this question because it already has answers.') if has_answers?
   end
 
   scope :count_by_status_in_tag, lambda { |tag|

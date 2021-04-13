@@ -19,6 +19,9 @@ class Ability
 
       # User owns the resource
       can %i[update destroy], [Question, Answer], user_id: user.id
+
+      # Can't delete a Question that has answers
+      cannot %i[destroy], Question, &:has_answers?
     end
     # Define abilities for the passed in user here. For example:
     #
