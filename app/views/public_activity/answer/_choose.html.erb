@@ -6,7 +6,9 @@
 	accepted a <%= activity.trackable_type.downcase %>
 	<% if activity.trackable %>
 		on
-		<%= link_to activity.trackable.question.title, activity.trackable.question, class: 'fw-bold' %>
+		<%= link_to activity.trackable.question.title,
+			question_path(activity.trackable.question, anchor: "answer_#{activity.trackable.id}"), 
+			class: 'fw-bold' %>
 	<% else %>
 		in a question that no longer exists
 	<% end %>
