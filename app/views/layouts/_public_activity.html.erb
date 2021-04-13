@@ -1,0 +1,14 @@
+<li class="list-group-item py-3 d-flex">
+	<div class="flex-shrink-0">
+		<span class="badge circular-badge orange-150 text-orange">
+			<%= content_for :icon %>
+		</span>
+	</div>
+	<div class="flex-grow-1 ms-2 my-auto">
+		<%= content_for :action_body %>
+		&nbsp;·&nbsp; 
+		<span class="text-muted">
+			<%= time_ago_in_words(activity.created_at) %> ago
+		</span>
+	</div>
+</li>

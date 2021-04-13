@@ -1,19 +1,13 @@
-<li class="list-group-item py-3 d-flex">
-	<div class="flex-shrink-0">
-		<span class="badge circular-badge orange-150 text-orange">
-			<i class="fas fa-comment"></i> 
-		</span>
-	</div>
-	<div class="flex-grow-1 ms-2 my-auto">
-		posted a answer on
-		<% if activity.trackable %>
-			<%= link_to activity.trackable.question.title, activity.trackable.question, class: 'fw-bold' %>
-		<% else %>
-			which has since been removed
-		<% end %>
-		&nbsp;·&nbsp; 
-		<span class="text-muted">
-			<%= time_ago_in_words(activity.created_at) %> ago
-		</span>
-	</div>
-</li>
+<%= single_content_for :icon do %>
+	<i class="fas fa-comment"></i> 
+<% end %>
+
+<%= single_content_for :action_body do %>
+	posted a <%= activity.trackable_type.downcase %>
+	<% if activity.trackable %>
+		on
+		<%= link_to activity.trackable.question.title, activity.trackable.question, class: 'fw-bold' %>
+	<% else %>
+		in a question that no longer exists
+	<% end %>
+<% end %>

@@ -1,14 +1,6 @@
-<li class="list-group-item py-3 d-flex">
-	<div class="flex-shrink-0">
-		<span class="badge circular-badge orange-150 text-orange">
-			<i class="fas fa-arrow-up"></i>
-		</span>
-	</div>
-	<div class="flex-grow-1 my-auto ms-2">
-		upgraded to level <%= activity.parameters[:level] %>
-		&nbsp;·&nbsp; 
-		<span class="text-muted">
-			<%= time_ago_in_words(activity.created_at) %> ago
-		</span>
-	</div>
-</li>
+<%= single_content_for :icon do %>
+	<i class="fas fa-arrow-up"></i>
+<% end %>
+<%= single_content_for :action_body do %>
+	upgraded to level <%= activity.parameters[:level] %>
+<% end %>

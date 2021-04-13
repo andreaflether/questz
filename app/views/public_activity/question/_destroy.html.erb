@@ -1,6 +1,7 @@
 <%= single_content_for :icon do %>
-	<i class="fas fa-arrow-down"></i>
+	<i class="fas fa-trash"></i> 
 <% end %>
+
 <%= single_content_for :action_body do %>
-	downgraded to level <%= activity.parameters[:level] %>
+	deleted a <%= activity.trackable_type.downcase %>
 <% end %>
