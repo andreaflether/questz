@@ -60,7 +60,7 @@
           data-bs-target="#<%= day.strftime("collapse%b_%d") %>" aria-expanded="true" aria-controls="<%= day.strftime("collapse%b_%d") %>">
           <%= activities.map { |a| t("honor.exp.#{a.key}") }.sum %>
           <span class="fs-6 ms-2 text-muted fw-normal">
-            <%= format_datetime(day) %> 
+            <%= format_date(day) %> 
           </span>
         </button>
       </h2>

@@ -33,8 +33,12 @@ module ApplicationHelper
     end
   end
 
+  def format_date(date)
+    date.strftime('%b %d, %Y')
+  end
+
   def format_datetime(datetime)
-    datetime.strftime('%b %d, %Y')
+    datetime.strftime("%b %d, %Y %H:%M")
   end
 
   def is_from_user?(resource)
