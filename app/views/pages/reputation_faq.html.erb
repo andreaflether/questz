@@ -1,0 +1,128 @@
+<div class="card mt-3 reputation-faq">
+  <div class="card-header bg-white">
+    <h3 class="mb-0 py-2">Reputation FAQ</h3>
+  </div>
+  <div class="card-body">
+    <p>
+      Users gain or lose reputation based on the quality of their interactions with the system and 
+      other community members. Reputation is a rough measurement in <b>experience (XP)</b> of how 
+      much the community trusts you; it is earned by convincing your peers that you know what you’re 
+      talking about. Every user starts in level 1 (0 XP), and you can reach the next level by 
+      gaining enough XP.
+    </p>
+
+    <h4>How do I gain or lose XP?</h4>
+    <hr />
+    <h5 class="text-success mt-3">Gaining XP</h5>
+
+    <table class="table table-hover reputation-up">
+      <thead>
+        <tr>
+          <th scope="col">Action</th>
+          <th scope="col">XP</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>One of your answers is <b>accepted</b></td>
+          <th scope="row">+24</th>
+        </tr>
+        <tr>
+          <td>Post a Question</td>
+          <th scope="row">+16</th>
+        </tr>
+        <tr>
+          <td>Post a answer on someone else's question</td>
+          <th scope="row">+12</th>
+        </tr>
+        <tr>
+          <td>One of your questions or answers is voted <b>up</b></td>
+          <th scope="row">+8</th>
+        </tr>
+        <tr>
+          <td><b>Accept</b> an answer written by someone else to one of your own questions</td>
+          <th scope="row">+4</th>
+        </tr>
+        <tr>
+          <td>Someone removes their downvote on one of your questions or answers</td>
+          <th scope="row">+2</th>
+        </tr>
+      </tbody>
+    </table>
+
+    <h5 class="text-danger ">Losing XP</h5>
+
+    <table class="table table-hover reputation-down">
+      <thead>
+        <tr>
+          <th scope="col">Action</th>
+          <th scope="col">XP</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Delete a Question</td>
+          <th scope="row">-16</th>
+        </tr>
+        <tr>
+          <td>Delete one of your answers on someone else's question</td>
+          <th scope="row">-16</th>
+        </tr>
+        <tr>
+          <td>An upvote on of your questions or answers is removed</td>
+          <th scope="row">-8</th>
+        </tr>
+        <tr>
+          <td>One of your questions or answers is voted <b>down</b></td>
+          <th scope="row">-2</th>
+        </tr>
+      </tbody>
+    </table>
+
+    <h5 class=" mb-3">How do I see how many XP I earned so far? / How many XP do I need to level up?</h5>
+    
+    <p class="mb-2">
+      Click the <i class="fas fa-star"></i> icon located in the top navbar.
+      Or, you can visit the URL directly:
+      <code><%= link_to polymorphic_url('reputation'), reputation_path %></code>
+    </p>
+
+    <p>In this page, you'll find all your reputation history and other XP related stuff, such as:
+    points you earned in the last 7 days and the needed XP to reach the next level.</p>
+
+    <h5 class="">Event types and it's meaning</h5>
+
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Event name</th>
+          <th scope="col">Meaning</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">upvote/downvote</th>
+          <td>Your answer/question was upvoted or downvoted.</td>
+        </tr>
+        <tr>
+          <th scope="row">unupvote/undownvote</th>
+          <td>An upvote or downvote previously cast on your answer/question was retracted.</td>
+        </tr>
+        <tr>
+          <th scope="row">accept</th>
+          <td>Your answer was accepted by the person who asked the question, 
+          or you accepted an answer on one of your questions.</td>
+        </tr>
+        <tr>
+          <th scope="row">removed</th>
+          <td>
+            Usually indicates the question/answer was deleted (this could be any resource you took 
+            action on, not necessarily one you owned). Keep in mind that when a question is deleted, 
+            all of its answers are automatically deleted as well. This event is also used when a 
+            user is removed.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -142,3 +142,11 @@ trix-toolbar .trix-button {
 .exp-down {
   color: $danger;
 }
+
+.reputation-up th[scope="row"] {
+  @extend .exp-up;
+}
+
+.reputation-down th[scope="row"] {
+  @extend .exp-down;
+}
