@@ -1,12 +1,14 @@
 <%= single_content_for :icon do %>
-	<i class="fas fa-check"></i> 
+	<i class="fas fa-user-check"></i>
 <% end %>
 
 <%= single_content_for :action_body do %>
 	had a <%= activity.trackable_type.downcase %> accepted
 	<% if activity.trackable %>
 		on
-		<%= link_to activity.trackable.question.title, activity.trackable.question, class: 'fw-bold' %>
+		<%= link_to activity.trackable.question.title,
+			question_path(activity.trackable.question, anchor: "answer_#{activity.trackable.id}"), 
+			class: 'fw-bold' %>
 	<% else %>
 		in a question that no longer exists
 	<% end %>
