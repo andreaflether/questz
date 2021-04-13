@@ -1,19 +1,19 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "Pages", type: :request do
-
-  describe "GET /home" do
-    it "returns http success" do
-      get "/pages/home"
+RSpec.describe 'Pages', type: :request do
+  describe 'GET /home' do
+    it 'returns http success' do
+      get '/pages/home'
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe "GET /reputation_faq" do
-    it "returns http success" do
-      get "/pages/reputation_faq"
+  describe 'GET /reputation_faq' do
+    it 'returns http success' do
+      get '/pages/reputation_faq'
       expect(response).to have_http_status(:success)
     end
   end
-
 end
