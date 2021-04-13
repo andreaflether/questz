@@ -25,17 +25,19 @@
         </div>
       </div>
       <div class="card-footer bg-white">
-        <header class="experience-bar d-flex align-items-center text-muted my-4">
-          <span><%= current_user.exp_to_next_level.first %> XP</span>
-          <div class="rounded-3 mx-3">
-            <div class="bg-orange rounded-3" style="width: <%= current_xp_to_pc(current_user) %>%;"></div>
-
-            <span class="current-experience position-absolute fw-bold" style="left: <%= current_xp_to_pc(current_user) %>%;">
-              <%= current_user.points_total %> XP
-            </span>
+        <p class="mb-0 mt-2">
+          <b><%= current_user.points_total %></b>/<%= current_user.exp_to_next_level.last %> XP
+        </p>
+        <div class="progress xp mb-3">
+          <div class="progress-bar bg-orange" 
+            role="progressbar" 
+            style="width: <%= current_xp_to_pc(current_user) %>%"
+            aria-valuenow="<%= current_xp_to_pc(current_user) %>>" 
+            aria-valuemin="0" 
+            aria-valuemax="100">
+            <b><%= current_xp_to_pc(current_user) %>%</b>
           </div>
-          <span><%= current_user.exp_to_next_level.last %> XP</span>
-        </header>
+        </div>
       </div>
     </div>
   </div>

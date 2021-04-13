@@ -8,24 +8,12 @@ $orange: #FA8D34;
   margin-bottom: 0;
 }
 
-.experience-bar > div {
-  flex: 1;
-  height: 8px;
-  background: #E9ECEF;
-  position: relative;
-}
-
-.experience-bar > div > div {
-  height: 8px;
-}
-
-span.current-experience {
-  top: 12px;
-  transform: translateX(-50%);
-}
-
 @media(max-width: 576px) {
   .stats-col {
     flex: 1 0 50% !important;
   }
+}
+
+.progress.xp {
+  height: 12px;
 }
