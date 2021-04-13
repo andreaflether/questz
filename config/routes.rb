@@ -30,7 +30,6 @@ Rails.application.routes.draw do
 
   get '/feed', to: 'questions#feed'
   get '/reputation', to: 'profiles#reputation'
-  get '/reputation_faq', to: 'pages#reputation_faq'
 
   resources :profiles, only: %i[show]
 
@@ -46,5 +45,4 @@ Rails.application.routes.draw do
   resources :photos, only: %i[create show destroy]
 
   authenticated :user do root to: 'questions#feed' end
-  unauthenticated :user do root to: 'questions#index' end
 end

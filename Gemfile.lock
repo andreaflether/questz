@@ -153,6 +153,7 @@ GEM
     has_scope (0.8.0)
       actionpack (>= 5.2)
       activesupport (>= 5.2)
+    high_voltage (3.1.2)
     honor (2.0.1)
       rails (>= 4.0)
     http_parser.rb (0.6.0)
@@ -403,6 +404,7 @@ DEPENDENCIES
   guard (~> 2.15)
   guard-livereload
   has_scope
+  high_voltage (~> 3.1)
   honor
   humanize
   impressionist (~> 1.6.1)
