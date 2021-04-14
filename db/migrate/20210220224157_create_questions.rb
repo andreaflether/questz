@@ -6,7 +6,7 @@ class CreateQuestions < ActiveRecord::Migration[5.2]
       t.integer :status, default: 0, comment: '0: Unanswered, 1: Answered, 2: Closed'
       t.string :title, null: false, default: ''
       t.text :body, null: false, default: ''
-      t.integer :answers_count
+      t.integer :answers_count, default: 0
 
       t.timestamps
     end

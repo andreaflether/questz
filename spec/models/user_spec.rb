@@ -5,13 +5,22 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
+#  answers_count          :integer          default(0)
 #  avatar                 :string
+#  current_sign_in_at     :datetime
+#  current_sign_in_ip     :string
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
+#  last_sign_in_at        :datetime
+#  last_sign_in_ip        :string
+#  level                  :integer          default(1), not null
 #  name                   :string           default(""), not null
+#  questions_count        :integer          default(0)
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
+#  sign_in_count          :integer          default(0), not null
+#  slug                   :string
 #  username               :string           default(""), not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -20,6 +29,7 @@
 #
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_users_on_slug                  (slug) UNIQUE
 #
 
 require 'rails_helper'

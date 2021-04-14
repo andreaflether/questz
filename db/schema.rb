@@ -113,7 +113,7 @@ ActiveRecord::Schema.define(version: 2021_04_10_195836) do
     t.integer "status", default: 0
     t.string "title", default: "", null: false
     t.text "body", default: "", null: false
-    t.integer "answers_count"
+    t.integer "answers_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
