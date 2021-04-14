@@ -2,7 +2,7 @@
 
 class ProfilesController < ApplicationController
   before_action :set_profile, only: %i[show]
-  before_action :authenticate_user!, only: %i[update_avatar notifications]
+  before_action :authenticate_user!, only: %i[update_avatar reputation]
 
   def show
     @solved_questions = @user.solved_questions
@@ -10,6 +10,7 @@ class ProfilesController < ApplicationController
                     .tag_counts_on(:tags, order: 'count DESC', limit: 10)
     @activities = PublicActivity::Activity
                   .where(owner: @user)
+                  .where.not(key: 'answer.destroy')
                   .order(created_at: :desc)
                   .includes([:trackable])
                   .page(params[:page])
@@ -24,7 +25,9 @@ class ProfilesController < ApplicationController
   end
 
   def reputation
-    @activities = PublicActivity::Activity.where(owner: current_user, trackable_type: %w[Question Answer])
+    @activities = PublicActivity::Activity
+                  .where(owner: current_user, trackable_type: %w[Question Answer])
+                  .includes([:trackable])
     @activities_days = @activities.order(created_at: :desc)
                                   .group_by { |activity| activity.created_at.to_date }
     @weekly_experience = current_user.points.where('created_at >= ?', 1.week.ago)
