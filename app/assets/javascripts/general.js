@@ -5,7 +5,7 @@ window.onload = function() {
   })
 }
 
-$(document).on('turbolinks:load', function() {
+$(document).ready(function() {
   $('select.select2').each(function () {
     const select = $(this);
     const tags = select[0].getAttribute('data-tags') === 'false' ? false : true;
@@ -62,5 +62,5 @@ $(document).on('turbolinks:load', function() {
 
   $('#tags_row').masonry({
     percentPosition: true
-  })
+  });
 })

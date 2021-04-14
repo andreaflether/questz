@@ -3,10 +3,10 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
-  <%= stylesheet_link_tag 'general', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'general', media: 'all' %>
   <%= javascript_include_tag 'config', 'type': 'module' %>
-  <%= javascript_include_tag 'main', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'uploads/avatar', 'data-turbolinks-track': 'reload' if edit_user_path?%>
+  <%= javascript_include_tag 'main' %>
+  <%= javascript_include_tag 'uploads/avatar' if edit_user_path?%>
 
   <%= favicon_link_tag asset_path('favicon.ico') %>
 </head>
