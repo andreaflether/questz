@@ -1,0 +1,7 @@
+en:
+  unauthorized:
+    default: You are not authorized to perform this action.
+    upvote: 
+      all: You cannot %{action} your own %{subject}.
+    downvote: 
+      all: You cannot %{action} your own %{subject}.
