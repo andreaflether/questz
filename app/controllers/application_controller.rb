@@ -9,11 +9,17 @@ class ApplicationController < ActionController::Base
     respond_to do |format|
       format.json { head :forbidden, content_type: 'text/html' }
       format.html { redirect_to main_app.root_url, alert: exception.message }
-      format.js   { render 'errors/error', locals: { message: "You're not allowed to perform this action." } }
+      format.js   { render 'shared/notyf', locals: { message: exception.message, type: 'warning' } }
     end
   end
 
   protected
+
+  def authenticate_remote!
+    return true if user_signed_in?
+
+    render 'shared/notyf', status: :unauthorized, locals: { message: I18n.t('devise.failure.unauthenticated') }
+  end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: %i[name username])
@@ -24,6 +30,7 @@ class ApplicationController < ActionController::Base
 
   def layout_by_resource
     return 'application' if devise_controller? && edit_user_path?
+
     devise_controller? ? 'devise' : 'application'
   end
 
