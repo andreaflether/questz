@@ -1,0 +1,14 @@
+television-series|television|cooking|food|technology|computer-programming|
+programming-languages|ruby-on-rails|english|french|k-pop|web-design|portuguese|
+spanish|grammar|art|geography|mathematics|literature|music|science|chemistry|
+biology|physics|physical-education|history|household-appliances|tech-devices|
+medical-devices|painting|books|clothes|health|youtube|twitter|facebook|instagram|
+ubuntu|windows|apple|android|recipes|internet|gardening|vegetables|fruits|
+animals|movies|covid-19|netflix|amazon-prime-video|amazon|apple-tv-plus|globoplay|
+grammys|disney-plus|hulu|the-cw|hbo|hbo-go|showtime|nbc|abc|fox|warner-bros|
+cbs|spotify|deezer|google|google-chrome|firefox|mental-health|high-school|college|
+linkedin|e-mail|mainstream|electricity|pop|r&b|reggae|country|python|java|
+fanfictions|anime|uber|ubereats|ifood|tiktok|random|javascript|jquery|gmail|
+yahoo|microsoft|fbi|aws|azure|wattpad|guitar|acoustic-guitar|piano|mouse|
+drums|flute|harp|saxophone|trombone|trompet|violin|cello|earphones|bluetooth|
+notebook|personal-computer|hacking|

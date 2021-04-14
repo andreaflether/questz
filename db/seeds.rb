@@ -41,3 +41,10 @@ questions.each do |question|
   rand(1..5).times { create_answer(question) }
   question.save!
 end
+
+puts 'Creating tags...'
+file = File.open('db/tags.txt')
+
+file.read.split('|').each do |tag|
+  Tag.find_or_create_by(name: tag.strip) 
+end
