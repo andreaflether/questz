@@ -36,8 +36,5 @@ module Questz
 
     # Default locale
     config.i18n.default_locale = :en
-
-    # Default class for nav_lynx gem
-    config.nav_lynx.selected_class = 'active'
   end
 end

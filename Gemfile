@@ -5,6 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.5'
 
+gem 'active_link_to'
 gem 'acts_as_commentable'
 gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
 gem 'acts-as-taggable-on', '~> 7.0'
@@ -27,7 +28,6 @@ gem 'impressionist', '~> 1.6.1'
 gem 'inline_svg'
 gem 'jbuilder', '~> 2.5'
 gem 'kaminari'
-gem 'nav_lynx'
 gem 'public_activity'
 gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.3'
