@@ -46,5 +46,5 @@ puts 'Creating tags...'
 file = File.open('db/tags.txt')
 
 file.read.split('|').each do |tag|
-  Tag.find_or_create_by(name: tag.strip) 
+  Tag.find_or_create_by(name: tag.strip)
 end

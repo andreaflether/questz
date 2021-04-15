@@ -5,7 +5,7 @@
 # Table name: questions
 #
 #  id                 :integer          not null, primary key
-#  answers_count      :integer
+#  answers_count      :integer          default(0)
 #  body               :text             default(""), not null
 #  cached_votes_down  :integer          default(0)
 #  cached_votes_score :integer          default(0)
@@ -53,7 +53,6 @@ class Question < ApplicationRecord
       'question.create'
     )
   }
-  validate :check_for_answers, on: :destroy
   after_destroy lambda {
     Point.take_from(
       user.id,
@@ -66,6 +65,7 @@ class Question < ApplicationRecord
   validates :title, length: { in: 15..150, allow_blank: true }, presence: true
   validates :body, length: { in: 15..20_000, allow_blank: true }, presence: true
   validate :tag_list_count
+  validate :check_for_answers, on: :destroy
 
   def tag_list_count
     errors.add(:tag_list, 'Please select at least 1 tag to identify your question') if tag_list.count < 1
