@@ -1,8 +1,8 @@
 <li class="list-group-item answer py-3 <%= 'chosen-answer' if answer.chosen? %>" id="answer_<%= answer.id %>">
   <div class="d-flex">
     <div class="d-flex flex-column align-items-center answer-votes text-muted" 
-      data-user-vote=<%= user_vote(answer) %> id="answer_<%= answer.id %>_votes">
-      <%= link_to upvote_answer_path(answer),
+      data-user-vote=<%= user_vote(answer) if user_logged %> id="answer_<%= answer.id %>_votes">
+      <%= link_to upvote_question_answer_path(answer),
         method: :patch,
         remote: true,
         class: 'text-muted vote-up' do %>
@@ -11,7 +11,7 @@
 
       <span class="answer-total-votes fs-5"><%= answer.weighted_score %></span>
     
-      <%= link_to downvote_answer_path(answer),
+      <%= link_to downvote_question_answer_path(answer),
         method: :patch,
         remote: true,
         class: 'text-muted vote-down mt-1' do %>
@@ -19,7 +19,7 @@
       <% end %>
       
       <% if can? :choose, answer %>
-        <%= link_to choose_answer_path(answer), method: :patch,
+        <%= link_to choose_question_answer_path(answer), method: :patch,
           class: answer.chosen? ? 'text-orange' : 'text-muted' do %>
           <span class="fa-stack fa-xs choose-answer mt-2">
             <i class="fas fa-comment-alt fa-stack-2x"></i>
@@ -29,7 +29,9 @@
       <% end %>
     </div>
     <div class="d-flex flex-column ms-4">
-      <p class="text-dark mb-2 answer-body"><%= answer.body %></p>
+      <div class="answer-body trix-content mb-2">
+        <%= sanitize answer.body %>
+      </div>
       <p class="d-flex align-items-center text-muted mb-0 answer-info">
         Answered by 
         <%= link_to profile_path(answer.user), class: 'fw-bold d-inline-flex align-items-center' do %>
@@ -52,10 +54,17 @@
         <span class="share">
           <i class="fas fa-share-square"></i>&nbsp;Share
         </span>
-        <% if is_from_user?(answer) %>
+        <% if can?(:edit, answer) %>
           <span class="edit">
-            <%= link_to edit_answer_path(answer), class: 'text-muted' do %>
+            <%= link_to edit_question_answer_path(@question, answer), class: 'text-muted' do %>
               <i class="fas fa-edit"></i>&nbsp;Edit
+            <% end %> 
+          </span>
+        <% end %>
+        <% if can? :destroy, answer %>
+          <span class="delete">
+            <%= link_to question_answer_path(answer), method: :delete, class: 'text-muted' do %>
+              <i class="fas fa-trash"></i>&nbsp;Delete
             <% end %> 
           </span>
         <% end %>
