@@ -4,25 +4,49 @@ en:
       question:
         create: 16
         destroy: -16
+        upvote: 8
+        downvote: -2
+        unvote_up: -8
+        unvote_down: 2
       answer:
         create: 8
         destroy: -8
         accept: 24
         choose: 4
+        upvote: 8
+        downvote: -2
+        unvote_up: -8
+        unvote_down: 2
     category:
       question:
         create: asked question
         destroy: deleted question
+        upvote: upvote (question)
+        unvote_up: removed upvote (question)
+        downvote: downvote (question)
+        unvote_down: removed downvote (question)
       answer:
         create: posted answer
         destroy: deleted answer
         choose: chosen answer
         accept: accepted answer
+        upvote: upvote (answer)
+        unvote_up: removed upvote (answer)
+        downvote: downvote (answer)
+        unvote_down: removed downvote (answer)
     message:
       question:
         create: Granted %{points} XP for asking question
         destroy: Subtracted %{points} XP for deleting question
+        upvote: Granted %{points} XP for receiving upvote on a question
+        unvote_up: Subtracted %{points} XP for having upvote removed on a question
+        downvote: Subtracted %{points} XP for receiving downvote on a question
+        unvote_down: Granted %{points} XP for having a downvote removed on a question
       answer:
         create: Granted %{points} XP for posting a answer
         destroy: Subtracted %{points} XP for deleting a posted answer
         choose: Granted %{points} XP for having an accepted answer
+        upvote: Granted %{points} XP for receiving upvote on a answer
+        unvote_up: Subtracted %{points} XP for having upvote removed on a answer
+        downvote: Subtracted %{points} XP for receiving downvote on a answer
+        unvote_down: Granted %{points} XP for having a downvote removed on a answer

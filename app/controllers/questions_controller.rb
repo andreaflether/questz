@@ -2,7 +2,8 @@
 
 class QuestionsController < ApplicationController
   before_action :set_question, only: %i[show edit update destroy upvote downvote]
-  before_action :authenticate_user!, except: %i[index show]
+  before_action :authenticate_user!, except: %i[index show upvote downvote]
+  before_action :authenticate_remote!, only: %i[upvote downvote]
   impressionist actions: [:show], unique: %i[impressionable_type impressionable_id ip_address]
   load_and_authorize_resource
 
@@ -69,8 +70,16 @@ class QuestionsController < ApplicationController
   def upvote
     if current_user.voted_up_for? @question
       @question.unvote_up current_user
+      @question.create_activity(key: 'question.unvote_up', owner: @question.user)
+      @question.user.add_points(
+        t('honor.exp.question.unvote_up'), t('honor.message.question.unvote_up'), 'question.unvote_up'
+      )
     else
       @question.upvote_by current_user
+      @question.create_activity(key: 'question.upvote', owner: @question.user)
+      @question.user.subtract_points(
+        t('honor.exp.question.upvote').abs, t('honor.message.question.upvote'), 'question.upvote'
+      )
       vote = 'upvote'
     end
     render 'shared/js/vote', locals: { vote: vote, type: 'question', object: @question }
@@ -96,14 +105,14 @@ class QuestionsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def question_params
-    params.require(:question).permit(:status, :title, :body, tag_list: [])
+    params.require(:question).permit(:status, :title, :body, tag_list: [], answers: [])
   end
 
   def get_questions_and_top_users
     @questions = @questions
                  .includes(%i[tags user tag_taggings])
                  .page(params[:page])
-    @top_users = User.top_users
+    @top_users = User.top_users.limit(3)
   end
 
   def sanitize_filter_params

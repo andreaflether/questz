@@ -2,7 +2,9 @@
 
 class AnswersController < ApplicationController
   before_action :set_answer, only: %i[show edit update destroy choose upvote downvote]
-  before_action :authenticate_user!, only: %i[edit choose upvote downvote]
+  before_action :set_question, only: %i[new create update edit]
+  before_action :authenticate_user!, except: %i[upvote downvote]
+  before_action :authenticate_remote!, only: %i[upvote downvote]
   load_and_authorize_resource
 
   # GET /answers
@@ -25,9 +27,10 @@ class AnswersController < ApplicationController
   def create
     @answer = Answer.new(answer_params)
     @answer.user = current_user
-
+    @answer.question = @question
+    
     if @answer.save
-      redirect_to @answer, notice: 'Answer was successfully created.'
+      redirect_to @question, notice: 'Your answer was successfully posted!'
     else
       render :new
     end
@@ -53,7 +56,6 @@ class AnswersController < ApplicationController
     @answer.chosen = true
 
     if @answer.save
-      @answer.create_activity(:choose, owner: current_user)
       redirect_to @answer.question, notice: 'Your question is now answered!'
     else
       redirect_to @answer.question, error: @answer.errors.full_messages.first
@@ -64,8 +66,12 @@ class AnswersController < ApplicationController
   def upvote
     if current_user.voted_up_for? @answer
       @answer.unvote_up current_user
+      @answer.create_activity(key: 'answer.unvote_up', owner: @answer.user)
+      @answer.user.subtract_points(t('honor.exp.answer.unvote_up').abs, category: 'answer.unvote_up')
     else
       @answer.upvote_by current_user
+      @answer.create_activity(key: 'answer.upvote', owner: @answer.user)
+      @answer.user.add_points(t('honor.exp.answer.upvote'), category: 'answer.upvote')
       vote = 'upvote'
     end
     render 'shared/js/vote', locals: { vote: vote, type: 'answer', object: @answer }
@@ -75,8 +81,16 @@ class AnswersController < ApplicationController
   def downvote
     if current_user.voted_down_for? @answer
       @answer.unvote_down current_user
+      @answer.create_activity(key: 'answer.unvote_down', owner: @answer.user)
+      @answer.user.add_points(
+        t('honor.exp.answer.unvote_down'), t('honor.message.answer.unvote_down'), 'answer.unvote_down'
+      )
     else
       @answer.downvote_by current_user
+      @answer.create_activity(key: 'answer.downvote', owner: @answer.user)
+      @answer.user.subtract_points(
+        t('honor.exp.answer.downvote').abs, t('honor.message.answer.downvote'), 'answer.downvote'
+      )
       vote = 'downvote'
     end
     render 'shared/js/vote', locals: { vote: vote, type: 'answer', object: @answer }
@@ -89,8 +103,12 @@ class AnswersController < ApplicationController
     @answer = Answer.find(params[:id])
   end
 
+  def set_question
+    @question = Question.find(params[:question_id])
+  end
+
   # Only allow a list of trusted parameters through.
   def answer_params
-    params.require(:answer).permit(:chosen, :body)
+    params.require(:answer).permit(:body, :question_id)
   end
 end
