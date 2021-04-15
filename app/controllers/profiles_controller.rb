@@ -10,6 +10,7 @@ class ProfilesController < ApplicationController
                     .tag_counts_on(:tags, order: 'count DESC', limit: 10)
     @activities = PublicActivity::Activity
                   .where(owner: @user)
+                  .where.not('key like ?', '%vote%')
                   .where.not(key: 'answer.destroy')
                   .order(created_at: :desc)
                   .includes([:trackable])
