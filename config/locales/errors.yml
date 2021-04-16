@@ -2,6 +2,8 @@ en:
   activerecord:
     errors:
       models:
+        question:
+          duplicate_id: Duplicate
         user:
           attributes:
             username:

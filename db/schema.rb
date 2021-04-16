@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_10_195836) do
+ActiveRecord::Schema.define(version: 2021_04_15_204730) do
 
   create_table "activities", force: :cascade do |t|
     t.string "trackable_type"
@@ -122,6 +122,9 @@ ActiveRecord::Schema.define(version: 2021_04_10_195836) do
     t.integer "cached_votes_up", default: 0
     t.integer "cached_votes_down", default: 0
     t.integer "impressions_count", default: 0
+    t.integer "closing_notice"
+    t.datetime "closed_at"
+    t.integer "duplicate_id"
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 

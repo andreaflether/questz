@@ -7,9 +7,11 @@
           <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
           <div class="form-inputs">
+            <% if question.closed? && !question.duplicate? %>
+              <%= f.input :reopen, as: :hidden, input_html: { value: params[:reopen] }, wrapper: false, label: false %>
+            <% end %>
             <%= f.input :title,
-              hint: 'Be specific and imagine you’re asking a question to another person',
-              wrapper_html: { class: 'mb-4' } %>
+              hint: 'Be specific and imagine you’re asking a question to another person' %>
             <%= f.input :body, as: :trix_editor, 
               hint: 'Expand the summary you put in the title'  %>
             <%= f.input :tag_list,
@@ -17,7 +19,6 @@
               hint: 'Add up to 5 tags to describe what your question is about',
               wrapper_html: { class: 'mt-3'},
               collection: f.object.tag_list.collect { |t| t },
-              # as: :select, 
               input_html: { 
                 class: 'select2', 
                 multiple: true, 

@@ -84,6 +84,12 @@ nav.navbar, .card {
   @extend .bg-orange;
 }
 
+.alert-orange {
+  background-color: rgba($orange, 0.1);
+  color: #444;
+  border: 1px solid rgba($orange, 0.25);
+}
+
 /*------------------------------- Borders -------------------------------*/
 .border-orange {
   border-color: $orange !important;
