@@ -5,7 +5,8 @@ class AnswersController < ApplicationController
   before_action :set_question, only: %i[new create update edit]
   before_action :authenticate_user!, except: %i[upvote downvote]
   before_action :authenticate_remote!, only: %i[upvote downvote]
-  load_and_authorize_resource
+  load_and_authorize_resource :question
+  load_and_authorize_resource :answer, through: :question
 
   # GET /answers
   def index

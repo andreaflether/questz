@@ -16,15 +16,23 @@ class Ability
 
       # User asked the question
       can %i[choose], Answer, question: { status: %w[unanswered answered], user_id: user.id }
-
+      
+      # Can't answer a closed question
+      cannot %i[create], Answer, question: { status: 'closed' }
+      
       # User cannot choose their own answer
       cannot %i[choose], Answer, user_id: user.id
-
+      
       # User owns the resource
       can %i[update destroy], [Question, Answer], user_id: user.id
 
+      # User can't edit/delete a answered question and/or chosen answer
+      cannot %i[update], Question, status: 'answered'
+      cannot %i[update destroy], Answer, chosen: true, question: { status: 'answered' }
+
       # Can't delete a Question that has answers
       cannot %i[destroy], Question, &:has_answers?
+      cannot %i[update], Question, closing_notice: %w[duplicate]
     end
     # The first argument to `can` is the action you are giving the user
     # permission to do.
