@@ -19,16 +19,14 @@
     </div>
     <div class="card-body my-2">
       <div class="errors">
-        <%= f.error_notification %>
         <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+        <%= f.error_notification %>
       </div>
       <%= f.input :body, as: :trix_editor, label: false %>
     </div>
     <div class="card-footer py-3 bg-white d-flex justify-content-between">
       <%= link_to 'Return to question', question_path(@question), class: 'btn btn-default'%>
       <%= f.button :submit, class: 'btn btn-orange' %>
-
     </div>
   </div>
-  
 <% end %>

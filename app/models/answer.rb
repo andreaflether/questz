@@ -46,6 +46,7 @@ class Answer < ApplicationRecord
       'answer.destroy'
     )
   }
+  validate :question_is_closed, on: :create
 
   belongs_to :question, counter_cache: true
   belongs_to :user, counter_cache: true
@@ -71,5 +72,11 @@ class Answer < ApplicationRecord
       I18n.t('honor.message.answer.accept', points: EXP_FOR_ACTION[:accept]),
       'answer.accept'
     )
+  end
+
+  def question_is_closed
+    if question.closed?
+      errors.add(:base, 'This question is closed and can not longer receive answers.')
+    end
   end
 end
