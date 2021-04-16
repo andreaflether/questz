@@ -16,13 +16,13 @@ class Ability
 
       # User asked the question
       can %i[choose], Answer, question: { status: %w[unanswered answered], user_id: user.id }
-      
+
       # Can't answer a closed question
       cannot %i[create], Answer, question: { status: 'closed' }
-      
+
       # User cannot choose their own answer
       cannot %i[choose], Answer, user_id: user.id
-      
+
       # User owns the resource
       can %i[update destroy], [Question, Answer], user_id: user.id
 

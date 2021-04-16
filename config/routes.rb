@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       get '/tagged/:id', to: 'tags#show', as: :tag_in
     end
 
-    resources :answers, except: %i[index destroy show] do 
+    resources :answers, except: %i[index destroy show] do
       member do
         patch :choose
         patch :upvote
@@ -44,6 +44,6 @@ Rails.application.routes.draw do
       get :search
     end
   end
-  
+
   resources :photos, only: %i[create show destroy]
 end

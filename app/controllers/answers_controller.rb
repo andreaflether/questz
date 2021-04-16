@@ -29,7 +29,7 @@ class AnswersController < ApplicationController
     @answer = Answer.new(answer_params)
     @answer.user = current_user
     @answer.question = @question
-    
+
     if @answer.save
       redirect_to @question, notice: 'Your answer was successfully posted!'
     else

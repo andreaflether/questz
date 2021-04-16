@@ -26,11 +26,10 @@ RSpec.describe ApplicationHelper, type: :helper do
     end
   end
 
-  describe '#format_datetime' do 
-    it { expect(helper.format_datetime(Date.parse('1997-11-13'))).to eq('Nov 13, 1997')}
+  describe '#format_datetime' do
+    it { expect(helper.format_datetime(Date.parse('1997-11-13'))).to eq('Nov 13, 1997') }
   end
 
-  describe '#user_vote' do 
-
+  describe '#user_vote' do
   end
 end

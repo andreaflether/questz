@@ -75,8 +75,6 @@ class Answer < ApplicationRecord
   end
 
   def question_is_closed
-    if question.closed?
-      errors.add(:base, 'This question is closed and can not longer receive answers.')
-    end
+    errors.add(:base, 'This question is closed and can not longer receive answers.') if question.closed?
   end
 end

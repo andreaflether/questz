@@ -43,7 +43,7 @@ class Question < ApplicationRecord
   enum closing_notice: {
     needs_details: 0,
     duplicate: 1,
-    needs_focus: 2,
+    needs_focus: 2
   }
 
   attribute :reopen, :boolean
@@ -56,7 +56,7 @@ class Question < ApplicationRecord
   has_many :answers, dependent: :destroy
   belongs_to :user, counter_cache: true
   belongs_to :duplicate, class_name: 'Question', optional: true
-  
+
   after_create lambda {
     Point.give_to(
       user.id,
@@ -73,17 +73,17 @@ class Question < ApplicationRecord
       'question.destroy'
     )
   }
-  
+
   validates :title, length: { in: 15..150, allow_blank: true }, presence: true
   validates :body, length: { in: 15..20_000, allow_blank: true }, presence: true
-  validates_presence_of :closing_notice, if: -> { closed? }
-  validates_presence_of :duplicate_id, if: -> { closed? && duplicate? }
+  validates :closing_notice, presence: { if: -> { closed? } }
+  validates :duplicate_id, presence: { if: -> { closed? && duplicate? } }
   validate :tag_list_count
   validate :check_for_answers, on: :destroy
   validate :reopen_question, if: -> { reopen_changed?(to: true) }
   validate :closing_fields, if: -> { status_changed?(to: 'closed') || closing_notice_changed? }
   validate :clean_closing_fields, if: -> { status_changed?(from: 'closed') }
-  
+
   def tag_list_count
     errors.add(:tag_list, 'Please select at least 1 tag to identify your question') if tag_list.count < 1
     errors.add(:tag_list, 'Please enter no more than 5 tags.') if tag_list.count > 5
@@ -97,16 +97,16 @@ class Question < ApplicationRecord
     errors.add(:base, 'You cannot delete this question because it already has answers.') if has_answers?
   end
 
-  def closing_fields 
-    self.closed_at = Time.now
+  def closing_fields
+    self.closed_at = Time.zone.now
   end
 
-  def reopen_question 
+  def reopen_question
     self.status = 'unanswered'
   end
 
   def clean_closing_fields
-    self.closed_at = nil 
+    self.closed_at = nil
     self.closing_notice = nil
   end
 
