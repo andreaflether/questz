@@ -51,9 +51,6 @@
         </span>
       </p>
       <div class="answer-actions small text-muted">
-        <span class="share">
-          <i class="fas fa-share-square"></i>&nbsp;Share
-        </span>
         <% if can?(:edit, answer) %>
           <span class="edit">
             <%= link_to edit_question_answer_path(@question, answer), class: 'text-muted' do %>
@@ -68,6 +65,9 @@
             <% end %> 
           </span>
         <% end %>
+        <span class="share">
+          <i class="fas fa-share-square"></i>&nbsp;Share
+        </span>
         <span class="report">
           <i class="far fa-flag"></i>&nbsp;Report
         </span>
