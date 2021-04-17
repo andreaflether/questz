@@ -29,6 +29,7 @@ class QuestionsController < ApplicationController
   # GET /questions/1
   def show
     @related_questions = @question.find_related_tags.limit(8)
+    @answers = @question.answers.page(params[:page])
   end
 
   # GET /questions/new
