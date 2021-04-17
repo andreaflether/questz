@@ -19,10 +19,10 @@
   <% if @tags.any? %>
     <%= render partial: 'tags/partials/card_tag', collection: @tags, as: :tag %>
     <div class="d-flex flex-column flex-lg-row justify-content-between align-items-center mb-3">
-      <div class="entries-info text-center flex-grow-1">
+      <div class="entries-info text-center">
         <%= page_entries_info @tags %>
       </div>
-      <div class="tags-pagination flex-shrink-0">
+      <div class="tags-pagination">
         <%= paginate @tags %>
       </div>
     </div>

@@ -32,24 +32,28 @@
       <div class="answer-body trix-content mb-2">
         <%= sanitize answer.body %>
       </div>
-      <p class="d-flex align-items-center text-muted mb-0 answer-info">
-        Answered by 
-        <%= link_to profile_path(answer.user), class: 'fw-bold d-inline-flex align-items-center' do %>
-          <% if answer.user.avatar? %>
-          <%= image_tag(answer.user.avatar_url, 
-            class: 'img-fluid rounded-circle user-avatar-30 me-1 ms-1') %>
-          <% else %>
-            <%= image_tag 'no-avatar.png',
-            class: 'img-fluid rounded-circle user-avatar-30 me-1 ms-1' %>
-          <% end %>
-          <%= answer.user.name %>
-        <% end %>
+      <div class="answer-info text-muted">
+        <span>
+          Answered by 
+          <span class="answered-by fw-bold">
+            <%= link_to profile_path(answer.user) do %>
+              <% if answer.user.avatar? %>
+              <%= image_tag(answer.user.avatar_url, 
+                class: 'img-fluid rounded-circle user-avatar-30 mx-1') %>
+              <% else %>
+                <%= image_tag 'no-avatar.png',
+                class: 'img-fluid rounded-circle user-avatar-30 mx-1' %>
+              <% end %>
+              <%= answer.user.name %>
+            <% end %>
+          </span>
+        </span>
         
         <span class="question-date">
-          &nbsp; on <b><%= format_datetime(answer.created_at) %></b>
+          on <b><%= format_datetime(answer.created_at) %></b>
           (<%= time_ago_in_words(answer.created_at) %> ago)
         </span>
-      </p>
+      </div>
       <div class="answer-actions small text-muted">
         <% if can?(:edit, answer) %>
           <span class="edit">
