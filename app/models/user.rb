@@ -52,6 +52,7 @@ class User < ApplicationRecord
 
   has_many :questions, dependent: :destroy
   has_many :answers, dependent: :destroy
+  has_many :reports, dependent: :destroy
 
   before_destroy :remove_activity
 
@@ -103,6 +104,10 @@ class User < ApplicationRecord
 
   def solved_questions
     answers.where(chosen: true).count
+  end
+
+  def check_for_reports(reportable)
+    reports.where(reportable: reportable)
   end
 
   scope :top_users, lambda {

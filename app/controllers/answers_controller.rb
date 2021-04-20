@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AnswersController < ApplicationController
-  before_action :set_answer, only: %i[show edit update destroy choose upvote downvote]
+  before_action :set_answer, except: %i[index]
   before_action :set_question, only: %i[new create update edit]
   before_action :authenticate_user!, except: %i[upvote downvote]
   before_action :authenticate_remote!, only: %i[upvote downvote]
@@ -49,7 +49,7 @@ class AnswersController < ApplicationController
   # DELETE /answers/1
   def destroy
     @answer.destroy
-    redirect_to answers_url, notice: 'Answer was successfully destroyed.'
+    redirect_to @answer.question, notice: 'Answer was successfully destroyed.'
   end
 
   # PATCH /answers/1/choose
