@@ -64,7 +64,7 @@
         <% end %>
         <% if can? :destroy, answer %>
           <span class="delete">
-            <%= link_to question_answer_path(answer), method: :delete, class: 'text-muted' do %>
+            <%= link_to question_answer_path(@question, answer), method: :delete, class: 'text-muted' do %>
               <i class="fas fa-trash"></i>&nbsp;Delete
             <% end %> 
           </span>
@@ -72,9 +72,11 @@
         <span class="share">
           <i class="fas fa-share-square"></i>&nbsp;Share
         </span>
-        <span class="report">
-          <i class="far fa-flag"></i>&nbsp;Report
-        </span>
+        <% if user_signed_in? && current_user.id != answer.user.id %>
+          <%= link_to new_answer_report_path(answer), class: 'text-muted' do %>
+            <i class="far fa-flag"></i> Report
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>

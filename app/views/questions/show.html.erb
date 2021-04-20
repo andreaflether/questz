@@ -85,26 +85,28 @@
               <% end %>
             </div>
             <div class="question-actions small text-muted mt-3">
-            <span class="share">
-              <i class="fas fa-share-square"></i>&nbsp;Share
-            </span>
-            <% if can? :update, @question %>
-              <span class="edit">
-                <%= link_to edit_question_path(@question), class: 'text-muted' do %>
-                  <i class="fas fa-edit"></i>&nbsp;Edit
-                <% end %> 
+              <span class="share">
+                <i class="fas fa-share-square"></i>&nbsp;Share
               </span>
-            <% end %>
-            <% if can? :destroy, @question %>
-              <span class="delete">
-                <%= link_to question_path(@question), method: :delete, class: 'text-muted' do %>
-                  <i class="fas fa-trash"></i>&nbsp;Delete
-                <% end %> 
-              </span>
-            <% end %>
-            <span class="report">
-              <i class="far fa-flag"></i>&nbsp;Report
-            </span>
+              <% if can? :update, @question %>
+                <span class="edit">
+                  <%= link_to edit_question_path(@question), class: 'text-muted' do %>
+                    <i class="fas fa-edit"></i>&nbsp;Edit
+                  <% end %> 
+                </span>
+              <% end %>
+              <% if can? :destroy, @question %>
+                <span class="delete">
+                  <%= link_to question_path(@question), method: :delete, class: 'text-muted' do %>
+                    <i class="fas fa-trash"></i>&nbsp;Delete
+                  <% end %> 
+                </span>
+              <% end %>
+              <% if user_signed_in? && @question.user != current_user %>
+                <%= link_to new_question_report_path(@question), class: 'text-muted' do %>
+                  <i class="far fa-flag"></i> Report
+                <% end %>
+              <% end %>
             </div>
           </div>
         </div>
