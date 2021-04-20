@@ -53,7 +53,11 @@ class Question < ApplicationRecord
     destroy: I18n.t('honor.exp.question.destroy').abs
   }.freeze
 
+  MAX_TAGS_ALLOWED = 5
+  MIN_TAGS_ALLOWED = 1
+
   has_many :answers, dependent: :destroy
+  has_many :reports, as: :reportable
   belongs_to :user, counter_cache: true
   belongs_to :duplicate, class_name: 'Question', optional: true
 
@@ -85,8 +89,8 @@ class Question < ApplicationRecord
   validate :clean_closing_fields, if: -> { status_changed?(from: 'closed') }
 
   def tag_list_count
-    errors.add(:tag_list, 'Please select at least 1 tag to identify your question') if tag_list.count < 1
-    errors.add(:tag_list, 'Please enter no more than 5 tags.') if tag_list.count > 5
+    errors.add(:tag_list, 'Please select at least 1 tag to identify your question') if tag_list.count < MIN_TAGS_ALLOWED
+    errors.add(:tag_list, 'Please enter no more than 5 tags.') if tag_list.count > MAX_TAGS_ALLOWED
   end
 
   def has_answers?

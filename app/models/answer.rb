@@ -50,6 +50,7 @@ class Answer < ApplicationRecord
 
   belongs_to :question, counter_cache: true
   belongs_to :user, counter_cache: true
+  has_many :reports, as: :reportable
 
   validate :set_question_as_solved, if: -> { chosen_changed?(from: false, to: true) }
   validates :body, length: { in: 15..30_000, allow_blank: true }, presence: true

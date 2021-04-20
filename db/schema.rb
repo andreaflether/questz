@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_15_204730) do
+ActiveRecord::Schema.define(version: 2021_04_17_022727) do
 
   create_table "activities", force: :cascade do |t|
     t.string "trackable_type"
@@ -126,6 +126,18 @@ ActiveRecord::Schema.define(version: 2021_04_15_204730) do
     t.datetime "closed_at"
     t.integer "duplicate_id"
     t.index ["user_id"], name: "index_questions_on_user_id"
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "reason"
+    t.string "mod_attention_details"
+    t.integer "duplicate_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "reportable_type"
+    t.integer "reportable_id"
+    t.index ["reportable_type", "reportable_id"], name: "index_reports_on_reportable_type_and_reportable_id"
   end
 
   create_table "scorecards", force: :cascade do |t|
