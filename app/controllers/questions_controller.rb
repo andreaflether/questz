@@ -2,10 +2,10 @@
 
 class QuestionsController < ApplicationController
   before_action :set_question, only: %i[show edit update destroy upvote downvote]
-  before_action :authenticate_user!, except: %i[index show upvote downvote]
+  before_action :authenticate_user!, except: %i[index show upvote downvote search]
   before_action :authenticate_remote!, only: %i[upvote downvote]
   impressionist actions: [:show], unique: %i[impressionable_type impressionable_id ip_address]
-  load_and_authorize_resource
+  load_and_authorize_resource except: %i[search]
 
   # GET /questions
   def index
@@ -24,6 +24,16 @@ class QuestionsController < ApplicationController
 
     sanitize_filter_params if params[:tab]
     get_questions_and_top_users
+  end
+
+  def search
+    @questions = if params[:search]
+                   Question.where('lower(title) LIKE lower(:search) OR id LIKE :search',
+                                  search: "%#{params[:search]}%")
+                 else
+                   Question.all
+                 end
+    @questions = @questions.page(params[:page])
   end
 
   # GET /questions/1
