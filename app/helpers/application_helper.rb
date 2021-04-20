@@ -5,7 +5,7 @@ module ApplicationHelper
     if flash.to_h.any?
       script = '<script>$(document).ready(function() {'
       flash.each do |type, message|
-        script += "$.notyf.open({ type: '#{notyf_classes_for(type)}', message: '#{message}'})"
+        script += "$.notyf.open({ type: '#{notyf_classes_for(type)}', message: \"#{message}\"})"
       end
       script += '})</script>'
       # flash.clear
