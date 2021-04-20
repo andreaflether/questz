@@ -28,9 +28,9 @@ class Report < ApplicationRecord
     abusive: 3,
     needs_details: 4,
     needs_focus: 5,
-    duplicate: 6,
-    not_an_answer: 7,
-    no_longer_needed: 8,
+    not_an_answer: 6,
+    no_longer_needed: 7,
+    duplicate: 8,
     mod_intervention: 9
   }
 

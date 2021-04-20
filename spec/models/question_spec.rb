@@ -11,11 +11,14 @@
 #  cached_votes_score :integer          default(0)
 #  cached_votes_total :integer          default(0)
 #  cached_votes_up    :integer          default(0)
+#  closed_at          :datetime
+#  closing_notice     :integer
 #  impressions_count  :integer          default(0)
 #  status             :integer          default("unanswered")
 #  title              :string           default(""), not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  duplicate_id       :integer
 #  user_id            :integer
 #
 # Indexes

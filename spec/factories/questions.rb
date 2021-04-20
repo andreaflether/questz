@@ -11,11 +11,14 @@
 #  cached_votes_score :integer          default(0)
 #  cached_votes_total :integer          default(0)
 #  cached_votes_up    :integer          default(0)
+#  closed_at          :datetime
+#  closing_notice     :integer
 #  impressions_count  :integer          default(0)
 #  status             :integer          default("unanswered")
 #  title              :string           default(""), not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  duplicate_id       :integer
 #  user_id            :integer
 #
 # Indexes
@@ -26,10 +29,9 @@ FactoryBot.define do
   factory :question do
     title { Faker::Lorem.paragraph_by_chars(number: 150, supplemental: true) }
     body { Faker::Lorem.paragraph_by_chars(number: rand(300..500), supplemental: true) }
+    tag_list { 'test' }
     user
 
-    trait :with_test_tag do
-      after(:create) { |question| question.update(tag_list: 'test') }
-    end
+    # after(:create) { |question| question.update(tag_list: 'test') }
   end
 end
