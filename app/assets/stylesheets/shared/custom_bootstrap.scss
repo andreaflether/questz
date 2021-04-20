@@ -35,6 +35,10 @@ trix-editor {
   }
 }
 
+.form-check:not(:last-of-type) {
+  margin-bottom: 0.75rem;
+}
+
 /*------------------------------- Navbar -------------------------------*/
 .navbar-brand {
   font-size: 1.7rem !important;

@@ -1,0 +1,56 @@
+
+<div class="card my-3">
+  <div class="card-header bg-white">
+    <h5 class="card-title mb-0 py-2">Report <%= reportable_type %></h5>
+  </div>
+  <%= simple_form_for [reportable, @report] do |f| %>
+    <div class="card-body">
+      <%= f.label :reason, t('simple_form.labels.report.reason', reportable_type: reportable_type) %>
+        
+      <% if @report.errors[:reason] %>
+        <div class="invalid-feedback d-block mb-2">
+          <%= @report.errors[:reason].to_sentence %>
+        </div>
+      <% end %>
+
+      <%= collection_radio_buttons(:report, :reason, eval("Report.#{reportable_type.downcase}_reasons"), :first, :second) do |b| %>
+        <div class="form-check">
+          <%= b.radio_button(class: 'form-check-input') %>
+          <%= b.label(class: 'form-check-label fw-bold d-block') %>
+
+          <span class="reason-details">
+            <%= t("simple_form.hints.reasons.#{b.value}_html") %>
+          </span>
+
+          <% if b.value == 'duplicate' && reportable_type == 'Question' %>
+            <div class="js-dependent-fields" data-radio-name='report[reason]' data-radio-value="duplicate">
+              <p class="mt-2 mb-0">
+                <span class="fw-bold text-orange">
+                  "<%= @reportable.title %>"
+                </span> is a duplicate of...
+              </p>
+              <%= f.association :duplicate, label: false, wrapper_html: { class: 'mt-2' },
+              input_html: {
+                remote: true,
+                data: {
+                  tags: false,
+                  placeholder: 'Search or enter a question numeric ID',
+                  ajax: { url: search_questions_path }
+                }
+              }
+              %>
+            </div>
+          <% end %>
+          <% if b.value == 'mod_intervention' %>
+            <div class="js-dependent-fields" data-radio-name='report[reason]' data-radio-value="mod_intervention">
+              <%= f.input :mod_attention_details, as: :text, label: false, wrapper_html: { class: 'mt-2'} %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <div class="card-footer">
+      <%= f.button :submit, class: 'btn btn-orange' %>
+    </div>
+  <% end %>
+</div>
