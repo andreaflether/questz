@@ -12,11 +12,10 @@
             <% end %>
             <%= f.input :title,
               hint: 'Be specific and imagine you’re asking a question to another person' %>
-            <%= f.input :body, as: :trix_editor, 
+            <%= f.input :body, as: :trix_editor,
               hint: 'Expand the summary you put in the title'  %>
             <%= f.input :tag_list,
-              prompt: 'Search for tags...',
-              hint: 'Add up to 5 tags to describe what your question is about',
+              hint: "Add up to #{Question::MAX_TAGS_ALLOWED} tags to describe what your question is about",
               wrapper_html: { class: 'mt-3'},
               collection: f.object.tag_list.collect { |t| t },
               input_html: { 
@@ -24,8 +23,12 @@
                 multiple: true, 
                 remote: true,
                 data: {
+                  placeholder: 'Search for tag...',
+                  'maximum-selection-length': Question::MAX_TAGS_ALLOWED,
                   tags: current_user.has_privilege_to_create_tag?,
-                  url: search_tags_path
+                  ajax: {
+                    url: search_tags_path
+                  }
                 }
               }
             %>

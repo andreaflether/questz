@@ -6,38 +6,63 @@ window.onload = function() {
 }
 
 $(document).ready(function() {
-  $('select.select2').each(function () {
-    const select = $(this);
-    const tags = select[0].getAttribute('data-tags') === 'false' ? false : true;
-    const url = select.data('url');
-
-    select.select2({
-      theme: 'bootstrap4',
-      maximumSelectionLength: 5,
-      tags: tags,
-      tokenSeparators: [','],
-      placeholder: 'Search for tag...',
-      tokenSeparators: tags ? ['/', ',', ';'] : null,
-      ajax: {
-        url: url,
-        dataType: 'json',
-        processResults: function (data) {
-          return {
-            results: $.map(data.results, function(obj) {
-              return { id: obj.text, text: obj.text };
-            })
-          };
-        },
-        data: function (params) {
-          var query = {
-            search: params.term,
-            page: params.page || 1
-          }
-          return query;
-        }
+  function formatQuestion (question) {
+    if (!question.id) {
+      return question.text;
+    }
+    var $question = $(
+      '<span class="fw-bold">ID #'+ question.id + ' - </span>' + '<span>'+ question.text + '</span>'
+    );
+    return $question;
+  };
+  
+  const select2Data = {
+    data: function (params) {
+      var query = {
+        search: params.term,
+        page: params.page || 1
       }
-    });
+      return query;
+    }
+  }
+
+  const select2DefaultOptions = {
+    theme: 'bootstrap4',
+  }
+
+  $('#report_duplicate_id').select2({
+    ...select2DefaultOptions,
+    templateResult: formatQuestion,
+    ajax: {
+      dataType: 'json',
+      ...select2Data
+    }
   });
+
+  $('input[type=radio][name="report[reason]"]').change(function() {
+    $('#report_duplicate_id').val(null).trigger('change');
+    $('#report_mod_attention_details').val('');
+    
+  });
+
+  const tagsAllowed = $('#question_tag_list').attr('data-tags') === 'false' ? false : true;
+
+  $('#question_tag_list').select2({
+    ...select2DefaultOptions,
+    tokenSeparators: tagsAllowed ? ['/', ',', ';'] : null,
+    ajax: {
+      dataType: 'json',
+      ...select2Data,
+      processResults: function (data) {
+        return {
+          results: $.map(data.results, function(obj) {
+            return { id: obj.text, text: obj.text };
+          })
+        };
+      },
+      ...select2Data
+    }
+  });  
 
   var urlParams = new URLSearchParams(window.location.search);
 
@@ -63,4 +88,6 @@ $(document).ready(function() {
   $('#tags_row').masonry({
     percentPosition: true
   });
+
+  DependentFields.bind();
 })
