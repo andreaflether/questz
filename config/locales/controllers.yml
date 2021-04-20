@@ -1,0 +1,6 @@
+en:
+  controllers:
+    reports:
+      create: Your report was successfully submitted.
+      owned: You can't report your own %{reportable_type}.
+      reported: You already reported this %{reportable_type}.

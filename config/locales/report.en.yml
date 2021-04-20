@@ -1,0 +1,13 @@
+en:
+  enums:
+    report:
+      reason:
+        spam: Spam
+        unfriendly: It's unfriendly or unkind
+        abusive: It contains harassment, bigotry or abuse
+        needs_details: Needs details or clarity
+        needs_focus: Needs more focus
+        duplicate: Duplicate
+        not_an_answer: Not an answer
+        no_longer_needed: It's no longer needed
+        mod_intervention: In need of moderator intervention

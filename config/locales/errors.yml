@@ -4,6 +4,10 @@ en:
       models:
         question:
           duplicate_id: Duplicate
+        report:
+          attributes:
+            reason:
+              blank: Please select a reason
         user:
           attributes:
             username:

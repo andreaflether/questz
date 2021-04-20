@@ -19,15 +19,22 @@ Rails.application.routes.draw do
 
     collection do
       get '/tagged/:id', to: 'tags#show', as: :tag_in
+      get :search
     end
 
-    resources :answers, except: %i[index destroy show] do
+    resources :answers, except: %i[index show] do
       member do
         patch :choose
         patch :upvote
         patch :downvote
       end
     end
+
+    resources :reports, only: %i[new create], module: :questions
+  end
+
+  resources :answers, only: [:verify] do
+    resources :reports, only: %i[new create], module: :answers
   end
 
   get '/feed', to: 'questions#feed'

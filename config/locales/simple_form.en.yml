@@ -15,13 +15,16 @@ en:
       defaults:
       question:
         tag_list: 'Tags'
-    # hints:
-    #   defaults:
-    #     username: 'User name to sign in.'
-    #     password: 'No special characters, please.'
-    # include_blanks:
-    #   defaults:
-    #     age: 'Rather not say'
-    # prompts:
-    #   defaults:
-    #     age: 'Select your age'
+      report:
+        reason: Why are you reporting this %{reportable_type}?
+    hints:
+      reasons:
+        spam_html: Exists only to promote a product/service or can be considered a harmful coordinated activity. Learn more in our <a href="/spam_policy" target="_blank">Spam policy</a>.
+        unfriendly_html: This post is rude or condescending. Learn more in our <a href="/conduct" target="_blank">Code of conduct</a>.
+        abusive_html: This post attacks a person or group. Learn more in our <a href="/conduct" target="_blank">Code of conduct</a>.
+        needs_details_html: This question should include more details and clarify the problem.
+        needs_focus_html: This question currently includes multiple questions in one. It should focus on one problem only.
+        duplicate_html: This question has been asked before and already has an answer.
+        not_an_answer_html: This was posted as an answer, but it does not attempt to answer the question. It should possibly be an edit, a comment, another question, or deleted altogether. 
+        no_longer_needed: This comment is outdated or not relevant to this post.
+        mod_intervention_html: A problem not listed above that requires action by a moderator. <i>Be specific and detailed!</i>
