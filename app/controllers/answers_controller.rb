@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AnswersController < ApplicationController
-  before_action :set_answer, except: %i[index]
+  before_action :set_answer, except: %i[index new create]
   before_action :set_question, only: %i[new create update edit]
   before_action :authenticate_user!, except: %i[upvote downvote]
   before_action :authenticate_remote!, only: %i[upvote downvote]
@@ -31,6 +31,7 @@ class AnswersController < ApplicationController
     @answer.question = @question
 
     if @answer.save
+      @answer.notify :users, key: 'answer.create' if @question.user != current_user
       redirect_to @question, notice: 'Your answer was successfully posted!'
     else
       render :new
@@ -55,15 +56,16 @@ class AnswersController < ApplicationController
   # PATCH /answers/1/choose
   def choose
     @answer.chosen = true
-
+    
     if @answer.save
       redirect_to @answer.question, notice: 'Your question is now answered!'
+      @answer.notify :answer_owners, key: 'answer.chosen'
     else
-      redirect_to @answer.question, error: @answer.errors.full_messages.first
+      redirect_to @answer.question, flash: { error: @answer.errors.full_messages.first }
     end
   end
 
-  # PATCH /answers/1/downvote
+  # PATCH /answers/1/upvote
   def upvote
     if current_user.voted_up_for? @answer
       @answer.unvote_up current_user

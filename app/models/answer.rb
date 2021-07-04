@@ -52,8 +52,26 @@ class Answer < ApplicationRecord
   belongs_to :user, counter_cache: true
   has_many :reports, as: :reportable
 
+  validate :can_be_marked_as_solved, if: -> { chosen_changed?(from: false, to: true)}
   validate :set_question_as_solved, if: -> { chosen_changed?(from: false, to: true) }
   validates :body, length: { in: 15..30_000, allow_blank: true }, presence: true
+
+  acts_as_notifiable :users,
+    targets: ->(answer, key) { ([answer.question.user]) },
+    group: :question, notifier: :user,
+    notifiable_path: :question_notifiable_path,
+    # notifiable_path: ->(answer, key) { "#{answer.question_notifiable_path}#answer_#{answer.id}" },
+    dependent_notifications: :update_group_and_delete_all
+    #printable_name: ->(answer) { "answer \"#{answer.body}\"" },
+
+  acts_as_notifiable :answer_owners,
+    targets: ->(answer, key) { ([answer.user]) },
+    notifiable_path: :question_notifiable_path,
+    dependent_notifications: :update_group_and_delete_all
+
+  def question_notifiable_path
+    question_path(question, anchor: self)
+  end
 
   def set_question_as_solved
     question.answered!
@@ -77,5 +95,9 @@ class Answer < ApplicationRecord
 
   def question_is_closed
     errors.add(:base, 'This question is closed and can not longer receive answers.') if question.closed?
+  end
+
+  def can_be_marked_as_solved
+    errors.add(:base, 'This question already has an chosen answer.') if question.answered?
   end
 end

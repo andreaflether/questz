@@ -5,6 +5,7 @@
 # Table name: questions
 #
 #  id                 :integer          not null, primary key
+#  answered_on        :datetime
 #  answers_count      :integer          default(0)
 #  body               :text             default(""), not null
 #  cached_votes_down  :integer          default(0)
@@ -28,6 +29,7 @@
 class Question < ApplicationRecord
   acts_as_votable
   acts_as_taggable_on :tags
+  acts_as_notification_group printable_name: ->(question) { "question \"#{question.title}\"" }
 
   include PublicActivity::Model
   tracked only: %i[create destroy], owner: ->(_controller, model) { model.user }
@@ -82,11 +84,13 @@ class Question < ApplicationRecord
   validates :body, length: { in: 15..20_000, allow_blank: true }, presence: true
   validates :closing_notice, presence: { if: -> { closed? } }
   validates :duplicate_id, presence: { if: -> { closed? && duplicate? } }
+
   validate :tag_list_count
   validate :check_for_answers, on: :destroy
   validate :reopen_question, if: -> { reopen_changed?(to: true) }
-  validate :closing_fields, if: -> { status_changed?(to: 'closed') || closing_notice_changed? }
+  validate :set_closed_at_timestamp, if: -> { status_changed?(to: 'closed') || closing_notice_changed? }
   validate :clean_closing_fields, if: -> { status_changed?(from: 'closed') }
+  validate :set_answered_timestamp, if: -> { status_changed?(to: 'answered') }
 
   def tag_list_count
     errors.add(:tag_list, 'Please select at least 1 tag to identify your question') if tag_list.count < MIN_TAGS_ALLOWED
@@ -101,8 +105,8 @@ class Question < ApplicationRecord
     errors.add(:base, 'You cannot delete this question because it already has answers.') if has_answers?
   end
 
-  def closing_fields
-    self.closed_at = Time.zone.now
+  def set_closed_at_timestamp
+    self.closed_at = DateTime.now
   end
 
   def reopen_question
@@ -112,6 +116,10 @@ class Question < ApplicationRecord
   def clean_closing_fields
     self.closed_at = nil
     self.closing_notice = nil
+  end
+
+  def set_answered_timestamp
+    self.answered_on = DateTime.now
   end
 
   scope :count_by_status_in_tag, lambda { |tag|

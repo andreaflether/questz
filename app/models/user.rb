@@ -32,8 +32,9 @@
 #  index_users_on_slug                  (slug) UNIQUE
 #
 class User < ApplicationRecord
-  acts_as_voter
   acts_as_follower
+  acts_as_target
+  acts_as_voter
 
   include Honor
 

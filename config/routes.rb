@@ -53,4 +53,6 @@ Rails.application.routes.draw do
   end
 
   resources :photos, only: %i[create show destroy]
+
+  notify_to :users, with_devise: :users, devise_default_routes: true, with_subscription: true
 end

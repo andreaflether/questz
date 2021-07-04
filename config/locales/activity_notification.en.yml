@@ -1,0 +1,8 @@
+# Additional translations of ActivityNotification
+
+en:
+  activity_notification:
+    answer:
+      create: posted a new answer
+      create_with_group_member: posted new answers
+      chosen: marked one of your answers as chosen!

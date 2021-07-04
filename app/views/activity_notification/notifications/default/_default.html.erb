@@ -1,0 +1,76 @@
+<% content_for :notification_content, flush: true do %>
+  <div class='list-group-item small list-group-item-action notification_list <%= notification.opened? ? "opened" : "unopened" %>'>
+    <% if notification.unopened? %>
+      <object>
+        <%= link_to open_notification_path_for(notification, parameters.slice(:routing_scope, :devise_default_routes).merge(reload: false)), method: :put, remote: true, class: "unopened_wrapper" do %>
+          <i class="fas fa-circle fa-xs"></i>
+        <% end %>
+      </object>
+    <% end %>
+    <!--
+    <span class="fw-bold text-primary">
+      <%= t("activity_notification.#{notification.key}")  %>
+    </span> · 
+    -->
+    <strong>
+      <span class="text-primary">
+        <%= notification.notifier.present? ? notification.notifier.username : 'Someone' %>
+      </span>
+      <% if notification.group_member_notifier_exists? %>
+        <span class="text-primary">
+          <%= " and #{notification.group_member_notifier_count} other" %>
+          <%= notification.notifier.present? ? notification.notifier.printable_type.downcase.pluralize(notification.group_member_notifier_count) : 'people' %>
+        </span>
+      <% end %> 
+      <%= t("activity_notification.#{notification.key}#{'_with_group_member' if notification.group_member_notifier_exists?}")  %>
+    </strong>
+    <% if notification.notifiable.present? %>
+      <%= "in #{notification.group.printable_group_name}" if notification.group.present? %>
+    <% else %>
+      <% if notification.group_member_exists? %>
+        <%= " #{notification.group_notification_count} #{notification.notifiable_type.humanize.downcase.pluralize(notification.group_notification_count)}" %>
+      <% else %>
+        <%= " a #{notification.notifiable_type.humanize.downcase.singularize}" %>
+      <% end %>
+      <%= "in #{notification.group.printable_group_name}" if notification.group.present? %>
+      but the notifiable is not found. It may have been deleted.
+    <% end %>
+    <p class="text-muted mb-0">
+      <%= notification.created_at.strftime("%b %d %H:%M") %>
+      (<%= time_ago_in_words(notification.created_at) %> ago)
+    </p>
+  </div>
+<% end %>
+
+
+<div class='<%= "notification_#{notification.id}" %>'>
+  <% if notification.unopened? %>
+    <!--
+    <%= link_to open_notification_path_for(notification, parameters.slice(:routing_scope, :devise_default_routes).merge(reload: false)), method: :put, remote: true, class: "unopened_wrapper" do %>
+      <i class="fas fa-circle fa-xs"></i>
+      <div class="unopened_circle"></div>
+      <div class="unopened_description_wrapper">
+        <p class="unopened_description">Mark all as read</p>
+      </div>
+    <% end %>
+    -->
+    <%= link_to open_notification_path_for(notification, parameters.slice(:routing_scope, :devise_default_routes).merge(move: true)), method: :put do %>
+      <%= yield :notification_content %>
+    <% end %>
+  <% else %>
+    <%= link_to move_notification_path_for(notification, parameters.slice(:routing_scope, :devise_default_routes)) do %>
+      <%= yield :notification_content %>
+    <% end %>
+  <% end %>
+
+  <%#= link_to "Move", move_notification_path_for(notification, parameters.slice(:routing_scope, :devise_default_routes)) %>
+  <%# if notification.unopened? %>
+    <%#= link_to "Open and move (GET)", move_notification_path_for(notification, parameters.slice(:routing_scope, :devise_default_routes).merge(open: true)) %>
+    <%#= link_to "Open and move (PUT)", open_notification_path_for(notification, parameters.slice(:routing_scope, :devise_default_routes).merge(move: true)), method: :put %>
+    <%#= link_to "Open", open_notification_path_for(notification, parameters.slice(:routing_scope, :devise_default_routes).merge(index_options: @index_options))), method: :put %>
+    <%#= link_to "Open (Ajax)", open_notification_path_for(notification, parameters.slice(:routing_scope, :devise_default_routes).merge(reload: false)), method: :put, remote: true %>
+  <%# end %>
+  <%#= link_to "Destroy", notification_path_for(notification, parameters.slice(:routing_scope, :devise_default_routes).merge(index_options: @index_options)), method: :delete %>
+  <%#= link_to "Destroy (Ajax)", notification_path_for(notification, parameters.slice(:routing_scope, :devise_default_routes).merge(reload: false)), method: :delete, remote: true %>
+
+</div>
