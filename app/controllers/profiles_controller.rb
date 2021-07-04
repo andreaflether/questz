@@ -28,7 +28,7 @@ class ProfilesController < ApplicationController
   def reputation
     @activities = PublicActivity::Activity
                   .where(owner: current_user, trackable_type: %w[Question Answer])
-                  .includes(trackable: :question)
+                  .includes(:trackable)
     @activities_days = @activities.order(created_at: :desc)
                                   .group_by { |activity| activity.created_at.to_date }
     @weekly_experience = current_user.points.where('created_at >= ?', 1.week.ago)

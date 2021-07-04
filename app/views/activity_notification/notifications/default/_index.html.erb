@@ -1,5 +1,5 @@
 <div class="notification_wrapper me-2 ms-0">
-  <a class="dropdown_notification nav-link position-relative">
+  <a class="dropdown_notification nav-link position-relative <%= 'active' if controller_name == 'notifications_with_devise' %> ">
     <i class="fas fa-comment-dots fa-lg"></i>
     <span class="notification_count position-absolute top-25 translate-middle badge rounded-pill bg-secondary <%= 'unopened' if @target.has_unopened_notifications?(parameters) %>">
       <%= @target.unopened_notification_count(parameters) %>
