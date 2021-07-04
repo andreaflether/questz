@@ -100,8 +100,16 @@ class QuestionsController < ApplicationController
   def downvote
     if current_user.voted_down_for? @question
       @question.unvote_down current_user
+      @question.create_activity(key: 'question.unvote_down', owner: @question.user)
+      @question.user.add_points(
+        t('honor.exp.question.unvote_down'), t('honor.message.question.unvote_down'), 'question.unvote_down'
+      )
     else
       @question.downvote_by current_user
+      @question.create_activity(key: 'question.downvote', owner: @question.user)
+      @question.user.subtract_points(
+        t('honor.exp.question.downvote').abs, t('honor.message.question.downvote'), 'question.downvote'
+      )
       vote = 'downvote'
     end
     render 'shared/js/vote', locals: { vote: vote, type: 'question', object: @question }
