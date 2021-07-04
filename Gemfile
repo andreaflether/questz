@@ -40,7 +40,9 @@ gem 'impressionist', '~> 1.6.1'
 gem 'inline_svg'
 gem 'public_activity'
 gem 'kaminari'
+gem 'meta-tags'
 gem 'simple_form'
+gem 'stringex'
 gem 'trix-rails', require: 'trix'
 
 group :development, :test do
