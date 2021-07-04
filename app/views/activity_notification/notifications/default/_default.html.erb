@@ -7,11 +7,6 @@
         <% end %>
       </object>
     <% end %>
-    <!--
-    <span class="fw-bold text-primary">
-      <%= t("activity_notification.#{notification.key}")  %>
-    </span> · 
-    -->
     <strong>
       <span class="text-primary">
         <%= notification.notifier.present? ? notification.notifier.username : 'Someone' %>

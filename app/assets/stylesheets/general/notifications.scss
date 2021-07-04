@@ -5,7 +5,7 @@
   position: relative;
 
   .notifications-body {
-    height: calc(500px - 37px);
+    height: calc(500px - 55px);
 
     .notification_list {
       border: none;
@@ -49,6 +49,14 @@
 
 .notification_wrapper.open .notification_list_wrapper {
   display: block;
+}
+
+.notifications {
+  .list-group-item {
+    border: none;
+    border-bottom: 1px solid #eff0f1;
+    padding: 0.75rem;
+  }
 }
 
 @media (max-width: 767px) {

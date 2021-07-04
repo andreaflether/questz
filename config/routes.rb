@@ -54,5 +54,9 @@ Rails.application.routes.draw do
 
   resources :photos, only: %i[create show destroy]
 
-  notify_to :users, with_devise: :users, devise_default_routes: true, with_subscription: true
+  notify_to :users, 
+    with_devise: :users, 
+    devise_default_routes: true, 
+    with_subscription: true, 
+    controller: 'users/notifications_with_devise'
 end
