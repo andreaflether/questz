@@ -1,0 +1,59 @@
+.notification_wrapper {
+  margin-left: 20px;
+  margin-right: 10px;
+  float: left;
+  position: relative;
+
+  .notifications-body {
+    height: calc(500px - 37px);
+
+    .notification_list {
+      border: none;
+      border-bottom: 1px solid #eff0f1 !important;
+    }
+    
+    .notification_list.unopened {
+      background-color: rgba(#FA8D34, 0.1);
+    }
+  }
+
+  .dropdown_notification {
+    cursor: pointer;
+
+    .notification_count {
+      left: 52px;
+    }
+
+    .notification_count.unopened {
+      background-color: #FA8D34 !important;
+    }
+  }
+
+  .notification_list_wrapper {
+    display: none;
+    z-index: 999;
+    width: 330px;
+    height: 500px;
+    position: absolute;
+    top: calc(100% + 20px);
+    right: -10px;
+    overflow-y: hidden;
+
+    .notification_link_wrapper {
+      position: absolute;
+      bottom: 0px;
+      z-index: 1000 !important;
+    }
+  }
+}
+
+.notification_wrapper.open .notification_list_wrapper {
+  display: block;
+}
+
+@media (max-width: 767px) {
+  .notification_wrapper .notification_list_wrapper {
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+}

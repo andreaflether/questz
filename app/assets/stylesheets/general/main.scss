@@ -1,25 +1,19 @@
-$success:#198754;
-$danger: #DC3545;
-$orange: #FA8D34;
-
 #main {
   background-color: #F6F5F8 !important;
 }
 
-.turbolinks-progress-bar {
-  background-color: $orange;
-}
+trix-toolbar {
+  .trix-button.trix-active {
+    background: rgba($primary, 0.4) !important;
+  }
 
-trix-toolbar .trix-button.trix-active {
-  background: rgba($orange, 0.4) !important;
-}
+  .trix-button-group {
+    border-bottom: none !important;
+  }
 
-trix-toolbar .trix-button-group {
-  border-bottom: none !important;
-}
-
-trix-toolbar .trix-button {
-  border: 1px solid #CED4DA;
+  .trix-button {
+    border: 1px solid #CED4DA;
+  }
 }
 
 .trix-content {
@@ -117,11 +111,12 @@ trix-toolbar .trix-button {
   border: 1px solid rgba(0, 0, 0, 0.125) !important;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15) !important;
   padding: 0;
+  
   .dropdown-item {
     padding: 0.75rem 1rem;
     color: rgb(53, 53, 53);
     &:active {
-      background-color: $orange;
+      background-color: $primary;
       color: white;
     }
   }
@@ -149,8 +144,4 @@ trix-toolbar .trix-button {
 
 .reputation-down th[scope="row"] {
   @extend .exp-down;
-}
-
-.reason-details {
-  font-size: small;
 }
