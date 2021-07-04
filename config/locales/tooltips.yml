@@ -1,0 +1,7 @@
+en:
+  tooltips:
+    questions:
+    answers:
+      accepted: The question owner accepted this as the best answer on %{date}.
+    reports:
+      new: Report this %{resource}

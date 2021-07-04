@@ -2,7 +2,7 @@
 <div class="row justify-content-center">
   <div class="col-lg-7 col-10 col-sm-7">
     <%= render 'devise/shared/logo' %>
-    <h2 class="text-center mb-4"><%= t('sessions.new') %></h2>
+    <h2 class="text-center mb-4"><%= t('app_titles.sessions.new') %></h2>
 
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="form-inputs">
@@ -17,13 +17,13 @@
         <div class="d-flex justify-content-between">
           <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
           <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-            <small><%= link_to t('passwords.new'), new_password_path(resource_name) %></small>
+            <small><%= link_to t('app_titles.passwords.new'), new_password_path(resource_name) %></small>
           <% end %>
         </div>
       </div>
 
       <div class="form-actions">
-        <%= f.button :submit, t('sessions.new'), class: 'btn btn-primary w-100 mt-4' %>
+        <%= f.button :submit, t('app_titles.sessions.new'), class: 'btn btn-primary w-100 mt-4' %>
       </div>
     <% end %>
 

@@ -10,10 +10,6 @@ en:
           billion: B
           trillion: T
           quadrillion: Q
-  closing_notices:
-    duplicate_html: "<b>This question already has answers here:</b> <a href=%{duplicate_url}>%{duplicate_title}</a>."
-    needs_details_html: <b>Closed.</b> This question needs details or clarity. It is not currently accepting answers.
-    needs_focus_html: This question currently includes multiple questions in one. <b>It should focus on one problem only</b>.
   activerecord:
     attributes:
       question:

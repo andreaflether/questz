@@ -6,7 +6,7 @@
         method: :patch,
         remote: true,
         class: 'text-muted vote-up' do %>
-        <i class="fas fa-caret-up"></i>
+        <i class="fas fa-caret-up me-0"></i>
       <% end %>
 
       <span class="answer-total-votes fs-5"><%= answer.weighted_score %></span>
@@ -15,16 +15,16 @@
         method: :patch,
         remote: true,
         class: 'text-muted vote-down mt-1' do %>
-        <i class="fas fa-caret-down"></i>
+        <i class="fas fa-caret-down me-0"></i>
       <% end %>
       
-      <% if can?(:choose, answer) && !answer.question.answered? %>
+      <% if can?(:choose, answer) && !@is_answered %>
         <%= link_to '#', 
           data: { 
             'bs-toggle': 'modal', 
             'bs-target': '#confirmationModal', 
             'bs-method': :patch,
-            'bs-path': choose_question_answer_path(answer.question, answer),
+            'bs-path': choose_question_answer_path(answer.question.id, answer),
             'bs-content': t('messages.confirmations.mark_answer_as_chosen') 
           },
           class: answer.chosen? ? 'text-primary' : 'text-muted' do %>
@@ -35,9 +35,11 @@
         <% end %>
       <% end %>
 
-      <% if answer.question.answered? && answer.chosen? %>
+      <% if @is_answered && answer.chosen? %>
         <span class="fa-stack fa-xs choose-answer text-primary mt-2"
-          data-bs-toggle="tooltip" title="Hoje eu tô que nem marmita. Só embrulhar e comer.">
+          data-bs-toggle="tooltip" 
+          data-bs-placement="right"
+          title="<%= t('tooltips.answers.accepted', date: l(answer.question.answered_on, format: :long)) %>">
           <i class="fas fa-comment-alt fa-stack-2x"></i>
           <i class="fas fa-check text-white fa-stack-1x"></i>
         </span>

@@ -9,13 +9,13 @@
 
   <%- if controller_name != 'sessions' %>
     <p class="<%= 'mb-0' if controller_name != 'passwords' %>">
-      Already have an account? <b><%= link_to t('sessions.new'), new_session_path(resource_name) %></b>
+      Already have an account? <b><%= link_to t('app_titles.sessions.new'), new_session_path(resource_name) %></b>
     </p>
   <% end %>
 
   <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
     <p class="mb-0">Not a member?  
-      <b><%= link_to t('registrations.new_alt'), new_registration_path(resource_name) %></b>
+      <b><%= link_to t('app_titles.registrations.new_alt'), new_registration_path(resource_name) %></b>
     </p>
   <% end %>
 </div>

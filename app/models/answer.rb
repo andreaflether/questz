@@ -46,7 +46,7 @@ class Answer < ApplicationRecord
       'answer.destroy'
     )
   }
-  validate :question_is_closed, on: :create
+  validate :can_receive_answers?, on: :create
 
   belongs_to :question, counter_cache: true
   belongs_to :user, counter_cache: true
@@ -60,17 +60,18 @@ class Answer < ApplicationRecord
     targets: ->(answer, key) { ([answer.question.user]) },
     group: :question, notifier: :user,
     notifiable_path: :question_notifiable_path,
-    # notifiable_path: ->(answer, key) { "#{answer.question_notifiable_path}#answer_#{answer.id}" },
+    # notifiable_path: ->(object, key) { object.question_notifiable_path + "#answer_#{key}" },
     dependent_notifications: :update_group_and_delete_all
     #printable_name: ->(answer) { "answer \"#{answer.body}\"" },
 
   acts_as_notifiable :answer_owners,
     targets: ->(answer, key) { ([answer.user]) },
+    # notifiable_path: ->(object, key) { object.question_notifiable_path + "#answer_#{key}" },
     notifiable_path: :question_notifiable_path,
     dependent_notifications: :update_group_and_delete_all
 
   def question_notifiable_path
-    question_path(question, anchor: self)
+    question_path(question, anchor: "answer_#{id}")
   end
 
   def set_question_as_solved
@@ -93,11 +94,11 @@ class Answer < ApplicationRecord
     )
   end
 
-  def question_is_closed
-    errors.add(:base, 'This question is closed and can not longer receive answers.') if question.closed?
+  def can_receive_answers?
+    errors.add(:base, I18n.t('errors.answers.question_closed')) if question.closed?
   end
 
   def can_be_marked_as_solved
-    errors.add(:base, 'This question already has an chosen answer.') if question.answered?
+    errors.add(:base, I18n.t('errors.answers.already_answered')) if question.answered?
   end
 end

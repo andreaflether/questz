@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="h-100">
   <head>
-    <title><%= t('application_name') %> | <%= t("#{controller_name}.#{action_name}") %></title>
+    <%= render 'layouts/shared/meta_tags' %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 

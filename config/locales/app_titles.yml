@@ -1,0 +1,43 @@
+en:
+  application_name: Questz
+  defaults:
+    devise:
+      registrations:
+        create: &registrations_create Sign up
+        update: &registrations_update Edit user info 
+      passwords:
+        create: &passwords_create Forgot your password?
+        update: &passwords_update Change password
+    questions:
+      create: &questions_create Ask a question
+      update: &questions_update Update question
+  app_titles:
+    registrations:
+      new: *registrations_create
+      create: *registrations_create
+      new_alt: Sign up now
+      edit: *registrations_update
+      update: *registrations_update
+    sessions:
+      new: Sign in
+    passwords:
+      new: *passwords_create
+      create: *passwords_create
+      edit: *passwords_update
+      update: *passwords_update
+      send_reset_instructions: Send reset instructions
+    answers:
+    tags:
+      index: Tags
+      show: Questions tagged with '%{tag}'
+    questions:
+      new: *questions_create
+      create: *questions_create
+      edit: *questions_update
+      update: *questions_update
+      index: All questions
+    profiles:
+      show: User %{user}
+      reputation: Your reputation
+    notifications_with_devise:
+      index: Your notifications
