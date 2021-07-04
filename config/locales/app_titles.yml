@@ -11,6 +11,8 @@ en:
     questions:
       create: &questions_create Ask a question
       update: &questions_update Update question
+    reports:
+      create: &reports_create New report
   app_titles:
     registrations:
       new: *registrations_create
@@ -40,4 +42,7 @@ en:
       show: User %{user}
       reputation: Your reputation
     notifications_with_devise:
-      index: Your notifications
+      index: Your notifications]
+    reports:
+      new: *reports_create
+      create: *reports_create
