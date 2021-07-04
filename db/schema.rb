@@ -137,6 +137,7 @@ ActiveRecord::Schema.define(version: 2021_04_21_195517) do
     t.text "body", default: "", null: false
     t.integer "answers_count", default: 0
     t.datetime "answered_on"
+    t.string "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
@@ -214,6 +215,7 @@ ActiveRecord::Schema.define(version: 2021_04_21_195517) do
 
   create_table "tags", force: :cascade do |t|
     t.string "name"
+    t.string "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "taggings_count", default: 0

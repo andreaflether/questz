@@ -8,7 +8,12 @@ animals|movies|covid-19|netflix|amazon-prime-video|amazon|apple-tv-plus|globopla
 grammys|disney-plus|hulu|the-cw|hbo|hbo-go|showtime|nbc|abc|fox|warner-bros|
 cbs|spotify|deezer|google|google-chrome|firefox|mental-health|high-school|college|
 linkedin|e-mail|mainstream|electricity|pop|r&b|reggae|country|python|java|
-fanfictions|anime|uber|ubereats|ifood|tiktok|random|javascript|jquery|gmail|
+fanfictions|anime|uber|uber-eats|ifood|tiktok|random|javascript|jquery|gmail|
 yahoo|microsoft|fbi|aws|azure|wattpad|guitar|acoustic-guitar|piano|mouse|
 drums|flute|harp|saxophone|trombone|trompet|violin|cello|earphones|bluetooth|
-notebook|personal-computer|hacking|
+notebook|personal-computer|hacking|universe|geoguessr|cellphone|phone|brainly|
+bitcoin|global-warming|billboard|websites|web-development|frameworks|databases|
+sql|nosql|postgresql|mysql|sqlite|mongodb|firebase|heroku|vercel|react|next-js|
+angular|vue-js|react-native|ajax|famous-people|catchphrases|secrets-of-the-universe|
+school-assigment|homework|essays|mbti|ao3|robots|artificial-intelligence|lgbtqia|
+parties|tech-companies
