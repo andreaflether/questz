@@ -1,11 +1,13 @@
-window.onload = function() {
-  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-toggle="tooltip"]'))
-  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-    return new bootstrap.Tooltip(tooltipTriggerEl)
-  })
-}
+
 
 $(document).ready(function() {
+  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl, {
+      boundary: document.body,
+      placement: 'bottom'
+    })
+  })
   function formatQuestion (question) {
     if (!question.id) {
       return question.text;
@@ -90,4 +92,20 @@ $(document).ready(function() {
   });
 
   DependentFields.bind();
+
+  var exampleModal = document.getElementById('confirmationModal')
+  exampleModal.addEventListener('show.bs.modal', function (event) {
+    var button = event.relatedTarget
+    var modalContent = button.getAttribute('data-bs-content')
+
+    var method = button.getAttribute('data-bs-method')
+    var path = button.getAttribute('data-bs-path')
+    
+    var submitBtn = exampleModal.querySelector('[data-bs-submit]')
+    var modalBodyInput = exampleModal.querySelector('.modal-body')
+
+    modalBodyInput.textContent = modalContent
+    submitBtn.setAttribute('data-method', method)
+    submitBtn.setAttribute('href', path)
+  })
 })

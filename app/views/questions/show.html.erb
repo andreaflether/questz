@@ -2,7 +2,7 @@
   <div class="col-md-9">
     <div class="card question mb-3" id="question_<%= @question.id %>">
       <div class="card-header mt-2 bg-white">
-        <p class="text-orange fw-bold mb-2">
+        <p class="text-primary fw-bold mb-2">
           <%= raw status_to_html(@question.status) %>
         </p>
         <div class="d-flex mb-2">
@@ -55,7 +55,7 @@
           </div>
           <div class="d-flex flex-column flex-fill ms-4">
             <% if @question.closed? %>
-              <div class="alert alert-orange" role="alert">
+              <div class="alert alert-primary" role="alert">
                 <% unless @question.duplicate? %>
                   <%= t("closing_notices.#{@question.closing_notice}_html") %>
                 <% else %>
@@ -64,13 +64,13 @@
                     duplicate_url: question_path(@question.duplicate)) %>
                 <% end %>
                 <br />
-                Closed <%= time_ago_in_words(@question.closed_at) %> ago
+                <small>Closed <%= time_ago_in_words(@question.closed_at) %> ago</small>
                 <% if can? :update, @question %>
                   <hr />
                   <i class="far fa-lightbulb fa-lg me-2"></i> <b>Want to improve this question?</b> Update the question so it follows the
                   <%= link_to 'Questz guidelines', '#' %>. 
                   <%= link_to 'Improve this question', edit_question_path(@question, reopen: true), 
-                    class: 'btn btn-outline-orange fw-bold mt-3'%>
+                    class: 'btn btn-outline-primary fw-bold mt-3'%>
                 <% end %>
               </div>
             <% end %>
@@ -86,20 +86,29 @@
             </div>
             <div class="question-actions small text-muted mt-3">
               <span class="share">
-                <i class="fas fa-share-square"></i>&nbsp;Share
+                <i class="fas fa-share-square"></i>Share
               </span>
               <% if can? :update, @question %>
                 <span class="edit">
                   <%= link_to edit_question_path(@question), class: 'text-muted' do %>
-                    <i class="fas fa-edit"></i>&nbsp;Edit
+                    <i class="fas fa-edit"></i>Edit
                   <% end %> 
                 </span>
               <% end %>
               <% if can? :destroy, @question %>
                 <span class="delete">
-                  <%= link_to question_path(@question), method: :delete, class: 'text-muted' do %>
-                    <i class="fas fa-trash"></i>&nbsp;Delete
-                  <% end %> 
+                  <%= link_to '#', 
+                    data: { 
+                      'bs-toggle': 'modal', 
+                      'bs-target': '#confirmationModal', 
+                      'bs-method': :delete,
+                      'bs-path': question_path(@question),
+                      'bs-content': t('messages.confirmations.delete_question')
+                    },
+                    class: 'text-muted' do %>
+                    <i class="fas fa-trash"></i>Delete
+
+                  <% end %>
                 </span>
               <% end %>
               <% if user_signed_in? && @question.user != current_user %>
@@ -116,12 +125,19 @@
           <h5 class="mb-0 ms-3"><%= pluralize(@question.answers_count, 'answer') %></h5>
           <% if can? :create, @question => Answer %>
             <%= link_to new_question_answer_path(@question), 
-              class: 'btn btn-sm btn-orange fw-bold p-2 me-2' do %>
-              <i class="fas fa-comment"></i> Answer this question 
+              class: 'btn btn-primary me-2' do %>
+              <i class="fas fa-comment"></i>Answer this question 
             <% end %>
           <% end %>
         </div>
-        <%= render @answers.includes([:user]), user_logged: user_signed_in? %>
+        <% if @question.answers_count > 0 %>
+          <%= render @answers.includes([:user]), user_logged: user_signed_in? %>
+        <% else %>
+          <div class="ms-3">
+            <h6>Can you answer this question?</h6>
+            <p class="text-muted">People are searching for an answer to this question.</p>
+          </div>
+        <% end %>
       </ul>
       <% if @question.answers_count > 0 %>
         <div class="card-footer d-flex flex-column flex-lg-row justify-content-between align-items-center">

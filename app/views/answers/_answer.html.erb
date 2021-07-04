@@ -2,7 +2,7 @@
   <div class="d-flex">
     <div class="d-flex flex-column align-items-center answer-votes text-muted" 
       data-user-vote=<%= user_vote(answer) if user_logged %> id="answer_<%= answer.id %>_votes">
-      <%= link_to upvote_question_answer_path(answer),
+      <%= link_to upvote_question_answer_path(answer.question, answer),
         method: :patch,
         remote: true,
         class: 'text-muted vote-up' do %>
@@ -11,21 +11,36 @@
 
       <span class="answer-total-votes fs-5"><%= answer.weighted_score %></span>
     
-      <%= link_to downvote_question_answer_path(answer),
+      <%= link_to downvote_question_answer_path(answer.question, answer),
         method: :patch,
         remote: true,
         class: 'text-muted vote-down mt-1' do %>
         <i class="fas fa-caret-down"></i>
       <% end %>
       
-      <% if can? :choose, answer %>
-        <%= link_to choose_question_answer_path(answer), method: :patch,
-          class: answer.chosen? ? 'text-orange' : 'text-muted' do %>
+      <% if can?(:choose, answer) && !answer.question.answered? %>
+        <%= link_to '#', 
+          data: { 
+            'bs-toggle': 'modal', 
+            'bs-target': '#confirmationModal', 
+            'bs-method': :patch,
+            'bs-path': choose_question_answer_path(answer.question, answer),
+            'bs-content': t('messages.confirmations.mark_answer_as_chosen') 
+          },
+          class: answer.chosen? ? 'text-primary' : 'text-muted' do %>
           <span class="fa-stack fa-xs choose-answer mt-2">
             <i class="fas fa-comment-alt fa-stack-2x"></i>
             <i class="fas fa-check text-white fa-stack-1x"></i>
           </span>
         <% end %>
+      <% end %>
+
+      <% if answer.question.answered? && answer.chosen? %>
+        <span class="fa-stack fa-xs choose-answer text-primary mt-2"
+          data-bs-toggle="tooltip" title="Hoje eu tô que nem marmita. Só embrulhar e comer.">
+          <i class="fas fa-comment-alt fa-stack-2x"></i>
+          <i class="fas fa-check text-white fa-stack-1x"></i>
+        </span>
       <% end %>
     </div>
     <div class="d-flex flex-column ms-4">
@@ -58,23 +73,24 @@
         <% if can?(:edit, answer) %>
           <span class="edit">
             <%= link_to edit_question_answer_path(@question, answer), class: 'text-muted' do %>
-              <i class="fas fa-edit"></i>&nbsp;Edit
+              <i class="fas fa-edit"></i>Edit
             <% end %> 
           </span>
         <% end %>
         <% if can? :destroy, answer %>
           <span class="delete">
             <%= link_to question_answer_path(@question, answer), method: :delete, class: 'text-muted' do %>
-              <i class="fas fa-trash"></i>&nbsp;Delete
+              <i class="fas fa-trash"></i>Delete
             <% end %> 
           </span>
         <% end %>
         <span class="share">
-          <i class="fas fa-share-square"></i>&nbsp;Share
+          <i class="fas fa-share-square"></i>Share
         </span>
         <% if user_signed_in? && current_user.id != answer.user.id %>
-          <%= link_to new_answer_report_path(answer), class: 'text-muted' do %>
-            <i class="far fa-flag"></i> Report
+          <%= link_to new_answer_report_path(answer), class: 'text-muted',
+            data: { 'bs-toggle': 'tooltip'}, title: 'rerwewr' do %>
+            <i class="far fa-flag"></i>Report
           <% end %>
         <% end %>
       </div>
