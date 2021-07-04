@@ -1,4 +1,4 @@
- <nav class="navbar navbar-expand-sm sticky-top navbar-dark bg-dark-blue">
+ <nav class="navbar navbar-expand-md sticky-top navbar-dark bg-dark-blue">
   <div class="container-fluid px-5">
     <h2 class="text-dark logo-font navbar-brand mb-0">
       <%= link_to root_path, class: 'align-middle text-light' do %>
@@ -25,15 +25,24 @@
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to '', class: 'nav-link' do %>
-              <i class="fas fa-comment-dots fa-lg"></i>
-            <% end %>
-          </li>
-          <li class="nav-item">
             <%= active_link_to reputation_path, class: 'nav-link' do %>
               <i class="fas fa-star fa-lg"></i>
             <% end %>
           </li>
+          <li class="nav-item">
+            <%= render_notifications_of current_user, fallback: :default, index_content: :with_attributes, devise_default_routes: respond_to?('notifications_path') %>
+            <%#= render_notification(current_user.notifications.where(key: ['answer.upvote', 'answer.create']), fallback: :default, index_content: :with_attributes, devise_default_routes: respond_to?('notifications_path')) %>
+          </li>
+          <!--
+          <li class="nav-item">
+            <%# if user_signed_in? %>
+              <%#= render_notifications_of current_user, fallback: :default, index_content: :with_attributes, devise_default_routes: respond_to?('notifications_path') %>
+              <%#= render_notifications_of current_user, fallback: :default, index_content: :unopened_with_attributes, reverse: true %>
+              <%#= render_notifications_of current_user, fallback: :default, index_content: :with_attributes, as_latest_group_member: true %>
+              <%#= render_notifications_of current_user, fallback: :default_without_grouping, index_content: :with_attributes, with_group_members: true %>
+            <%# end %>
+          </li>
+          -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" role="button" id="profile" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fas fa-user fa-lg"></i>
@@ -57,20 +66,20 @@
             </ul>
           </li>
           <li class="nav-item">
-            <%= link_to new_question_path, class: 'nav-link btn btn-orange' do %>
-              <i class="fas fa-plus fa-lg"></i>
+            <%= link_to new_question_path, class: 'nav-link btn btn-primary' do %>
+              <i class="fas fa-plus fa-lg me-0"></i>
             <% end %> 
           </li>
         <% else %>
           <li class="nav-item">
             <%= link_to new_user_session_path, 
-                class: 'nav-link btn btn-default fw-bold text-uppercase me-2' do %>
+                class: 'btn btn-default px-4 py-2 fw-bold text-uppercase me-2' do %>
               <small>Login</small>
             <% end %>
           </li>
           <li class="nav-item mr-2">
             <%= link_to new_user_registration_path, 
-                class: 'nav-link btn btn-orange fw-bold text-uppercase' do %>
+                class: 'btn btn-primary px-4 py-2 fw-bold text-uppercase' do %>
               <small>Sign up</small>
             <% end %>
           </li>

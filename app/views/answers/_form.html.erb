@@ -3,7 +3,7 @@
     <div class="card-header py-3 bg-white">
       <h5 class="card-title mb-0">
         Question: 
-        <span class="text-orange"><%= @question.title %></span>
+        <span class="text-primary"><%= @question.title %></span>
       </h5>
     </div>
     <div class="card-body">
@@ -26,7 +26,10 @@
     </div>
     <div class="card-footer py-3 bg-white d-flex justify-content-between">
       <%= link_to 'Return to question', question_path(@question), class: 'btn btn-default'%>
-      <%= f.button :submit, class: 'btn btn-orange' %>
+      <%= f.button :submit, 
+        t("buttons.#{controller_name}.#{action_name}"), 
+        class: 'btn btn-primary' 
+      %>
     </div>
   </div>
 <% end %>

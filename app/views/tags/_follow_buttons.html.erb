@@ -1,11 +1,11 @@
 <% if current_user.following?(@tag) %>
   <%= link_to unfollow_tag_path(@tag), remote: true, method: :patch,
-    class: 'btn btn-sm fw-bold btn-orange ms-3' do %>
-    <i class="fas fa-minus"></i>&nbsp; Stop following
+    class: 'btn btn-sm fw-bold btn-primary ms-3' do %>
+    <i class="fas fa-minus"></i>Stop following
   <% end %>
 <% else %>
   <%= link_to follow_tag_path(@tag), remote: true, method: :patch,
-    class: 'btn btn-sm fw-bold btn-outline-orange ms-3' do %>
-    <i class="fas fa-plus"></i>&nbsp; Follow this tag
+    class: 'btn btn-sm fw-bold btn-outline-primary ms-3' do %>
+    <i class="fas fa-plus"></i>Follow this tag
   <% end %>
 <% end %>

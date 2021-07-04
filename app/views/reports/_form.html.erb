@@ -18,14 +18,14 @@
           <%= b.radio_button(class: 'form-check-input') %>
           <%= b.label(class: 'form-check-label fw-bold d-block') %>
 
-          <span class="reason-details">
+          <span class="reason-details small">
             <%= t("simple_form.hints.reasons.#{b.value}_html") %>
           </span>
 
           <% if b.value == 'duplicate' && reportable_type == 'Question' %>
             <div class="js-dependent-fields" data-radio-name='report[reason]' data-radio-value="duplicate">
               <p class="mt-2 mb-0">
-                <span class="fw-bold text-orange">
+                <span class="fw-bold text-primary">
                   "<%= @reportable.title %>"
                 </span> is a duplicate of...
               </p>
@@ -50,7 +50,7 @@
       <% end %>
     </div>
     <div class="card-footer">
-      <%= f.button :submit, class: 'btn btn-orange' %>
+      <%= f.button :submit, class: 'btn btn-primary' %>
     </div>
   <% end %>
 </div>

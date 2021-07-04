@@ -10,12 +10,9 @@
             <% if question.closed? && !question.duplicate? %>
               <%= f.input :reopen, as: :hidden, input_html: { value: params[:reopen] }, wrapper: false, label: false %>
             <% end %>
-            <%= f.input :title,
-              hint: 'Be specific and imagine you’re asking a question to another person' %>
-            <%= f.input :body, as: :trix_editor,
-              hint: 'Expand the summary you put in the title'  %>
+            <%= f.input :title %>
+            <%= f.input :body, as: :trix_editor %>
             <%= f.input :tag_list,
-              hint: "Add up to #{Question::MAX_TAGS_ALLOWED} tags to describe what your question is about",
               wrapper_html: { class: 'mt-3'},
               collection: f.object.tag_list.collect { |t| t },
               input_html: { 
@@ -36,7 +33,10 @@
 
           <div class="form-actions d-flex justify-content-between">
             <%= link_to 'Back', :back, class: 'btn btn-default' %>
-            <%= f.button :submit, class: 'btn btn-orange' %>
+            <%= f.button :submit, 
+              t("buttons.#{controller_name}.#{action_name}"), 
+              class: 'btn btn-primary' 
+            %>
           </div>
         <% end %>
       </div>
@@ -44,18 +44,16 @@
   </div>
   <div class="col-md-3">
     <div class="card">
-      <div class="card-header">
-        <div class="card-title my-auto">
-          <p class="mb-0">Step 1: Draft your question</p>
-        </div>
-      </div>
       <div class="card-body">
+        <p class="mb-1">
+          Ask <b>anything!</b> But be nice and have a read in the <%= link_to 'Questz guidelines', '#' %> :)
+        </p>
         <p class="mb-1">
           The community is here to help you every question you may have.
         </p>
       </div>
       <div class="tips small px-3 border-top">
-        <p class="fw-bold text-orange mb-2 mt-3">Tips on getting good answers quickly</p>
+        <p class="fw-bold text-primary mb-2 mt-3">Tips on getting good answers quickly</p>
         <ul>
           <li>
             Make sure your question has not been asked already

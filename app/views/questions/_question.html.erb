@@ -14,7 +14,8 @@
       <% end %>
 
       <div class="flex-fill">
-        <%= link_to question.title, question_path(question), class: 'fw-normal text-dark question-title' %>   
+        <%= link_to question.title, question_path(question), 
+          class: 'fw-normal text-dark question-title' %>   
       
         <div class="d-flex my-2 question-stats text-muted">
           <div class="answers">
@@ -33,7 +34,7 @@
           </div>
           <div class="created-at mt-2 mt-md-0 flex-shrink-0 small">
             <span class="text-muted me-3">Asked <%= time_ago_in_words(question.created_at) %> ago</span>
-            <span class='fw-bold text-orange'>
+            <span class='fw-bold text-primary'>
               <%= raw status_to_html(question.status) %>
             </span>
           </div>
