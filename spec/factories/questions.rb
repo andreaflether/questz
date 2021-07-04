@@ -5,6 +5,7 @@
 # Table name: questions
 #
 #  id                 :integer          not null, primary key
+#  answered_on        :datetime
 #  answers_count      :integer          default(0)
 #  body               :text             default(""), not null
 #  cached_votes_down  :integer          default(0)
