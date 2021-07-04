@@ -6,6 +6,7 @@
 #
 #  id             :integer          not null, primary key
 #  name           :string
+#  slug           :string
 #  taggings_count :integer          default(0)
 #  created_at     :datetime
 #  updated_at     :datetime

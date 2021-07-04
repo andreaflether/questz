@@ -5,7 +5,7 @@ class QuestionsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show upvote downvote search]
   before_action :authenticate_remote!, only: %i[upvote downvote]
   impressionist actions: [:show], unique: %i[impressionable_type impressionable_id ip_address]
-  load_and_authorize_resource except: %i[search]
+  load_and_authorize_resource except: %i[search], find_by: :slug
 
   # GET /questions
   def index
@@ -38,8 +38,11 @@ class QuestionsController < ApplicationController
 
   # GET /questions/1
   def show
-    @related_questions = @question.find_related_tags.limit(8)
-    @answers = @question.answers.page(params[:page])
+    @related_questions = @question.find_related_tags
+                                  .limit(8)
+    @answers = @question.answers
+                        .page(params[:page])
+    @is_answered = @question.answered?
   end
 
   # GET /questions/new
@@ -119,7 +122,7 @@ class QuestionsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_question
-    @question = Question.find(params[:id])
+    @question = Question.find_by_slug(params[:id])
   end
 
   # Only allow a list of trusted parameters through.

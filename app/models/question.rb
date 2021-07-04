@@ -15,6 +15,7 @@
 #  closed_at          :datetime
 #  closing_notice     :integer
 #  impressions_count  :integer          default(0)
+#  slug               :string
 #  status             :integer          default("unanswered")
 #  title              :string           default(""), not null
 #  created_at         :datetime         not null
@@ -30,6 +31,7 @@ class Question < ApplicationRecord
   acts_as_votable
   acts_as_taggable_on :tags
   acts_as_notification_group printable_name: ->(question) { "question \"#{question.title}\"" }
+  acts_as_url :title, url_attribute: :slug, sync_url: true, limit: 80
 
   include PublicActivity::Model
   tracked only: %i[create destroy], owner: ->(_controller, model) { model.user }
@@ -92,9 +94,13 @@ class Question < ApplicationRecord
   validate :clean_closing_fields, if: -> { status_changed?(from: 'closed') }
   validate :set_answered_timestamp, if: -> { status_changed?(to: 'answered') }
 
+  def to_param
+    slug
+  end
+  
   def tag_list_count
-    errors.add(:tag_list, 'Please select at least 1 tag to identify your question') if tag_list.count < MIN_TAGS_ALLOWED
-    errors.add(:tag_list, 'Please enter no more than 5 tags.') if tag_list.count > MAX_TAGS_ALLOWED
+    errors.add(:tag_list, I18n.t('errors.questions.tags.at_least_one')) if tag_list.count < MIN_TAGS_ALLOWED
+    errors.add(:tag_list, I18n.t('errors.questions.tags.at_most_five')) if tag_list.count > MAX_TAGS_ALLOWED
   end
 
   def has_answers?
@@ -102,7 +108,7 @@ class Question < ApplicationRecord
   end
 
   def check_for_answers
-    errors.add(:base, 'You cannot delete this question because it already has answers.') if has_answers?
+    errors.add(:base, I18n.t('errors.questions.has_answers')) if has_answers?
   end
 
   def set_closed_at_timestamp

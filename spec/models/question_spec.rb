@@ -15,6 +15,7 @@
 #  closed_at          :datetime
 #  closing_notice     :integer
 #  impressions_count  :integer          default(0)
+#  slug               :string
 #  status             :integer          default("unanswered")
 #  title              :string           default(""), not null
 #  created_at         :datetime         not null

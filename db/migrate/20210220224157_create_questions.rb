@@ -8,6 +8,7 @@ class CreateQuestions < ActiveRecord::Migration[5.2]
       t.text :body, null: false, default: ''
       t.integer :answers_count, default: 0
       t.datetime :answered_on
+      t.string :slug, unique: true
 
       t.timestamps
     end
