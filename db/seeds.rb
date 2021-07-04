@@ -7,7 +7,7 @@ file.read.split('|').each do |tag|
   Tag.find_or_create_by(name: tag.strip)
 end
 
-if !Rails.env.production?
+unless Rails.env.production?
   def create_answer(question)
     Answer.create(
       body: Faker::Lorem.paragraph_by_chars(number: rand(100..200), supplemental: true),

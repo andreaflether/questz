@@ -53,6 +53,6 @@ class TagsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_tag
-    @tag = Tag.find_by_slug(params[:id])
+    @tag = Tag.find_by(slug: params[:id])
   end
 end

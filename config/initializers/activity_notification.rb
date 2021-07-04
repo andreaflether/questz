@@ -1,19 +1,20 @@
-ActivityNotification.configure do |config|
+# frozen_string_literal: true
 
+ActivityNotification.configure do |config|
   # Configure if all activity notifications are enabled
   # Set false when you want to turn off activity notifications
   config.enabled = true
 
   # Configure ORM name for ActivityNotification.
   # Set :active_record, :mongoid or :dynamoid.
-  ENV['AN_ORM'] = 'active_record' if ['mongoid', 'dynamoid'].exclude?(ENV['AN_ORM'])
+  ENV['AN_ORM'] = 'active_record' if %w[mongoid dynamoid].exclude?(ENV['AN_ORM'])
   config.orm = ENV['AN_ORM'].to_sym
 
   # Configure table name to store notification data.
-  config.notification_table_name = "notifications"
+  config.notification_table_name = 'notifications'
 
   # Configure table name to store subscription data.
-  config.subscription_table_name = "subscriptions"
+  config.subscription_table_name = 'subscriptions'
 
   # Configure if email notification is enabled as default.
   # Note that you can configure them for each model by acts_as roles.
@@ -96,5 +97,4 @@ ActivityNotification.configure do |config|
 
   # Configure notification API channel prefix for ActionCable.
   config.notification_api_channel_prefix = 'activity_notification_api_channel'
-
 end

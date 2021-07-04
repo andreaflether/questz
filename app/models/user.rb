@@ -112,7 +112,7 @@ class User < ApplicationRecord
   end
 
   def new_user?
-    created_at.between?(Time.now - 1.month, Time.now)
+    created_at.between?(Time.zone.now - 1.month, Time.zone.now)
   end
 
   scope :top_users, lambda {

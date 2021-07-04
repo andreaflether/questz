@@ -52,23 +52,23 @@ class Answer < ApplicationRecord
   belongs_to :user, counter_cache: true
   has_many :reports, as: :reportable
 
-  validate :can_be_marked_as_solved, if: -> { chosen_changed?(from: false, to: true)}
+  validate :can_be_marked_as_solved, if: -> { chosen_changed?(from: false, to: true) }
   validate :set_question_as_solved, if: -> { chosen_changed?(from: false, to: true) }
   validates :body, length: { in: 15..30_000, allow_blank: true }, presence: true
 
   acts_as_notifiable :users,
-    targets: ->(answer, key) { ([answer.question.user]) },
-    group: :question, notifier: :user,
-    notifiable_path: :question_notifiable_path,
-    # notifiable_path: ->(object, key) { object.question_notifiable_path + "#answer_#{key}" },
-    dependent_notifications: :update_group_and_delete_all
-    #printable_name: ->(answer) { "answer \"#{answer.body}\"" },
+                     targets: ->(answer, _key) { [answer.question.user] },
+                     group: :question, notifier: :user,
+                     notifiable_path: :question_notifiable_path,
+                     # notifiable_path: ->(object, key) { object.question_notifiable_path + "#answer_#{key}" },
+                     dependent_notifications: :update_group_and_delete_all
+  # printable_name: ->(answer) { "answer \"#{answer.body}\"" },
 
   acts_as_notifiable :answer_owners,
-    targets: ->(answer, key) { ([answer.user]) },
-    # notifiable_path: ->(object, key) { object.question_notifiable_path + "#answer_#{key}" },
-    notifiable_path: :question_notifiable_path,
-    dependent_notifications: :update_group_and_delete_all
+                     targets: ->(answer, _key) { [answer.user] },
+                     # notifiable_path: ->(object, key) { object.question_notifiable_path + "#answer_#{key}" },
+                     notifiable_path: :question_notifiable_path,
+                     dependent_notifications: :update_group_and_delete_all
 
   def question_notifiable_path
     question_path(question, anchor: "answer_#{id}")

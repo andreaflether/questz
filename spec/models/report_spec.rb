@@ -49,10 +49,11 @@ RSpec.describe Report, type: :model do
 
   it { expect(subject).to validate_absence_of(:mod_attention_details) }
 
-  it { expect(Report.question_reasons).not_to have_key([:not_an_answer, :no_longer_needed]) }
-  it { 
-    expect(Report.answer_reasons).not_to have_key(
-      [:needs_details, :needs_focus, :duplicate, :no_longer_needed]
-    ) 
+  it { expect(described_class.question_reasons).not_to have_key(%i[not_an_answer no_longer_needed]) }
+
+  it {
+    expect(described_class.answer_reasons).not_to have_key(
+      %i[needs_details needs_focus duplicate no_longer_needed]
+    )
   }
 end

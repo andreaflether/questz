@@ -97,7 +97,7 @@ class Question < ApplicationRecord
   def to_param
     slug
   end
-  
+
   def tag_list_count
     errors.add(:tag_list, I18n.t('errors.questions.tags.at_least_one')) if tag_list.count < MIN_TAGS_ALLOWED
     errors.add(:tag_list, I18n.t('errors.questions.tags.at_most_five')) if tag_list.count > MAX_TAGS_ALLOWED

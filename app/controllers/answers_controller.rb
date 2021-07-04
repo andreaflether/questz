@@ -56,7 +56,7 @@ class AnswersController < ApplicationController
   # PATCH /answers/1/choose
   def choose
     @answer.chosen = true
-    
+
     if @answer.save
       redirect_to @answer.question, notice: 'Your question is now answered!'
       @answer.notify :answer_owners, key: 'answer.chosen'
@@ -107,7 +107,7 @@ class AnswersController < ApplicationController
   end
 
   def set_question
-    @question = Question.find_by_slug(params[:question_id])
+    @question = Question.find_by(slug: params[:question_id])
   end
 
   # Only allow a list of trusted parameters through.
