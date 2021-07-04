@@ -22,6 +22,15 @@
         <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
         <%= f.error_notification %>
       </div>
+
+      <% if @question.user.new_user? %>
+        <div class="alert alert-primary" role="alert">
+          <i class="fas fa-hand-peace me-1"></i>
+          <%= link_to @question.user.name, profile_path(@question.user), target: '_blank' %> 
+          is a new contributor. Be nice, and check out our 
+          <%= link_to 'Code of Conduct', '#', target: '_blank' %>.
+        </div>
+      <% end %>
       <%= f.input :body, as: :trix_editor, label: false %>
     </div>
     <div class="card-footer py-3 bg-white d-flex justify-content-between">

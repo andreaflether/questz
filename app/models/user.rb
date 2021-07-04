@@ -111,6 +111,10 @@ class User < ApplicationRecord
     reports.where(reportable: reportable)
   end
 
+  def new_user?
+    created_at.between?(Time.now - 1.month, Time.now)
+  end
+
   scope :top_users, lambda {
     Honor::Scorecard.leaderboard(User.all.map(&:id), rank_by: 'lifetime', sort_direction: 'desc')
                     .includes(:user)
