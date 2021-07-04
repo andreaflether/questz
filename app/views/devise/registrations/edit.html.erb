@@ -5,7 +5,7 @@
     html: { method: :put }) do |f| %>
     <div class="card pb-0 mx-auto col-md-8">
       <div class="card-header bg-white">
-        <h5 class="text-orange my-2">Personal information</h5>
+        <h5 class="text-primary my-2">Personal information</h5>
       </div>
       <div class="card-body pb-0">
         <div class="row justify-content-center">
@@ -20,10 +20,10 @@
               id: 'user-avatar') %>
             <% end %> 
             
-            <a class="btn btn-outline-orange" 
+            <a class="btn btn-outline-primary" 
               data-bs-toggle="modal" 
               data-bs-target="#changeAvatarModal">
-              <i class="fas fa-pencil-alt"></i> Change profile picture
+              <i class="fas fa-pencil-alt"></i>Change profile picture
             </a>
           </div>
           <div class="col-md-8">
@@ -35,7 +35,7 @@
           </div>
         </div>
       </div>
-      <h5 class="text-orange border-top border-bottom py-3 ps-3 mt-4 mb-3">Change password</h5>
+      <h5 class="text-primary border-top border-bottom py-3 ps-3 mt-4 mb-3">Change password</h5>
       <div class="row px-3 mb-2 mt-1">
         <div class="col-md-6">
           <%= f.input :password,
@@ -54,14 +54,13 @@
         <div class="form-actions mx-auto w-50">
           <%= f.input :current_password,
                       hint: 'we need your current password to confirm your changes',
-                      label_html: { class: 'text-orange' },
+                      label_html: { class: 'text-primary' },
                       required: true,
                       input_html: { autocomplete: 'current-password' } %>
-          <%= f.button :submit, 'Update', class: 'btn btn-orange w-100' %>
+          <%= f.button :submit, 'Update', class: 'btn btn-primary w-100' %>
         </div>
       </div>    
     </div>
     <%= render 'devise/registrations/change_avatar_modal', resource: resource, f: f %>
-    <%= render 'devise/registrations/delete_account' %>
   <% end %>
 </div>
