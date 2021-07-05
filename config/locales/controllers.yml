@@ -1,5 +1,14 @@
 en:
   controllers:
+    questions:
+      create: Your question was successfully posted!
+      update: Question was successfully updated.
+      destroy: Question was successfully destroyed.
+    answers:
+      create: Your answer was successfully posted!
+      update: Answer was successfully updated.
+      destroy: Answer was successfully destroyed.
+      choose: Your question is now answered!
     reports:
       create: Your report was successfully submitted.
       owned: You can't report your own %{reportable_type}.

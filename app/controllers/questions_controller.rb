@@ -59,7 +59,7 @@ class QuestionsController < ApplicationController
     @question.user = current_user
 
     if @question.save
-      redirect_to @question, notice: 'Question was successfully created.'
+      redirect_to @question, notice: I18n.t('controllers.questions.create')
     else
       render :new
     end
@@ -68,7 +68,7 @@ class QuestionsController < ApplicationController
   # PATCH/PUT /questions/1
   def update
     if @question.update(question_params)
-      redirect_to @question, notice: 'Question was successfully updated.'
+      redirect_to @question, notice: I18n.t('controllers.questions.update')
     else
       render :edit
     end
@@ -77,7 +77,7 @@ class QuestionsController < ApplicationController
   # DELETE /questions/1
   def destroy
     @question.destroy
-    redirect_to questions_url, notice: 'Question was successfully destroyed.'
+    redirect_to questions_url, notice: I18n.t('controllers.questions.destroy')
   end
 
   # PATCH /questions/1/upvote

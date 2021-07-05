@@ -20,6 +20,8 @@
 require 'rails_helper'
 
 RSpec.describe Answer, type: :model do
+  subject { create(:answer) }
+  
   describe '#title' do
     it { expect(subject).to validate_length_of(:body).is_at_least(15).is_at_most(30_000) }
     it { expect(subject).to validate_presence_of(:body) }

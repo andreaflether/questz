@@ -32,7 +32,7 @@ class AnswersController < ApplicationController
 
     if @answer.save
       @answer.notify :users, key: 'answer.create' if @question.user != current_user
-      redirect_to @question, notice: 'Your answer was successfully posted!'
+      redirect_to @question, notice: I18n.t('controllers.answers.create')
     else
       render :new
     end
@@ -41,7 +41,7 @@ class AnswersController < ApplicationController
   # PATCH/PUT /answers/1
   def update
     if @answer.update(answer_params)
-      redirect_to @answer, notice: 'Answer was successfully updated.'
+      redirect_to @answer, notice: I18n.t('controllers.answers.update')
     else
       render :edit
     end
@@ -50,7 +50,7 @@ class AnswersController < ApplicationController
   # DELETE /answers/1
   def destroy
     @answer.destroy
-    redirect_to @answer.question, notice: 'Answer was successfully destroyed.'
+    redirect_to @answer.question, notice: I18n.t('controllers.answers.destroy')
   end
 
   # PATCH /answers/1/choose
@@ -58,7 +58,7 @@ class AnswersController < ApplicationController
     @answer.chosen = true
 
     if @answer.save
-      redirect_to @answer.question, notice: 'Your question is now answered!'
+      redirect_to @answer.question, notice: I18n.t('controllers.answers.choose')
       @answer.notify :answer_owners, key: 'answer.chosen'
     else
       redirect_to @answer.question, flash: { error: @answer.errors.full_messages.first }
