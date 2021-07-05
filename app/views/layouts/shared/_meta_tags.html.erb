@@ -2,6 +2,18 @@
   title: t("app_titles.#{controller_name}.#{action_name}"),
   reverse: true,
   separator: '/',
-  description: 'Member login page.',
-  keywords: 'Questions, Forum, Questz' 
+  description: "Share your knowledge. It's a way to achieve immortality.",
+  keywords: 'Questions, Forum, Questz',
+  og: {
+    title: :title,
+    description: :description
+  },
+  twitter: {
+    card: 'summary',
+    image: {
+      _: asset_url('og_image.png'),
+      width:  500,
+      height: 500,
+    }
+  }
 %>
