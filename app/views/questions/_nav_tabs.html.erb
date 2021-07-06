@@ -1,0 +1,26 @@
+<ul class="nav nav-pills small navigation-tabs">
+  <li class="nav-item">
+    <%= active_link_to t('titles.questions.tabs.popular'), 
+      url_for(request.params.slice(:tag)), 
+      class: 'nav-link main-tab',
+      active: :exact %>
+  </li>
+  <li class="nav-item">
+    <%= active_link_to t('titles.questions.tabs.newest'), 
+      url_for(request.params.merge(tab: 'newest')), 
+      class: 'nav-link newest',
+      active: :exact %>
+  </li>
+  <li class="nav-item">
+    <%= active_link_to t('titles.questions.tabs.answered'), 
+      url_for(request.params.merge(tab: 'answered')), 
+      class: 'nav-link answered',
+      active: :exact %>
+  </li>
+  <li class="nav-item">
+    <%= active_link_to t('titles.questions.tabs.unanswered'), 
+      url_for(request.params.merge(tab: 'unanswered')), 
+      class: 'nav-link unanswered',
+      active: :exact %>
+  </li>
+</ul>

@@ -1,7 +1,16 @@
 en:
-  tooltips:
+  titles:
     questions:
+      upvote: This question is useful and clear
+      downvote: This question is unclear and not useful
+      tabs:
+        popular: Popular
+        newest: Newest
+        answered: Answered
+        unanswered: Unanswered
     answers:
       accepted: The question owner accepted this as the best answer on %{date}.
+      upvote: This answer is useful
+      downvote: This answer is not useful
     reports:
       new: Report this %{resource}

@@ -1,13 +1,6 @@
 
 
 $(document).ready(function() {
-  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-    return new bootstrap.Tooltip(tooltipTriggerEl, {
-      boundary: document.body,
-      placement: 'bottom'
-    })
-  })
   function formatQuestion (question) {
     if (!question.id) {
       return question.text;
@@ -65,27 +58,6 @@ $(document).ready(function() {
       ...select2Data
     }
   });  
-
-  var urlParams = new URLSearchParams(window.location.search);
-
-  if(urlParams.toString().length) {
-    for (const [key] of urlParams) { 
-      $('.navigation-tabs').find(`.${key}`).addClass('active');
-    }
-  } else {
-    $('.navigation-tabs').find('.main-tab').addClass('active');
-  }
-
-  $('.followed-tags > .list-group-item.tag').filter(function(){
-    return this.innerHTML == urlParams.get('tag');
-  }).addClass('active');
-
-  const current_tab = urlParams.get('tab');
-
-  if(current_tab !== null) {
-    $('.navigation-tabs').find('.main-tab').removeClass('active');
-    $('.navigation-tabs').find(`.${current_tab}`).addClass('active');
-  }
 
   $('#tags_row').masonry({
     percentPosition: true

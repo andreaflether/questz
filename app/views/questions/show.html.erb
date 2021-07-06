@@ -8,7 +8,8 @@
           <%= raw status_to_html(@question.status) %>
         </p>
         <div class="d-flex mb-2">
-          <%= link_to profile_path(@question.user), class: 'mb-auto' do %>
+          <%= link_to profile_path(@question.user), 
+            class: 'mb-auto' do %>
             <% if @question.user.avatar? %>
               <%= image_tag(@question.user.avatar_url, 
                 class: 'rounded-circle user-avatar-50 me-2') %>
@@ -26,7 +27,7 @@
               <%= link_to @question.user.name, profile_path(@question.user), class: 'fw-bold' %>
               
               <span class="question-date">
-                on <b><%= format_datetime(@question.created_at) %></b>
+                on <b><%= format_datetime(@question.created_at.localtime) %></b>
                 (<%= time_ago_in_words(@question.created_at) %> ago)
               </span>
               &nbsp;·&nbsp;
@@ -42,7 +43,8 @@
             <%= link_to upvote_question_path(@question),
               method: :patch,
               remote: true,
-              class: 'text-muted vote-up' do %>
+              class: 'text-muted vote-up',
+              title: t('titles.questions.upvote') do %>
               <i class="fas fa-caret-up"></i>
             <% end %>
 
@@ -51,7 +53,8 @@
             <%= link_to downvote_question_path(@question),
               method: :patch,
               remote: true,
-              class: 'text-muted vote-down mt-1' do %>
+              class: 'text-muted vote-down mt-1',
+              title: t('titles.questions.downvote') do %>
               <i class="fas fa-caret-down"></i>
             <% end %>
           </div>

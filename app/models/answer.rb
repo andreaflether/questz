@@ -46,13 +46,13 @@ class Answer < ApplicationRecord
       'answer.destroy'
     )
   }
-  validate :can_receive_answers?, on: :create
+  validate :cannot_receive_answers, on: :create, unless: -> { question.answered? }
 
   belongs_to :question, counter_cache: true
   belongs_to :user, counter_cache: true
   has_many :reports, as: :reportable
 
-  validate :can_be_marked_as_solved, if: -> { chosen_changed?(from: false, to: true) }
+  validate :can_be_marked_as_solved?, if: -> { chosen_changed?(from: false, to: true) }
   validate :set_question_as_solved, if: -> { chosen_changed?(from: false, to: true) }
   validates :body, length: { in: 15..30_000, allow_blank: true }, presence: true
 
@@ -94,11 +94,11 @@ class Answer < ApplicationRecord
     )
   end
 
-  def can_receive_answers?
+  def cannot_receive_answers
     errors.add(:base, I18n.t('errors.answers.question_closed')) if question.closed?
   end
 
-  def can_be_marked_as_solved
+  def can_be_marked_as_solved?
     errors.add(:base, I18n.t('errors.answers.already_answered')) if question.answered?
   end
 end

@@ -20,20 +20,28 @@
       <ul class="navbar-nav ms-auto mb-0 align-items-center">
         <% if user_signed_in? %>
           <li class="nav-item" >
-            <%= active_link_to root_path, active: [questions: :feed, pages: :home], class: 'nav-link' do %>
+            <%= active_link_to root_path, 
+              active: [questions: :feed, pages: :home], 
+              class: 'nav-link',
+              title: t('app_titles.questions.feed') do %>
               <i class="fas fa-home fa-lg"></i>
             <% end %>
           </li>
           <li class="nav-item">
-            <%= active_link_to reputation_path, class: 'nav-link' do %>
+            <%= active_link_to reputation_path, class: 'nav-link', title: t('app_titles.profiles.reputation') do %>
               <i class="fas fa-star fa-lg"></i>
             <% end %>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" title="<%= t('app_titles.notifications_with_devise.index')%>">
             <%= render_notifications_of current_user, fallback: :default, index_content: :with_attributes, devise_default_routes: respond_to?('notifications_path'), limit: 5 %>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" role="button" id="profile" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" 
+              role="button" 
+              id="profile" 
+              data-bs-toggle="dropdown" 
+              aria-expanded="false"
+              title="<%= t('app_titles.users.info') %>">
               <i class="fas fa-user fa-lg"></i>
             </a> 
             <ul class="dropdown-menu user-actions-menu" aria-labelledby="profile">
@@ -55,7 +63,9 @@
             </ul>
           </li>
           <li class="nav-item">
-            <%= link_to new_question_path, class: 'nav-link btn btn-primary' do %>
+            <%= link_to new_question_path, 
+              class: 'nav-link btn btn-primary',
+              title: t('app_titles.questions.new') do %>
               <i class="fas fa-plus fa-lg me-0"></i>
             <% end %> 
           </li>

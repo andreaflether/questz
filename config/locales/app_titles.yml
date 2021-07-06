@@ -10,7 +10,7 @@ en:
         update: &passwords_update Change password
     questions:
       create: &questions_create Ask a question
-      update: &questions_update Update question
+      update: &questions_update Editing question
     reports:
       create: &reports_create New report
   app_titles:
@@ -38,11 +38,14 @@ en:
       edit: *questions_update
       update: *questions_update
       index: All questions
+      feed: Your feed
     profiles:
       show: User %{user}
       reputation: Your reputation
     notifications_with_devise:
-      index: Your notifications]
+      index: Your notifications
     reports:
       new: *reports_create
       create: *reports_create
+    users:
+      info: User information
