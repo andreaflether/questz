@@ -3,7 +3,11 @@ ports:
     onOpen: open-preview
 tasks:
   - init: >
-      bundle install --without production &&
+      \curl -sSL https://get.rvm.io | bash -s stable --rails && 
+      rvm install ruby-2.5.5 && 
+      rvm --default use ruby-2.5.5 &&
+      gem install bundler:2.1.4 &&
+      bundle install
       yarn install
     command: >
       rails server
