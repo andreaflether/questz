@@ -7,7 +7,7 @@
 	<div class="flex-grow-1 ms-2 my-auto">
 		<%= content_for :action_body %>
 		&nbsp;·&nbsp; 
-		<span class="text-muted">
+		<span class="text-muted" title="<%= l(activity.created_at, format: :long) %>">
 			<%= time_ago_in_words(activity.created_at) %> ago
 		</span>
 	</div>

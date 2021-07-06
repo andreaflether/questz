@@ -4,13 +4,25 @@
   <div class="row align-items-center">
     <div class="col-md-7 py-4 text-white">
       <div class="d-flex">
-        <% if @user.avatar? %>
-        <%= image_tag(@user.avatar_url, 
-          class: 'img-fluid rounded-circle user-avatar-display') %>
-        <% else %>
-          <%= image_tag 'no-avatar.png',
-          class: 'img-fluid rounded-circle user-avatar-display' %>
-        <% end %> 
+        <div class="asap">
+          <% if @user.avatar? %>
+          <%= image_tag(@user.avatar_url, 
+            class: 'img-fluid rounded-circle user-avatar-display') %>
+          <% else %>
+            <%= image_tag 'no-avatar.png',
+            class: 'img-fluid rounded-circle user-avatar-display' %>
+          <% end %> 
+          <% unless @user.user? %>
+            <div class="text-primary position-relative">
+              <div class="position-absolute top-50 start-50 translate-middle fs-4">
+                <span class="badge bg-primary circular-badge" 
+                  title="<%= t("enums.user.role.#{@user.role}") %>"> 
+                  <i class="fas <%= get_icon_class_for(@user.role) %>"></i>
+                </span>
+              </div>
+            </div>
+          <% end %>
+        </div>
         <div class="flex-fill ms-3">
           <h3 class=" mb-0 mt-2 text-break"><%= @user.name %></h3>
           <p class="fs-5 mb-2 text-white-75">@<%= @user.username %></p>

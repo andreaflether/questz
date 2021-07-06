@@ -11,3 +11,8 @@ en:
         not_an_answer: Not an answer
         no_longer_needed: It's no longer needed
         mod_intervention: In need of moderator intervention
+    user:
+      role:
+        user: User
+        mod: Moderator
+        adm: Administrator

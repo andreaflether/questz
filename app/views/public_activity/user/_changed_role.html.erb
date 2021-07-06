@@ -1,0 +1,6 @@
+<%= single_content_for :icon do %>
+	<i class="fas <%= get_icon_class_for(activity.parameters[:role]) %>"></i>
+<% end %>
+<%= single_content_for :action_body do %>
+	became a Questz <b><%= t("enums.user.role.#{activity.parameters[:role]}") %></b>
+<% end %>
