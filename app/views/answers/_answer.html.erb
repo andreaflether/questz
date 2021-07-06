@@ -5,7 +5,8 @@
       <%= link_to upvote_question_answer_path(answer.question, answer),
         method: :patch,
         remote: true,
-        class: 'text-muted vote-up' do %>
+        class: 'text-muted vote-up',
+        title: t('titles.answers.upvote') do %>
         <i class="fas fa-caret-up me-0"></i>
       <% end %>
 
@@ -14,7 +15,8 @@
       <%= link_to downvote_question_answer_path(answer.question, answer),
         method: :patch,
         remote: true,
-        class: 'text-muted vote-down mt-1' do %>
+        class: 'text-muted vote-down mt-1',
+        title: t('titles.answers.downvote') do %>
         <i class="fas fa-caret-down me-0"></i>
       <% end %>
       
@@ -37,9 +39,7 @@
 
       <% if @is_answered && answer.chosen? %>
         <span class="fa-stack fa-xs choose-answer text-primary mt-2"
-          data-bs-toggle="tooltip" 
-          data-bs-placement="right"
-          title="<%= t('tooltips.answers.accepted', date: l(answer.question.answered_on, format: :long)) %>">
+          title="<%= t('titles.answers.accepted', date: l(answer.question.answered_on.localtime, format: :long)) %>">
           <i class="fas fa-comment-alt fa-stack-2x"></i>
           <i class="fas fa-check text-white fa-stack-1x"></i>
         </span>
@@ -67,7 +67,7 @@
         </span>
         
         <span class="question-date">
-          on <b><%= format_datetime(answer.created_at) %></b>
+          on <b><%= format_datetime(answer.created_at.localtime) %></b>
           (<%= time_ago_in_words(answer.created_at) %> ago)
         </span>
       </div>
