@@ -7,6 +7,7 @@
 #  id                     :integer          not null, primary key
 #  answers_count          :integer          default(0)
 #  avatar                 :string
+#  changed_role_on        :datetime
 #  current_sign_in_at     :datetime
 #  current_sign_in_ip     :string
 #  email                  :string           default(""), not null
@@ -19,6 +20,7 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
+#  role                   :integer          default("user"), not null
 #  sign_in_count          :integer          default(0), not null
 #  slug                   :string
 #  username               :string           default(""), not null
@@ -51,6 +53,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :trackable
 
+  enum role: {
+    user: 1,
+    mod: 2,
+    adm: 3
+  }
+
   has_many :questions, dependent: :destroy
   has_many :answers, dependent: :destroy
   has_many :reports, dependent: :destroy
@@ -64,6 +72,8 @@ class User < ApplicationRecord
                        length: { minimum: 4, maximum: 20, allow_blank: true }
 
   validate :username_has_at_least_one_letter, unless: -> { username.blank? }
+
+  validate :set_role_change_info, if: -> { role_changed?(from: 'user') }
 
   def should_generate_new_friendly_id?
     username_changed? || super
@@ -97,6 +107,11 @@ class User < ApplicationRecord
   def level_down
     update(level: level - 1)
     create_activity(key: 'user.level_down', owner: self, parameters: { level: level })
+  end
+
+  def set_role_change_info
+    self.changed_role_on = DateTime.now
+    create_activity(key: 'user.changed_role', owner: self, parameters: { role: role})
   end
 
   def max_filesize_for_avatar

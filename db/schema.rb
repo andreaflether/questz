@@ -238,6 +238,8 @@ ActiveRecord::Schema.define(version: 2021_04_21_195517) do
     t.string "username", default: "", null: false
     t.string "name", default: "", null: false
     t.integer "level", default: 1, null: false
+    t.integer "role", default: 1, null: false
+    t.datetime "changed_role_on"
     t.string "avatar"
     t.string "slug"
     t.integer "questions_count", default: 0

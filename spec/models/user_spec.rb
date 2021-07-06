@@ -7,6 +7,7 @@
 #  id                     :integer          not null, primary key
 #  answers_count          :integer          default(0)
 #  avatar                 :string
+#  changed_role_on        :datetime
 #  current_sign_in_at     :datetime
 #  current_sign_in_ip     :string
 #  email                  :string           default(""), not null
@@ -19,6 +20,7 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
+#  role                   :integer          default("user"), not null
 #  sign_in_count          :integer          default(0), not null
 #  slug                   :string
 #  username               :string           default(""), not null

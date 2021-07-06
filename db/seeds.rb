@@ -30,6 +30,23 @@ unless Rails.env.production?
     username: 'another_user'
   ).find_or_create_by(email: 'another.user@user.com')
 
+  puts 'Creating mod user...'
+  @mod = User.create_with(
+    name: 'Moderator',
+    password: 'mod@1234',
+    username: 'moderator'
+  ).find_or_create_by(email: 'mod@mod.com')
+
+  puts 'Creating admin user...'
+  @admin = User.create_with(
+    name: 'Admin',
+    password: 'admin@123',
+    username: 'admin_user'
+  ).find_or_create_by(email: 'admin@admin.com')
+
+  @mod.mod!
+  @admin.adm!
+
   puts 'Instantiating questions...'
   questions = []
 
