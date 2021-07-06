@@ -1,13 +1,8 @@
+image:
+  file: .gitpod.dockerfile
 ports:
   - port: 3000
     onOpen: open-preview
 tasks:
-  - init: >
-      \curl -sSL https://get.rvm.io | bash -s stable --rails && 
-      rvm install ruby-2.5.5 && 
-      rvm --default use ruby-2.5.5 &&
-      gem install bundler:2.1.4 &&
-      bundle install
-      yarn install
-    command: >
-      rails server
+  - init: bundle install && yarn install --check-files
+    command: rails server
