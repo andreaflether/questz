@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-9 mt-4 mb-3">
-    <div class="d-flex align-items-center justify-content-between">
-      <h5 class="mb-0">
+    <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
+      <h5 class="mb-3 mb-md-0">
         <%= t('app_titles.questions.index') %>
       </h5>
       <%= render 'questions/nav_tabs' %>
@@ -21,14 +21,17 @@
       </div>
     <% else %>
       <h5 class="fw-normal text-center mt-3">
-        <%= raw @message || 'No questions to display.' %>
+        <%= raw @message || t('messages.views.no_questions_yet') %>
       </h5>
     <% end %>
-  </div>
-    <div class="col-lg-3 col-md-12 order-1 order-lg-2 mb-3">
+    </div>
+    <div class="col-md-12 col-lg-3 col-sm-12 order-2 order-lg-3">
       <div class="row">
-        <div class="col-md-12">
-          <%= render 'shared/top_users_card', collection: @top_users, top_ranking: true %>
+        <div class="col-12 mb-3 d-none d-sm-block">
+          <%= render 'shared/cards/top_users_card', collection: @top_users, top_ranking: true %>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-12 mb-3 d-none d-sm-block">
+          <%= render 'shared/cards/popular_tags' %>
         </div>
       </div>
     </div>
