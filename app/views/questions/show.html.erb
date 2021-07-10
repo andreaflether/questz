@@ -115,7 +115,7 @@
                       'bs-target': '#confirmationModal', 
                       'bs-method': :delete,
                       'bs-path': question_path(@question),
-                      'bs-content': t('messages.confirmations.delete_question')
+                      'bs-content': t('messages.confirmations.delete', resource: 'question')
                     },
                     class: 'text-muted' do %>
                     <i class="fas fa-trash"></i>Delete

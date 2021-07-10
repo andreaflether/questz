@@ -81,9 +81,17 @@
         <% end %>
         <% if can? :destroy, answer %>
           <span class="delete">
-            <%= link_to question_answer_path(@question, answer), method: :delete, class: 'text-muted' do %>
+            <%= link_to '#', 
+              data: { 
+                'bs-toggle': 'modal', 
+                'bs-target': '#confirmationModal', 
+                'bs-method': :delete,
+                'bs-path': question_answer_path(@question, answer),
+                'bs-content': t('messages.confirmations.delete', resource: 'answer')
+              },
+              class: 'text-muted' do %>
               <i class="fas fa-trash"></i>Delete
-            <% end %> 
+            <% end %>
           </span>
         <% end %>
         <div class="dropdown share me-3">
