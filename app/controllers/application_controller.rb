@@ -2,7 +2,7 @@
 
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-  helper_method :edit_user_path?
+  helper_method :edit_user_path?, :get_popular_tags, :get_top_users
   layout :layout_by_resource
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -24,6 +24,14 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: %i[name username])
     devise_parameter_sanitizer.permit(:account_update, keys: %i[name username avatar])
+  end
+
+  def get_popular_tags
+    @popular_tags = Question.tag_counts_on(:tags)
+  end
+
+  def get_top_users
+    @top_users = User.top_users.limit(3)
   end
 
   private

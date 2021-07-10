@@ -112,13 +112,12 @@
                     },
                     class: 'text-muted' do %>
                     <i class="fas fa-trash"></i>Delete
-
                   <% end %>
                 </span>
               <% end %>
               <% if user_signed_in? && @question.user != current_user %>
                 <%= link_to new_question_report_path(@question), class: 'text-muted' do %>
-                  <i class="far fa-flag"></i> Report
+                  <i class="far fa-flag"></i>Report
                 <% end %>
               <% end %>
             </div>
@@ -157,20 +156,6 @@
     </div>
   </div>
   <div class="col-md-3">
-    <div class="card">
-      <div class="card-header bg-white">
-        <h6 class="card-title my-2">Related questions</h6>
-      </div>
-      <% if @related_questions.any? %>
-        <ul class="list-group list-group-flush">
-          <%= render partial: 'related_questions', collection: @related_questions, as: :question %>
-        </ul>
-      <% else %>
-        <div class="card-body">
-          <p class="mb-1">No questions to display just yet.</p>
-          <%= link_to 'Ask a new one', new_question_path, class: 'fw-bold' %>
-        </div>
-      <% end %>
-    </div>
+    <%= render 'shared/cards/related_questions', collection: @related_questions %>
   </div>
 </div>

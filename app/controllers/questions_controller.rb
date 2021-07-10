@@ -4,6 +4,8 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: %i[show edit update destroy upvote downvote]
   before_action :authenticate_user!, except: %i[index show upvote downvote search]
   before_action :authenticate_remote!, only: %i[upvote downvote]
+  before_action :get_popular_tags, only: %i[index feed show]
+  before_action :get_top_users, only: %i[index feed]
   impressionist actions: [:show], unique: %i[impressionable_type impressionable_id ip_address]
   load_and_authorize_resource except: %i[search], find_by: :slug
 
@@ -11,19 +13,19 @@ class QuestionsController < ApplicationController
   def index
     @questions = Question.most_voted
     sanitize_filter_params if params[:tab]
-    get_questions_and_top_users
+    get_questions
   end
 
   def feed
     if user_signed_in? && current_user.follow_count.positive?
       @questions = Question.with_user_followed_tags(current_user)
-      @tags = current_user.all_following.sort_by(&:name)
+      @followed_tags = current_user.all_following.sort_by(&:name)
     else
       @questions = Question.most_voted
     end
 
     sanitize_filter_params if params[:tab]
-    get_questions_and_top_users
+    get_questions
   end
 
   def search
@@ -130,11 +132,10 @@ class QuestionsController < ApplicationController
     params.require(:question).permit(:status, :title, :body, :reopen, tag_list: [], answers: [])
   end
 
-  def get_questions_and_top_users
+  def get_questions
     @questions = @questions
                  .includes(%i[tags user tag_taggings])
                  .page(params[:page])
-    @top_users = User.top_users.limit(3)
   end
 
   def sanitize_filter_params

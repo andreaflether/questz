@@ -1,0 +1,23 @@
+<div class="card followed-tags-card">
+  <div class="card-header bg-white">
+    <h6 class="card-title py-2 mb-0">
+      <i class="fas fa-user-tag me-2"></i>Followed tags
+    </h6>
+  </div>
+  <div class="card-body followed-tags">
+    <% if @followed_tags %>
+      <%= render partial: 'tags/partials/tag', collection: @followed_tags %>
+    <% else %>
+      <p class="fw-bold mb-1 text-muted">
+        Follow a tag to see it here.
+      </p>
+      <span class="text-muted small">
+        The tags you follow are shown here. They are used to personalize your Feed
+        with questions that may be of your interest.
+      </span>
+    <% end %>
+  </div>
+  <div class="card-footer text-center">
+    <%= link_to 'Browse tags', tags_path, class: 'btn btn-outline-primary btn-sm fw-bold' %>
+  </div>
+</div>
