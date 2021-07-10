@@ -127,3 +127,16 @@ trix-editor {
   align-items: center;
   border-radius: 50%;
 }
+
+$social-share-size: 25px;
+
+.social-share-button {
+  display: flex;
+  gap: 6px;
+
+  .ssb-icon {
+    background-size: $social-share-size $social-share-size;
+    height: $social-share-size;
+    width: $social-share-size;
+  }
+}

@@ -45,7 +45,7 @@
               remote: true,
               class: 'text-muted vote-up',
               title: t('titles.questions.upvote') do %>
-              <i class="fas fa-caret-up"></i>
+              <i class="fas fa-caret-up me-0"></i>
             <% end %>
 
             <span class="question-vote-up fs-5"><%= @question.weighted_score %></span>
@@ -55,7 +55,7 @@
               remote: true,
               class: 'text-muted vote-down mt-1',
               title: t('titles.questions.downvote') do %>
-              <i class="fas fa-caret-down"></i>
+              <i class="fas fa-caret-down me-0"></i>
             <% end %>
           </div>
           <div class="d-flex flex-column flex-fill ms-4">
@@ -89,10 +89,17 @@
                 <% end %>
               <% end %>
             </div>
-            <div class="question-actions small text-muted mt-3">
-              <span class="share">
-                <i class="fas fa-share-square"></i>Share
-              </span>
+            <div class="question-actions d-flex small text-muted mt-3">
+              <div class="dropdown share me-3">
+                <a class="dropdown-toggle text-muted" href="#" role="button" id="questionShareDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fas fa-share-square"></i>Share
+                </a>
+
+                <ul class="dropdown-menu p-3" aria-labelledby="questionShareDropdown">
+                  <%= social_share_button_tag(@question.title, desc: t('app_titles.pages.home')) %>
+                </ul>
+              </div>
+              
               <% if can? :update, @question %>
                 <span class="edit">
                   <%= link_to edit_question_path(@question), class: 'text-muted' do %>

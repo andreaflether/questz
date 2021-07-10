@@ -42,6 +42,7 @@ gem 'kaminari'
 gem 'meta-tags'
 gem 'public_activity'
 gem 'simple_form'
+gem 'social-share-button'
 gem 'stringex'
 gem 'trix-rails', require: 'trix'
 
