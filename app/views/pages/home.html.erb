@@ -1,2 +1,27 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<% title "Share & grow the world's knowledge!" %>
+
+<style>
+  #main {
+    background-color: #292F3B !important;
+  }
+</style>
+
+<div class="container">
+  <div class="row align-items-center g-5">
+    <div class="col-md-6">
+      <%= image_tag '5168687.svg', class: 'img-fluid pt-3' %>
+    </div>
+    <div class="col-md-6">
+      <h1 class="text-light">Share & grow the world's knowledge!</h1>
+      <p class="text-white-50 fs-5">We want to connect the people who have knowledge to the people who need it, 
+      to bring together people with different perspectives so they can understand each
+      other better, and to empower everyone so share their knowledge to the world.</p>
+
+      <div class="w-100 d-flex justify-content-center justify-content-lg-end mt-4">
+        <%= link_to questions_path, class: 'btn btn-primary p-3' do %>
+          Explore questions <i class="fas fa-arrow-right ms-2"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
