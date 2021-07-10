@@ -1,7 +1,8 @@
 <div class="card h-100">
   <div class="card-header bg-white py-3">
     <h6 class="mb-0">
-      <i class="fas fa-fire me-2"></i> Popular tags
+      <i class="fas fa-fire me-2"></i>
+      <%= t('app_titles.cards.popular_tags') %>
     </h6>
   </div>
   <div class="card-body">
@@ -13,7 +14,7 @@
       <% end %>
     <% else %>
       <p class="mb-0">
-        No tags to display just yet.
+        <%= t('messages.views.no_tags_to_display') %>
       </p>
     <% end %>
   </div>

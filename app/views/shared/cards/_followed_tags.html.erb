@@ -1,7 +1,8 @@
 <div class="card followed-tags-card">
   <div class="card-header bg-white">
     <h6 class="card-title py-2 mb-0">
-      <i class="fas fa-user-tag me-2"></i>Followed tags
+      <i class="fas fa-user-tag me-2"></i>
+      <%= t('app_titles.cards.followed_tags') %>
     </h6>
   </div>
   <div class="card-body followed-tags">
@@ -18,6 +19,9 @@
     <% end %>
   </div>
   <div class="card-footer text-center">
-    <%= link_to 'Browse tags', tags_path, class: 'btn btn-outline-primary btn-sm fw-bold' %>
+    <%= link_to t('buttons.tags.browse'), 
+      tags_path, 
+      class: 'btn btn-outline-primary btn-sm' 
+    %>
   </div>
 </div>

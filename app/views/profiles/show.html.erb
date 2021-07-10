@@ -67,7 +67,10 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header bg-white">
-            <h6 class="card-title my-1"><i class="fas fa-tags me-2"></i>Top tags</h6>
+            <h6 class="card-title my-1">
+              <i class="fas fa-tags me-2"></i>
+              <%= t('app_titles.cards.top_tags_for_user') %>
+            </h6>
           </div>
           <div class="card-body">
             <% if @tags.any? %>
@@ -88,7 +91,10 @@
       <div class="col-md-12 my-3">
         <div class="card">
           <div class="card-header bg-white">
-            <h6 class="card-title my-1"><i class="fas fa-chart-line"></i>&nbsp; Stats</h6>
+            <h6 class="card-title my-1">
+              <i class="fas fa-chart-line me-2"></i>
+              <%= t('app_titles.cards.user_stats') %>
+            </h6>
           </div>
           <div class="card-body">
             <div class="row user-stats g-4 justify-content-center text-center">
@@ -96,42 +102,42 @@
                 <span class="badge px-3 bg-primary mb-1">
                   <h5 class="fw-bold "><%= @user.questions_count %></h5>
                 </span>
-                <p>asked questions</p>
+                <p><%= t('app_titles.users.stats.asked_questions') %></p>
               </div>
 
               <div class="col-md-6">
                 <span class="badge px-3 bg-primary mb-1">
                   <h5 class="fw-bold "><%= @user.follow_count %></h5>
                 </span>
-                <p>followed tags</p>
+                <p><%= t('app_titles.users.stats.followed_tags') %></p>
               </div>
 
               <div class="col-md-6">
                 <span class="badge px-3 bg-primary mb-1">
                   <h5 class="fw-bold "><%= @user.answers_count %></h5>
                 </span>
-                <p>answers provided</p>
+                <p><%= t('app_titles.users.stats.answers_provided') %></p>
               </div>
 
               <div class="col-md-6">
                 <span class="badge px-3 bg-primary mb-1">
                   <h5 class="fw-bold "><%= @user.solved_questions %></h5>
                 </span>
-                <p>solved questions</p>
+                <p><%= t('app_titles.users.stats.solved_questions') %></p>
               </div>
 
               <div class="col-md-6">
                 <span class="badge px-3 bg-primary mb-1">
                   <h5 class="fw-bold "><%= @user.get_up_voted(Question).size %></h5>
                 </span>
-                <p>votes cast (questions)</p>
+                <p><%= t('app_titles.users.stats.votes_for_question') %></p>
               </div>
 
               <div class="col-md-6">
                 <span class="badge px-3 bg-primary mb-1">
                   <h5 class="fw-bold "><%= @user.get_up_voted(Answer).size %></h5>
                 </span>
-                <p>votes cast (answers)</p>
+                <p><%= t('app_titles.users.stats.votes_for_answer') %></p>
               </div>
             </div>
           </div>
@@ -142,7 +148,10 @@
     <div class="col-md-8 mb-3">
       <div class="card">
         <div class="card-header bg-white">
-          <h5 class="my-1"><i class="fas fa-rss"></i>&nbsp; Feed</h5>
+          <h5 class="my-1">
+            <i class="fas fa-rss me-2"></i>
+            <%= t('app_titles.cards.feed') %>
+          </h5>
         </div>
         <% if @activities.any? %>
           <ul class="list-group list-group-flush">

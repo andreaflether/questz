@@ -1,0 +1,48 @@
+en:
+  buttons:
+    navbar:
+      questions: Questions
+      tags: Tags
+      user:
+        profile: Your profile
+        edit: Edit user info
+        sign_out: Sign out
+      login: Login
+      sign_up: Sign up
+    create:
+      question: &question_create Post question
+      answer: &answer_create Post answer
+    update:
+      question: &question_update Update question
+      answer: &answer_update Update answer
+    shared:
+      report: Report
+      edit: Edit
+      delete: Delete
+      share: Share
+      back: Back
+      nav_tabs:
+        popular: Popular
+        newest: Newest
+        answered: Answered
+        unanswered: Unanswered
+        name: Name
+    answers:
+      new: *answer_create
+      create: *answer_create
+      edit: *answer_update 
+      update: *answer_update
+      answer: Answer this question
+    questions:
+      new: *question_create
+      create: *question_create
+      edit: *question_update 
+      update: *question_update
+      new_question: Ask a new one
+    profiles:
+      change_profile_pic: Change profile picture
+    tags:
+      browse: Browse tags
+      follow: Follow this tag
+      unfollow: Stop following
+      view_available_tags: View available tags for Questz

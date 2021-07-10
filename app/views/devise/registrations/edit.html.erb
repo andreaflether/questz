@@ -1,11 +1,15 @@
 <div class="row mt-4">
-  <h3 class="text-center mb-3">Edit <%= resource_name.to_s.humanize %> profile</h3>
+  <h3 class="text-center mb-3">
+    <%= t('users.edit.edit_profile_info', resource: resource_name.to_s.humanize) %>
+  </h3>
 
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), 
     html: { method: :put }) do |f| %>
     <div class="card pb-0 mx-auto col-md-8">
       <div class="card-header bg-white">
-        <h5 class="text-primary my-2">Personal information</h5>
+        <h5 class="text-primary my-2">
+          <%= t('app_titles.users.edit.personal_information') %>
+        </h5>
       </div>
       <div class="card-body pb-0">
         <div class="row justify-content-center">
@@ -23,7 +27,8 @@
             <a class="btn btn-outline-primary" 
               data-bs-toggle="modal" 
               data-bs-target="#changeAvatarModal">
-              <i class="fas fa-pencil-alt"></i>Change profile picture
+              <i class="fas fa-pencil-alt"></i>
+              <small><%= t('buttons.profiles.change_profile_pic') %></small>
             </a>
           </div>
           <div class="col-md-8">
@@ -35,13 +40,15 @@
           </div>
         </div>
       </div>
-      <h5 class="text-primary border-top border-bottom py-3 ps-3 mt-4 mb-3">Change password</h5>
+      <h5 class="text-primary border-top border-bottom py-3 ps-3 mt-4 mb-3">
+        <%= t('app_titles.passwords.update') %>
+      </h5>
       <div class="row px-3 mb-2 mt-1">
         <div class="col-md-6">
           <%= f.input :password,
                       hint: "leave it blank if you don't want to change it",
                       required: false,
-                      input_html: { autocomplete: "new-password" } %>
+                      input_html: { autocomplete: 'new-password' } %>
         </div>
         <div class="col-md-6">
           <%= f.input :password_confirmation,

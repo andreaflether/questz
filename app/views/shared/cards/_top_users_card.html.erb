@@ -3,9 +3,9 @@
     <h6 class="card-title mb-0">
       <i class="fas fa-trophy small"></i>&nbsp;
       <% if local_assigns[:tag_only] %>
-        Top answerers in this tag
+        <%= t('app_titles.cards.top_answerers_in_tag') %>
       <% else %>
-        Top users
+        <%= t('app_titles.cards.top_users') %>
       <% end %>
     </h6>
   </div>
@@ -15,7 +15,7 @@
     </ul>
   <% else %>
     <div class="card-body">
-      <p class="mb-0">No users to display.</p>
+      <p class="mb-0"><%= t('messages.views.no_users_to_display') %></p>
     </div>
   <% end %>
 </div>

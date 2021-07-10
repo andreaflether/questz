@@ -44,7 +44,7 @@
     </div>
   </div>
   <div class="col-12 order-2 order-lg-1">
-    <h5 class="mt-4 mb-3">Questions in this tag</h5>
+    <h5 class="mt-4 mb-3"><%= t('app_titles.tags.questions_in_tag') %></h5>
   
   </div>
   <div class="col-lg-9 order-lg-2 order-3">
@@ -66,14 +66,17 @@
             <span class="badge question-tag text-primary"><%= @tag.name %></span>
           <% end %>.
         </p>
-        <%= link_to 'View available tags for Questz.', tags_path %>
+        <%= link_to tags_path, class: 'btn btn-sm btn-primary' do %>
+          <%= t('buttons.tags.view_available_tags') %>
+          <i class="fas fa-arrow-right ms-2"></i>
+        <% end %>
       </div>
     <% end %>
   </div>
   <div class="col-lg-3 order-lg-3 order-1 mb-3">
     <div class="row">
       <div class="col-md-12">
-        <%= render 'shared/top_users_card', collection: @top_users, tag_only: true  %>
+        <%= render 'shared/cards/top_users_card', collection: @top_users, tag_only: true  %>
       </div>
     </div>
   </div>

@@ -1,21 +1,4 @@
 en:
-  buttons:
-    create:
-      question: &question_create Post question
-      answer: &answer_create Post answer
-    update:
-      question: &question_update Update question
-      answer: &answer_update Update answer
-    questions:
-      new: *question_create
-      create: *question_create
-      edit: *question_update 
-      update: *question_update
-    answers:
-      new: *answer_create
-      create: *answer_create
-      edit: *answer_update 
-      update: *answer_update
   simple_form:
     'yes': 'Yes'
     'no': 'No'

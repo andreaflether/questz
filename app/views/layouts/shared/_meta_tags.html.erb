@@ -1,8 +1,8 @@
-<%= display_meta_tags site: t('application_name'),
+<%= display_meta_tags site: t('app.name'),
   title: t("app_titles.#{controller_name}.#{action_name}"),
   reverse: true,
   separator: '/',
-  description: "Share your knowledge. It's a way to achieve immortality.",
+  description: t('app.description'),
   keywords: 'Questions, Forum, Questz',
   og: {
     title: :title,

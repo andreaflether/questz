@@ -2,19 +2,27 @@
   <div class="container-fluid px-5">
     <h2 class="text-dark logo-font navbar-brand mb-0">
       <%= link_to root_path, class: 'd-flex align-items-center' do %>
-        <%= image_tag('logo.png') %> <span class="ms-2 text-light">Questz</span>
+        <%= image_tag('logo.png') %>
+        <span class="ms-2 text-light"><%= t('app.name') %></span>
       <% end %>
     </h2>
-    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button 
+      class="navbar-toggler border-0" 
+      type="button" 
+      data-bs-toggle="collapse" 
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false" aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <%= active_link_to 'Questions', questions_path, class: 'nav-link' %>
+          <%= active_link_to t('buttons.navbar.questions'), questions_path, class: 'nav-link' %>
         </li>
         <li class="nav-item">
-          <%= active_link_to 'Tags', tags_path, class: 'nav-link' %>
+          <%= active_link_to t('buttons.navbar.tags'), tags_path, class: 'nav-link' %>
         </li>
       </ul>
       <ul class="navbar-nav ms-auto mb-0 align-items-center">
@@ -28,12 +36,19 @@
             <% end %>
           </li>
           <li class="nav-item">
-            <%= active_link_to reputation_path, class: 'nav-link', title: t('app_titles.profiles.reputation') do %>
+            <%= active_link_to reputation_path, 
+              class: 'nav-link', 
+              title: t('app_titles.profiles.reputation') do %>
               <i class="fas fa-star fa-lg"></i>
             <% end %>
           </li>
           <li class="nav-item" title="<%= t('app_titles.notifications_with_devise.index')%>">
-            <%= render_notifications_of current_user, fallback: :default, index_content: :with_attributes, devise_default_routes: respond_to?('notifications_path'), limit: 5 %>
+            <%= render_notifications_of current_user, 
+              fallback: :default, 
+              index_content: :with_attributes, 
+              devise_default_routes: respond_to?('notifications_path'), 
+              limit: 5 
+            %>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" 
@@ -47,17 +62,20 @@
             <ul class="dropdown-menu user-actions-menu" aria-labelledby="profile">
               <li>
                 <%= link_to profile_path(current_user), class: 'dropdown-item' do %>
-                  <i class="fas fa-user-circle"></i>&nbsp; Your profile
+                  <i class="fas fa-user-circle"></i>
+                  <%= t('buttons.navbar.user.profile') %>
                 <% end %>  
               </li>
               <li>
                 <%= link_to edit_user_registration_path, class: 'dropdown-item' do %>
-                  <i class="fas fa-edit"></i>&nbsp; Edit user info
+                  <i class="fas fa-edit"></i>
+                  <%= t('buttons.navbar.user.edit') %>
                 <% end %>
               </li>
               <li>
                 <%= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do %>
-                  <i class="fas fa-sign-out-alt"></i>&nbsp; Sign out
+                  <i class="fas fa-sign-out-alt"></i>
+                  <%= t('buttons.navbar.user.sign_out') %>
                 <% end %>
               </li>       
             </ul>
@@ -73,13 +91,13 @@
           <li class="nav-item">
             <%= link_to new_user_session_path, 
                 class: 'btn btn-default px-4 py-2 fw-bold text-uppercase me-2' do %>
-              <small>Login</small>
+              <small><%= t('buttons.navbar.login') %></small>
             <% end %>
           </li>
           <li class="nav-item mr-2">
             <%= link_to new_user_registration_path, 
                 class: 'btn btn-primary px-4 py-2 fw-bold text-uppercase' do %>
-              <small>Sign up</small>
+              <small><%= t('buttons.navbar.sign_up') %></small>
             <% end %>
           </li>
         <% end %>

@@ -1,11 +1,11 @@
 <% if current_user.following?(@tag) %>
   <%= link_to unfollow_tag_path(@tag), remote: true, method: :patch,
     class: 'btn btn-sm fw-bold btn-primary ms-3' do %>
-    <i class="fas fa-minus"></i>Stop following
+    <i class="fas fa-minus"></i><%= t('buttons.tags.unfollow') %>
   <% end %>
 <% else %>
   <%= link_to follow_tag_path(@tag), remote: true, method: :patch,
     class: 'btn btn-sm fw-bold btn-outline-primary ms-3' do %>
-    <i class="fas fa-plus"></i>Follow this tag
+    <i class="fas fa-plus"></i><%= t('buttons.tags.follow') %>
   <% end %>
 <% end %>

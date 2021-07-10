@@ -1,11 +1,16 @@
 
 <div class="card my-3">
   <div class="card-header bg-white">
-    <h5 class="card-title mb-0 py-2">Report <%= reportable_type %></h5>
+    <h5 class="card-title mb-0 py-2">
+      <%= t('app_titles.reports.report', reportable_type: reportable_type) %>
+    </h5>
   </div>
   <%= simple_form_for [reportable, @report] do |f| %>
     <div class="card-body">
-      <%= f.label :reason, t('simple_form.labels.report.reason', reportable_type: reportable_type) %>
+      <%= f.label :reason, 
+        t('simple_form.labels.report.reason', 
+        reportable_type: reportable_type) 
+      %>
         
       <% if @report.errors[:reason] %>
         <div class="invalid-feedback d-block mb-2">

@@ -1,5 +1,8 @@
 en:
   application_name: Questz
+  app:
+    name: Questz
+    description: Share & grow the world's knowledge!
   defaults:
     devise:
       registrations:
@@ -32,6 +35,16 @@ en:
     tags:
       index: Tags
       show: Questions tagged with '%{tag}'
+      questions_in_tag: Questions in this tag
+    cards:
+      followed_tags: Followed tags
+      popular_tags: Popular tags
+      related_questions: Related questions
+      top_answerers_in_tag: Top answerers in this tag
+      top_users: Top users
+      top_tags_for_user: Top tags
+      user_stats: Stats
+      feed: Feed
     questions:
       new: *questions_create
       create: *questions_create
@@ -42,10 +55,28 @@ en:
     profiles:
       show: User %{user}
       reputation: Your reputation
+      overall_stats: Overall stats
+      xp_per_day: Earned XP per day
+      reputation_stats:
+        xp: Your XP
+        level: Level
+        xp_to_next_level: XP to next level
+        earned_xp_in_last_week: Earned XP (last 7 days)
     notifications_with_devise:
       index: Your notifications
     reports:
       new: *reports_create
       create: *reports_create
+      report: Report %{reportable_type}
     users:
       info: User information
+      stats:
+        asked_questions: asked questions
+        followed_tags: followed tags
+        answers_provided: answers provided
+        solved_questions: solved questions
+        votes_for_question: votes cast (questions)
+        votes_for_answer: votes cast (answers)
+      edit:
+        personal_information: Personal information
+        edit_profile_info: Edit %{resource} info

@@ -2,24 +2,34 @@
   <div class="col-md-12 col-lg-6 mb-3">
     <div class="card h-100">
       <div class="card-header bg-white">
-        <h6 class="card-title mb-0 py-2">Overall stats</h6>
+        <h6 class="card-title mb-0 py-2">
+          <%= t('app_titles.profiles.reputation.overall_stats') %>
+        </h6>
       </div>
       <div class="card-body">
         <div class="d-flex justify-content-between flex-sm-row attention flex-wrap">
           <div class="total-xp stats-col mb-3 mb-md-0">
-            <h6 class="text-muted fw-uppercase">Your XP</h6>
+            <h6 class="text-muted fw-uppercase">
+              <%= t('app_titles.profiles.reputation_stats.xp') %>
+            </h6>
             <h4 class="mb-0 text-primary"><%= current_user.points_total %></h4>
           </div>
           <div class="user-level stats-col mb-3 mb-md-0">
-            <h6 class="text-muted fw-uppercase">Level</h6>
+            <h6 class="text-muted fw-uppercase">
+              <%= t('app_titles.profiles.reputation_stats.level') %>
+            </h6>
             <h4 class="mb-0"><%= current_user.level %></h4>
           </div>
           <div class="xp-to-next-level stats-col">
-            <h6 class="text-muted">XP to next level</h6>
+            <h6 class="text-muted">
+              <%= t('app_titles.profiles.reputation_stats.xp_to_next_level') %>
+            </h6>
             <h4 class="mb-0"><%= current_user.exp_to_next_level.last - current_user.points_total %></h4>
           </div>
           <div class="xp-this-week stats-col">
-            <h6 class="text-muted">Earned XP (last 7 days)</h6>
+            <h6 class="text-muted">
+              <%= t('app_titles.profiles.reputation_stats.earned_xp_in_last_week') %>
+            </h6>
             <h4 class="mb-0"><%= current_user.points_this_week %></h4>
           </div>
         </div>
@@ -51,7 +61,9 @@
   <div class="col-md-12 col-lg-6 mb-3">
     <div class="card h-100">
       <div class="card-header bg-white">
-        <h6 class="card-title mb-0 py-2">Earned XP per day</h6>
+        <h6 class="card-title mb-0 py-2">
+          <%= t('app_titles.profiles.xp_per_day') %>
+        </h6>
       </div>
       <div class="card-body">
       <%= line_chart @weekly_experience.group_by_day(:created_at).sum(:value), 
