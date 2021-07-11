@@ -60,17 +60,18 @@
         </div>
       </div>
     <% else %>
-      <div class="no-questions mt-2">
-        <p>There are no questions tagged
+      
+      <div class="alert alert-secondary" role="alert">
+        <p class="mb-0">There are no questions tagged
           <%= link_to tag_path(@tag) do %>
             <span class="badge question-tag text-primary"><%= @tag.name %></span>
           <% end %>.
         </p>
+      </div>
         <%= link_to tags_path, class: 'btn btn-sm btn-primary' do %>
           <%= t('buttons.tags.view_available_tags') %>
           <i class="fas fa-arrow-right ms-2"></i>
         <% end %>
-      </div>
     <% end %>
   </div>
   <div class="col-lg-3 order-lg-3 order-1 mb-3">

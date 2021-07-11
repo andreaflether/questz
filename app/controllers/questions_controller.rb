@@ -144,7 +144,7 @@ class QuestionsController < ApplicationController
       @questions_tagged_with = @questions_to_exihibt.tagged_with(params[:tag]) if params[:tag]
       @questions = @questions_tagged_with ||= @questions_to_exihibt
     else
-      @message = "<b>#{params[:tab]}</b> is not a valid filter."
+      @message = I18n.t('messages.views.not_a_valid_filter', filter: params[:tab])
     end
   end
 end

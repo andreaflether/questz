@@ -21,7 +21,7 @@
   </ul>
 </div>
 
-<div class="row" id="tags_row">
+<div class="row masonry" id="tags_row">
   <% if @tags.any? %>
     <%= render partial: 'tags/partials/card_tag', collection: @tags, as: :tag %>
     <div class="d-flex flex-column flex-lg-row justify-content-between align-items-center mb-3">
