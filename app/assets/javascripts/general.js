@@ -59,8 +59,9 @@ $(document).ready(function() {
     }
   });  
 
-  $('#tags_row').masonry({
-    percentPosition: true
+  $('.masonry').masonry({
+    percentPosition: true,
+    horizontalOrder: true
   });
 
   DependentFields.bind();

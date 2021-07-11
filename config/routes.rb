@@ -39,6 +39,7 @@ Rails.application.routes.draw do
 
   get '/feed', to: 'questions#feed'
   get '/reputation', to: 'profiles#reputation'
+  get '/community', to: 'profiles#community'
 
   resources :profiles, only: %i[show]
 

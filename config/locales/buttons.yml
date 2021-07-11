@@ -26,6 +26,9 @@ en:
         newest: Newest
         answered: Answered
         unanswered: Unanswered
+        top_users: Reputation (XP)
+        new_users: New users
+        moderators: Moderators
         name: Name
     answers:
       new: *answer_create

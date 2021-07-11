@@ -1,0 +1,74 @@
+<div class="row">
+  <div class="col-12">
+    <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
+      <h4 class="mt-4 mb-3">
+        <%= t('app_titles.profiles.community') %>
+      </h4>
+      <%= render 'profiles/nav_tabs' %>
+    </div>
+  </div>
+</div>
+
+<% if params[:tab] == 'top_users' %>
+  <span class="text-muted small">
+    *<%= t('messages.views.at_least_one_interaction') %>
+  </span>
+<% end %>
+
+<% if @users.any? && !@message %>
+  <div class="row masonry mt-2">
+    <% @users.each do |user| %>
+      <div class="col-lg-4 col-md-6 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex">
+              <% if user.avatar? %>
+                <%= image_tag(user.avatar_url, 
+                  class: 'img-fluid user-avatar-75 rounded-circle') %>
+              <% else %>
+                <%= image_tag 'no-avatar.png',
+                class: 'img-fluid user-avatar-75 rounded-circle' %>
+              <% end %> 
+              <div class="flex-column ms-3">
+                <div class="basic-info">
+                  <%= link_to profile_path(user), class: 'fw-bold' do %>
+                    <%= user.name %>
+                    <% unless user.user? %>
+                      <i class="fas <%= get_icon_class_for(user.role) %> ms-1"
+                        title="<%= t("enums.user.role.#{user.role}") %>"></i>
+                    <% end %>
+                  <% end %>
+                </div>
+                <div class="other-info text-dark">
+                  @<%= user.username %> &nbsp;·&nbsp; 
+                  <%= params[:tab] == 'top_users' ? user.reputation : user.points_total %> XP
+                </div>
+
+                <div class="user_since small text-muted">
+                  <% if user.user? %>
+                    Member since <%= l(user.created_at, format: :short) %>
+                  <% else %>
+                    <%= t("enums.user.role.#{user.role}") %> 
+                    since <%= l(user.changed_role_on, format: :short) %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="d-flex flex-column flex-lg-row justify-content-between align-items-center mb-3">
+    <div class="entries-info text-center">
+      <%= page_entries_info @users %>
+    </div>
+    <div class="users-pagination">
+      <%= paginate @users %>
+    </div>
+  </div>
+<% else %>
+  <div class="alert alert-secondary" role="alert">
+    <%= raw @message || t('messages.views.no_users_to_display') %>
+  </div>
+<% end %>

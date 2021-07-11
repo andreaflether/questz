@@ -34,6 +34,12 @@ class ProfilesController < ApplicationController
     @weekly_experience = current_user.points.where('created_at >= ?', 1.week.ago)
   end
 
+  def community
+    @users = User.all
+    @users = params[:tab] ? sanitize_filter_params : @users.newest
+    @users = @users.page(params[:page])
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -43,5 +49,14 @@ class ProfilesController < ApplicationController
 
   def profile_params
     params.require(:user).permit(:avatar, :authencity_token)
+  end
+
+  def sanitize_filter_params
+    if %w[top_users moderators].include?(params[:tab])
+      @users_to_exihibt = @users.public_send(params[:tab])
+      @users = @users_to_exihibt
+    else
+      @message = I18n.t('messages.views.not_a_valid_filter', filter: params[:tab])
+    end
   end
 end

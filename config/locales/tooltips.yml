@@ -8,6 +8,11 @@ en:
         newest: Newest
         answered: Answered
         unanswered: Unanswered
+    users:
+      tabs:
+        newest: Users who joined Questz in the last 30 days
+        reputation: Users with the hightest reputation scores (XP)
+        moderators: Our current community moderators
     answers:
       accepted: The question owner accepted this as the best answer on %{date}.
       upvote: This answer is useful

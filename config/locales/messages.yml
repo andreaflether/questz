@@ -21,4 +21,5 @@ en:
       no_questions_yet: No questions to display just yet.
       no_tags_to_display: No tags to display just yet.
       no_users_to_display: No users to display.
-      
+      at_least_one_interaction: Displaying users that interacted in the website at least once
+      not_a_valid_filter: <b>%{filter}</b> is not a valid filter.

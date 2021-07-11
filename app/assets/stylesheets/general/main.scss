@@ -53,10 +53,12 @@ trix-toolbar {
   color: #AB825F;
 }
 
-@for $i from 6 through 10 {
-  $base: 5;
-  $size: $base * $i;
-  .user-avatar-#{$size} { 
+$icon-sizes: 30, 40, 50, 75;
+
+@for $i from 0 to length($icon-sizes) {
+  $size: nth($icon-sizes, $i + 1);
+
+  .user-avatar-#{$size} {
     width: $size + 0px;
     height: $size + 0px;
   }

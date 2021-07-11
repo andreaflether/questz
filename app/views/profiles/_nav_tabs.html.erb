@@ -1,0 +1,23 @@
+<ul class="nav nav-pills small navigation-tabs">
+  <li class="nav-item">
+    <%= active_link_to t('buttons.shared.nav_tabs.newest'), 
+      url_for(request.params.slice(:tag)), 
+      class: 'nav-link main-tab',
+      active: :exact,
+      title: t('titles.users.tabs.newest') %>
+  </li>
+  <li class="nav-item">
+    <%= active_link_to t('buttons.shared.nav_tabs.top_users'), 
+      url_for(request.params.merge(tab: 'top_users')), 
+      class: 'nav-link reputation',
+      active: :exact,
+      title: t('titles.users.tabs.reputation') %>
+  </li>
+  <li class="nav-item">
+    <%= active_link_to t('buttons.shared.nav_tabs.moderators'), 
+      url_for(request.params.merge(tab: 'moderators')), 
+      class: 'nav-link answered',
+      active: :exact,
+      title: t('titles.users.tabs.moderators') %>
+  </li>
+</ul>

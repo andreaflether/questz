@@ -131,8 +131,19 @@ class User < ApplicationRecord
   end
 
   scope :top_users, lambda {
-    Honor::Scorecard.leaderboard(User.all.map(&:id), rank_by: 'lifetime', sort_direction: 'desc')
-                    .includes(:user)
+    joins(:points)
+      .group('users.id')
+      .select('*, SUM(points.value) AS reputation')
+      .order(reputation: :desc)
+  }
+
+  scope :newest, lambda {
+    where(created_at: Time.zone.now - 1.month..Time.zone.now)
+      .order(created_at: :desc)
+  }
+
+  scope :moderators, lambda {
+    where(role: :mod)
   }
 
   scope :top_answerers_in_tag, lambda { |tag|

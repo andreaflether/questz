@@ -53,6 +53,7 @@ en:
       index: All questions
       feed: Your feed
     profiles:
+      community: Users
       show: User %{user}
       reputation: Your reputation
       overall_stats: Overall stats
