@@ -99,8 +99,8 @@ class Question < ApplicationRecord
   end
 
   def tag_list_count
-    errors.add(:tag_list, I18n.t('errors.questions.tags.at_least_one')) if tag_list.count < MIN_TAGS_ALLOWED
-    errors.add(:tag_list, I18n.t('errors.questions.tags.at_most_five')) if tag_list.count > MAX_TAGS_ALLOWED
+    errors.add(:tag_list, I18n.t('messages.errors.questions.tags.at_least_one')) if tag_list.count < MIN_TAGS_ALLOWED
+    errors.add(:tag_list, I18n.t('messages.errors.questions.tags.at_most_five')) if tag_list.count > MAX_TAGS_ALLOWED
   end
 
   def has_answers?
@@ -108,7 +108,7 @@ class Question < ApplicationRecord
   end
 
   def check_for_answers
-    errors.add(:base, I18n.t('errors.questions.has_answers')) if has_answers?
+    errors.add(:base, I18n.t('messages.errors.questions.has_answers')) if has_answers?
   end
 
   def set_closed_at_timestamp

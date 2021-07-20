@@ -42,6 +42,7 @@ en:
       edit: *question_update 
       update: *question_update
       new_question: Ask a new one
+      explore: Explore questions
     profiles:
       change_profile_pic: Change profile picture
     tags:

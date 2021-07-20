@@ -3,6 +3,10 @@ en:
   app:
     name: Questz
     description: Share & grow the world's knowledge!
+    callout: > 
+      We want to connect the people who have knowledge to the people who need it, to 
+      bring together people with different perspectives so they can understand each 
+      other better, and to empower everyone so share their knowledge to the world.
   defaults:
     devise:
       registrations:
@@ -57,7 +61,7 @@ en:
       show: User %{user}
       reputation: Your reputation
       overall_stats: Overall stats
-      xp_per_day: Earned XP per day
+      xp_per_day: Earned XP per day (last 7 days)
       reputation_stats:
         xp: Your XP
         level: Level

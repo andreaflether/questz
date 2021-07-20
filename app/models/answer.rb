@@ -95,10 +95,10 @@ class Answer < ApplicationRecord
   end
 
   def cannot_receive_answers
-    errors.add(:base, I18n.t('errors.answers.question_closed')) if question.closed?
+    errors.add(:base, I18n.t('messages.errors.answers.question_closed')) if question.closed?
   end
 
   def can_be_marked_as_solved?
-    errors.add(:base, I18n.t('errors.answers.already_answered')) if question.answered?
+    errors.add(:base, I18n.t('messages.errors.answers.already_answered')) if question.answered?
   end
 end
