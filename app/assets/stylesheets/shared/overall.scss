@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Bitter:wght@700&display=swap');
 
+html, body {
+  height: 100%;
+}
+
 a {
   text-decoration: none;
 }
@@ -8,8 +12,9 @@ abbr[title], abbr[data-original-title] {
   text-decoration: none !important;
 }
 
-.bg-dark-blue {
-  background-color: #292F3B !important;
+.bg-dark-grey {
+  // background-color: #292F3B !important;
+  background-color: #242729 !important;
 }
 
 .bg-orange-150 {
@@ -138,5 +143,15 @@ $social-share-size: 25px;
     background-size: $social-share-size $social-share-size;
     height: $social-share-size;
     width: $social-share-size;
+  }
+}
+
+footer {
+  color: #848D95 !important;
+  a {
+    color: #C3C8CC;
+    &:hover, &:focus, &:active {
+      color: lighten($color:  #C3C8CC, $amount: 15%);
+    }
   }
 }

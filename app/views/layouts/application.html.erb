@@ -2,12 +2,16 @@
 <html>
   <%= render 'layouts/shared/head' %>
 
-  <body id="main"> 
+  <body id="main" class="d-flex flex-column"> 
     <%= render 'layouts/shared/navbar' %>
     <div class="container-fluid px-5">
       <%= yield %>
     </div>
     <%= render 'layouts/shared/confirmation_modal' %>
+    <%= custom_flash_messages %>
+
+    <% unless current_page?(root_url) && controller_name == 'pages' %>
+      <%= render 'layouts/shared/footer' %>
+    <% end %>
   </body>
-  <%= custom_flash_messages %>
 </html>

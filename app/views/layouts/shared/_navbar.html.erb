@@ -1,4 +1,4 @@
- <nav class="navbar navbar-expand-md sticky-top navbar-dark bg-dark-blue">
+ <nav class="navbar navbar-expand-md sticky-top navbar-dark bg-dark-grey">
   <div class="container-fluid px-5">
     <h2 class="text-dark logo-font navbar-brand mb-0">
       <%= link_to root_path, class: 'd-flex align-items-center' do %>
@@ -17,7 +17,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
+      <ul class="navbar-nav me-auto flex-row justify-content-center">
         <li class="nav-item">
           <%= active_link_to t('buttons.navbar.questions'), questions_path, class: 'nav-link' %>
         </li>
@@ -25,7 +25,7 @@
           <%= active_link_to t('buttons.navbar.tags'), tags_path, class: 'nav-link' %>
         </li>
       </ul>
-      <ul class="navbar-nav ms-auto mb-0 align-items-center">
+      <ul class="navbar-nav ms-auto mb-0 align-items-center flex-row justify-content-center">
         <% if user_signed_in? %>
           <li class="nav-item" >
             <%= active_link_to root_path, 
