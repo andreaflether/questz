@@ -8,7 +8,7 @@ class AddCustomFieldsToUser < ActiveRecord::Migration[5.2]
       t.integer :level, null: false, default: 1
 
       t.integer :role, null: false, default: 1 # Normal user
-      t.datetime :changed_role_on 
+      t.datetime :changed_role_on
     end
   end
 end

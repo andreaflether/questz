@@ -111,7 +111,7 @@ class User < ApplicationRecord
 
   def set_role_change_info
     self.changed_role_on = DateTime.now
-    create_activity(key: 'user.changed_role', owner: self, parameters: { role: role})
+    create_activity(key: 'user.changed_role', owner: self, parameters: { role: role })
   end
 
   def max_filesize_for_avatar
