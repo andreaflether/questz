@@ -5,7 +5,7 @@ class PagesController < ApplicationController
 
   def reputation_faq; end
 
-  def code_of_conduct; end
+  def conduct; end
 
   def guidelines; end
 end
