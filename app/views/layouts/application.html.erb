@@ -2,11 +2,15 @@
 <html>
   <%= render 'layouts/shared/head' %>
 
-  <body id="main" class="d-flex flex-column"> 
+  <body id="main" class="d-flex flex-column" 
+    <%= add_scrollspy_data if controller_name == 'pages' && params[:id] == 'privacy_policy' %>
+  > 
     <%= render 'layouts/shared/navbar' %>
+
     <div class="container-fluid px-5">
       <%= yield %>
     </div>
+    
     <%= render 'layouts/shared/confirmation_modal' %>
     <%= custom_flash_messages %>
 

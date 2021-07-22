@@ -13,3 +13,5 @@ en:
             username:
               invalid: can only contain letters, numbers and '_'
               numeric_only: must have a non-number character
+            terms:
+              accepted: You need to accept the terms and conditions.

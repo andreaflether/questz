@@ -15,6 +15,7 @@
 
     <h4>How do I gain or lose XP?</h4>
     <hr />
+
     <h5 class="text-success mt-3">Gaining XP</h5>
 
     <table class="table table-hover reputation-up">
@@ -27,27 +28,27 @@
       <tbody>
         <tr>
           <td>One of your answers is <b>accepted</b></td>
-          <th scope="row">+24</th>
+          <th scope="row">+<%= t('honor.exp.answer.accept') %></th>
         </tr>
         <tr>
           <td>Post a Question</td>
-          <th scope="row">+16</th>
+          <th scope="row">+<%= t('honor.exp.question.create') %></th>
         </tr>
         <tr>
           <td>Post a answer on someone else's question</td>
-          <th scope="row">+12</th>
+          <th scope="row">+<%= t('honor.exp.answer.create') %></th>
         </tr>
         <tr>
           <td>One of your questions or answers is voted <b>up</b></td>
-          <th scope="row">+8</th>
+          <th scope="row">+<%= t('honor.exp.question.upvote') %></th>
         </tr>
         <tr>
           <td><b>Accept</b> an answer written by someone else to one of your own questions</td>
-          <th scope="row">+4</th>
+          <th scope="row">+<%= t('honor.exp.answer.choose') %></th>
         </tr>
         <tr>
           <td>Someone removes their downvote on one of your questions or answers</td>
-          <th scope="row">+2</th>
+          <th scope="row">+<%= t('honor.exp.question.unvote_down') %></th>
         </tr>
       </tbody>
     </table>
@@ -64,19 +65,19 @@
       <tbody>
         <tr>
           <td>Delete a Question</td>
-          <th scope="row">-16</th>
+          <th scope="row"><%= t('honor.exp.question.destroy') %></th>
         </tr>
         <tr>
           <td>Delete one of your answers on someone else's question</td>
-          <th scope="row">-16</th>
+          <th scope="row"><%= t('honor.exp.answer.destroy') %></th>
         </tr>
         <tr>
           <td>An upvote on of your questions or answers is removed</td>
-          <th scope="row">-8</th>
+          <th scope="row"><%= t('honor.exp.question.unvote_up') %></th>
         </tr>
         <tr>
           <td>One of your questions or answers is voted <b>down</b></td>
-          <th scope="row">-2</th>
+          <th scope="row"><%= t('honor.exp.question.downvote') %></th>
         </tr>
       </tbody>
     </table>

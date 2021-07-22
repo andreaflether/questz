@@ -49,4 +49,10 @@ module ApplicationHelper
     mapping = { one: 'gold', two: 'silver', three: 'bronze' }
     mapping[position.to_sym]
   end
+
+  def add_scrollspy_data
+    "data-bs-spy=scroll 
+    data-bs-target=#toc 
+    data-bs-offset=50"
+  end
 end

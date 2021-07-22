@@ -37,6 +37,14 @@
                     input_html: { autocomplete: 'new-password', placeholder: 'Your password' } %>
       </div>
 
+      <div class="d-flex justify-content-center my-4">
+        <%= f.input :terms, as: :boolean, 
+          label: "I accept the 
+            #{link_to 'Terms of Service', page_path('terms_of_service'), target: '_blank' } 
+            and #{link_to 'Privacy Policy', page_path('privacy_policy'), target: '_blank' }".html_safe 
+        %>
+      </div>
+
       <div class="form-actions">
         <%= f.button :submit, t('app_titles.registrations.new'), class: 'btn btn-block btn-primary w-100' %>
       </div>

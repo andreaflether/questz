@@ -1,5 +1,3 @@
-
-
 $(document).ready(function() {
   function formatQuestion (question) {
     if (!question.id) {
@@ -10,7 +8,15 @@ $(document).ready(function() {
     );
     return $question;
   };
-  
+
+  $(document).on('scroll load', function(){
+    if ($(this).scrollTop() > 550) {
+      $('.sticky-top.toc').removeClass('top-spacing');
+    } else {
+      $('.sticky-top.toc').addClass('top-spacing');
+    }
+  })
+
   const select2Data = {
     data: function (params) {
       var query = {

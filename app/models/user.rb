@@ -47,7 +47,9 @@ class User < ApplicationRecord
   tracked only: %i[create], owner: ->(_controller, model) { model }
 
   mount_uploader :avatar, AvatarUploader
+  
   attr_accessor :avatar_cache
+  attr_accessor :terms
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
@@ -58,6 +60,7 @@ class User < ApplicationRecord
     mod: 2,
     adm: 3
   }
+
 
   has_many :questions, dependent: :destroy
   has_many :answers, dependent: :destroy
@@ -70,6 +73,8 @@ class User < ApplicationRecord
                        uniqueness: { case_sensitive: false, allow_blank: true },
                        format: { with: /\A^[A-Za-z0-9_]+\Z/, allow_blank: true },
                        length: { minimum: 4, maximum: 20, allow_blank: true }
+  validates :terms,
+            acceptance: { message: I18n.t('activerecord.errors.models.user.attributes.terms.accepted') }
 
   validate :username_has_at_least_one_letter, unless: -> { username.blank? }
 

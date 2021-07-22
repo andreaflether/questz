@@ -8,4 +8,6 @@ class PagesController < ApplicationController
   def conduct; end
 
   def guidelines; end
+
+  def privacy_policy; end
 end
