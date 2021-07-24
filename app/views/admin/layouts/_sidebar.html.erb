@@ -1,0 +1,89 @@
+<aside class="sidebar">
+    <div class="sidebar-start">
+      <div class="sidebar-head">
+        <%= link_to root_path, class: 'logo-wrapper', title: 'Home' do %>
+          <%= image_tag('logo.png') %>
+          <span class="logo-text"><%= t('app.name') %></span>
+        <% end %>
+
+        <button class="sidebar-toggle transparent-btn" title="Menu" type="button">
+          <span class="sr-only">Toggle menu</span>
+          <i data-feather="menu" aria-hidden="true" class="toggle-sidebar-icon"></i>
+        </button>
+      </div>
+
+        <div class="sidebar-body">
+          <ul class="sidebar-body-menu">
+            <li>
+              <%= link_to admin_index_path, class: 'active' do %>
+                <i data-feather="home" aria-hidden="true" class="icon"></i>
+                Dashboard
+              <% end %>
+            </li>
+ 
+            <li>
+              <%= link_to '#' do %>
+                <i data-feather="help-circle" aria-hidden="true" class="icon"></i>
+                Questions
+              <% end %>
+            </li>
+
+            <li>
+              <%= link_to '#', class: 'show-cat-btn' do %>
+                <i data-feather="flag" aria-hidden="true" class="icon"></i> Reports
+
+                <span class="category__btn transparent-btn" title="Open list">
+                  <span class="sr-only">Open list</span>
+                  <span class="arrow-down" aria-hidden="true">
+                    <i data-feather="chevron-down" aria-hidden="true" class="icon"></i>
+                  </span>
+                </span>
+              <% end %>
+              <ul class="cat-sub-menu">
+                <li>
+                  <%= link_to '#' do %>
+                    <i data-feather="circle" width="14" height="14" aria-hidden="true" class="icon"></i>
+                    Questions
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to '#' do %>
+                    <i data-feather="circle" width="14" height="14" aria-hidden="true" class="icon"></i>
+                    Answers
+                  <% end %>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <%= link_to '#' do %>
+                <i data-feather="tag" aria-hidden="true" class="icon"></i>
+                Tags
+              <% end %>
+            </li>
+
+            <li>
+              <%= link_to '#' do %>
+                <i data-feather="user" aria-hidden="true" class="icon"></i>
+                Users
+              <% end %>
+            </li>
+          </ul>
+        </div>
+    </div>
+    <div class="sidebar-footer">
+      <%= link_to '#', class: 'sidebar-user' do %>
+        <span class="sidebar-user-img">
+          <% if current_user.avatar? %>
+            <%= image_tag(current_user.avatar_url) %>
+          <% else %>
+            <%= image_tag 'no-avatar.png' %>
+          <% end %> 
+        </span>
+        <div class="sidebar-user-info">
+          <span class="sidebar-user__title"><%= current_user.name %></span>
+          <span class="sidebar-user__subtitle"><%= t("enums.user.role.#{current_user.role}") %></span>
+        </div>
+      <% end %>
+    </div>
+</aside>

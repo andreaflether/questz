@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= render 'layouts/shared/meta_tags' %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'admin', media: 'all' %>
+    <%= javascript_include_tag 'admin' %>
+    <%#= javascript_include_tag 'config', 'type': 'module' %>
+
+    <%= favicon_link_tag asset_path('favicon.ico') %>
+
+  </head>
+
+  <body id="main" class="d-flex flex-column"> 
+    <%= yield %>
+  </body>
+</html>

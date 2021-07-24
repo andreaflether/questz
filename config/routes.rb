@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'admin/index'
   authenticated :user do root to: 'questions#feed' end
 
   match '/404', to: 'errors#not_found', via: :all

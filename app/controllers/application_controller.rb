@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
   def layout_by_resource
     return 'application' if devise_controller? && edit_user_path?
 
-    devise_controller? ? 'devise' : 'application'
+    # devise_controller? ? 'devise' : 'application'
   end
 
   def edit_user_path?
