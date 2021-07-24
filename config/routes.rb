@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'admin/index'
   authenticated :user do root to: 'questions#feed' end
 
   match '/404', to: 'errors#not_found', via: :all
@@ -9,6 +8,11 @@ Rails.application.routes.draw do
   match '/500', to: 'errors#internal_server_error', via: :all
 
   devise_for :users
+
+  namespace :admin do
+    get :index, path: '/', as: ''
+    resources :questions, only: %i[index edit update destroy]
+  end
 
   patch '/update_avatar', to: 'profiles#update_avatar'
 

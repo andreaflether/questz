@@ -10,10 +10,19 @@
     <%#= javascript_include_tag 'config', 'type': 'module' %>
 
     <%= favicon_link_tag asset_path('favicon.ico') %>
-
   </head>
 
-  <body id="main" class="d-flex flex-column"> 
-    <%= yield %>
+  <body id="main" class="d-flex">
+    <main>
+      <%= render 'admin/layouts/sidebar' %>
+
+      <div class="container-fluid px-0">
+        <%= render 'admin/layouts/navbar' %>
+        <div class="container px-5">
+          <%= yield %>
+        </div>
+        
+      </div>
+    </main>
   </body>
 </html>
