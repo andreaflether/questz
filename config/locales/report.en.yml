@@ -16,3 +16,8 @@ en:
         user: User
         mod: Moderator
         adm: Administrator
+    question:
+      status:
+        unanswered: Unanswered
+        answered: Answered
+        closed: Closed

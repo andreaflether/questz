@@ -11,7 +11,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get :index, path: '/', as: ''
-    resources :questions, only: %i[index edit update destroy]
+    resources :questions, only: %i[index edit update destroy] do
+      patch :toggle_status
+    end
   end
 
   patch '/update_avatar', to: 'profiles#update_avatar'

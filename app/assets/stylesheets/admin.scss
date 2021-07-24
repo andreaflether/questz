@@ -1,13 +1,14 @@
 @import './application';
 @import './shared/custom_bootstrap';
+@import './shared/overall';
+@import 'select2/dist/css/select2.min.css';
+@import '@ttskch/select2-bootstrap4-theme/src/select2-bootstrap4.scss';
+@import './shared/select2-custom';
 
-.logo-text {
-  font-family: 'Bitter', sans-serif;
-  color: #FFF;
-  font-size: 1.5rem;
-  margin-left: 8px;
+.logo-link {
+  padding: 0.95rem;
+  border-bottom: 1px solid rgba(#FFF, 0.2);
 }
-
 body {
   min-height: 100vh;
   min-height: -webkit-fill-available;
@@ -24,5 +25,14 @@ main {
   height: -webkit-fill-available;
   max-height: 100vh;
   overflow-x: auto;
-  overflow-y: hidden;
+}
+
+.border-top-primary {
+  border-top: 3px solid $primary;
+}
+
+.action-buttons a {
+  i {
+    margin-right: 0;
+  }
 }

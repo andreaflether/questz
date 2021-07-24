@@ -1,6 +1,4 @@
 //= require application
-//= require jquery/dist/jquery
-//= require jquery-slimscroll/jquery.slimscroll.min
-// require notyf/notyf.min
+//= require select2/dist/js/select2.full.min
 //= require feather-icons/dist/feather.min
-//= require elegant
+//= require_tree ./admin

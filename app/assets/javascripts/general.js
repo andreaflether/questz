@@ -43,7 +43,6 @@ $(document).ready(function() {
   $('input[type=radio][name="report[reason]"]').change(function() {
     $('#report_duplicate_id').val(null).trigger('change');
     $('#report_mod_attention_details').val('');
-    
   });
 
   const tagsAllowed = $('#question_tag_list').attr('data-tags') === 'false' ? false : true;

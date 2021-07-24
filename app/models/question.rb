@@ -38,6 +38,8 @@ class Question < ApplicationRecord
 
   is_impressionable counter_cache: true
 
+  ransacker :status, formatter: proc { |v| statuses[v] }
+
   enum status: {
     unanswered: 0,
     answered: 1,

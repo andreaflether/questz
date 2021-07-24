@@ -1,12 +1,78 @@
-<div class="card">
-  <div class="card-header bg-white">
-    <h5 class="mb-0 py-2">Search filters</h5>
-  </div>
-  <div class="card-body">
-    
-  </div>
-  <div class="card-footer text-end">
-    <button class="btn btn-secondary">Clear</button>
-    <button class="btn btn-primary"><i class="fas fa-search"></i>Search</button>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card border-top-primary">
+      <div class="card-header bg-white">
+        <h6 class="mb-0 py-2">
+          <i class="fas fa-filter me-2"></i>
+          Search filters
+        </h6>
+      </div>
+      <%= search_form_for([:admin, query]) do |f| %>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group mb-3">
+                <%= f.label :title_cont, class: 'form-label' %>
+                <%= f.search_field :title_cont, 
+                  class: 'form-control', 
+                  placeholder: 'Search for question title' %>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group mb-3">
+                <%= f.label :tags_name_in, class: 'form-label' %>
+                <%= f.select :tags_name_in,
+                  options_from_collection_for_select(Tag.all, :name, :name, query.tags_name_in),
+                  { }, 
+                  multiple: true, 
+                  class: 'form-control select2', 
+                  include_blank: false, 
+                  data: { placeholder: 'Select tag' } 
+                %>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <%= f.label :status_in, class: 'form-label' %>
+              <%= f.select :status_in, 
+                options_from_collection_for_select(
+                  Question.statuses_i18n, :first, :second, query.status_in
+                ),
+                { }, 
+                multiple: true, 
+                class: 'form-control select2', 
+                include_blank: false, 
+                data: { placeholder: 'Select status'} 
+              %>
+            </div>
+            <div class="col-md-6">
+              <%= f.label :user_id_in, class: 'form-label' %>
+              <%= f.select :user_id_in, 
+                options_from_collection_for_select(User.all, :id, :username, query.user_id_in),
+                { }, 
+                multiple: true, 
+                class: 'form-control select2', 
+                include_blank: false, 
+                data: { placeholder: 'Select user'} 
+              %>
+
+
+            </div>
+          </div>
+        </div>
+        <div class="card-footer bg-white text-end py-3">
+          <%= link_to admin_questions_path, class: 'btn btn-default' do %>
+            <i class="fas fa-times"></i> Clear
+          <% end %>
+          <%= button_tag type: 'submit', title: 'Search', class: 'btn btn-primary',
+          params: params.except(:query) do %>
+            <i class="fas fa-search"></i> Search
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

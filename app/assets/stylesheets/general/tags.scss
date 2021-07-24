@@ -9,36 +9,6 @@
   }
 }
 
-.select2-container--bootstrap4 {
-  .select2-dropdown {
-    // selected item
-    .select2-results__option[aria-selected="true"] {
-      color: $white;
-      background-color: $primary;
-    }
-  }
-
-  .select2-results__option--highlighted,
-  .select2-results__option--highlighted.select2-results__option[aria-selected="true"] {
-    color: $white;
-  }
-
-  .select2-selection--multiple {
-    .select2-selection__choice {
-      background-color: $primary;
-      border: 1px solid darken($color: $primary, $amount: 8%);
-      color: $white;
-    }
-
-    .select2-selection__choice__remove {
-      color: darken($white, 10%);
-      &:hover {
-        color: $white;
-      }
-    }
-  }
-}
-
 $sizes: ('xs', 'sm', 'md', 'lg');
 
 @for $i from 0 to length($sizes) {

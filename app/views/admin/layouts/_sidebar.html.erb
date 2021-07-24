@@ -1,10 +1,8 @@
 
-  <div class="d-flex flex-column flex-shrink-0 text-white bg-dark" style="width: 4.5rem">
-    <a href="/" class="d-block p-3 link-dark text-decoration-none" title="Icon-only" data-bs-toggle="tooltip" data-bs-placement="right">
+  <div class="d-flex flex-column flex-shrink-0 text-white bg-dark sticky-top" style="width: 4.5rem">
+    <%= link_to admin_path, class: 'd-block logo-link link-dark' do %>
       <%= image_tag 'logo.png' %>
-      <span class="visually-hidden">Icon-only</span>
-    </a>
-    <hr>
+    <% end %>
     <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
       <li class="nav-item">
         <%= active_link_to admin_path, 

@@ -83,6 +83,10 @@ input {
   }
 }
 
+.table > :not(:last-child) > :last-child > * {
+  border-bottom-color: transparent;
+}
+
 [class*="btn-outline"] {
   border-width: 2px;
 }
