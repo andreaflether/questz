@@ -3,4 +3,8 @@ module Admin::QuestionsHelper
     classes = { unanswered: 'secondary', answered: 'primary', closed: 'warning' }
     classes[status.to_sym]
   end
+
+  def render_close_modal(question)
+    render partial: 'admin/questions/close_question_form', locals: { question: question }
+  end
 end

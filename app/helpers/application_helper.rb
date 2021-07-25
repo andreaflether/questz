@@ -55,4 +55,18 @@ module ApplicationHelper
     data-bs-target=#toc 
     data-bs-offset=50"
   end
+
+  def get_button_with_confirmation(path, method, message, btn_content, classes)
+    link_to '#', 
+    data: { 
+      'bs-toggle': 'modal', 
+      'bs-target': '#confirmationModal', 
+      'bs-method': method.to_sym,
+      'bs-path': path,
+      'bs-content': message
+    },
+    class: classes do
+      btn_content
+    end
+  end
 end

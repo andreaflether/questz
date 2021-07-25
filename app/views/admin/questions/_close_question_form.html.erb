@@ -1,0 +1,49 @@
+<%= simple_form_for question, url: close_admin_question_path(question), method: :patch do |f| %>
+  <div class="modal-body" id="modal-close-content">
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.input :status, 
+          collection: Question.statuses_i18n.extract!(:closed), 
+          label_method: :second,
+          value_method: :first,
+          include_blank: false,
+          input_html: { class: 'form-select', disabled: true },
+          as: :select
+        %>
+      </div>
+      <div class="col-md-6">
+        <%= f.input :closing_notice,
+          collection: Question.closing_notices_i18n, 
+          label_method: :second,
+          value_method: :first,
+          prompt: 'Select a closing notice',
+          input_html: { class: 'form-select '},
+          required: true,
+          as: :select %>
+      </div>
+
+      <div class="col-md-12">
+        <div class="js-dependent-fields" 
+          data-select-id='question_closing_notice' 
+          data-option-value="duplicate">
+          <%= f.association :duplicate,
+            required: true,
+            input_html: {
+              class: 'duplicate_id_field',
+              remote: true,
+              data: {
+                tags: false,
+                placeholder: 'Search or enter a question numeric ID',
+                ajax: { url: search_questions_path }
+              }
+            }
+          %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-bs-dismiss="modal">Cancel</button>
+    <%= f.button :submit, 'Confirm', class: 'btn btn-primary' %>
+  </div>
+<% end %>
