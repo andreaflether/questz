@@ -6,6 +6,7 @@ class CreateReports < ActiveRecord::Migration[5.2]
       t.integer :user_id
       t.integer :reason
       t.string :mod_attention_details
+      t.string :report_number, unique: true
       t.integer :duplicate_id
 
       t.timestamps

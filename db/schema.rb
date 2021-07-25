@@ -156,6 +156,7 @@ ActiveRecord::Schema.define(version: 2021_04_21_195517) do
     t.integer "user_id"
     t.integer "reason"
     t.string "mod_attention_details"
+    t.string "report_number"
     t.integer "duplicate_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

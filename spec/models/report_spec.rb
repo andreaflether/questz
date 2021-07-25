@@ -7,6 +7,7 @@
 #  id                    :integer          not null, primary key
 #  mod_attention_details :string
 #  reason                :integer
+#  report_number         :string
 #  reportable_type       :string
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null

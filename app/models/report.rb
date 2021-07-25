@@ -7,6 +7,7 @@
 #  id                    :integer          not null, primary key
 #  mod_attention_details :string
 #  reason                :integer
+#  report_number         :string
 #  reportable_type       :string
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
@@ -34,6 +35,8 @@ class Report < ApplicationRecord
     mod_intervention: 9
   }
 
+  before_create :generate_report_number
+
   validates :reason, presence: true
   validates :user_id, uniqueness: { scope: %i[reportable_type reportable_id] }
   validates :mod_attention_details, length: { in: 10..255, if: -> { mod_intervention? } },
@@ -48,5 +51,25 @@ class Report < ApplicationRecord
 
   def self.answer_reasons
     reasons_i18n.except :needs_details, :needs_focus, :duplicate, :no_longer_needed
+  end
+
+  def reportable_type_abbr
+    reportable_type.slice(0)
+  end
+
+  def last_report_number
+    Report.where(
+      created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day, 
+      reportable_type: reportable_type
+    ).count
+  end
+
+  def next_report_number
+    next_number = last_report_number + 1
+    next_number.to_s.rjust(5, '0')
+  end
+
+  def generate_report_number
+    self.report_number = Date.today.strftime("%Y%m%d") + reportable_type_abbr + next_report_number
   end
 end
