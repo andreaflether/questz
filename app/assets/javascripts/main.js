@@ -1,5 +1,5 @@
 //= require application
-//= require general
+// require general
 //= require dropzone/dist/dropzone
 //= require uploads/trix
 //= require trix
@@ -9,3 +9,4 @@
 //= require masonry-layout/dist/masonry.pkgd.min
 //= require underscore/underscore-min
 //= require dependent-fields
+// require shared

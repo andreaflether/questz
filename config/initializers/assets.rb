@@ -16,5 +16,5 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 Rails.application.config.assets.precompile += %w[
   config.js devise.js general.js main.js uploads/avatar.js
-  devise.css general.css admin.css admin.js
+  devise.css general.css admin.css admin.js shared.js
 ]

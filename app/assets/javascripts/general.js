@@ -1,14 +1,6 @@
-$(document).ready(function() {
-  function formatQuestion (question) {
-    if (!question.id) {
-      return question.text;
-    }
-    var $question = $(
-      '<span class="fw-bold">ID #'+ question.id + ' - </span>' + '<span>'+ question.text + '</span>'
-    );
-    return $question;
-  };
+import { select2Data, select2DefaultOptions } from './select2data'
 
+$(document).ready(function() {
   $(document).on('scroll load', function(){
     if ($(this).scrollTop() > 550) {
       $('.sticky-top.toc').removeClass('top-spacing');
@@ -16,29 +8,6 @@ $(document).ready(function() {
       $('.sticky-top.toc').addClass('top-spacing');
     }
   })
-
-  const select2Data = {
-    data: function (params) {
-      var query = {
-        search: params.term,
-        page: params.page || 1
-      }
-      return query;
-    }
-  }
-
-  const select2DefaultOptions = {
-    theme: 'bootstrap4',
-  }
-
-  $('#report_duplicate_id').select2({
-    ...select2DefaultOptions,
-    templateResult: formatQuestion,
-    ajax: {
-      dataType: 'json',
-      ...select2Data
-    }
-  });
 
   $('input[type=radio][name="report[reason]"]').change(function() {
     $('#report_duplicate_id').val(null).trigger('change');
@@ -68,22 +37,4 @@ $(document).ready(function() {
     percentPosition: true,
     horizontalOrder: true
   });
-
-  DependentFields.bind();
-
-  var exampleModal = document.getElementById('confirmationModal')
-  exampleModal.addEventListener('show.bs.modal', function (event) {
-    var button = event.relatedTarget
-    var modalContent = button.getAttribute('data-bs-content')
-
-    var method = button.getAttribute('data-bs-method')
-    var path = button.getAttribute('data-bs-path')
-    
-    var submitBtn = exampleModal.querySelector('[data-bs-submit]')
-    var modalBodyInput = exampleModal.querySelector('.modal-body')
-
-    modalBodyInput.textContent = modalContent
-    submitBtn.setAttribute('data-method', method)
-    submitBtn.setAttribute('href', path)
-  })
 })

@@ -6,6 +6,8 @@
   <%= stylesheet_link_tag 'general', media: 'all' %>
   <%= javascript_include_tag 'config', 'type': 'module' %>
   <%= javascript_include_tag 'main' %>
+  <%= javascript_include_tag 'general', 'type': 'module' %>
+  <%= javascript_include_tag 'shared', 'type': 'module' %>
   <%= javascript_include_tag 'uploads/avatar' if edit_user_path? %>
 
   <%= favicon_link_tag asset_path('favicon.ico') %>
