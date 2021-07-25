@@ -159,3 +159,20 @@ footer {
     }
   }
 }
+
+$icon-sizes: 30, 40, 45, 50, 75;
+
+@for $i from 0 to length($icon-sizes) {
+  $size: nth($icon-sizes, $i + 1);
+
+  .user-avatar-#{$size} {
+    width: $size + 0px;
+    height: $size + 0px;
+  }
+}
+
+.custom-dropdown {
+  border: 1px solid rgba(0, 0, 0, 0.125) !important;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15) !important;
+  padding: 0;
+}
