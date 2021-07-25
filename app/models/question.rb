@@ -88,6 +88,7 @@ class Question < ApplicationRecord
   validates :body, length: { in: 15..20_000, allow_blank: true }, presence: true
   validates :closing_notice, presence: { if: -> { closed? } }
   validates :duplicate_id, presence: { if: -> { closed? && duplicate? } }
+  validates :status, presence: true
 
   validate :tag_list_count
   validate :check_for_answers, on: :destroy
@@ -110,7 +111,8 @@ class Question < ApplicationRecord
   end
 
   def check_for_answers
-    errors.add(:base, I18n.t('messages.errors.questions.has_answers')) if has_answers?
+    byebug
+    errors.add(:base, I18n.t('messages.errors.questions.has_answers')) if has_answers? && user.user?
   end
 
   def set_closed_at_timestamp

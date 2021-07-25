@@ -11,8 +11,12 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get :index, path: '/', as: ''
-    resources :questions, only: %i[index edit update destroy] do
-      patch :toggle_status
+    resources :questions, only: %i[show index edit update destroy] do
+      member do
+        patch :close
+        patch :reopen
+        get :close_modal
+      end
     end
   end
 

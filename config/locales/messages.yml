@@ -8,6 +8,7 @@ en:
       mark_answer_as_chosen: Do you really want to choose this as an answer to your question? 
         Be sure of your choice because you won't be able to change or remove it later on.
       delete: Are you sure you want to delete this %{resource}?
+      reopen: Are you sure you want to reopen this %{resource}?
     errors:
       questions:
         has_answers: You cannot delete this question because it already has answers.

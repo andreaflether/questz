@@ -4,6 +4,8 @@ en:
       create: Your question was successfully posted!
       update: Question was successfully updated.
       destroy: Question was successfully deleted.
+      close: Question was successfully closed.
+      reopen: Question was successfully reopened.
     answers:
       create: Your answer was successfully posted!
       update: Answer was successfully updated.
