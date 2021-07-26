@@ -7,7 +7,7 @@ class QuestionsController < ApplicationController
   before_action :get_popular_tags, only: %i[index feed show]
   before_action :get_top_users, only: %i[index feed]
   impressionist actions: [:show], unique: %i[impressionable_type impressionable_id ip_address]
-  load_and_authorize_resource except: %i[search], find_by: :slug
+  load_and_authorize_resource except: %i[search index show], find_by: :slug
 
   # GET /questions
   def index

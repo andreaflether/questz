@@ -8,14 +8,6 @@ class AnswersController < ApplicationController
   load_and_authorize_resource :question, find_by: :slug
   load_and_authorize_resource :answer, through: :question
 
-  # GET /answers
-  def index
-    @answers = Answer.all
-  end
-
-  # GET /answers/1
-  def show; end
-
   # GET /answers/new
   def new
     @answer = Answer.new
