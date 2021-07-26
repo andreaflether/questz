@@ -1,0 +1,18 @@
+<h3 class="my-4">Reports</h3>
+
+<div class="row">
+  <div class="col-md-6">
+    <%= render 'admin/reports/opened_reports_card', 
+      reports: @question_reports, 
+      name: 'Questions', 
+      icon: 'fa-question' 
+    %>
+  </div>
+  <div class="col-md-6">
+    <%= render 'admin/reports/opened_reports_card',
+      reports: @answer_reports,
+      name: 'Answers',
+      icon: 'fa-comment' 
+    %>
+  </div>
+</div>

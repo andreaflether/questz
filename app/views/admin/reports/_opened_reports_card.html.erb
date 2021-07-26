@@ -1,0 +1,30 @@
+<div class="card border-top-primary">
+  <div class="card-header bg-white">
+    <h6 class="mb-0 py-2">
+      <i class="fas <%= icon %> me-2"></i>
+      <%= name %>
+    </h6>
+  </div>
+  <div class="card-body p-0">
+    <table class="table table-hover m-0">
+      <thead class="border-bottom border-primary">
+        <tr class="table-primary">
+          <th scope="col">Number</th>
+          <th scope="col">Reason</th>
+          <th scope="col">Opened by</th>
+          <th scope="col">Opened on</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% reports.each do |report| %>
+        <tr>
+          <td><%= link_to report.number, admin_report_path(report) %></td>
+          <td><%= report.reason.humanize %></td>
+          <td><%= report.user.username %></td>
+          <td><%= l(report.created_at, format: :long) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
