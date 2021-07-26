@@ -4,16 +4,19 @@
 #
 # Table name: reports
 #
-#  id                    :integer          not null, primary key
-#  mod_attention_details :string
-#  reason                :integer
-#  report_number         :string
-#  reportable_type       :string
-#  created_at            :datetime         not null
-#  updated_at            :datetime         not null
-#  duplicate_id          :integer
-#  reportable_id         :integer
-#  user_id               :integer
+#  id                     :integer          not null, primary key
+#  closing_notice_details :text
+#  mod_attention_details  :string
+#  number                 :string
+#  reason                 :integer
+#  reportable_type        :string
+#  status                 :integer          default("opened")
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  assigned_user_id       :integer
+#  duplicate_id           :integer
+#  reportable_id          :integer
+#  user_id                :integer
 #
 # Indexes
 #
@@ -35,6 +38,13 @@ class Report < ApplicationRecord
     mod_intervention: 9
   }
 
+  enum status: {
+    opened: 1,
+    ongoing: 2,
+    closed: 3,
+    solved: 4
+  }
+
   before_create :generate_report_number
 
   validates :reason, presence: true
@@ -43,7 +53,14 @@ class Report < ApplicationRecord
                                     absence: { if: -> { !mod_intervention? } }
   validates :duplicate_id, presence: { if: -> { duplicate? } },
                            absence: { if: -> { !duplicate? } }
+  validates :assigned_user_id, presence: { if: -> { ongoing? } }
+
   belongs_to :duplicate, class_name: 'Question', optional: true
+  belongs_to :assigned_user, class_name: 'User', optional: true
+
+  def to_param
+    number
+  end
 
   def self.question_reasons
     reasons_i18n.except :not_an_answer, :no_longer_needed
@@ -70,6 +87,6 @@ class Report < ApplicationRecord
   end
 
   def generate_report_number
-    self.report_number = Date.today.strftime("%Y%m%d") + reportable_type_abbr + next_report_number
+    self.number = Date.today.strftime("%Y%m%d") + reportable_type_abbr + next_report_number
   end
 end

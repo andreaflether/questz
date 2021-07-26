@@ -4,16 +4,19 @@
 #
 # Table name: reports
 #
-#  id                    :integer          not null, primary key
-#  mod_attention_details :string
-#  reason                :integer
-#  report_number         :string
-#  reportable_type       :string
-#  created_at            :datetime         not null
-#  updated_at            :datetime         not null
-#  duplicate_id          :integer
-#  reportable_id         :integer
-#  user_id               :integer
+#  id                     :integer          not null, primary key
+#  closing_notice_details :text
+#  mod_attention_details  :string
+#  number                 :string
+#  reason                 :integer
+#  reportable_type        :string
+#  status                 :integer          default("opened")
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  assigned_user_id       :integer
+#  duplicate_id           :integer
+#  reportable_id          :integer
+#  user_id                :integer
 #
 # Indexes
 #

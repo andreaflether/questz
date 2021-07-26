@@ -154,10 +154,13 @@ ActiveRecord::Schema.define(version: 2021_04_21_195517) do
 
   create_table "reports", force: :cascade do |t|
     t.integer "user_id"
+    t.string "number"
     t.integer "reason"
+    t.integer "status", default: 1
     t.string "mod_attention_details"
-    t.string "report_number"
     t.integer "duplicate_id"
+    t.integer "assigned_user_id"
+    t.text "closing_notice_details"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "reportable_type"
