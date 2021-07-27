@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <%= render 'layouts/shared/head' %>
+
+  <body class="vh-100" id="main">
+    <div class="h-100 d-flex flex-row align-items-center">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-12 text-center">
+            <h1 class="display-1 fw-bold text-primary">
+              <%= t("app_titles.#{controller_name}.#{action_name}") %>
+            </h1>
+            <div class="mb-4 lead"><%= t("messages.views.errors.#{action_name}").html_safe %></div>
+            
+            <%= link_to root_path, class: 'btn btn-outline-primary' do %>
+              <i class="fas fa-home"></i> Go back to home 
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

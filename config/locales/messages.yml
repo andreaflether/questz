@@ -24,3 +24,9 @@ en:
       no_users_to_display: No users to display.
       at_least_one_interaction: Displaying users that interacted in the website at least once
       not_a_valid_filter: <b>%{filter}</b> is not a valid filter.
+      errors:
+        not_found: The page you are looking for was not found.
+        unprocessable_entity: >
+          <b>The change you wanted was rejected. </b><br />
+          Maybe you tried to change something you didn't have access to
+        internal_server_error: We're sorry, but something went wrong.

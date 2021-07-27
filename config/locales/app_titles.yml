@@ -73,6 +73,10 @@ en:
       new: *reports_create
       create: *reports_create
       report: Report %{reportable_type}
+    errors:
+      not_found: '404'
+      unprocessable_entity: '422'
+      internal_server_error: '500'
     users:
       info: User information
       stats:
