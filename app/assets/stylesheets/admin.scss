@@ -53,3 +53,11 @@ aside {
   min-width: 300px;
   max-width: 350px;
 }
+
+.forbidden-word {
+  background-color: rgba($danger, 0.5);
+}
+
+.contains-link {
+  background-color: rgba($warning, 0.5);
+}

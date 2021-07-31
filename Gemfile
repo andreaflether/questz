@@ -39,6 +39,7 @@ gem 'humanize'
 gem 'impressionist', '~> 1.6.1'
 gem 'inline_svg'
 gem 'kaminari'
+gem 'language_filter'
 gem 'meta-tags'
 gem 'ransack'
 gem 'public_activity'
@@ -46,6 +47,7 @@ gem 'simple_form'
 gem 'social-share-button'
 gem 'stringex'
 gem 'trix-rails', require: 'trix'
+gem 'twitter-text'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

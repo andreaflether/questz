@@ -14,6 +14,10 @@ module Admin
     # GET /admin/questions/1
     def show
       @answers = @question.answers.includes([:user])
+      @filters = LanguageFilter::Filter.new(
+        matchlist: File.join(Rails.root, "/config/language_filters/custom_list.yml")
+      )
+      filter_answers
     end
     
     # GET /admin/questions/1/edit
@@ -60,6 +64,10 @@ module Admin
 
     def question_params
       params.require(:question).permit(:title, :body, :status, :closing_notice, :duplicate_id, tag_list: [])
+    end
+
+    def filter_answers
+      @answers.each { |a| helpers.get_filtered_content(a) }
     end
   end
 end

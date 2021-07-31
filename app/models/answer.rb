@@ -46,7 +46,11 @@ class Answer < ApplicationRecord
       'answer.destroy'
     )
   }
+
   validate :cannot_receive_answers, on: :create, unless: -> { question.answered? }
+
+  attribute :has_restricted_word, :boolean, default: false
+  attribute :has_link, :boolean, default: :false
 
   belongs_to :question, counter_cache: true
   belongs_to :user, counter_cache: true
@@ -60,13 +64,10 @@ class Answer < ApplicationRecord
                      targets: ->(answer, _key) { [answer.question.user] },
                      group: :question, notifier: :user,
                      notifiable_path: :question_notifiable_path,
-                     # notifiable_path: ->(object, key) { object.question_notifiable_path + "#answer_#{key}" },
                      dependent_notifications: :update_group_and_delete_all
-  # printable_name: ->(answer) { "answer \"#{answer.body}\"" },
 
   acts_as_notifiable :answer_owners,
                      targets: ->(answer, _key) { [answer.user] },
-                     # notifiable_path: ->(object, key) { object.question_notifiable_path + "#answer_#{key}" },
                      notifiable_path: :question_notifiable_path,
                      dependent_notifications: :update_group_and_delete_all
 

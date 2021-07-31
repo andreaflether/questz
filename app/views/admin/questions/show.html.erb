@@ -48,24 +48,40 @@
                     class: 'rounded-circle user-avatar-50 me-2 border' %>
                   <% end %> 
                 <% end %>
-                <div class="d-flex flex-column">
-                  <div class="answer-info d-flex">
-                    <p class="text-break text-muted mb-1">
+                <div class="d-flex flex-column w-100">
+                  <div class="answer-info d-flex flex-lg-row flex-column align-items-lg-center mb-1">
+                    <p class="text-break text-muted mb-lg-0 mb-2 me-2">
                       <%= link_to answer.user.name, profile_path(answer.user), target: '_blank', class: 'fw-bold' %>
                       &nbsp;·&nbsp; <%= format_datetime(@question.created_at.localtime) %>
                     </p>
+
+                    <div class="question-flags d-flex g-2">
+                      <% if answer.has_restricted_word? %>
+                        <span class="badge bg-danger me-2">
+                          Restricted word
+                        </span>
+                      <% end %>
+
+                      <% if answer.has_link? %>
+                        <span class="badge bg-warning">
+                          Contains link
+                        </span>
+                      <% end %>
+                    </div>
                   </div>
                   <p class="mb-0 answer-body trix-content">
                     <%= sanitize answer.body %>
                   </p>
                 </div>
-
-                <%= get_button_with_confirmation(
-                  admin_answer_path(answer),
-                  'delete', t('messages.confirmations.delete', resource: 'answer'),
-                  'trash',
-                  'btn btn-sm btn-danger mb-auto'
-                ) %>
+                <div class="answer-actions">
+                  <%= get_button_with_confirmation(
+                    admin_answer_path(answer),
+                    'delete', t('messages.confirmations.delete', resource: 'answer'),
+                    'trash',
+                    'btn btn-sm btn-danger me-auto'
+                  ) %>
+                
+                </div>
               </div>
             </li>
           <% end %>
@@ -101,7 +117,7 @@
     <% end %>
 
     <%= link_to edit_admin_question_path(@question), class: 'btn btn-sm btn-info' do %>
-      <i class="fas fa-pen"></i>Editar
+      <i class="fas fa-pen"></i>Edit
     <% end %>
   </div>
 </div>
