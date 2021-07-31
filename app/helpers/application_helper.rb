@@ -56,7 +56,7 @@ module ApplicationHelper
     data-bs-offset=50"
   end
 
-  def get_button_with_confirmation(path, method, message, btn_content, classes)
+  def get_button_with_confirmation(path, method, message, icon_class, classes, btn_text = nil)
     link_to '#', 
     data: { 
       'bs-toggle': 'modal', 
@@ -66,7 +66,7 @@ module ApplicationHelper
       'bs-content': message
     },
     class: classes do
-      btn_content
+      "<i class='fas fa-#{icon_class} #{'me-0' if !btn_text}'></i>".html_safe + btn_text
     end
   end
 end

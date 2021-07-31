@@ -8,7 +8,8 @@ class Answers::ReportsController < ReportsController
   private
 
   def set_reportable
-    @reportable = Answer.find(params[:answer_id])
+    @reportable = Answer.find_by!(id: params[:answer_id])
+    @question = @reportable.question
     @reportable_path = question_path(@reportable.question)
   end
 end

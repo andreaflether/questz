@@ -97,7 +97,7 @@ class User < ApplicationRecord
   end
 
   def has_privilege_to_create_tag?
-    points_total >= 500
+    points_total >= 500 || !user?
   end
 
   def exp_to_next_level
