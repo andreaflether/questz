@@ -35,7 +35,14 @@ en:
       edit: *passwords_update
       update: *passwords_update
       send_reset_instructions: Send reset instructions
-    answers:
+    admin:
+      index: Admin panel
+      questions: Questions
+      reports:
+        index: Reports
+        opened: Opened Reports
+      tags: Tags
+      users: Users
     tags:
       index: Tags
       show: Questions tagged with '%{tag}'

@@ -1,6 +1,6 @@
 
   <aside class="text-white bg-dark fixed-top overflow-hidden h-100 px-0">
-    <%= link_to admin_path, class: 'd-block logo-link link-dark' do %>
+    <%= link_to admin_path, class: 'd-block logo-link link-dark text-center' do %>
       <%= image_tag 'logo.png' %>
     <% end %>
     <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
@@ -14,25 +14,29 @@
       </li>
       <li>
         <%= active_link_to admin_questions_path,
-          class: 'nav-link py-3 rounded-0 link-light' do %>
+          class: 'nav-link py-3 rounded-0 link-light',
+          title: t('app_titles.admin.questions') do %>
           <i data-feather="help-circle" class="icon me-2"></i>
         <% end %>
       </li>
       <li>
         <%= active_link_to 'aaaa',
-          class: 'nav-link py-3 rounded-0 link-light' do %>
+          class: 'nav-link py-3 rounded-0 link-light',
+          title: t('app_titles.admin.tags') do %>
           <i data-feather="tag" class="icon me-2"></i>
         <% end %>
       </li>
       <li>
         <%= active_link_to opened_admin_reports_path,
-          class: 'nav-link py-3 rounded-0 link-light' do %>
+          class: 'nav-link py-3 rounded-0 link-light',
+          title: t('app_titles.admin.reports.opened') do %>
           <i data-feather="flag" class="icon me-2"></i>
         <% end %>
       </li>
       <li>
         <%= active_link_to 'aaaa',
-          class: 'nav-link py-3 rounded-0 link-light' do %>
+          class: 'nav-link py-3 rounded-0 link-light',
+          title: t('app_titles.admin.users') do %>
           <i data-feather="user" class="icon me-2"></i>
         <% end %>
       </li>
