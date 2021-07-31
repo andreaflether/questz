@@ -19,11 +19,13 @@
 
     <div id="main-content">
       <div class="container-fluid px-4">
+        <h3 class="my-4"><%= controller_name.capitalize %></h3>
         <%= yield %>
       </div>
     </div>
     
     <%= custom_flash_messages %>
     <%= render 'layouts/shared/confirmation_modal' %>
+    <%= render 'admin/questions/close_modal' %>
   </body>
 </html>

@@ -5,18 +5,11 @@ class Ability
 
   def initialize(user)
     if user.present?
-      if user.adm? || user.mod?
-        can :manage, :all
-      end
-
       can %i[create upvote downvote], [Question, Answer]
       can %i[feed], Question
 
       # User can't vote on owned resource
       cannot %i[upvote downvote], [Question, Answer], user_id: user.id
-
-      # User asked the question
-      can %i[choose], Answer, question: { status: %w[unanswered], user_id: user.id }
 
       # Can't answer a closed question
       cannot %i[create], Answer, question: { status: 'closed' }
@@ -34,8 +27,16 @@ class Ability
       # Can't delete a Question that has answers
       cannot %i[destroy], Question, &:has_answers?
 
+      # User asked the question
+      can %i[choose], Answer, question: { status: %w[unanswered], user_id: user.id }
+
       # Can't update a Question closed for being duplicated
       cannot %i[update], Question, closing_notice: %w[duplicate]
+      
+      if user.adm? || user.mod?
+        can :manage, :all
+        cannot %i[choose], Answer
+      end
     end
   end
 end

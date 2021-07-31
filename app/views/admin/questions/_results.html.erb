@@ -40,12 +40,12 @@
                     <%= link_to edit_admin_question_path(question), class: 'btn btn-sm btn-info' do %>
                       <i class="fas fa-pen"></i>
                     <% end %>
-                    
+
                     <%= get_button_with_confirmation(
                         admin_question_path(question),
                         'delete',
-                        t('messages.confirmations.delete', resource: 'question'),
-                        "<i class='fas fa-trash'></i>".html_safe,
+                        delete_message_to_display(question),
+                        'trash',
                         'btn btn-sm btn-danger'
                       ) %>
 
@@ -54,13 +54,13 @@
                         reopen_admin_question_path(question),
                         'patch',
                         t('messages.confirmations.reopen', resource: 'question'),
-                        "<i class='fas fa-lock-open'></i>".html_safe,
+                        'lock-open',
                         'btn btn-sm btn-success'
                       ) %>
                     <% else %>
                       <%= link_to close_modal_admin_question_path(question),
                         remote: true,
-                        class: 'btn btn-sm btn-warning' do %>
+                        class: "btn btn-sm btn-warning #{'disabled' if question.answered?}" do %>
                         <i class="fas fa-tools"></i>
                       <% end %>
                     <% end %>

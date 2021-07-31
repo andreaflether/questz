@@ -31,7 +31,10 @@ class Question < ApplicationRecord
   acts_as_votable
   acts_as_taggable_on :tags
   acts_as_notification_group printable_name: ->(question) { "question \"#{question.title}\"" }
-  acts_as_url :title, url_attribute: :slug, sync_url: true, limit: 80
+  acts_as_url :title, 
+    url_attribute: :slug, 
+    sync_url: true,
+    limit: 80 
 
   include PublicActivity::Model
   tracked only: %i[create destroy], owner: ->(_controller, model) { model.user }
@@ -111,7 +114,6 @@ class Question < ApplicationRecord
   end
 
   def check_for_answers
-    byebug
     errors.add(:base, I18n.t('messages.errors.questions.has_answers')) if has_answers? && user.user?
   end
 

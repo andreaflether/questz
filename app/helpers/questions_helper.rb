@@ -17,4 +17,12 @@ module QuestionsHelper
   def get_points_for_key(key)
     format('%+d', t("honor.exp.#{key}"))
   end
+
+  def delete_message_to_display(question)
+    if question.answers_count > 0
+      t('messages.confirmations.question_has_answers')
+    else
+      t('messages.confirmations.delete', resource: 'question')
+    end
+  end
 end

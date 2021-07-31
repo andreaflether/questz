@@ -1,29 +1,37 @@
 module Admin
   class QuestionsController < AdminController
     before_action :set_question, except: %i[index]
+    load_and_authorize_resource find_by: :slug
     
     # GET /admin/questions
     def index
       @query = Question.ransack(params[:query])
       @questions = @query.result
-                     .page(params[:page])
-                     .includes([:user])
+                         .page(params[:page])
+                         .includes([:user])
     end
 
     # GET /admin/questions/1
-    def show; end
+    def show
+      @answers = @question.answers.includes([:user])
+    end
     
     # GET /admin/questions/1/edit
     def edit; end
     
     # PATCH/PUT /admin/questions/1
-    def update; end
+    def update
+      if @question.update(question_params)
+        redirect_to([:admin, @question], notice: I18n.t('controllers.questions.update'))
+      else
+        render :edit
+      end
+    end
     
     # DELETE /admin/questions/1
     def destroy
       @question.destroy
-      # redirect_to admin_questions_path, notice: I18n.t('controllers.questions.destroy')
-      redirect_to admin_questions_path, notice: @question.errors.full_messages.first
+      redirect_to admin_questions_path, notice: I18n.t('controllers.questions.destroy')
     end
     
     # PATCH /admin/questions/1/close
@@ -47,11 +55,11 @@ module Admin
     private
 
     def set_question
-      @question = Question.find_by(slug: params[:id] || params[:question_id])
+      @question = Question.find_by(slug: params[:slug])
     end
 
     def question_params
-      params.require(:question).permit(:title, :body, :status, :closing_notice)
+      params.require(:question).permit(:title, :body, :status, :closing_notice, :duplicate_id, tag_list: [])
     end
   end
 end

@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get :index, path: '/', as: ''
 
-    resources :questions, only: %i[show index edit update destroy] do
+    resources :questions, except: %i[new create], param: :slug do
       member do
         patch :close
         patch :reopen
@@ -31,6 +31,10 @@ Rails.application.routes.draw do
         get :opened
       end
     end
+
+    resources :users, except: %i[new create]
+    resources :tags, only: %i[index show]
+    resources :answers, only: %i[destroy]
   end
 
   patch '/update_avatar', to: 'profiles#update_avatar'

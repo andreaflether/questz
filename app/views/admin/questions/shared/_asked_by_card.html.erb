@@ -1,0 +1,23 @@
+<div class="card">
+  <div class="card-body text-center">
+    <h5 class="text-primary">Asked by</h5>
+    <div class="d-flex justify-content-center flex-column">
+      <% if question.user.avatar? %>
+        <%= image_tag(question.user.avatar_url, 
+          class: 'rounded-circle user-avatar-75 mx-auto mb-2') %>
+      <% else %>
+        <%= image_tag 'no-avatar.png',
+        class: 'rounded-circle user-avatar-75 border mx-auto mb-2' %>
+      <% end %> 
+      <p class="mb-1">
+        <span class="fw-bold">
+          <%= question.user.name %> 
+        </span>
+        (@<%= question.user.username%>)
+      </p>
+      <small class="text-muted">
+        on <%= l(question.created_at.localtime, format: :long) %>
+      </small>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,107 @@
-Question show page
+<% title @question.title %>
+
+<div class="card border-top-primary mb-4">
+  <div class="card-header d-flex justify-content-between align-items-center bg-white ">
+    <h6 class="mb-0 py-2">
+      <i class="fas fa-question-circle me-2"></i>View Question
+    </h6>
+    <span>
+      <%= link_to question_path(@question), target: '_blank' do %>
+        <i class="fas fa-external-link-alt"></i>
+      <% end %>
+    </span>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="row">
+          <div class="col-md-12">
+            <%= render 'admin/questions/shared/asked_by_card', question: @question %>
+          </div>
+          <div class="col-md-12 mt-3">
+            <%= render 'admin/questions/shared/question_info_card', question: @question %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <h5 class="mb-3"><%= @question.title %></h5>
+
+        <div class="question-body trix-content">
+          <%= sanitize @question.body %>
+        </div>
+
+        <div class="dropdown-divider my-4"></div>
+
+        <h6 class="mb-3">Answers (<%= @question.answers_count%>)</h6>
+        
+        <ul class="list-group">
+          <% @answers.each do |answer| %>
+            <li class="list-group-item">
+              <div class="d-flex mb-4">
+                <%= link_to profile_path(answer.user), 
+                  class: 'mb-auto' do %>
+                  <% if answer.user.avatar? %>
+                    <%= image_tag(answer.user.avatar_url, 
+                      class: 'rounded-circle user-avatar-50 me-2') %>
+                  <% else %>
+                    <%= image_tag 'no-avatar.png',
+                    class: 'rounded-circle user-avatar-50 me-2 border' %>
+                  <% end %> 
+                <% end %>
+                <div class="d-flex flex-column">
+                  <div class="answer-info d-flex">
+                    <p class="text-break text-muted mb-1">
+                      <%= link_to answer.user.name, profile_path(answer.user), target: '_blank', class: 'fw-bold' %>
+                      &nbsp;·&nbsp; <%= format_datetime(@question.created_at.localtime) %>
+                    </p>
+                  </div>
+                  <p class="mb-0 answer-body trix-content">
+                    <%= sanitize answer.body %>
+                  </p>
+                </div>
+
+                <%= get_button_with_confirmation(
+                  admin_answer_path(answer),
+                  'delete', t('messages.confirmations.delete', resource: 'answer'),
+                  'trash',
+                  'btn btn-sm btn-danger mb-auto'
+                ) %>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer bg-white py-3 text-end">
+    <%= get_button_with_confirmation(
+      admin_question_path(@question),
+      'delete',
+      delete_message_to_display(@question),
+      "trash",
+      'btn btn-sm btn-danger',
+      "Delete"
+    ) %>
+
+    <% if @question.closed? %>
+      <%= get_button_with_confirmation(
+        reopen_admin_question_path(@question),
+        'patch',
+        t('messages.confirmations.reopen', resource: 'question'),
+        'lock-open',
+        'btn btn-sm btn-success',
+        'Reopen'
+      ) %>
+    <% else %>
+      <%= link_to close_modal_admin_question_path(@question),
+        remote: true,
+        class: "btn btn-sm btn-warning #{'disabled' if @question.answered?}" do %>
+        <i class="fas fa-tools"></i> Close
+      <% end %>
+    <% end %>
+
+    <%= link_to edit_admin_question_path(@question), class: 'btn btn-sm btn-info' do %>
+      <i class="fas fa-pen"></i>Editar
+    <% end %>
+  </div>
+</div>
