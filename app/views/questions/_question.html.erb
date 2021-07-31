@@ -33,9 +33,9 @@
             <%= render partial: 'tags/partials/tag', collection: question.tags, locals: { truncate: true } %>
           </div>
           <div class="created-at mt-2 mt-md-0 flex-shrink-0 small">
-            <span class="text-muted me-3" title="<%= l(question.created_at.localtime, format: :long) %>">
+            <abbr class="text-muted me-3" title="<%= l(question.created_at.localtime, format: :long) %>">
               Asked <%= time_ago_in_words(question.created_at) %> ago
-            </span>
+            </abbr>
             <span class='fw-bold text-primary'>
               <%= raw status_to_html(question.status) %>
             </span>

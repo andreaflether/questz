@@ -73,6 +73,12 @@
                 <% end %>
               </li>
               <li>
+                <%= link_to reports_path, class: 'dropdown-item' do %>
+                  <i class="fas fa-flag"></i>
+                  <%= t('buttons.navbar.user.reports') %>
+                <% end %>
+              </li>
+              <li>
                 <%= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do %>
                   <i class="fas fa-sign-out-alt"></i>
                   <%= t('buttons.navbar.user.sign_out') %>

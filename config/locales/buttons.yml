@@ -6,6 +6,7 @@ en:
       user:
         profile: Your profile
         edit: Edit user info
+        reports: Reports
         sign_out: Sign out
       login: Login
       sign_up: Sign up

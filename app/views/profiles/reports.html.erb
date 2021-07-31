@@ -1,0 +1,82 @@
+<div class="row mt-3 mb-4">
+  <div class="col-md-8">
+    <div class="card ">
+      <div class="card-header py-3 bg-white">
+        <h6 class="mb-0">Your reports</h6>
+      </div>
+      <% if @reports.any? %>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class="table-primary">
+                <tr>
+                  <th scope="col">Report Number</th>
+                  <th scope="col">Reported Content</th>
+                  <th scope="col">Reason</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+              <% @reports.each do |report| %>
+                <tr>
+                  <th scope="row"><%= report.number %></th>
+                  <td><%= report.reportable_type %></td>
+                  <td><%= report.reason_i18n %></td>
+                  <td><%= l(report.created_at.localtime, format: :long) %></td>
+                  <td>
+                    <span class="badge bg-<%= status_to_class(report.status) %>">
+                      <%= report.status_i18n %>
+                    </span>
+                  </td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      <% else %>
+        <div class="card-body">
+          <p class="mb-0"><%= t('messages.views.no_reports_to_display') %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header bg-white py-3">
+        <h6 class="mb-0">Strikes (<%= current_user.notices_count %>)</h6>
+      </div>
+      <div class="card-body">
+        <% if @notices.any? %>
+          <% @notices.each.with_index(1) do |notice, index| %>
+            <div class="alert alert-danger">
+              <span class="fw-bold">
+                <%= index %>. <%= notice.reason_i18n %>
+              </span> &nbsp;·&nbsp;
+                <%= notice.noticeable_type.capitalize %>
+                &nbsp;·&nbsp;
+                <abbr title="<%= l(notice.created_at.localtime, format: :long) %>">
+                  <%= time_ago_in_words(notice.created_at) %> ago
+                </abbr>
+              <br />
+              <small class="text-muted">
+                <i class="fas fa-info-circle me-2"></i><%= notice.details %>
+              </small>
+            </div>
+          <% end %>
+        <% else %>
+          <p class="mb-0"><%= t('messages.views.no_strikes') %></p>
+        <% end %>
+      </div>
+      <div class="card-footer bg-white">
+        <% if @notices.any? %>
+          You have <b><%= pluralize(current_user.notices_count, 'strike') %></b>.
+        <% end %>
+        5 strikes means <span class="text-danger fw-bold">permanent ban</span>
+        on the website. Please avoid unacceptable behavior and have a read on our
+        <%= link_to 'Code of Conduct', page_path('conduct'), target: '_blank' %>.
+      </div>
+    </div>
+  </div>
+</div>

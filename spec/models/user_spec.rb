@@ -7,6 +7,7 @@
 #  id                     :integer          not null, primary key
 #  answers_count          :integer          default(0)
 #  avatar                 :string
+#  banned                 :boolean          default(FALSE)
 #  changed_role_on        :datetime
 #  current_sign_in_at     :datetime
 #  current_sign_in_ip     :string
@@ -16,6 +17,7 @@
 #  last_sign_in_ip        :string
 #  level                  :integer          default(1), not null
 #  name                   :string           default(""), not null
+#  notices_count          :integer          default(0)
 #  questions_count        :integer          default(0)
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime

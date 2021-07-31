@@ -10,7 +10,7 @@
 #  number                 :string
 #  reason                 :integer
 #  reportable_type        :string
-#  status                 :integer          default("opened")
+#  status                 :integer          default("pending")
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  assigned_user_id       :integer

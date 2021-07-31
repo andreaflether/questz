@@ -25,6 +25,8 @@ en:
       no_questions_yet: No questions to display just yet.
       no_tags_to_display: No tags to display just yet.
       no_users_to_display: No users to display.
+      no_reports_to_display: You haven't reported anything yet.
+      no_strikes: You don't have any strikes.
       at_least_one_interaction: Displaying users that interacted in the website at least once
       not_a_valid_filter: <b>%{filter}</b> is not a valid filter.
       errors:

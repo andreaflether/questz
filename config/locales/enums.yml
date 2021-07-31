@@ -21,3 +21,8 @@ en:
         unanswered: Unanswered
         answered: Answered
         closed: Closed
+    notice:
+      reason:
+        spam: Spam
+        unfriendly: Unfriendly/Unkind
+        abusive: Abusive

@@ -7,6 +7,7 @@
 #  id                     :integer          not null, primary key
 #  answers_count          :integer          default(0)
 #  avatar                 :string
+#  banned                 :boolean          default(FALSE)
 #  changed_role_on        :datetime
 #  current_sign_in_at     :datetime
 #  current_sign_in_ip     :string
@@ -16,6 +17,7 @@
 #  last_sign_in_ip        :string
 #  level                  :integer          default(1), not null
 #  name                   :string           default(""), not null
+#  notices_count          :integer          default(0)
 #  questions_count        :integer          default(0)
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
@@ -61,10 +63,10 @@ class User < ApplicationRecord
     adm: 3
   }
 
-
   has_many :questions, dependent: :destroy
   has_many :answers, dependent: :destroy
   has_many :reports, dependent: :destroy
+  has_many :notices, dependent: :destroy
 
   before_destroy :remove_activity
 
@@ -79,7 +81,7 @@ class User < ApplicationRecord
   validate :username_has_at_least_one_letter, unless: -> { username.blank? }
 
   validate :set_role_change_info, if: -> { role_changed?(from: 'user') }
-
+  
   def should_generate_new_friendly_id?
     username_changed? || super
   end
@@ -88,6 +90,10 @@ class User < ApplicationRecord
     unless username.count('a-zA-Z').positive?
       errors.add(:username, I18n.t('activerecord.errors.models.user.attributes.username.numeric_only'))
     end
+  end
+
+  def active_for_authentication?
+    super && !banned?
   end
 
   def remove_activity

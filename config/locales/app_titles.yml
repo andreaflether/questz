@@ -59,6 +59,7 @@ en:
     profiles:
       community: Users
       show: User %{user}
+      reports: Reports
       reputation: Your reputation
       overall_stats: Overall stats
       xp_per_day: Earned XP per day (last 7 days)

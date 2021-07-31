@@ -10,7 +10,7 @@
 #  number                 :string
 #  reason                 :integer
 #  reportable_type        :string
-#  status                 :integer          default("opened")
+#  status                 :integer          default("pending")
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  assigned_user_id       :integer
@@ -25,6 +25,7 @@
 class Report < ApplicationRecord
   belongs_to :reportable, polymorphic: true
   belongs_to :user
+  has_many :notices
 
   enum reason: {
     spam: 1,
@@ -39,7 +40,7 @@ class Report < ApplicationRecord
   }
 
   enum status: {
-    opened: 1,
+    pending: 1,
     ongoing: 2,
     closed: 3,
     solved: 4

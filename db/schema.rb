@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_21_195517) do
+ActiveRecord::Schema.define(version: 2021_07_31_162123) do
 
   create_table "activities", force: :cascade do |t|
     t.string "trackable_type"
@@ -91,6 +91,17 @@ ActiveRecord::Schema.define(version: 2021_04_21_195517) do
     t.index ["impressionable_type", "impressionable_id", "session_hash"], name: "poly_session_index"
     t.index ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index"
     t.index ["user_id"], name: "index_impressions_on_user_id"
+  end
+
+  create_table "notices", force: :cascade do |t|
+    t.text "details", null: false
+    t.integer "reason", null: false
+    t.integer "user_id"
+    t.integer "given_by_id", null: false
+    t.integer "noticeable_type", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_notices_on_user_id"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -244,6 +255,8 @@ ActiveRecord::Schema.define(version: 2021_04_21_195517) do
     t.integer "level", default: 1, null: false
     t.integer "role", default: 1, null: false
     t.datetime "changed_role_on"
+    t.integer "notices_count", default: 0
+    t.boolean "banned", default: false
     t.string "avatar"
     t.string "slug"
     t.integer "questions_count", default: 0
