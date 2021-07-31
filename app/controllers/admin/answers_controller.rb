@@ -1,7 +1,7 @@
 module Admin
   class AnswersController < AdminController
     before_action :set_answer
-    load_and_authorize_resource find_by: :slug
+    load_and_authorize_resource
 
     # DELETE /admin/answers/1
     def destroy

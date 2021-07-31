@@ -2,6 +2,7 @@ module Admin
   class ReportsController < AdminController
     before_action :set_report, except: %i[index opened]
     before_action :get_reports, only: %i[index opened]
+    load_and_authorize_resource
 
     # GET /admin/reports
     def index; end

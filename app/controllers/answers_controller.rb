@@ -33,7 +33,7 @@ class AnswersController < ApplicationController
   # PATCH/PUT /answers/1
   def update
     if @answer.update(answer_params)
-      redirect_to @answer, notice: I18n.t('controllers.answers.update')
+      redirect_to @answer.question, notice: I18n.t('controllers.answers.update')
     else
       render :edit
     end

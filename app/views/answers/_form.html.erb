@@ -1,4 +1,4 @@
-<%= simple_form_for @answer, url: :question_answers do |f| %>
+<%= simple_form_for answer, url: :question_answer do |f| %>
   <div class="card mt-3">
     <div class="card-header py-3 bg-white">
       <h5 class="card-title mb-0">
@@ -18,19 +18,20 @@
       <h5 class="card-title mb-0">Your answer</h5>
     </div>
     <div class="card-body my-2">
-      <div class="errors">
-        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-        <%= f.error_notification %>
-      </div>
-
       <% if @question.user.new_user? %>
         <div class="alert alert-primary" role="alert">
           <i class="fas fa-hand-peace me-1"></i>
           <%= link_to @question.user.name, profile_path(@question.user), target: '_blank' %> 
           is a new contributor. Be nice, and check out our 
-          <%= link_to 'Code of Conduct', '#', target: '_blank' %>.
+          <%= link_to 'Code of Conduct', page_path('conduct'), target: '_blank' %>.
         </div>
       <% end %>
+
+      <div class="errors">
+        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+        <%= f.error_notification %>
+      </div>
+      
       <%= f.input :body, as: :trix_editor, label: false %>
     </div>
     <div class="card-footer py-3 bg-white d-flex justify-content-between">
