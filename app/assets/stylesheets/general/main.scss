@@ -2,40 +2,6 @@
   background-color: #F6F5F8 !important;
 }
 
-trix-toolbar {
-  .trix-button.trix-active {
-    background: rgba($primary, 0.4) !important;
-  }
-
-  .trix-button-group {
-    border-bottom: none !important;
-  }
-
-  .trix-button {
-    border: 1px solid #CED4DA;
-  }
-}
-
-.trix-content {
-  h1 {
-    font-size: 1.4rem;
-  }
-
-  h1, pre {
-    margin-bottom: 0.4em;
-  }
-  
-  pre {
-    padding: 0.6rem !important;
-    margin-top: 0.4rem;
-    border-radius: 3px;
-  }
-
-  .attachment--preview {
-    margin: 0.6em 0;
-  }
-}
-
 .top-users {
   font-size: 0.9rem;
   color: #333;

@@ -22,6 +22,26 @@ $(document).ready(function() {
     });
   }
 
+  const tagsAllowed = $('#question_tag_list').attr('data-tags') === 'false' ? false : true;
+
+  $('#question_tag_list').select2({
+    ...select2DefaultOptions,
+    tokenSeparators: tagsAllowed ? ['/', ',', ';'] : null,
+    ajax: {
+      dataType: 'json',
+      ...select2Data,
+      processResults: function (data) {
+        return {
+          results: $.map(data.results, function(obj) {
+            return { id: obj.text, text: obj.text };
+          })
+        };
+      },
+      ...select2Data
+    }
+  });  
+
+
   $('#modal-close').on('show.bs.modal', function() {
     initializeDuplicateSelect2()
   })
@@ -44,5 +64,5 @@ $(document).ready(function() {
     submitBtn.setAttribute('href', path)
   })
 
-  initializeDuplicateSelect2()
+  initializeDuplicateSelect2();
 })

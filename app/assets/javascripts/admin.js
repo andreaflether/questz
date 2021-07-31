@@ -3,4 +3,8 @@
 //= require feather-icons/dist/feather.min
 //= require underscore/underscore-min
 //= require dependent-fields
+//= require uploads/trix
+//= require trix
+//= require rails.validations
+//= require rails.validations.simple_form.bootstrap4
 //= require_tree ./admin
