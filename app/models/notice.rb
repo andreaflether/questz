@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: notices
@@ -22,7 +24,7 @@ class Notice < ApplicationRecord
   enum reason: {
     spam: 1,
     unfriendly: 2,
-    abusive: 3,
+    abusive: 3
   }
 
   enum noticeable_type: {

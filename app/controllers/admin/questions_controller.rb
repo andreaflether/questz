@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module Admin
   class QuestionsController < AdminController
     before_action :set_question, except: %i[index]
     load_and_authorize_resource find_by: :slug
-    
+
     # GET /admin/questions
     def index
       @query = Question.ransack(params[:query])
@@ -15,14 +17,14 @@ module Admin
     def show
       @answers = @question.answers.includes([:user])
       @filters = LanguageFilter::Filter.new(
-        matchlist: File.join(Rails.root, "/config/language_filters/custom_list.yml")
+        matchlist: File.join(Rails.root, '/config/language_filters/custom_list.yml')
       )
       filter_answers
     end
-    
+
     # GET /admin/questions/1/edit
     def edit; end
-    
+
     # PATCH/PUT /admin/questions/1
     def update
       if @question.update(question_params)
@@ -31,13 +33,13 @@ module Admin
         render :edit
       end
     end
-    
+
     # DELETE /admin/questions/1
     def destroy
       @question.destroy
       redirect_to admin_questions_path, notice: I18n.t('controllers.questions.destroy')
     end
-    
+
     # PATCH /admin/questions/1/close
     def close
       if @question.update(question_params)

@@ -49,9 +49,8 @@ class User < ApplicationRecord
   tracked only: %i[create], owner: ->(_controller, model) { model }
 
   mount_uploader :avatar, AvatarUploader
-  
-  attr_accessor :avatar_cache
-  attr_accessor :terms
+
+  attr_accessor :avatar_cache, :terms
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
@@ -81,7 +80,7 @@ class User < ApplicationRecord
   validate :username_has_at_least_one_letter, unless: -> { username.blank? }
 
   validate :set_role_change_info, if: -> { role_changed?(from: 'user') }
-  
+
   def should_generate_new_friendly_id?
     username_changed? || super
   end

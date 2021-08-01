@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: notices
@@ -17,9 +19,9 @@
 #
 FactoryBot.define do
   factory :notice do
-    details { "MyText" }
+    details { 'MyText' }
     reason { 1 }
     user { nil }
-    given_by_id { "MyString" }
+    given_by_id { 'MyString' }
   end
 end

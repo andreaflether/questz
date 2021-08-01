@@ -2,7 +2,7 @@
 
 module ReportsHelper
   def status_to_class(status)
-    statuses = { pending: 'secondary', ongoing: 'info', closed: 'danger', solved: 'primary'}
+    statuses = { pending: 'secondary', ongoing: 'info', closed: 'danger', solved: 'primary' }
     statuses[status.to_sym]
   end
 end

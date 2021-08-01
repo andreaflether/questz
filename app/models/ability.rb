@@ -33,8 +33,8 @@ class Ability
       # Can't update a Question closed for being duplicated
       cannot %i[update], Question, closing_notice: %w[duplicate]
 
-      cannot %i[create], [Answer, Report], user_id: user.id 
-      
+      cannot %i[create], [Answer, Report], user_id: user.id
+
       if user.adm? || user.mod?
         can :manage, :all
         cannot %i[choose], Answer

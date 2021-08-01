@@ -51,22 +51,22 @@ module ApplicationHelper
   end
 
   def add_scrollspy_data
-    "data-bs-spy=scroll 
-    data-bs-target=#toc 
+    "data-bs-spy=scroll
+    data-bs-target=#toc
     data-bs-offset=50"
   end
 
   def get_button_with_confirmation(path, method, message, icon_class, classes, btn_text = nil)
-    link_to '#', 
-    data: { 
-      'bs-toggle': 'modal', 
-      'bs-target': '#confirmationModal', 
-      'bs-method': method.to_sym,
-      'bs-path': path,
-      'bs-content': message
-    },
-    class: classes do
-      "<i class='fas fa-#{icon_class} #{'me-0' if !btn_text}'></i>".html_safe + btn_text
+    link_to '#',
+            data: {
+              'bs-toggle': 'modal',
+              'bs-target': '#confirmationModal',
+              'bs-method': method.to_sym,
+              'bs-path': path,
+              'bs-content': message
+            },
+            class: classes do
+      "<i class='fas fa-#{icon_class} #{'me-0' unless btn_text}'></i>".html_safe + btn_text
     end
   end
 end

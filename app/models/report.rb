@@ -77,7 +77,7 @@ class Report < ApplicationRecord
 
   def last_report_number
     Report.where(
-      created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day, 
+      created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day,
       reportable_type: reportable_type
     ).count
   end
@@ -88,6 +88,6 @@ class Report < ApplicationRecord
   end
 
   def generate_report_number
-    self.number = Date.today.strftime("%Y%m%d") + reportable_type_abbr + next_report_number
+    self.number = Date.today.strftime('%Y%m%d') + reportable_type_abbr + next_report_number
   end
 end

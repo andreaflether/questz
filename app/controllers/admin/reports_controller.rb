@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Admin
   class ReportsController < AdminController
     before_action :set_report, except: %i[index opened]
@@ -25,14 +27,14 @@ module Admin
     # PATCH /admin/reports/1/solve
     def solve; end
 
-    private 
+    private
 
     def set_report
       @report = Report.find_by(number: params[:number])
     end
-    
+
     def get_reports
-      @reports = Report.all.includes([:user, :reportable])
+      @reports = Report.all.includes(%i[user reportable])
       @question_reports = @reports.where(reportable_type: 'Question')
       @answer_reports = @reports.where(reportable_type: 'Answer')
     end

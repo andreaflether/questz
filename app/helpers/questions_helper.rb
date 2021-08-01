@@ -19,7 +19,7 @@ module QuestionsHelper
   end
 
   def delete_message_to_display(question)
-    if question.answers_count > 0
+    if question.answers_count.positive?
       t('messages.confirmations.question_has_answers')
     else
       t('messages.confirmations.delete', resource: 'question')

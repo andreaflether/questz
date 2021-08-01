@@ -50,7 +50,7 @@ class Answer < ApplicationRecord
   validate :cannot_receive_answers, on: :create, unless: -> { question.answered? }
 
   attribute :has_restricted_word, :boolean, default: false
-  attribute :has_link, :boolean, default: :false
+  attribute :has_link, :boolean, default: false
 
   belongs_to :question, counter_cache: true
   belongs_to :user, counter_cache: true
