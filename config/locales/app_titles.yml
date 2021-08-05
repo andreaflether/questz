@@ -81,6 +81,8 @@ en:
       new: *reports_create
       create: *reports_create
       report: Report %{reportable_type}
+      index: All Reports
+      opened: Opened Reports
     errors:
       not_found: '404'
       unprocessable_entity: '422'

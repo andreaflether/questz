@@ -16,3 +16,5 @@ en:
       owned: You can't report your own %{reportable_type}.
       reported: You already reported this %{reportable_type}.
       close: Report was successfully closed.
+    tags:
+      destroy: Tag was successfully deleted.

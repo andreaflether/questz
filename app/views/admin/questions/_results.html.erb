@@ -33,7 +33,7 @@
                     <% end %>
                   </span>
                 </td>
-                <td><%= format_datetime(question.created_at) %></td>
+                <td><%= format_datetime(question.created_at.localtime) %></td>
                 <td><%= question.answers_count %></td>
                 <td class="action-buttons">
                   <div class="d-flex gap-1">

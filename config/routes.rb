@@ -34,7 +34,7 @@ Rails.application.routes.draw do
     end
 
     resources :users, except: %i[new create]
-    resources :tags, only: %i[index show]
+    resources :tags, only: %i[index destroy], param: :name
     resources :answers, only: %i[destroy]
   end
 

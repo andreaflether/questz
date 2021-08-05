@@ -1,3 +1,4 @@
+<% title "Report ##{@report.number}" %>
 <div class="card border-top-primary">
   <div class="card-header d-flex align-items-center justify-content-between bg-white">
     <p class="mb-0 py-2">
@@ -80,14 +81,19 @@
       <%= link_to close_modal_admin_report_path(@report),
         remote: true,
         class: "btn btn-sm btn-danger" do %>
-        <i class="fas fa-trash"></i> Close
+        <i class="fas fa-ban"></i> Close
       <% end %>
     <% end %>
 
     <% if can?(:solve, @report) %>
-      <%= link_to solve_admin_report_path(@report), class: 'btn btn-sm btn-success' do %>
-        Mark as solved
-      <% end %>
+      <%= get_button_with_confirmation(
+        solve_admin_report_path(@report),
+        'patch',
+        t('messages.confirmations.solve'),
+        'check',
+        'btn btn-sm btn-success flex-fill',
+        'Mark as solved'
+      ) %>
     <% end %>
   </div>
 </div>
