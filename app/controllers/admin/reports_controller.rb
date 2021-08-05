@@ -26,27 +26,27 @@ module Admin
     # PATCH /admin/reports/1/assign
     def assign
       if @report.update(assigned_user: current_user)
-        redirect_to request.referrer, notice: 'atribuido com sucesso'
+        redirect_to request.referer, notice: 'atribuido com sucesso'
       else
-        redirect_to request.referrer, flash: { error: 'flopou' }
+        redirect_to request.referer, flash: { error: 'flopou' }
       end
     end
 
     # PATCH /admin/reports/1/close
     def close
       if @report.update(report_params.merge(solved_by: current_user))
-        redirect_to request.referrer, notice: I18n.t('controllers.reports.close')
+        redirect_to request.referer, notice: I18n.t('controllers.reports.close')
       else
-        redirect_to request.referrer, flash: { error: @report.errors.full_messages.first }
+        redirect_to request.referer, flash: { error: @report.errors.full_messages.first }
       end
     end
 
     # PATCH /admin/reports/1/solve
     def solve
       if @report.update(status: 'solved', solved_by: current_user)
-        redirect_to request.referrer, notice: I18n.t('controllers.reports.solve')
+        redirect_to request.referer, notice: I18n.t('controllers.reports.solve')
       else
-        redirect_to request.referrer, flash: { error: @report.errors.full_messages.first }
+        redirect_to request.referer, flash: { error: @report.errors.full_messages.first }
       end
     end
 

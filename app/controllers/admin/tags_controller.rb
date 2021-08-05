@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module Admin
   class TagsController < AdminController
     before_action :set_tag, only: %i[destroy]
-    
+
     # GET /admin/tags
     def index
       @tags = Tag.order(:name)
