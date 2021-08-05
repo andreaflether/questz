@@ -36,5 +36,7 @@ module Questz
 
     # Default locale
     config.i18n.default_locale = :en
+
+    config.assets.initialize_on_precompile = false
   end
 end
