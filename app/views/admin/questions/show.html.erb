@@ -52,7 +52,7 @@
                   <div class="answer-info d-flex flex-lg-row flex-column align-items-lg-center mb-1">
                     <p class="text-break text-muted mb-lg-0 mb-2 me-2">
                       <%= link_to answer.user.name, profile_path(answer.user), target: '_blank', class: 'fw-bold' %>
-                      &nbsp;·&nbsp; <%= format_datetime(@question.created_at.localtime) %>
+                      &nbsp;·&nbsp; <%= format_datetime(answer.created_at.localtime) %>
                     </p>
 
                     <div class="question-flags d-flex g-2">

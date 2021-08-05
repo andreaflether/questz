@@ -1,0 +1,106 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card border-top-primary">
+      <div class="card-header bg-white">
+        <h6 class="mb-0 py-2">
+          <i class="fas fa-filter me-2"></i>
+          Search filters
+        </h6>
+      </div>
+      <%= search_form_for([:admin, query]) do |f| %>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group mb-3">
+                <%= f.label :number_cont, class: 'form-label' %>
+                <%= f.search_field :number_cont, 
+                  class: 'form-control', 
+                  placeholder: 'Search by Report Number' %>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group mb-3">
+                <%= f.label :reason_in, class: 'form-label' %>
+                <%= f.select :reason_in,
+                  options_from_collection_for_select(
+                    Report.reasons_i18n, :first, :second, query.reason_in
+                  ),
+                  { }, 
+                  multiple: true, 
+                  class: 'form-control select2', 
+                  include_blank: false, 
+                  data: { placeholder: 'Select tag' } 
+                %>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <%= f.label :assigned_user_id_in, class: 'form-label' %>
+              <%= f.select :assigned_user_id_in, 
+                options_from_collection_for_select(
+                  User.all, :id, :username, query.assigned_user_id
+                ),
+                { }, 
+                multiple: true, 
+                class: 'form-control select2', 
+                include_blank: false, 
+                data: { placeholder: 'Select user' } 
+              %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <%= f.label :status_in, class: 'form-label' %>
+              <%= f.select :status_in, 
+                options_from_collection_for_select(
+                  Report.statuses_i18n, :first, :second, query.status_in
+                ),
+                { }, 
+                multiple: true, 
+                class: 'form-control select2', 
+                include_blank: false, 
+                data: { placeholder: 'Select status' } 
+              %>
+            </div>
+            <div class="col-md-4">
+              <%= f.label :user_id_in, class: 'form-label' %>
+              <%= f.select :user_id_in, 
+                options_from_collection_for_select(User.all, :id, :username, query.user_id_in),
+                { }, 
+                multiple: true, 
+                class: 'form-control select2', 
+                include_blank: false, 
+                data: { placeholder: 'Select user' } 
+              %>
+            </div>
+            <div class="col-md-4">
+              <%= f.label :reportable_type_in, class: 'form-label' %>
+              <%= f.select :reportable_type_in, 
+                options_from_collection_for_select(
+                  [['Question'], ['Answer']], :first, :first, query.reportable_type_in
+                ),
+                { }, 
+                multiple: true, 
+                class: 'form-control select2', 
+                include_blank: false, 
+                data: { placeholder: 'Select reportable type' } 
+              %>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-footer bg-white text-end py-3">
+          <%= link_to admin_reports_path, class: 'btn btn-default' do %>
+            <i class="fas fa-times"></i> Clear
+          <% end %>
+          <%= button_tag type: 'submit', title: 'Search', class: 'btn btn-primary',
+          params: params.except(:query) do %>
+            <i class="fas fa-search"></i> Search
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

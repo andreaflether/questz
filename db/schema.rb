@@ -171,6 +171,8 @@ ActiveRecord::Schema.define(version: 2021_07_31_162123) do
     t.string "mod_attention_details"
     t.integer "duplicate_id"
     t.integer "assigned_user_id"
+    t.integer "solved_by_id"
+    t.datetime "solved_at"
     t.text "closing_notice_details"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

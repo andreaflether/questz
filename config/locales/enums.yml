@@ -11,6 +11,11 @@ en:
         not_an_answer: Not an answer
         no_longer_needed: It's no longer needed
         mod_intervention: In need of moderator intervention
+      status:
+        pending: Pending
+        ongoing: Ongoing
+        closed: Closed
+        solved: Solved
     user:
       role:
         user: User

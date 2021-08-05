@@ -1,0 +1,27 @@
+<%= simple_form_for report, url: close_admin_report_path(report), method: :patch do |f| %>
+  <div class="modal-body" id="modal-close-content">
+    <div class="row">
+      <div class="col-md-12">
+        <%= t('messages.views.close_report') %>
+      </div>
+      <div class="dropdown-divider my-3"></div>
+      <div class="col-md-12">
+        <%= f.input :status, 
+          collection: Report.statuses_i18n.extract!(:closed), 
+          label_method: :second,
+          value_method: :first,
+          include_blank: false,
+          input_html: { class: 'form-select', readonly: true },
+          as: :select
+        %>
+      </div>
+      <div class="col-md-12">
+        <%= f.input :closing_notice_details, required: true %>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-bs-dismiss="modal">Cancel</button>
+    <%= f.button :submit, 'Confirm', class: 'btn btn-primary' %>
+  </div>
+<% end %>

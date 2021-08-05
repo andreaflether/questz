@@ -1,5 +1,5 @@
 
-  <aside class="text-white bg-dark fixed-top overflow-hidden h-100 px-0">
+  <aside class="text-white bg-dark fixed-top overflow-hidden h-100 px-0" id="sidebar">
     <%= link_to admin_path, class: 'd-block logo-link link-dark text-center' do %>
       <%= image_tag 'logo.png' %>
     <% end %>
@@ -12,28 +12,50 @@
           <i data-feather="home" class="icon me-2"></i>
         <% end %>
       </li>
-      <li>
+      <li class="nav-item">
         <%= active_link_to admin_questions_path,
           class: 'nav-link py-3 rounded-0 link-light',
           title: t('app_titles.admin.questions') do %>
           <i data-feather="help-circle" class="icon me-2"></i>
         <% end %>
       </li>
-      <li>
+      <li class="nav-item">
         <%= active_link_to 'aaaa',
           class: 'nav-link py-3 rounded-0 link-light',
           title: t('app_titles.admin.tags') do %>
           <i data-feather="tag" class="icon me-2"></i>
         <% end %>
       </li>
-      <li>
-        <%= active_link_to opened_admin_reports_path,
+      <li class="nav-item">
+        <%= active_link_to admin_reports_path,
+          active: :inclusive,
           class: 'nav-link py-3 rounded-0 link-light',
-          title: t('app_titles.admin.reports.opened') do %>
+          title: 'Reports',
+          data: { 'bs-toggle': 'collapse', 'bs-target': '#collapseExample'} do %>
           <i data-feather="flag" class="icon me-2"></i>
         <% end %>
       </li>
-      <li>
+      <div class="collapse <%= 'show' if controller_name == 'reports' %>" id="collapseExample">
+        <li class="nav-item">
+          <%= active_link_to admin_reports_path,
+            class: 'nav-link py-3 rounded-0 link-light',
+            title: 'All Reports',
+            active: :exclusive,
+            class_active: 'opened-submenu' do %>
+            <i data-feather="clipboard" class="icon me-2"></i>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= active_link_to opened_admin_reports_path,
+            class: 'nav-link py-3 rounded-0 link-light',
+            title: t('app_titles.admin.reports.opened'),
+            active: :exclusive,
+            class_active: 'opened-submenu' do %>
+            <i data-feather="columns" class="icon me-2"></i>
+          <% end %>
+        </li>
+      </div>
+      <li class="nav-item">
         <%= active_link_to 'aaaa',
           class: 'nav-link py-3 rounded-0 link-light',
           title: t('app_titles.admin.users') do %>

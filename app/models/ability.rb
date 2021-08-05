@@ -38,6 +38,15 @@ class Ability
       if user.adm? || user.mod?
         can :manage, :all
         cannot %i[choose], Answer
+
+        # Can only assign if is pending
+        cannot %i[assign], Report, status: %w[ongoing closed solved]
+        # Can't mark Report as solved if is already closed
+        cannot %i[solve], Report, status: %w[closed solved]
+        # Can't close Report if it is already solved or solved
+        cannot %i[close], Report, status: %w[closed solved]
+        # Can't solve or close if it's pending
+        cannot %i[close solve], Report, status: %w[pending]
       end
     end
   end

@@ -1,0 +1,5 @@
+var closeModal = new bootstrap.Modal(document.getElementById('modal-close'))
+
+$('#modal-close-content').html("<%= j render 'admin/reports/close_report_form', report: @report %>")
+
+closeModal.show()

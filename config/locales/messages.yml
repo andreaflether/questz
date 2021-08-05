@@ -12,6 +12,9 @@ en:
       question_has_answers: >
         This question has answers. If you delete it, it will also delete its answers. 
         Are you sure you want to proceed with this action?
+      assign: This report will be assigned to you. Are you sure you want to continue?
+      close: Are you sure you want to close this question?
+      solve: Are you sure you want to mark this report as solved?
     errors:
       questions:
         has_answers: You cannot delete this question because it already has answers.
@@ -26,6 +29,7 @@ en:
       no_tags_to_display: No tags to display just yet.
       no_users_to_display: No users to display.
       no_reports_to_display: You haven't reported anything yet.
+      no_opened_reports: No opened reports to display just yet.
       no_strikes: You don't have any strikes.
       at_least_one_interaction: Displaying users that interacted in the website at least once
       not_a_valid_filter: <b>%{filter}</b> is not a valid filter.
@@ -35,3 +39,7 @@ en:
           <b>The change you wanted was rejected. </b><br />
           Maybe you tried to change something you didn't have access to
         internal_server_error: We're sorry, but something went wrong.
+      close_report: >
+        If you choose to proceed with this action, the report will be closed and
+        won't be assigned to you anymore. Please inform below, in details, why you 
+        are closing it, so the user can be aware of the reason.

@@ -10,12 +10,14 @@
 #  number                 :string
 #  reason                 :integer
 #  reportable_type        :string
+#  solved_at              :datetime
 #  status                 :integer          default("pending")
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  assigned_user_id       :integer
 #  duplicate_id           :integer
 #  reportable_id          :integer
+#  solved_by_id           :integer
 #  user_id                :integer
 #
 # Indexes

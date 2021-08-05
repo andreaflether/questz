@@ -10,12 +10,14 @@
 #  number                 :string
 #  reason                 :integer
 #  reportable_type        :string
+#  solved_at              :datetime
 #  status                 :integer          default("pending")
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  assigned_user_id       :integer
 #  duplicate_id           :integer
 #  reportable_id          :integer
+#  solved_by_id           :integer
 #  user_id                :integer
 #
 # Indexes
@@ -46,6 +48,9 @@ class Report < ApplicationRecord
     solved: 4
   }
 
+  ransacker :status, formatter: proc { |v| statuses[v] }
+  ransacker :reason, formatter: proc { |v| reasons[v] }
+
   before_create :generate_report_number
 
   validates :reason, presence: true
@@ -54,10 +59,14 @@ class Report < ApplicationRecord
                                     absence: { if: -> { !mod_intervention? } }
   validates :duplicate_id, presence: { if: -> { duplicate? } },
                            absence: { if: -> { !duplicate? } }
-  validates :assigned_user_id, presence: { if: -> { ongoing? } }
+  validates :assigned_user_id, presence: { if: -> { status_changed?(to: 'ongoing') } }
+  validates :solved_by_id, presence: { if: -> { was_solved_or_closed? } }
+  validate :assigned_to_user, if: -> { assigned_user_id_changed?(from: nil) }
+  validate :solved_info, if: -> { was_solved_or_closed? }
 
   belongs_to :duplicate, class_name: 'Question', optional: true
   belongs_to :assigned_user, class_name: 'User', optional: true
+  belongs_to :solved_by, class_name: 'User', optional: true
 
   def to_param
     number
@@ -89,5 +98,22 @@ class Report < ApplicationRecord
 
   def generate_report_number
     self.number = Date.today.strftime('%Y%m%d') + reportable_type_abbr + next_report_number
+  end
+
+  def return_to_pending
+    self.status = 'pending'
+  end
+
+  def assigned_to_user
+    self.status = 'ongoing'
+  end
+
+  def solved_info
+    self.assigned_user = nil
+    self.solved_at = DateTime.now
+  end
+
+  def was_solved_or_closed?
+    status_changed?(to: 'closed') || status_changed?(to: 'solved')
   end
 end

@@ -25,6 +25,7 @@ Rails.application.routes.draw do
         patch :close
         patch :assign
         patch :solve
+        get :close_modal
       end
 
       collection do

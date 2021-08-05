@@ -1,0 +1,40 @@
+<div class="col-md-9">
+  <h6>
+    <%= question.title %>
+    <%= link_to question_path(@report.reportable), target: '_blank' do %>
+      <i class="fas fa-external-link-alt ms-2"></i>
+    <% end %>
+  </h6>
+  <div class="question-body trix-content">
+    <%= sanitize question.body %>
+  </div>
+</div>
+<div class="col-md-3">
+  <ul class="list-group list-group-horizontal text-secondary">
+    <li class="list-group-item flex-fill">
+      <i class="fas fa-caret-up fa-lg me-1"></i> <%= question.cached_votes_up %> 
+    </li>
+    <li class="list-group-item flex-fill">
+      <i class="fas fa-caret-down fa-lg me-1"></i> <%= question.cached_votes_down %> 
+    </li>
+    <li class="list-group-item flex-fill">
+      <i class="fas fa-eye me-1"></i> <%= question.impressions_count %> 
+    </li>
+    <li class="list-group-item flex-fill">
+      <i class="fas fa-comment me-1"></i> <%= question.answers_count %>
+    </li>
+  </ul>
+  <dl class="row mt-3">
+    <dt class="col-sm-4">Status</dt>
+    <dd class="col-sm-8 text-end">
+      <span class="badge bg-<%= get_class_for_question_status(question.status) %>">
+        <%= question.status.humanize %>
+        <% if question.closed? %>
+        - <%= question.closing_notice.humanize %>
+        <% end %>
+      </span>
+    </dd>
+    <dt class="col-sm-4">Asked on</dt>
+    <dd class="col-sm-8 text-end"><%= l(question.created_at.localtime, format: :long) %></dd>
+  </dl>
+</div>
