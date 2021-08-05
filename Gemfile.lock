@@ -237,6 +237,7 @@ GEM
     parallel (1.20.1)
     parser (3.0.1.1)
       ast (~> 2.4.1)
+    pg (1.2.3)
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -374,7 +375,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.4.2)
     ssrf_filter (1.0.7)
     stringex (2.8.5)
     swagger-blocks (3.0.0)
@@ -456,6 +456,7 @@ DEPENDENCIES
   language_filter
   listen (>= 3.0.5, < 3.2)
   meta-tags
+  pg
   public_activity
   puma (~> 3.11)
   rack-livereload
@@ -472,7 +473,6 @@ DEPENDENCIES
   spring
   spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)
-  sqlite3
   stringex
   trix-rails
   tty-spinner

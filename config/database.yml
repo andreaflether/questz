@@ -1,16 +1,19 @@
 default: &default
-  adapter: sqlite3
+  adapter: postgresql
+  encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
 
 development:
   <<: *default
-  database: db/development.sqlite3
+  database: questz_development
 
 test:
   <<: *default
-  database: db/test.sqlite3
+  database: questz_test
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  database: questz_production
+  username: questz
+  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
