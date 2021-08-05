@@ -89,6 +89,7 @@ en:
       internal_server_error: '500'
     users:
       info: User information
+      index: All Users
       stats:
         asked_questions: asked questions
         followed_tags: followed tags

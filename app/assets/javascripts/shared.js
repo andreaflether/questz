@@ -65,4 +65,6 @@ $(document).ready(function() {
   })
 
   initializeDuplicateSelect2();
+
+  $(":input").inputmask();
 })

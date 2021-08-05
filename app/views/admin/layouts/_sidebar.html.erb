@@ -55,12 +55,14 @@
           <% end %>
         </li>
       </div>
-      <li class="nav-item">
-        <%= active_link_to 'aaaa',
-          class: 'nav-link py-3 rounded-0 link-light',
-          title: t('app_titles.admin.users') do %>
-          <i data-feather="user" class="icon me-2"></i>
-        <% end %>
-      </li>
+      <% if current_user.adm? %>
+        <li class="nav-item">
+          <%= active_link_to admin_users_path,
+            class: 'nav-link py-3 rounded-0 link-light',
+            title: t('app_titles.admin.users') do %>
+            <i data-feather="user" class="icon me-2"></i>
+          <% end %>
+        </li>
+      <% end %>
     </ul>
   </aside>      

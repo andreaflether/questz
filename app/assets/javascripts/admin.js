@@ -7,4 +7,5 @@
 //= require trix
 //= require rails.validations
 //= require rails.validations.simple_form.bootstrap4
+//= require inputmask/dist/jquery.inputmask.min
 //= require_tree ./admin

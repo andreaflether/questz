@@ -67,6 +67,8 @@ class User < ApplicationRecord
   has_many :reports, dependent: :destroy
   has_many :notices, dependent: :destroy
 
+  ransacker :role, formatter: proc { |v| roles[v] }
+
   before_destroy :remove_activity
 
   validates :name, presence: true, length: { maximum: 50, allow_blank: true }

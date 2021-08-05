@@ -18,3 +18,5 @@ en:
       close: Report was successfully closed.
     tags:
       destroy: Tag was successfully deleted.
+    users:
+      update: User was successfully updated.

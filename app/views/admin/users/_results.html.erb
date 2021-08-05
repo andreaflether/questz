@@ -1,0 +1,64 @@
+<div class="card border-top-primary">
+  <div class="card-header bg-white">
+    <h6 class="mb-0 py-2">
+      <i class="fas fa-list me-2"></i>
+      Search results
+    </h6>
+  </div>
+    <% if users.any? %>
+      <div class="card-body p-0">
+        <table class="table table-hover m-0">
+          <thead class="border-bottom border-primary">
+            <tr class="table-primary">
+              <th scope="col">#</th>
+              <th scope="col">Username</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Role</th>
+              <th scope="col">Banned?</th>
+              <th scope="col">Level</th>
+              <th scope="col">Notices count</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% users.each do |user| %>
+              <tr>
+                <th scope="row"><%= user.id %></th>
+                <td><%= user.username %></td>
+                <td><%= user.name %></td>
+                <td><%= user.email %></td>
+                <td><%= user.role_i18n %></td>
+                <td><%= format_boolean(user.banned?) %></td>
+                <td><%= user.notices_count %></td>
+                <td><%= user.level %></td>
+                <td class="action-buttons">
+                  <div class="d-flex gap-1">
+                    <%= link_to edit_admin_user_path(user), class: 'btn btn-sm btn-info' do %>
+                      <i class="fas fa-pen"></i>
+                    <% end %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+          </tfoot>
+        </table>
+      </div>
+      <div class="card-footer bg-white py-3">
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-center">
+          <div class="entries-info text-center">
+            <%= page_entries_info users %>
+          </div>
+          <div class="users-pagination">
+            <%= paginate users %>
+          </div>
+        </div>
+      </div>
+        
+    <% else %>
+      <div class="card-body p-3">
+        No records were found. <!-- Todo: add this in i18n -->
+      </div>
+    <% end %>
+</div>

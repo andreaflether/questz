@@ -41,6 +41,10 @@ module ApplicationHelper
     datetime.strftime('%b %d, %Y %H:%M')
   end
 
+  def format_boolean(boolean)
+    boolean ? 'Yes' : 'No'
+  end
+
   def is_from_user?(resource)
     resource.user.id == current_user.id
   end

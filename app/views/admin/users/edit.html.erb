@@ -1,0 +1,62 @@
+<% title "Edit @#{@user.username} info" %>
+
+<%= simple_form_for([:admin, @user], validate: true) do |f| %>
+  <div class="card border-top-primary mb-5">
+    <div class="card-header bg-white">
+      <h6 class="mb-0 py-2">
+        <i class="fas fa-user me-2"></i>
+        Edit @<%= @user.username %> info
+      </h6>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="card">
+            <div class="card-body text-center">
+              <div class="d-flex justify-content-center flex-column">
+                <% if @user.avatar? %>
+                  <%= image_tag(@user.avatar_url, 
+                    class: 'rounded-circle user-avatar-75 mx-auto mb-2') %>
+                <% else %>
+                  <%= image_tag 'no-avatar.png',
+                  class: 'rounded-circle user-avatar-75 border mx-auto mb-2' %>
+                <% end %> 
+                <p class="mb-1">
+                  <span class="fw-bold">
+                    <%= @user.name %> 
+                  </span>
+                  (@<%= @user.username%>)
+                </p>
+                <small>Joined <%= time_ago_in_words(@user.created_at) %> ago</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="row">
+            <div class="col-md-6">
+              <%= f.input :username %>
+            </div>
+            <div class="col-md-6">
+              <%= f.input :name %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <%= f.input :email %>
+            </div>
+            <div class="col-md-6">
+              <%= f.input :role, as: :select, collection: User.roles_i18n,
+                label_method: :second, value_method: :first,
+                input_html: { include_blank: false, class: 'form-select' } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer d-flex justify-content-between">
+      <%= link_to 'Back', :back, class: 'btn btn-default' %>
+      <%= f.submit class: 'btn btn-primary' %>
+    </div>
+  </div>
+  <% end %>
