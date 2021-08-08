@@ -4,6 +4,10 @@ html, body {
   height: 100%;
 }
 
+#main > .container-fluid {
+  padding-top: 60px;
+}
+
 a {
   text-decoration: none;
 }
@@ -13,7 +17,6 @@ abbr[title], abbr[data-original-title] {
 }
 
 .bg-dark-grey {
-  // background-color: #292F3B !important;
   background-color: #242729 !important;
 }
 

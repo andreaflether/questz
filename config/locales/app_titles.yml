@@ -67,7 +67,7 @@ en:
       edit: *questions_update
       update: *questions_update
       index: All questions
-      feed: Your feed
+      feed: Feed
     profiles:
       community: Users
       show: User %{user}
