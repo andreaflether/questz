@@ -58,6 +58,9 @@ en:
       feed: Feed
       reports: Your reports
       strikes: Strikes (%{count})
+      new_users: New users
+      new_questions: New questions
+      top_tags: Top tags
     questions:
       new: *questions_create
       create: *questions_create
