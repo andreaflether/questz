@@ -1,26 +1,26 @@
 <ul class="nav nav-pills small navigation-tabs">
   <li class="nav-item">
     <%= active_link_to t('titles.questions.tabs.popular'), 
-      url_for(request.params.slice(:tag)), 
+      questions_path, 
       class: 'nav-link main-tab',
-      active: :exact %>
+      active: !params.keys.any? { |f| %w(newest answered unanswered).include?(f) }  %>
   </li>
   <li class="nav-item">
     <%= active_link_to t('titles.questions.tabs.newest'), 
-      url_for(request.params.merge(tab: 'newest')), 
+      questions_path(newest: true), 
       class: 'nav-link newest',
-      active: :exact %>
+      active: { newest: true } %>
   </li>
   <li class="nav-item">
     <%= active_link_to t('titles.questions.tabs.answered'), 
-      url_for(request.params.merge(tab: 'answered')), 
+      questions_path(answered: true), 
       class: 'nav-link answered',
-      active: :exact %>
+      active: { answered: true } %>
   </li>
   <li class="nav-item">
     <%= active_link_to t('titles.questions.tabs.unanswered'), 
-      url_for(request.params.merge(tab: 'unanswered')), 
+      questions_path(unanswered: true), 
       class: 'nav-link unanswered',
-      active: :exact %>
+      active: { unanswered: true } %>
   </li>
 </ul>

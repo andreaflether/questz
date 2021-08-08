@@ -10,7 +10,7 @@ class ProfilesController < ApplicationController
                     .tag_counts_on(:tags, order: 'count DESC', limit: 10)
     @activities = PublicActivity::Activity
                   .where(owner: @user)
-                  .where.not('key like ?', '%vote% OR %answer.destroy% OR %report.create%')
+                  .where.not('key SIMILAR TO ?', '%answer.destroy%|%vote%|%report%')
                   .order(created_at: :desc)
                   .includes([:trackable])
                   .page(params[:page])
@@ -34,14 +34,14 @@ class ProfilesController < ApplicationController
   end
 
   def reports
-    @reports = current_user.reports
+    @reports = current_user.reports.page(params[:page])
     @notices = current_user.notices
   end
 
   def community
     @users = User.all
     @users = params[:tab] ? sanitize_filter_params : @users.newest
-    @users = @users.page(params[:page])
+    @users = @users.page(params[:page]).per(3)
   end
 
   private

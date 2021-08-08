@@ -2,21 +2,22 @@
   <h4 class="mb-0"><%= t('app_titles.tags.index') %></h4>
   <ul class="nav nav-pills small navigation-tabs">
     <li class="nav-item">
-      <%= active_link_to t('buttons.shared.nav_tabs.popular'), tags_path, 
+      <%= active_link_to t('buttons.shared.nav_tabs.popular'), 
+        tags_path(popular: true), 
         class: 'nav-link main-tab', 
-        active: :exact %>
+        active: !params.keys.any? { |f| %w(newest alphabetic_order).include?(f) } %>
     </li>
     <li class="nav-item">
       <%= active_link_to t('buttons.shared.nav_tabs.name'), 
         tags_path(alphabetic_order: true), 
         class: 'nav-link alphabetic_order', 
-        active: :exact %>
+        active: { alphabetic_order: true } %>
     </li>
     <li class="nav-item">
       <%= active_link_to t('buttons.shared.nav_tabs.newest'), 
         tags_path(newest: true), 
         class: 'nav-link newest', 
-        active: :exact %>
+        active: { newest: true } %>
     </li>
   </ul>
 </div>

@@ -4,7 +4,7 @@
 #
 # Table name: users
 #
-#  id                     :integer          not null, primary key
+#  id                     :bigint           not null, primary key
 #  answers_count          :integer          default(0)
 #  avatar                 :string
 #  banned                 :boolean          default(FALSE)
@@ -144,9 +144,9 @@ class User < ApplicationRecord
 
   scope :top_users, lambda {
     joins(:points)
-      .group('users.id')
-      .select('*, SUM(points.value) AS reputation')
-      .order(reputation: :desc)
+    .select('users.*, SUM(points.value) AS reputation')
+    .group('users.id')
+    .order(reputation: :desc)
   }
 
   scope :newest, lambda {

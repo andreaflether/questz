@@ -3,21 +3,21 @@
     <%= active_link_to t('buttons.shared.nav_tabs.newest'), 
       url_for(request.params.slice(:tag)), 
       class: 'nav-link main-tab',
-      active: :exact,
+      active: !params.keys.include?('tab'),
       title: t('titles.users.tabs.newest') %>
   </li>
   <li class="nav-item">
     <%= active_link_to t('buttons.shared.nav_tabs.top_users'), 
-      url_for(request.params.merge(tab: 'top_users')), 
+      url_for(request.params.merge(tab: 'top_users').slice!(:page)), 
       class: 'nav-link reputation',
-      active: :exact,
+      active: { tab: 'top_users' },
       title: t('titles.users.tabs.reputation') %>
   </li>
   <li class="nav-item">
     <%= active_link_to t('buttons.shared.nav_tabs.moderators'), 
-      url_for(request.params.merge(tab: 'moderators')), 
+      url_for(request.params.merge(tab: 'moderators').slice!(:page)), 
       class: 'nav-link answered',
-      active: :exact,
+      active: { tab: 'moderators' },
       title: t('titles.users.tabs.moderators') %>
   </li>
 </ul>

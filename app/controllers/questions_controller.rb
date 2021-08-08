@@ -6,16 +6,17 @@ class QuestionsController < ApplicationController
   before_action :authenticate_remote!, only: %i[upvote downvote]
   before_action :get_popular_tags, only: %i[index feed show]
   before_action :get_top_users, only: %i[index feed]
-  impressionist actions: [:show], unique: %i[impressionable_type impressionable_id ip_address]
+  impressionist actions: %i[show], unique: %i[impressionable_type impressionable_id ip_address]
   load_and_authorize_resource except: %i[search index show], find_by: :slug
+  has_scope %i[answered unanswered newest], type: :boolean, only: %i[index feed]
 
   # GET /questions
   def index
-    @questions = Question.most_voted
-    sanitize_filter_params if params[:tab]
+    @questions = apply_scopes(Question.most_voted)
     get_questions
   end
 
+  # GET /
   def feed
     if user_signed_in? && current_user.follow_count.positive?
       @questions = Question.with_user_followed_tags(current_user)
@@ -24,7 +25,6 @@ class QuestionsController < ApplicationController
       @questions = Question.most_voted
     end
 
-    sanitize_filter_params if params[:tab]
     get_questions
   end
 

@@ -56,6 +56,8 @@ en:
       top_tags_for_user: Top tags
       user_stats: Stats
       feed: Feed
+      reports: Your reports
+      strikes: Strikes (%{count})
     questions:
       new: *questions_create
       create: *questions_create
