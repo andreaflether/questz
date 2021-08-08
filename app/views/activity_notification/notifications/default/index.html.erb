@@ -1,5 +1,5 @@
-<div class="notification_wrapper">
-  <div class="notification_header ">
+<div class="notification_wrapper col-md-12">
+  <div class="notification_header">
     <h3 class="my-3 d-flex align-items-center">
       Your notifications
       <%= link_to open_all_notifications_path_for(@target, @index_options.slice(:routing_scope, :devise_default_routes)), method: :post, remote: true,

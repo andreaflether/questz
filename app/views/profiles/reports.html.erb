@@ -1,13 +1,16 @@
 <div class="row mt-3 mb-4">
   <div class="col-md-8">
     <div class="card ">
-      <div class="card-header py-3 bg-white">
-        <h6 class="mb-0">Your reports</h6>
+      <div class="card-header bg-white">
+        <h6 class="card-title py-2 mb-0">
+          <i class="fas fa-flag me-2"></i>
+          <%= t('app_titles.cards.reports') %>
+        </h6>
       </div>
       <% if @reports.any? %>
         <div class="card-body p-0">
           <div class="table-responsive">
-            <table class="table">
+            <table class="table mb-0">
               <thead class="table-primary">
                 <tr>
                   <th scope="col">Report Number</th>
@@ -35,6 +38,14 @@
             </table>
           </div>
         </div>
+        <div class="card-footer d-flex flex-lg-row flex-column align-items-center justify-content-between">
+          <div class="entries-info py-2 flex-grow-1">
+            <%= page_entries_info @reports %>
+          </div>
+          <div class="reports flex-shrink-0">
+            <%= paginate @reports %>
+          </div>
+        </div>
       <% else %>
         <div class="card-body">
           <p class="mb-0"><%= t('messages.views.no_reports_to_display') %></p>
@@ -44,8 +55,11 @@
   </div>
   <div class="col-md-4">
     <div class="card">
-      <div class="card-header bg-white py-3">
-        <h6 class="mb-0">Strikes (<%= current_user.notices_count %>)</h6>
+      <div class="card-header bg-white">
+        <h6 class="card-title py-2 mb-0">
+          <i class="fas fa-exclamation-triangle me-2"></i>
+          <%= t('app_titles.cards.strikes', count: current_user.notices_count) %>
+        </h6>
       </div>
       <div class="card-body">
         <% if @notices.any? %>

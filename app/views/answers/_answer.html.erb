@@ -26,7 +26,7 @@
             'bs-toggle': 'modal', 
             'bs-target': '#confirmationModal', 
             'bs-method': :patch,
-            'bs-path': choose_question_answer_path(answer.question.id, answer),
+            'bs-path': choose_question_answer_path(answer.question, answer),
             'bs-content': t('messages.confirmations.mark_answer_as_chosen') 
           },
           class: answer.chosen? ? 'text-primary' : 'text-muted' do %>

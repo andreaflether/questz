@@ -46,10 +46,10 @@
 
                 <div class="user_since small text-muted">
                   <% if user.user? %>
-                    Member since <%= l(user.created_at, format: :short) %>
+                    Member since <%= l(user.created_at.localtime, format: :short) %>
                   <% else %>
                     <%= t("enums.user.role.#{user.role}") %> 
-                    since <%= l(user.changed_role_on, format: :short) %>
+                    since <%= l(user.changed_role_on.localtime, format: :short) %>
                   <% end %>
                 </div>
               </div>
