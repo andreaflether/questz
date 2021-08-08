@@ -4,7 +4,7 @@
 #
 # Table name: points
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  category   :string
 #  message    :text
 #  value      :integer

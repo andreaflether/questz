@@ -12,15 +12,18 @@
 
 ActiveRecord::Schema.define(version: 2021_07_31_162123) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "activities", force: :cascade do |t|
     t.string "trackable_type"
-    t.integer "trackable_id"
+    t.bigint "trackable_id"
     t.string "owner_type"
-    t.integer "owner_id"
+    t.bigint "owner_id"
     t.string "key"
     t.text "parameters"
     t.string "recipient_type"
-    t.integer "recipient_id"
+    t.bigint "recipient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type"
@@ -36,17 +39,17 @@ ActiveRecord::Schema.define(version: 2021_07_31_162123) do
     t.text "body", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "question_id"
-    t.integer "user_id"
+    t.bigint "question_id"
+    t.bigint "user_id"
     t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["user_id"], name: "index_answers_on_user_id"
   end
 
   create_table "follows", force: :cascade do |t|
     t.string "followable_type", null: false
-    t.integer "followable_id", null: false
+    t.bigint "followable_id", null: false
     t.string "follower_type", null: false
-    t.integer "follower_id", null: false
+    t.bigint "follower_id", null: false
     t.boolean "blocked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -96,7 +99,7 @@ ActiveRecord::Schema.define(version: 2021_07_31_162123) do
   create_table "notices", force: :cascade do |t|
     t.text "details", null: false
     t.integer "reason", null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.integer "given_by_id", null: false
     t.integer "noticeable_type", null: false
     t.datetime "created_at", null: false
@@ -106,15 +109,15 @@ ActiveRecord::Schema.define(version: 2021_07_31_162123) do
 
   create_table "notifications", force: :cascade do |t|
     t.string "target_type", null: false
-    t.integer "target_id", null: false
+    t.bigint "target_id", null: false
     t.string "notifiable_type", null: false
-    t.integer "notifiable_id", null: false
+    t.bigint "notifiable_id", null: false
     t.string "key", null: false
     t.string "group_type"
-    t.integer "group_id"
+    t.bigint "group_id"
     t.integer "group_owner_id"
     t.string "notifier_type"
-    t.integer "notifier_id"
+    t.bigint "notifier_id"
     t.text "parameters"
     t.datetime "opened_at"
     t.datetime "created_at", null: false
@@ -143,7 +146,7 @@ ActiveRecord::Schema.define(version: 2021_07_31_162123) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.integer "status", default: 0
+    t.integer "status", default: 0, comment: "0: Unanswered, 1: Answered, 2: Closed"
     t.string "title", default: "", null: false
     t.text "body", default: "", null: false
     t.integer "answers_count", default: 0
@@ -151,7 +154,7 @@ ActiveRecord::Schema.define(version: 2021_07_31_162123) do
     t.string "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.integer "cached_votes_total", default: 0
     t.integer "cached_votes_score", default: 0
     t.integer "cached_votes_up", default: 0
@@ -177,7 +180,7 @@ ActiveRecord::Schema.define(version: 2021_07_31_162123) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "reportable_type"
-    t.integer "reportable_id"
+    t.bigint "reportable_id"
     t.index ["reportable_type", "reportable_id"], name: "index_reports_on_reportable_type_and_reportable_id"
   end
 
@@ -195,7 +198,7 @@ ActiveRecord::Schema.define(version: 2021_07_31_162123) do
 
   create_table "subscriptions", force: :cascade do |t|
     t.string "target_type", null: false
-    t.integer "target_id", null: false
+    t.bigint "target_id", null: false
     t.string "key", null: false
     t.boolean "subscribing", default: true, null: false
     t.boolean "subscribing_to_email", default: true, null: false
@@ -211,7 +214,7 @@ ActiveRecord::Schema.define(version: 2021_07_31_162123) do
     t.index ["target_type", "target_id"], name: "index_subscriptions_on_target_type_and_target_id"
   end
 
-  create_table "taggings", force: :cascade do |t|
+  create_table "taggings", id: :serial, force: :cascade do |t|
     t.integer "tag_id"
     t.string "taggable_type"
     t.integer "taggable_id"
@@ -230,7 +233,7 @@ ActiveRecord::Schema.define(version: 2021_07_31_162123) do
     t.index ["tagger_id"], name: "index_taggings_on_tagger_id"
   end
 
-  create_table "tags", force: :cascade do |t|
+  create_table "tags", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "slug"
     t.datetime "created_at"
@@ -268,7 +271,7 @@ ActiveRecord::Schema.define(version: 2021_07_31_162123) do
     t.index ["slug"], name: "index_users_on_slug", unique: true
   end
 
-  create_table "votes", force: :cascade do |t|
+  create_table "votes", id: :serial, force: :cascade do |t|
     t.string "votable_type"
     t.integer "votable_id"
     t.string "voter_type"
@@ -282,4 +285,9 @@ ActiveRecord::Schema.define(version: 2021_07_31_162123) do
     t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
   end
 
+  add_foreign_key "answers", "questions"
+  add_foreign_key "answers", "users"
+  add_foreign_key "notices", "users"
+  add_foreign_key "questions", "users"
+  add_foreign_key "taggings", "tags"
 end

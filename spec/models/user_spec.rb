@@ -4,7 +4,7 @@
 #
 # Table name: users
 #
-#  id                     :integer          not null, primary key
+#  id                     :bigint           not null, primary key
 #  answers_count          :integer          default(0)
 #  avatar                 :string
 #  banned                 :boolean          default(FALSE)

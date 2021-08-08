@@ -4,7 +4,7 @@
 #
 # Table name: reports
 #
-#  id                     :integer          not null, primary key
+#  id                     :bigint           not null, primary key
 #  closing_notice_details :text
 #  mod_attention_details  :string
 #  number                 :string
@@ -16,7 +16,7 @@
 #  updated_at             :datetime         not null
 #  assigned_user_id       :integer
 #  duplicate_id           :integer
-#  reportable_id          :integer
+#  reportable_id          :bigint
 #  solved_by_id           :integer
 #  user_id                :integer
 #
