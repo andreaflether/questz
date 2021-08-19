@@ -12,7 +12,7 @@
 $sizes: ('xs', 'sm', 'md', 'lg');
 
 @for $i from 0 to length($sizes) {
-  $base: 0.5rem;
+  $base: 0.7rem;
   $total-size: 0.2rem * $i;
 
   .tag-#{nth($sizes, $i + 1)} {
