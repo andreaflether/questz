@@ -31,6 +31,7 @@ gem 'client_side_validations-simple_form'
 gem 'dependent-fields-rails'
 gem 'devise'
 gem 'enum_help'
+gem 'faker'
 gem 'friendly_id', '~> 5.4.0'
 gem 'groupdate'
 gem 'has_scope'
@@ -53,7 +54,6 @@ gem 'twitter-text'
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails', '~> 4.0'
-  gem 'faker'
   gem 'rspec-rails'
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
