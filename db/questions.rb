@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'nokogiri'
 require 'open-uri'
 require 'byebug'
 
-url = "https://bestlifeonline.com/the-meaning-of-life-and-27-other-major-unanswered-questions-in-science/"
+url = 'https://bestlifeonline.com/the-meaning-of-life-and-27-other-major-unanswered-questions-in-science/'
 
 data = Nokogiri::HTML(open(url))
 

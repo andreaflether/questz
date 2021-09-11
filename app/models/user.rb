@@ -144,9 +144,9 @@ class User < ApplicationRecord
 
   scope :top_users, lambda {
     joins(:points)
-    .select('users.*, SUM(points.value) AS reputation')
-    .group('users.id')
-    .order(reputation: :desc)
+      .select('users.*, SUM(points.value) AS reputation')
+      .group('users.id')
+      .order(reputation: :desc)
   }
 
   scope :newest, lambda {
@@ -160,15 +160,15 @@ class User < ApplicationRecord
 
   scope :top_answerers_in_tag, lambda { |tag|
     joins(%i[answers points])
-    .where(answers: { chosen: true, question_id: Question.tagged_with(tag) })
-    .select(
-      :id, 
-      :username,
-      # 'users.*, SUM(points.value) AS reputation', 
-      :slug, 
-      'COUNT(answers.id) AS chosen_answers_count'
-    )
-    .group(:id)
-    .order(chosen_answers_count: :desc)
+      .where(answers: { chosen: true, question_id: Question.tagged_with(tag) })
+      .select(
+        :id,
+        :username,
+        # 'users.*, SUM(points.value) AS reputation',
+        :slug,
+        'COUNT(answers.id) AS chosen_answers_count'
+      )
+      .group(:id)
+      .order(chosen_answers_count: :desc)
   }
 end
