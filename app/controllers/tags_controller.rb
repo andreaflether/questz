@@ -3,7 +3,8 @@
 class TagsController < ApplicationController
   before_action :set_tag, only: %i[show follow unfollow]
   before_action :authenticate_user!, only: %i[follow unfollow]
-  has_scope %i[alphabetic_order newest], type: :boolean, only: %i[index]
+  has_scope :newest, type: :boolean, only: %i[index]
+  has_scope :alphabetic_order, type: :boolean, only: %i[index]
 
   # GET /tags
   def index

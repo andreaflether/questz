@@ -8,7 +8,9 @@ class QuestionsController < ApplicationController
   before_action :get_top_users, only: %i[index feed]
   impressionist actions: %i[show], unique: %i[impressionable_type impressionable_id ip_address]
   load_and_authorize_resource except: %i[search index show], find_by: :slug
-  has_scope %i[answered unanswered newest], type: :boolean, only: %i[index feed]
+  has_scope :newest, type: :boolean, only: %i[index feed]
+  has_scope :answered, type: :boolean, only: %i[index feed]
+  has_scope :unanswered, type: :boolean, only: %i[index feed]
 
   # GET /questions
   def index
