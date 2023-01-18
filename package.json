@@ -5,7 +5,7 @@
     "@client-side-validations/client-side-validations": "^0.1.5",
     "@client-side-validations/simple-form": "^0.2.0",
     "@fortawesome/fontawesome-free": "^5.14.0",
-    "@popperjs/core": "2.6.0",
+    "@popperjs/core": "2.11.6",
     "@ttskch/select2-bootstrap4-theme": "^1.5.2",
     "adminator": "^1.0.0",
     "bootstrap": "5.0.0-beta2",
