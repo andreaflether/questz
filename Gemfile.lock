@@ -483,7 +483,7 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 RUBY VERSION
-   ruby 2.5.5p157
+   ruby 2.7.1p83
 
 BUNDLED WITH
    2.2.21
