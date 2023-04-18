@@ -480,6 +480,7 @@ DEPENDENCIES
   puma (~> 3.11)
   rack-livereload
   rails (~> 5.2.4, >= 5.2.4.3)
+  rake
   ransack
   rspec-rails
   rubocop-rails

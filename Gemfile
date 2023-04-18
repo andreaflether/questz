@@ -15,6 +15,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'pg'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
+gem 'rake'
 
 # Custom gems for this project
 gem 'active_link_to'
