@@ -477,6 +477,7 @@ DEPENDENCIES
   language_filter
   listen (>= 3.0.5, < 3.2)
   meta-tags
+  mini_portile2
   pg
   public_activity
   puma (~> 3.11)
