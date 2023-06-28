@@ -6,11 +6,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.7.1'
 
 gem 'bootsnap', '>= 1.6.0', require: false
-gem 'coffee-rails', '~> 4.2'
+gem 'coffee-rails', '~> 5.0', '>= 5.0.0'
 gem 'jbuilder', '~> 2.5'
 gem 'puma', '~> 3.11'
-gem 'rails', '~> 5.2.4', '>= 5.2.4.3'
-gem 'sass-rails', '~> 5.0'
+gem 'rails', '~> 6.1.7', '>= 6.1.7.4'
+gem 'sass-rails', '~> 6.0', '>= 6.0.0'
 # gem 'sqlite3'
 gem 'pg'
 gem 'turbolinks', '~> 5'
@@ -55,8 +55,8 @@ gem 'twitter-text'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'factory_bot_rails', '~> 4.0'
-  gem 'rspec-rails'
+  gem 'factory_bot_rails', '~> 5.0', '>= 5.0.0'
+  gem 'rspec-rails', '>= 6.0.0'
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'tty-spinner'
@@ -75,7 +75,7 @@ group :development do
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'web-console', '>= 3.3.0'
+  gem 'web-console', '>= 4.0.0'
 end
 
 group :test do
