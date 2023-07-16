@@ -77,15 +77,17 @@ Rails.application.configure do
   # Devise mailer
   config.action_mailer.default_url_options = { host: 'questz.herokuapp.com' }
 
-  # SMTP settings for gmail
-  config.action_mailer.smtp_settings = {
-    address: 'smtp.gmail.com',
-    port: 587,
-    user_name: Rails.application.credentials.email[:user_name],
-    password: Rails.application.credentials.email[:password],
-    authentication: 'plain',
-    enable_starttls_auto: true
-  }
+  if Rails.application.credentials.email
+    # SMTP settings for gmail
+    config.action_mailer.smtp_settings = {
+      address: 'smtp.gmail.com',
+      port: 587,
+      user_name: Rails.application.credentials.email[:user_name],
+      password: Rails.application.credentials.email[:password],
+      authentication: 'plain',
+      enable_starttls_auto: true
+    }
+  end
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

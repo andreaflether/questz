@@ -3,13 +3,13 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.1'
+ruby '3.0.1'
 
 gem 'bootsnap', '>= 1.6.0', require: false
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
 gem 'puma', '~> 3.11'
-gem 'rails', '~> 5.2.4', '>= 5.2.4.3'
+gem 'rails', '~> 6.0', '>= 6.0.2'
 gem 'sass-rails', '~> 5.0'
 # gem 'sqlite3'
 gem 'pg'
@@ -51,7 +51,6 @@ gem 'simple_form'
 gem 'social-share-button'
 gem 'stringex'
 gem 'trix-rails', require: 'trix'
-gem 'twitter-text'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
@@ -85,3 +84,5 @@ group :test do
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+
+gem "dockerfile-rails", ">= 1.5", :group => :development

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  authenticated :user do root to: 'questions#feed' end
+  root to: 'questions#feed', as: :authenticated_root
 
   match '/404', to: 'errors#not_found', via: :all
   match '/422', to: 'errors#unprocessable_entity', via: :all
