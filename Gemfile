@@ -85,4 +85,4 @@ end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem "dockerfile-rails", ">= 1.5", :group => :development
+gem "dockerfile-rails", ">= 1.5.2", :group => :development
