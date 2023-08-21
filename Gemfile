@@ -8,7 +8,7 @@ ruby '3.0.1'
 gem 'bootsnap', '>= 1.6.0', require: false
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 5.6', '>= 5.6.7'
 gem 'rails', '~> 6.0', '>= 6.0.2'
 gem 'sass-rails', '~> 5.0'
 # gem 'sqlite3'
