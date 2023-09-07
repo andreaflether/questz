@@ -74,7 +74,7 @@ group :development do
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'web-console', '>= 3.3.0'
+  gem 'web-console', '>= 4.2.1'
 end
 
 group :test do
