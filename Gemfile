@@ -6,11 +6,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.0.1'
 
 gem 'bootsnap', '>= 1.6.0', require: false
-gem 'coffee-rails', '~> 4.2'
+gem 'coffee-rails', '~> 5.0', '>= 5.0.0'
 gem 'jbuilder', '~> 2.5'
 gem 'puma', '~> 3.11'
-gem 'rails', '~> 6.0', '>= 6.0.2'
-gem 'sass-rails', '~> 5.0'
+gem 'rails', '~> 7.1', '>= 7.1.0'
+gem 'sass-rails', '~> 6.0', '>= 6.0.0'
 # gem 'sqlite3'
 gem 'pg'
 gem 'turbolinks', '~> 5'
@@ -27,8 +27,8 @@ gem 'acts_as_votable'
 gem 'cancancan'
 gem 'carrierwave', '~> 2.0'
 gem 'chartkick'
-gem 'client_side_validations'
-gem 'client_side_validations-simple_form'
+gem 'client_side_validations', '>= 22.1.0'
+gem 'client_side_validations-simple_form', '>= 16.0.0'
 gem 'dependent-fields-rails'
 gem 'devise'
 gem 'enum_help'
@@ -43,7 +43,7 @@ gem 'impressionist', '~> 1.6.1'
 gem 'inline_svg'
 gem 'kaminari'
 gem 'language_filter'
-gem 'meta-tags'
+gem 'meta-tags', '>= 2.19.0'
 gem 'mini_portile2'
 gem 'public_activity'
 gem 'ransack'
@@ -54,7 +54,7 @@ gem 'trix-rails', require: 'trix'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'factory_bot_rails', '~> 4.0'
+  gem 'factory_bot_rails', '~> 5.0', '>= 5.0.0'
   gem 'rspec-rails'
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
@@ -74,7 +74,7 @@ group :development do
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'web-console', '>= 3.3.0'
+  gem 'web-console', '>= 4.2.1'
 end
 
 group :test do
@@ -85,4 +85,4 @@ end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem "dockerfile-rails", ">= 1.5", :group => :development
+gem "dockerfile-rails", ">= 1.5.2", :group => :development
