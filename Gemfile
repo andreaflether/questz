@@ -66,7 +66,7 @@ group :development do
   gem 'awesome_print'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'bullet'
+  gem 'bullet', '>= 7.1.0'
   gem 'guard', '~> 2.15'
   gem 'guard-livereload', require: false
   gem 'listen', '>= 3.0.5', '< 3.2'
