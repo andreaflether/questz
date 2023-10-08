@@ -9,7 +9,7 @@ gem 'bootsnap', '>= 1.6.0', require: false
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
 gem 'puma', '~> 3.11'
-gem 'rails', '~> 6.0', '>= 6.0.2'
+gem 'rails', '~> 7.1', '>= 7.1.0'
 gem 'sass-rails', '~> 5.0'
 # gem 'sqlite3'
 gem 'pg'
@@ -27,8 +27,8 @@ gem 'acts_as_votable'
 gem 'cancancan'
 gem 'carrierwave', '~> 2.0'
 gem 'chartkick'
-gem 'client_side_validations'
-gem 'client_side_validations-simple_form'
+gem 'client_side_validations', '>= 22.1.0'
+gem 'client_side_validations-simple_form', '>= 16.0.0'
 gem 'dependent-fields-rails'
 gem 'devise'
 gem 'enum_help'
@@ -85,4 +85,4 @@ end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem "dockerfile-rails", ">= 1.5", :group => :development
+gem "dockerfile-rails", ">= 1.5.2", :group => :development
