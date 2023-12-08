@@ -230,10 +230,10 @@ fizzy-ui-utils@^2.0.0:
   dependencies:
     desandro-matches-selector "^2.0.0"
 
-froala-editor@^3.2.6-1:
-  version "3.2.6-1"
-  resolved "https://registry.yarnpkg.com/froala-editor/-/froala-editor-3.2.6-1.tgz#b03feb2b076bc14b8f969a041e4122aab0eb29b3"
-  integrity sha512-PfUi3KwtYqPE9/fRJBhUAjOffUmVt2Bgd9XL1dcWkEZ9vgLaxQLau721xSy9tsZGc43GYoIlDo1jj9Mmdo3cDw==
+froala-editor@^4.1.4:
+  version "4.1.4"
+  resolved "https://registry.yarnpkg.com/froala-editor/-/froala-editor-4.1.4.tgz#6eebb465fd610f2d9cbcf6b9ac45abcff534469a"
+  integrity sha512-oWF8SZNtLvfweURV5T0WYO69ZQpB1LQiGO2e6zoYRAlOwmqlW5yqLWfGi0tfn99qOgZ/4dxqBBDxqfOsRCQFiA==
 
 fullcalendar@^3.6.2:
   version "3.10.2"
