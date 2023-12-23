@@ -79,7 +79,7 @@ end
 
 group :test do
   gem 'database_cleaner', '~> 1.7'
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', '>= 6.0.0'
   gem 'simplecov', require: false
 end
 
