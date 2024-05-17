@@ -28,7 +28,7 @@ gem 'cancancan'
 gem 'carrierwave', '~> 2.0'
 gem 'chartkick'
 gem 'client_side_validations'
-gem 'client_side_validations-simple_form'
+gem 'client_side_validations-simple_form', '>= 16.0.0'
 gem 'dependent-fields-rails'
 gem 'devise'
 gem 'enum_help'
@@ -56,8 +56,8 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails', '~> 4.0'
   gem 'rspec-rails'
-  gem 'rubocop-rails', require: false
-  gem 'rubocop-rspec', require: false
+  gem 'rubocop-rails', '>= 2.21.0', require: false
+  gem 'rubocop-rspec', '>= 2.23.0', require: false
   gem 'tty-spinner'
 end
 
@@ -85,4 +85,4 @@ end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem "dockerfile-rails", ">= 1.5", :group => :development
+gem "dockerfile-rails", ">= 1.5.2", :group => :development
