@@ -19,7 +19,7 @@ gem 'rake'
 
 # Custom gems for this project
 gem 'active_link_to'
-gem 'activity_notification'
+gem 'activity_notification', '>= 2.3.0'
 gem 'acts_as_commentable'
 gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
 gem 'acts-as-taggable-on', '~> 7.0'
