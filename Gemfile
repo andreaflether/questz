@@ -57,7 +57,7 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 4.0'
   gem 'rspec-rails'
   gem 'rubocop-rails', require: false
-  gem 'rubocop-rspec', require: false
+  gem 'rubocop-rspec', '>= 3.0.0', require: false
   gem 'tty-spinner'
 end
 
