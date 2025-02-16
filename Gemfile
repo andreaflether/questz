@@ -9,8 +9,8 @@ gem 'bootsnap', '>= 1.6.0', require: false
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
 gem 'puma', '~> 3.11'
-gem 'rails', '~> 6.0', '>= 6.0.2'
-gem 'sass-rails', '~> 5.0'
+gem 'rails', '~> 7.0', '>= 7.0.0'
+gem 'sass-rails', '~> 6.0', '>= 6.0.0'
 # gem 'sqlite3'
 gem 'pg'
 gem 'turbolinks', '~> 5'
@@ -56,7 +56,7 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails', '~> 4.0'
   gem 'rspec-rails'
-  gem 'rubocop-rails', require: false
+  gem 'rubocop-rails', '>= 2.30.0', require: false
   gem 'rubocop-rspec', require: false
   gem 'tty-spinner'
 end
