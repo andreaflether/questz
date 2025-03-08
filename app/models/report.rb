@@ -72,6 +72,10 @@ class Report < ApplicationRecord
     number
   end
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[assigned_user_id number reason reportable_type user_id status]
+  end
+
   def self.question_reasons
     reasons_i18n.except :not_an_answer, :no_longer_needed
   end

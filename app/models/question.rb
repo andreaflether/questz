@@ -108,6 +108,14 @@ class Question < ApplicationRecord
     slug
   end
 
+  def self.ransackable_associations(_auth_object = nil)
+    %w[tag_taggings taggings tags user]
+  end
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[title status user_id]
+  end
+
   def tag_list_count
     errors.add(:tag_list, I18n.t('messages.errors.questions.tags.at_least_one')) if tag_list.count < MIN_TAGS_ALLOWED
     errors.add(:tag_list, I18n.t('messages.errors.questions.tags.at_most_five')) if tag_list.count > MAX_TAGS_ALLOWED

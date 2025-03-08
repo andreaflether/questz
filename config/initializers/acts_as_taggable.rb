@@ -19,4 +19,8 @@ ActsAsTaggableOn::Tag.class_eval do
   def to_param
     slug
   end
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[name slug]
+  end
 end

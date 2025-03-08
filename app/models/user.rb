@@ -87,6 +87,10 @@ class User < ApplicationRecord
     username_changed? || super
   end
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[username name email role banned level notices_count]
+  end
+
   def username_has_at_least_one_letter
     unless username.count('a-zA-Z').positive?
       errors.add(:username, I18n.t('activerecord.errors.models.user.attributes.username.numeric_only'))
