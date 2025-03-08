@@ -1,6 +1,8 @@
 ---
-name: Feature Request Template
-about: "For feature requests. Please search for existing issues first. Also see CONTRIBUTING."
+name: Feature Request
+about: Request a feature in this project
+title: '[FEATURE]'
+labels: 'enhancement'
 ---
 
 ### Please describe the problem to be solved
