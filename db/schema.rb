@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_03_09_003044) do
+ActiveRecord::Schema.define(version: 2025_03_09_181550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,9 +49,11 @@ ActiveRecord::Schema.define(version: 2025_03_09_003044) do
     t.bigint "user_id", null: false
     t.bigint "ban_author_id"
     t.integer "ban_type", default: 0, null: false, comment: "0: Temporary, 1: Permanent"
-    t.integer "status", null: false, comment: "0: Active, 1: Ended, 2: Revoked"
+    t.integer "status", default: 0, null: false, comment: "0: Active, 1: Ended, 2: Revoked"
     t.datetime "ends_at"
     t.text "reason", null: false
+    t.integer "total_notices"
+    t.boolean "acknowledged_ban", default: false
     t.bigint "revoker_id"
     t.datetime "revoked_at"
     t.text "unban_reason"
@@ -120,9 +122,11 @@ ActiveRecord::Schema.define(version: 2025_03_09_003044) do
     t.integer "reason", null: false
     t.bigint "user_id"
     t.integer "given_by_id", null: false
-    t.integer "noticeable_type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "noticeable_type"
+    t.bigint "noticeable_id"
+    t.index ["noticeable_type", "noticeable_id"], name: "index_notices_on_noticeable"
     t.index ["user_id"], name: "index_notices_on_user_id"
   end
 
