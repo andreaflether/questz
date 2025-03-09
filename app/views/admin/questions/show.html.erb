@@ -74,13 +74,17 @@
                   </p>
                 </div>
                 <div class="answer-actions">
-                  <%= get_button_with_confirmation(
-                    admin_answer_path(answer),
-                    'delete', t('messages.confirmations.delete', resource: 'answer'),
-                    'trash',
-                    'btn btn-sm btn-danger me-auto'
-                  ) %>
-                
+                  <div class="btn-group" role="group">
+                    <%= get_button_with_confirmation(admin_answer_path(answer),
+                                                     'delete', t('messages.confirmations.delete', resource: 'answer'),
+                                                     'trash',
+                                                     'btn btn-sm btn-danger me-auto') %>
+
+                    <%= link_to strike_admin_user_path(answer.user, noticeable_id: answer.id, noticeable_type: answer.class),
+                                class: "btn btn-sm btn-warning" do %>
+                      <i class="fas fa-exclamation-triangle"></i>
+                    <% end %>
+                  </div>
                 </div>
               </div>
             </li>

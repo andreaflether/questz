@@ -2,15 +2,15 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_31_162123) do
+ActiveRecord::Schema.define(version: 2025_03_09_181550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,27 @@ ActiveRecord::Schema.define(version: 2021_07_31_162123) do
     t.bigint "user_id"
     t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["user_id"], name: "index_answers_on_user_id"
+  end
+
+  create_table "bans", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "ban_author_id"
+    t.integer "ban_type", default: 0, null: false, comment: "0: Temporary, 1: Permanent"
+    t.integer "status", default: 0, null: false, comment: "0: Active, 1: Ended, 2: Revoked"
+    t.datetime "ends_at"
+    t.text "reason", null: false
+    t.integer "total_notices"
+    t.boolean "acknowledged_ban", default: false
+    t.bigint "revoker_id"
+    t.datetime "revoked_at"
+    t.text "unban_reason"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ban_author_id"], name: "index_bans_on_ban_author_id"
+    t.index ["revoked_at"], name: "index_bans_on_revoked_at"
+    t.index ["revoker_id"], name: "index_bans_on_revoker_id"
+    t.index ["status"], name: "index_bans_on_status"
+    t.index ["user_id"], name: "index_bans_on_user_id"
   end
 
   create_table "follows", force: :cascade do |t|
@@ -101,9 +122,11 @@ ActiveRecord::Schema.define(version: 2021_07_31_162123) do
     t.integer "reason", null: false
     t.bigint "user_id"
     t.integer "given_by_id", null: false
-    t.integer "noticeable_type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "noticeable_type"
+    t.bigint "noticeable_id"
+    t.index ["noticeable_type", "noticeable_id"], name: "index_notices_on_noticeable"
     t.index ["user_id"], name: "index_notices_on_user_id"
   end
 
@@ -287,6 +310,9 @@ ActiveRecord::Schema.define(version: 2021_07_31_162123) do
 
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
+  add_foreign_key "bans", "users"
+  add_foreign_key "bans", "users", column: "ban_author_id"
+  add_foreign_key "bans", "users", column: "revoker_id"
   add_foreign_key "notices", "users"
   add_foreign_key "questions", "users"
   add_foreign_key "taggings", "tags"

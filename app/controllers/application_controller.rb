@@ -2,6 +2,7 @@
 
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :needs_to_acknowledge_ban?, if: :should_check_ban?
   helper_method :edit_user_path?, :get_popular_tags, :get_top_users
   layout :layout_by_resource
 
@@ -44,5 +45,15 @@ class ApplicationController < ActionController::Base
 
   def edit_user_path?
     controller_name == 'registrations' && %w[edit update].include?(action_name)
+  end
+
+  def should_check_ban?
+    user_signed_in? && request.path != acknowledge_bans_path
+  end
+
+  def needs_to_acknowledge_ban?
+    return unless current_user.banned? && !current_user.active_ban.acknowledged_ban
+
+    redirect_to acknowledge_bans_path
   end
 end
