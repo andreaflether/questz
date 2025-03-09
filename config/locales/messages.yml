@@ -24,6 +24,11 @@ en:
       answers:
         question_closed: This question is closed and can not longer receive answers.
         already_answered: This question already has an chosen answer.
+    bans:
+      automatic_ban: > 
+        Your account has been banned %{duration} due to repeated violations of our community guidelines.
+        Please review our rules to avoid further issues. If you believe this ban was issued by mistake,
+        you may appeal through the appropriate channels."
     views:
       no_questions_yet: No questions to display just yet.
       no_tags_to_display: No tags to display just yet.
