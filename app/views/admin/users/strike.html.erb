@@ -1,0 +1,49 @@
+<%= simple_form_for @notice, 
+                    url: create_strike_admin_user_url(noticeable_id: @resource.id, 
+                                                      noticeable_type: @resource.class), method: :post do |f| %>
+  <div class="card">
+    <div class="card-header">
+      <h5>New Strike</h5>
+    </div>
+    <div class="card-body">
+      <div class="alert alert-primary d-flex align-items-center" role="alert">
+        <div>
+          <p class="mb-0">
+            Notice strike to: <b><%= @resource.class %></b> / Content:<br />
+            <%= @resource.body %>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <%= f.input :noticeable_type, input_html: { value: @resource.class, readonly: true } %>
+        </div>
+        <div class="col-md-1">
+          <%= f.input :noticeable_id, input_html: { value: @resource.id, readonly: true } %>
+        </div>
+        <div class="col-md-4">
+          <%= f.association :user, input_html: { value: "#{@notice.user.name} (#{@notice.user.username})" }, as: :string, disabled: true %>
+        </div>
+        <div class="col-md-3">
+          <%= f.input :reason, collection: Notice.reasons_i18n, 
+          label_method: :second,
+          value_method: :first,
+          include_blank: 'Select a reason',
+          input_html: { class: 'form-select' },
+          as: :select%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <%= f.input :details %>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer d-flex justify-content-between">
+      <%= link_to 'Back', :back, class: 'btn btn-default' %>
+      <%= f.submit class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>
