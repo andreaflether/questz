@@ -1,5 +1,5 @@
 <div class="row mt-3 mb-4">
-  <div class="col-md-8">
+  <div class="col-md-12">
     <div class="card ">
       <div class="card-header bg-white">
         <h6 class="card-title py-2 mb-0">
@@ -53,7 +53,8 @@
       <% end %>
     </div>
   </div>
-  <div class="col-md-4">
+
+  <div class="col-md-12 mt-3">
     <div class="card">
       <div class="card-header bg-white">
         <h6 class="card-title py-2 mb-0">
@@ -68,7 +69,7 @@
               <span class="fw-bold">
                 <%= index %>. <%= notice.reason_i18n %>
               </span> &nbsp;·&nbsp;
-                <%= notice.noticeable_type.capitalize %>
+                <%= notice.noticeable_type %>
                 &nbsp;·&nbsp;
                 <abbr title="<%= l(notice.created_at.localtime, format: :long) %>">
                   <%= time_ago_in_words(notice.created_at) %> ago
@@ -83,13 +84,20 @@
           <p class="mb-0"><%= t('messages.views.no_strikes') %></p>
         <% end %>
       </div>
+
       <div class="card-footer bg-white">
         <% if @notices.any? %>
           You have <b><%= pluralize(current_user.notices_count, 'strike') %></b>.
         <% end %>
-        5 strikes means <span class="text-danger fw-bold">permanent ban</span>
-        on the website. Please avoid unacceptable behavior and have a read on our
-        <%= link_to 'Code of Conduct', page_path('conduct'), target: '_blank' %>.
+
+        <p>
+          3 strikes result in a <span class="fw-bold">temporary <%= ban_message(Ban::FIRST_BAN) %></span>, 
+          while 6 strikes lead to a <span class="fw-bold"><%= ban_message(Ban::SECOND_BAN) %></span>. Upon reaching 8 strikes, 
+          your account will be <span class="fw-bold text-danger">permanently banned from the website</span>.
+          <br >
+          To avoid further penalties, please ensure your behavior aligns with our community guidelines. 
+          Take a moment to review our <%= link_to 'Code of Conduct', page_path('conduct'), target: '_blank' %>.
+        </p>
       </div>
     </div>
   </div>
