@@ -3,11 +3,13 @@
 # Table name: bans
 #
 #  id                                      :bigint           not null, primary key
+#  acknowledged_ban                        :boolean          default(FALSE)
 #  ban_type(0: Temporary, 1: Permanent)    :integer          default(0), not null
 #  ends_at                                 :datetime
 #  reason                                  :text             not null
 #  revoked_at                              :datetime
 #  status(0: Active, 1: Ended, 2: Revoked) :integer          not null
+#  total_notices                           :integer
 #  unban_reason                            :text
 #  created_at                              :datetime         not null
 #  updated_at                              :datetime         not null
@@ -30,16 +32,17 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Ban < ApplicationRecord
+  include ActionView::Helpers::DateHelper
+
   belongs_to :user
   belongs_to :revoker, class_name: 'User', optional: true
   belongs_to :ban_author, class_name: 'User', optional: true
 
-  validates :unban_reason, :revoker_id, if: -> { status_changed?(to: :revoked) }
+  validates :unban_reason, :revoker_id, presence: true, if: -> { status_changed?(to: :revoked) }
   validates :reason, :status, presence: true
+  validates :acknowledged_ban, presence: true
 
-  before_create :set_ban_message
-
-  attribute :strikes, :integer
+  before_validation :set_ban_message, on: :create
 
   FIRST_BAN = 7.days
   SECOND_BAN = 30.days
@@ -55,16 +58,26 @@ class Ban < ApplicationRecord
     permanent: 1
   }
 
+  def additional_info_mapping
+    case total_notices
+    when 3 then :temporary_ban_warning
+    when 6 then :permanent_ban_warning
+    when 8.. then :permanent_ban_notice
+    end
+  end
+
   def set_ban_message
-    duration = case ban.ban_type
-               when :temporary
-                 "for #{time_ago_in_words(ban.ends_at)}"
-               when :permanent
+    return if reason.present?
+
+    duration = case ban_type
+               when 'temporary'
+                 "for #{distance_of_time_in_words(Time.current, ends_at)}"
+               when 'permanent'
                  'permanently'
-               else
-                 'for an unspecified period'
                end
 
-    I18n.t('messages.bans.reason', duration: duration)
+    self.reason = I18n.t('messages.bans.automatic_ban',
+                         duration: duration,
+                         additional_info: I18n.t("messages.bans.#{additional_info_mapping}"))
   end
 end

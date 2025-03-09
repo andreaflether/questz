@@ -66,6 +66,7 @@ class User < ApplicationRecord
   has_many :answers, dependent: :destroy
   has_many :reports, dependent: :destroy
   has_many :notices, dependent: :destroy
+  has_many :bans, dependent: :destroy
 
   ransacker :role, formatter: proc { |v| roles[v] }
 
@@ -97,9 +98,9 @@ class User < ApplicationRecord
     end
   end
 
-  def active_for_authentication?
-    super && !banned?
-  end
+  # def active_for_authentication?
+  #   super && !banned?
+  # end
 
   def remove_activity
     activity = PublicActivity::Activity.find_by(trackable_id: id)
@@ -144,6 +145,35 @@ class User < ApplicationRecord
 
   def new_user?
     created_at.between?(Time.zone.now - 1.month, Time.zone.now)
+  end
+
+  def check_for_ban
+    return if latest_ban_active?
+
+    ban_info = determine_ban_info
+
+    return if ban_info.blank?
+
+    update(banned: true)
+    bans.create!(ban_info.merge({ total_notices: notices_count }))
+  rescue StandardError => e
+    puts e 
+  end
+
+  def determine_ban_info
+    case notices_count
+    when 3 then { ban_type: 0, ends_at: Ban::FIRST_BAN.from_now, period_key: '7_days' }
+    when 6 then { ban_type: 0, ends_at: Ban::SECOND_BAN.from_now, period_key: '30_days' }
+    when 8.. then { ban_type: 1, ends_at: nil }
+    end
+  end
+
+  def latest_ban_active?
+    bans.active.exists?
+  end
+
+  def active_ban
+    bans.active.first
   end
 
   scope :top_users, lambda {

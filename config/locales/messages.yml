@@ -25,10 +25,22 @@ en:
         question_closed: This question is closed and can not longer receive answers.
         already_answered: This question already has an chosen answer.
     bans:
+      temporary_ban_warning: >
+        This is a temporary suspension. If you receive 3 more strikes, you will be banned for 30 days.
+        Please be mindful of our rules to prevent further penalties.
+      permanent_ban_warning: >
+        This is a temporary suspension. Your account is nearing a permanent ban. 
+        If you receive 2 more infractions, your account will be permanently banned.
+      permanent_ban_notice:
+        This ban is permanent, meaning you will no longer be able to access your account.
+        Creating new accounts to bypass this ban is strictly prohibited and may result in further actions,
+        including IP restrictions.
       automatic_ban: > 
-        Your account has been banned %{duration} due to repeated violations of our community guidelines.
-        Please review our rules to avoid further issues. If you believe this ban was issued by mistake,
-        you may appeal through the appropriate channels."
+        <b>Your account has been banned %{duration} due to repeated violations of our community guidelines.</b>
+        
+        %{additional_info}
+
+        If you believe this ban was issued by mistake, you may appeal through the appropriate channels.
     views:
       no_questions_yet: No questions to display just yet.
       no_tags_to_display: No tags to display just yet.
