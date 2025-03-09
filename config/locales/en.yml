@@ -1,4 +1,7 @@
 en:
+  time:
+    formats:
+      short: "%B %d %Y, %H:%M"
   number:
     human:
       decimal_units:
