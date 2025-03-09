@@ -20,6 +20,13 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :users, only: %i[], param: :username do
+      member do
+        get :strike
+        post :create_strike
+      end
+    end
+
     resources :reports, only: %i[show index], param: :number do
       member do
         patch :close
@@ -39,6 +46,13 @@ Rails.application.routes.draw do
   end
 
   patch '/update_avatar', to: 'profiles#update_avatar'
+
+  resources :bans, only: %i[] do
+    collection do
+      get :acknowledge
+      post :acknowledge
+    end
+  end
 
   resources :questions do
     member do
