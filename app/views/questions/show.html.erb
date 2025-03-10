@@ -38,26 +38,31 @@
       </div>
       <div class="card-body">
         <div class="d-flex">
-          <div class="d-flex flex-column question-votes text-muted mt-1" 
-            data-user-vote=<%= user_vote(@question) if user_signed_in? %> id="question_<%= @question.id %>_votes">
-            <%= link_to upvote_question_path(@question),
-              method: :patch,
-              remote: true,
-              class: 'text-muted vote-up',
-              title: t('titles.questions.upvote') do %>
-              <i class="fas fa-caret-up me-0"></i>
-            <% end %>
+            <div class="d-flex flex-column question-votes text-muted mt-1" 
+              data-user-vote=<%= user_vote(@question) if user_signed_in? %> id="question_<%= @question.id %>_votes">
+              <% if can? :upvote, @question %>
+                <%= link_to upvote_question_path(@question),
+                  method: :patch,
+                  remote: true,
+                  class: 'text-muted vote-up',
+                  title: t('titles.questions.upvote') do %>
+                  <i class="fas fa-caret-up me-0"></i>
+                <% end %>
+              <% end %>
 
-            <span class="question-vote-up fs-5"><%= @question.weighted_score %></span>
-
-            <%= link_to downvote_question_path(@question),
-              method: :patch,
-              remote: true,
-              class: 'text-muted vote-down mt-1',
-              title: t('titles.questions.downvote') do %>
-              <i class="fas fa-caret-down me-0"></i>
-            <% end %>
+              <span class="question-vote-up fs-5"><%= @question.weighted_score %></span>
+              
+              <% if can? :downvote, @question %>
+                <%= link_to downvote_question_path(@question),
+                  method: :patch,
+                  remote: true,
+                  class: 'text-muted vote-down mt-1',
+                  title: t('titles.questions.downvote') do %>
+                  <i class="fas fa-caret-down me-0"></i>
+                <% end %>
+              <% end %>
           </div>
+
           <div class="d-flex flex-column flex-fill ms-4">
             <% if @question.closed? %>
               <div class="alert alert-primary" role="alert">
@@ -122,7 +127,7 @@
                   <% end %>
                 </span>
               <% end %>
-              <% if user_signed_in? && @question.user != current_user %>
+              <% if user_signed_in? && can?(:create, Report) %>
                 <%= link_to new_question_report_path(@question), class: 'text-muted' do %>
                   <i class="far fa-flag"></i>Report
                 <% end %>

@@ -9,7 +9,9 @@
   <% else %>
     <div class="card-body">
       <p class="mb-1"><%= t('messages.views.no_questions_yet') %></p>
-      <%= link_to t('buttons.questions.new_question'), new_question_path, class: 'fw-bold' %>
+      <% if can?(:create, Question) %>
+        <%= link_to t('buttons.questions.new_question'), new_question_path, class: 'fw-bold' %>
+      <% end %>
     </div>
   <% end %>
 </div>
