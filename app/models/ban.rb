@@ -40,7 +40,7 @@ class Ban < ApplicationRecord
 
   validates :unban_reason, :revoker_id, presence: true, if: -> { status_changed?(to: :revoked) }
   validates :reason, :status, presence: true
-  validates :acknowledged_ban, presence: true
+  validates :acknowledged_ban, inclusion: { in: [true, false] }
 
   before_validation :set_ban_message, on: :create
 

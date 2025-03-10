@@ -7,7 +7,7 @@ class QuestionsController < ApplicationController
   before_action :get_popular_tags, only: %i[index feed show]
   before_action :get_top_users, only: %i[index feed]
   impressionist actions: %i[show], unique: %i[impressionable_type impressionable_id ip_address]
-  load_and_authorize_resource except: %i[search index show], find_by: :slug
+  load_and_authorize_resource except: %i[search index show feed], find_by: :slug
   has_scope :newest, type: :boolean, only: %i[index feed]
   has_scope :answered, type: :boolean, only: %i[index feed]
   has_scope :unanswered, type: :boolean, only: %i[index feed]
@@ -42,10 +42,8 @@ class QuestionsController < ApplicationController
 
   # GET /questions/1
   def show
-    @related_questions = @question.find_related_tags
-                                  .limit(8)
-    @answers = @question.answers
-                        .page(params[:page])
+    @related_questions = @question.find_related_tags.limit(8)
+    @answers = @question.answers.page(params[:page])
     @is_answered = @question.answered?
   end
 
@@ -86,6 +84,7 @@ class QuestionsController < ApplicationController
 
   # PATCH /questions/1/upvote
   def upvote
+    # TODO: Add this behavior in model
     if current_user.voted_up_for? @question
       @question.unvote_up current_user
       @question.create_activity(key: 'question.unvote_up', owner: @question.user)
@@ -105,6 +104,7 @@ class QuestionsController < ApplicationController
 
   # PATCH /questions/1/downvote
   def downvote
+    # TODO: Add this behavior in model
     if current_user.voted_down_for? @question
       @question.unvote_down current_user
       @question.create_activity(key: 'question.unvote_down', owner: @question.user)
@@ -135,9 +135,7 @@ class QuestionsController < ApplicationController
   end
 
   def get_questions
-    @questions = @questions
-                 .includes(%i[tags user tag_taggings])
-                 .page(params[:page])
+    @questions = @questions.includes(%i[tags user tag_taggings]).page(params[:page])
   end
 
   def sanitize_filter_params

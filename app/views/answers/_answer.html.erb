@@ -2,22 +2,27 @@
   <div class="d-flex">
     <div class="d-flex flex-column align-items-center answer-votes text-muted" 
       data-user-vote=<%= user_vote(answer) if user_logged %> id="answer_<%= answer.id %>_votes">
-      <%= link_to upvote_question_answer_path(answer.question, answer),
-        method: :patch,
-        remote: true,
-        class: 'text-muted vote-up',
-        title: t('titles.answers.upvote') do %>
-        <i class="fas fa-caret-up me-0"></i>
+      
+      <% if can?(:upvote, answer) %>
+        <%= link_to upvote_question_answer_path(answer.question, answer),
+          method: :patch,
+          remote: true,
+          class: 'text-muted vote-up',
+          title: t('titles.answers.upvote') do %>
+          <i class="fas fa-caret-up me-0"></i>
+        <% end %>
       <% end %>
 
       <span class="answer-total-votes fs-5"><%= answer.weighted_score %></span>
-    
-      <%= link_to downvote_question_answer_path(answer.question, answer),
-        method: :patch,
-        remote: true,
-        class: 'text-muted vote-down mt-1',
-        title: t('titles.answers.downvote') do %>
-        <i class="fas fa-caret-down me-0"></i>
+
+      <% if can?(:downvote, answer) %>
+        <%= link_to downvote_question_answer_path(answer.question, answer),
+          method: :patch,
+          remote: true,
+          class: 'text-muted vote-down mt-1',
+          title: t('titles.answers.downvote') do %>
+          <i class="fas fa-caret-down me-0"></i>
+        <% end %>
       <% end %>
       
       <% if can?(:choose, answer) && !@is_answered %>
@@ -107,7 +112,7 @@
             ) %>
           </ul>
         </div>
-        <% if user_signed_in? && current_user.id != answer.user.id %>
+        <% if user_signed_in? && can?(:report, answer) %>
           <%= link_to new_answer_report_path(answer), class: 'text-muted',
             data: { 'bs-toggle': 'tooltip'}, title: 'rerwewr' do %>
             <i class="far fa-flag"></i>Report
