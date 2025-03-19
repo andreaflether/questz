@@ -4,7 +4,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    return if user.present?
+    return unless user.present?
 
     can %i[feed], Question
     return if user&.banned?

@@ -31,3 +31,7 @@ en:
         spam: Spam
         unfriendly: Unfriendly/Unkind
         abusive: Abusive
+    ban:
+      ban_type:
+        permanent: permanently banned
+        temporary: temporarily banned
