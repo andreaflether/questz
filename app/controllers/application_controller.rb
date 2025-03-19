@@ -48,7 +48,7 @@ class ApplicationController < ActionController::Base
   end
 
   def should_check_ban?
-    user_signed_in? && request.path != acknowledge_bans_path && !current_user.active_ban.acknowledged_ban?
+    user_signed_in? && request.path != acknowledge_bans_path && !current_user.active_ban&.acknowledged_ban?
   end
 
   def needs_to_acknowledge_ban?
