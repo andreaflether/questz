@@ -1,23 +1,29 @@
 <%= simple_form_for(@ban, url: acknowledge_bans_url, method: :post) do |f| %>
   <div class="alert alert-danger mt-4" role="alert">
     <i class="fas fa-exclamation-triangle fa-3x"></i>
-    <h4 class="mt-2">Your account is <%= @ban.ban_type %> banned.</h4>
+    <h4 class="mt-2">Your account is <%= @ban.ban_type_i18n %>.</h4>
 
     <p><%= simple_format(@ban.reason) %></p>
 
     <p>
       It is essential that all users treat each other with respect. 
-      Inappropriate behavior, including spam, harassment, offensive language, and abusive conduct, will not be tolerated.
-      By using our platform, you agree to abide by these rules. Violations may result in penalties, including temporary 
-      or permanent suspension of your account, depending on severity and frequency.
+      Inappropriate behavior, including spam, harassment, offensive language, and abusive conduct 
+      is not tolerated.
+    <% if @ban.temporary? %>
+      By using our platform, you agree to abide by these rules. Violations may result in penalties, 
+      including temporary or permanent suspension of your account, depending on severity and frequency.
+    <% end %>
     </p>
 
     <p>
-      We strongly encourage you to review our <%= link_to 'Code of Conduct', page_path('conduct'), target: '_blank', class: 'fw-bold' %>
+      We strongly encourage you to review our 
+      <%= link_to 'Code of Conduct', page_path('conduct'), target: '_blank', class: 'fw-bold' %>
       to ensure your interactions align with our values.
     </p>
 
-    <p>You can access Questz again on <%= l(@ban.ends_at, format: :short) %></p>
+    <% if @ban.temporary? %>
+      <p>You can access Questz again on <%= l(@ban.ends_at, format: :short) %></p>
+    <% end %>
 
     <hr />
 

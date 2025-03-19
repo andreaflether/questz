@@ -3,7 +3,7 @@
 class AdminController < ApplicationController
   layout 'admin'
   before_action :authenticate_user!, except: %i[index show upvote downvote search]
-  load_and_authorize_resource
+  load_and_authorize_resource class: false
 
   def index
     @questions = Question.group_by_day_of_week(:created_at, format: '%a').count

@@ -98,9 +98,9 @@ class User < ApplicationRecord
     end
   end
 
-  # def active_for_authentication?
-  #   super && !banned?
-  # end
+  def active_for_authentication?
+    super && !permanently_banned?
+  end
 
   def remove_activity
     activity = PublicActivity::Activity.find_by(trackable_id: id)
@@ -156,8 +156,6 @@ class User < ApplicationRecord
 
     update(banned: true)
     bans.create!(ban_info.merge({ total_notices: notices_count }))
-  rescue StandardError => e
-    puts e 
   end
 
   def determine_ban_info
@@ -174,6 +172,10 @@ class User < ApplicationRecord
 
   def active_ban
     bans.active.first
+  end
+
+  def permanently_banned?
+    active_ban&.permanent? && active_ban&.acknowledged_ban?
   end
 
   scope :top_users, lambda {
